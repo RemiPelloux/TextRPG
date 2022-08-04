@@ -130,9 +130,14 @@ class Character:
         for category in self.inventory:
             res = '\n'
             res += '\t' + category + '\n'
-            for item in self.inventory[category]:
-                currentItem = items.search_item(category, item['id'])
-                res += '\t\t' + items.print_item(currentItem) + '\n'
+            # if empty pass
+            # else print the item
+            for itemId in self.inventory[category]:
+                if self.inventory[category] == {}:
+                    pass
+                else:
+                    currentItem = items.search_item(itemId, category)
+                    res += '\t\t' + str(items.print_item(currentItem)) + '\n'
             print(res)
 
     # pretty print the character's equipment
