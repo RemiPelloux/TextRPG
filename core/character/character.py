@@ -35,7 +35,8 @@ class Character:
                       'luck': random.randint(-1, 3)}
         # inventory is filled by item id and amount, and if the item is equipped or not if it's a weapon, armor or accessory
         self.inventory = {'quest items': {}, 'potions': {}, 'weapons': {1: {'id': 1, 'isEquipped': True}},
-                          'armor': {}, 'accessories': {}, 'money': 1}
+                          'armor': {}, 'accessories': {}}
+        self.money = 1
         # level and exp are used to calculate the next level
         self.level = 1
         self.exp = 0
@@ -55,7 +56,7 @@ class Character:
         self.monsters_killed = 0
         # save is: level, exp, your stats, inventory, equipment, quests, shop, quests completed, monsters killed, the current date
         self.save = {'name': self.name, 'level': self.level, 'exp': self.exp, 'stats': self.stats,
-                     'inventory': self.inventory,
+                     'inventory': self.inventory, 'money': self.money,
                      'equipment': self.equipment, 'quests': self.quests, 'shop': self.shop,
                      'quests_completed': self.quests_completed, 'monsters_killed': self.monsters_killed,
                      'date': datetime.datetime.now().strftime('%m/%d/%Y')
@@ -103,6 +104,24 @@ class Character:
     def get_exp(self):
         return self.exp
 
+    def get_money(self):
+        return self.money
+
+    def add_money(self, money):
+        self.money += money
+
+    def get_quest_completed(self):
+        return self.quests_completed
+
+    def add_quest_completed(self):
+        self.quests_completed += 1
+
+    def get_monsters_killed(self):
+        return self.monsters_killed
+
+    def add_monster_killed(self, amount):
+        self.monsters_killed += amount
+
     def printResume(self):
         print('Name: ' + self.name)
         print('Level: ' + str(self.level))
@@ -130,15 +149,7 @@ class Character:
         for category in self.inventory:
             res = '\n'
             res += '\t' + category + '\n'
-            # if empty pass
-            # else print the item
-            for itemId in self.inventory[category]:
-                if self.inventory[category] == {}:
-                    pass
-                else:
-                    currentItem = items.search_item(itemId, category)
-                    res += '\t\t' + str(items.print_item(currentItem)) + '\n'
-            print(res)
+            return self.inventory
 
     # pretty print the character's equipment
     def printEquipment(self):

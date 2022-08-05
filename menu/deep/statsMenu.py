@@ -6,16 +6,16 @@
 
 def statsMenu(character):
     # print the resume of the character
-    print("\t Name " + character.get_name())
-    print("\t Level " + str(character.get_level()))
-    print("\t Exp " + str(character.get_exp()))
-    print("\t Stats " + str(character.get_stats()))
-    print("\t Inventory " + str(character.printInventory()))
-    print("\t Equipment " + str(character.printEquipment()))
-    print("\t Quests " + str(character.printQuests()))
-    print("\t Quests completed " + str(character.get_quests_completed()))
-    print("\t Monsters killed " + str(character.get_monsters_killed()))
-    print("\t Date " + character.get_date())
+    print("Name : " + character.get_name())
+    print("Level : " + str(character.get_level()))
+    print("Exp : " + str(character.get_exp()))
+    print("Stats : " + str(character.printStats()))
+    print("Money : " + str(character.get_money()))
+    print("Inventory : " + str(character.printInventory()))
+    print("Equipment : " + str(character.printEquipment()))
+    print("Quests : " + str(character.printQuests()))
+    print("Quests completed : " + str(character.get_quest_completed()))
+    print("Monsters killed : " + str(character.get_monsters_killed()))
 
     # print("""
     #     -------------------------
