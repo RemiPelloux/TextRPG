@@ -146,10 +146,14 @@ class Character:
     # pretty print the character's inventory
     # for each item in each category, print the item with print_item
     def printInventory(self):
+        res = ''
         for category in self.inventory:
-            res = '\n'
+            res += '\n'
             res += '\t' + category + '\n'
-            return self.inventory
+            for item in self.inventory[category]:
+                print(self.inventory[category][item]['id'])
+                res += '\t\t' + str(items.search_item(self.inventory[category][item]['id'], self.inventory[category])) + '\n'
+        return res
 
     # pretty print the character's equipment
     def printEquipment(self):
