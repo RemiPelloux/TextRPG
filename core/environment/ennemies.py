@@ -12,7 +12,6 @@ class Ennemy:
     def __init__(self, name, health, energy, stats, ennemyType, loot):
         self.name = name
         self.health = health
-        self.energy = energy
         self.stats = stats
         self.type = ennemyType
         self.loot = loot
@@ -31,14 +30,12 @@ class Ennemy:
         name = self.generateName(ennemyType)
         # The health of the ennemy is random scaled by the level of the character
         health = self.generateHealth(level)
-        # The energy of the ennemy is random scaled by the level of the character
-        energy = self.generateEnergy(level)
         # The stats of the ennemy is random scaled by the level of the character
         stats = self.generateStats(level)
         # The loot of the ennemy is random scaled by the level of the character
         loot = self.generateLoot(level)
         # The ennemy is created
-        ennemy = Ennemy(name, health, energy, stats, ennemyType, loot)
+        ennemy = Ennemy(name, health, stats, ennemyType, loot)
         return ennemy
 
     # This method generates the type of the ennemy
@@ -77,3 +74,6 @@ class Ennemy:
         elif ennemyType == 7:
             self.name += 'Skeleton'
         return self.name
+
+    def generateHealth(self, level):
+        pass
