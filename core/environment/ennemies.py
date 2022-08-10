@@ -16,3 +16,7 @@ class Ennemy:
         self.isAlive = True
 
     # This method is used to generate the ennemies.
+    # A ennemy is a random enemy scaled by the level of the character and the difficulty.
+    # It has a name, health, energy, stats, and loot.
+    # The loot is generated randomly scaled by the level of the character.
+    # The ennemy can be an orc, a demon, a dragon, a goblin, a skeleton, a zombie, a skeleton

@@ -1,39 +1,58 @@
 # items are a list of item.
 # item is a dictionary.
-# item has: id, name, stats, price, description, type
+# item has: id, name, stats, price, description, type,level,upgrade level, equipable, sellable
 # in items, there is categories of items.
 # categories is: weapon, armor, accessory, potion, quest items, consumable items, special
 # item type is: weapon, armor, accessory, potion, quest items, consumable items, special
 #
+import random
 
 weapon_list = [
     {
         'id': '1',
         'name': 'Sword',
-        'stats': {'attack': 10, 'defense': 0, 'speed': 0, 'luck': 0},
+        'stats': {'attack': random.randint(1, 3), 'defense': 0, 'speed': 0, 'luck': random.randint(-1, 3)},
         'price': 10,
         'description': 'A simple sword',
         'type': 'weapon',
+        'level': 1,
+        'upgradeLevel': 0,
         'equipable': True,
         'sellable': True
     },
     {
         'id': '2',
         'name': 'Axe',
-        'stats': {'attack': 15, 'defense': 0, 'speed': 0, 'luck': 0},
+        'stats': {'attack': random.randint(4, 7), 'defense': 0, 'speed': 0, 'luck': random.randint(1, 5)},
         'price': 15,
         'description': 'A simple axe',
         'type': 'weapon',
+        'level': 3,
+        'upgradeLevel': 0,
         'equipable': True,
         'sellable': True
     },
     {
         'id': '3',
-        'name': 'Mace',
-        'stats': {'attack': 20, 'defense': 0, 'speed': 0, 'luck': 0},
+        'name': 'Sacred sword',
+        'stats': {'attack': random.randint(7, 10), 'defense': 0, 'speed': 0, 'luck': random.randint(1, 8)},
         'price': 20,
-        'description': 'A simple mace',
+        'description': 'A simple bow',
         'type': 'weapon',
+        'level': 5,
+        'upgradeLevel': 0,
+        'equipable': True,
+        'sellable': True
+    },
+    {
+        'id': '4',
+        'name': 'Staff',
+        'stats': {'attack': random.randint(10, 15), 'defense': 0, 'speed': 0, 'luck': random.randint(1, 10)},
+        'price': 25,
+        'description': 'A simple staff',
+        'type': 'weapon',
+        'level': 7,
+        'upgradeLevel': 0,
         'equipable': True,
         'sellable': True
     }
@@ -42,31 +61,49 @@ weapon_list = [
 armor_list = [
     {
         'id': '1',
-        'name': 'Leather Armor',
-        'stats': {'attack': 0, 'defense': 10, 'speed': 0, 'luck': 0},
+        'name': 'Leather armor',
+        'stats': {'attack': 0, 'defense': random.randint(1, 3), 'speed': 0, 'luck': random.randint(-1, 3)},
         'price': 10,
         'description': 'A simple leather armor',
         'type': 'armor',
+        'level': 1,
+        'upgradeLevel': 0,
         'equipable': True,
         'sellable': True
     },
     {
         'id': '2',
         'name': 'Chainmail',
-        'stats': {'attack': 0, 'defense': 15, 'speed': 0, 'luck': 0},
+        'stats': {'attack': 0, 'defense': random.randint(4, 7), 'speed': 0, 'luck': random.randint(1, 5)},
         'price': 15,
         'description': 'A simple chainmail',
         'type': 'armor',
+        'level': 3,
+        'upgradeLevel': 0,
         'equipable': True,
         'sellable': True
     },
     {
         'id': '3',
-        'name': 'Plate Armor',
-        'stats': {'attack': 0, 'defense': 20, 'speed': 0, 'luck': 0},
+        'name': 'Plate armor',
+        'stats': {'attack': 0, 'defense': random.randint(7, 10), 'speed': 0, 'luck': random.randint(1, 8)},
         'price': 20,
         'description': 'A simple plate armor',
         'type': 'armor',
+        'level': 5,
+        'upgradeLevel': 0,
+        'equipable': True,
+        'sellable': True
+    },
+    {
+        'id': '4',
+        'name': 'Magic armor',
+        'stats': {'attack': 0, 'defense': random.randint(10, 15), 'speed': 0, 'luck': random.randint(1, 10)},
+        'price': 25,
+        'description': 'A simple magic armor',
+        'type': 'armor',
+        'level': 7,
+        'upgradeLevel': 0,
         'equipable': True,
         'sellable': True
     }
@@ -75,34 +112,30 @@ armor_list = [
 accessory_list = [
     {
         'id': '1',
-        'name': 'Lucky Ring',
-        'stats': {'attack': 0, 'defense': 1, 'speed': 1, 'luck': 5},
+        'name': 'Mysterious ring',
+        'stats': {'attack': random.randint(0, 2), 'defense': random.randint(0, 2), 'speed': random.randint(0, 2), 'luck': random.randint(1, 3)},
         'price': 10,
-        'description': 'A simple helmet',
+        'description': 'This ring is mysterious, it give you some power',
         'type': 'accessory',
+        'level': 1,
+        'upgradeLevel': 0,
         'equipable': True,
         'sellable': True
     },
     {
         'id': '2',
-        'name': 'Shield',
-        'stats': {'attack': 0, 'defense': 3, 'speed': 1, 'luck': 3},
+        'name': 'Ring of power',
+        'stats': {'attack': random.randint(1, 4), 'defense': random.randint(1, 4), 'speed': random.randint(1, 4), 'luck': random.randint(1, 4)},
         'price': 15,
-        'description': 'A simple shield',
+        'description': 'The power of the ring',
         'type': 'accessory',
+        'level': 3,
+        'upgradeLevel': 0,
         'equipable': True,
         'sellable': True
     },
-    {
-        'id': '3',
-        'name': 'Helmet',
-        'stats': {'attack': 0, 'defense': 5, 'speed': 1, 'luck': 1},
-        'price': 20,
-        'description': 'A simple helmet',
-        'type': 'accessory',
-        'equipable': True,
-        'sellable': True
-    }
+
+
 ]
 
 potion_list = [
@@ -144,10 +177,10 @@ potion_list = [
 quest_item_list = [
     {
         'id': '1',
-        'name': 'Quest Item',
+        'name': 'Orc\'s teeth',
         'stats': {'attack': 0, 'defense': 0, 'speed': 0, 'luck': 0},
         'price': 10,
-        'description': 'A simple quest item',
+        'description': 'A simple orc\'s teeth',
         'type': 'quest item',
         'equipable': False,
         'sellable': False
@@ -276,4 +309,3 @@ def print_item(item):
         return res
     else:
         return 'Vide'
-
