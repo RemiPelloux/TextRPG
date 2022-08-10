@@ -77,3 +77,9 @@ class Ennemy:
 
     def generateHealth(self, level):
         pass
+
+    def generateStats(self, level):
+        pass
+
+    def generateLoot(self, level):
+        pass
