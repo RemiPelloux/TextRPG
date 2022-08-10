@@ -18,6 +18,7 @@ import datetime
 import random
 import string
 from core import items
+from core.items import print_item
 
 
 def generate_name():
@@ -149,18 +150,27 @@ class Character:
         res = ''
         for category in self.inventory:
             res += '\n'
-            res += '\t' + category + '\n'
+            # res += '\t' + category + '\n'
             for item in self.inventory[category]:
-                print(self.inventory[category][item]['id'])
-                res += '\t\t' + str(items.search_item(self.inventory[category][item]['id'], self.inventory[category])) + '\n'
+                # Debug
+                # print("id : " + str(self.inventory[category][item]['id']))
+                # print(category)
+                res += '\t' + print_item(items.search_item(self.inventory[category][item]['id'], category)) + '\n'
         return res
 
     # pretty print the character's equipment
     def printEquipment(self):
-        res = '\n'
-        res += '\t weapon: ' + str(self.equipment['weapon']) + '\n'
-        res += '\t armor: ' + str(self.equipment['armor']) + '\n'
-        res += '\t accessory: ' + str(self.equipment['accessory']) + '\n'
+        res = ''
+        for category in self.equipment:
+            res += '\n'
+            # res += '\t' + category + '\n'
+            for item in self.equipment[category]:
+                # # Debug
+                # print("id : " + str(self.equipment[category][item]['id']))
+                # print(category)
+                # res += '\t\t' + str(items.search_item(self.equipment[category][item]['id'], category)) + '\n'
+                # print(print_item(items.search_item(self.equipment[category][item]['id'], category)))
+                res += '\t' + print_item(items.search_item(self.equipment[category][item]['id'], category)) + '\n'
         return res
 
     # pretty print the character's quests

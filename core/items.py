@@ -188,7 +188,7 @@ special_item_list = [
 
 def search_item(item_id, item_list):
     item_id = str(item_id)
-    if item_list == 'weapons':
+    if item_list == 'weapons' or 'weapon':
         for weapon in weapon_list:
             if weapon['id'] == item_id:
                 return weapon
@@ -213,7 +213,7 @@ def search_item(item_id, item_list):
             if special_item['id'] == item_id:
                 return special_item
     else:
-        return None
+        return 'Vide'
 
 
 # print(search_item('1', 'weapons'))
@@ -228,38 +228,52 @@ def search_item(item_id, item_list):
 # if it's a special item, it will print the description
 
 def print_item(item):
-    if item['type'] == 'weapon':
-        print('\t\t {} - {}'.format(item['name'], item['description']))
-        print('\t\t Attack: {}'.format(item['stats']['attack']))
-        print('\t\t Defense: {}'.format(item['stats']['defense']))
-        print('\t\t Speed: {}'.format(item['stats']['speed']))
-        print('\t\t Luck: {}'.format(item['stats']['luck']))
-        print('\t\t Price: {}'.format(item['price']))
-    elif item['type'] == 'armor':
-        print('\t\t {} - {}'.format(item['name'], item['description']))
-        print('\t\t Attack: {}'.format(item['stats']['attack']))
-        print('\t\t Defense: {}'.format(item['stats']['defense']))
-        print('\t\t Speed: {}'.format(item['stats']['speed']))
-        print('\t\t Luck: {}'.format(item['stats']['luck']))
-        print('\t\t Price: {}'.format(item['price']))
-    elif item['type'] == 'accessory':
-        print('\t\t {} - {}'.format(item['name'], item['description']))
-        print('\t\t Attack: {}'.format(item['stats']['attack']))
-        print('\t\t Defense: {}'.format(item['stats']['defense']))
-        print('\t\t Speed: {}'.format(item['stats']['speed']))
-        print('\t\t Luck: {}'.format(item['stats']['luck']))
-        print('\t\t Price: {}'.format(item['price']))
-    elif item['type'] == 'potion':
-        print('\t\t {} - {}'.format(item['name'], item['description']))
-        print('\t\t Health: {}'.format(item['effect']['health']))
-        print('\t\t Price: {}'.format(item['price']))
-    elif item['type'] == 'quest item':
-        print('\t\t {} - {}'.format(item['name'], item['description']))
-        print('\t\t Price: {}'.format(item['price']))
-    elif item['type'] == 'special item':
-        print('\t\t {} - {}'.format(item['name'], item['description']))
-        print('\t\t Price: {}'.format(item['price']))
+    res = ''
+    if item['type'] == 'weapon' or item['type'] == 'weapons':
+        res += '\t Weapon: ' + item['name'] + '\n'
+        res += '\t\t\t Attack: ' + str(item['stats']['attack']) + '\n'
+        res += '\t\t\t Defense: ' + str(item['stats']['defense']) + '\n'
+        res += '\t\t\t Speed: ' + str(item['stats']['speed']) + '\n'
+        res += '\t\t\t Luck: ' + str(item['stats']['luck']) + '\n'
+        res += '\t\t\t Price: ' + str(item['price']) + '\n'
+        res += '\t\t\t Description: ' + item['description'] + '\n'
+        return res
+    elif item['type'] == 'armor' or item['type'] == 'armors':
+        res += '\t Armor: ' + item['name'] + '\n'
+        res += '\t\t\t Attack: ' + str(item['stats']['attack']) + '\n'
+        res += '\t\t\t Defense: ' + str(item['stats']['defense']) + '\n'
+        res += '\t\t\t Speed: ' + str(item['stats']['speed']) + '\n'
+        res += '\t\t\t Luck: ' + str(item['stats']['luck']) + '\n'
+        res += '\t\t\t Price: ' + str(item['price']) + '\n'
+        res += '\t\t\t Description: ' + item['description'] + '\n'
+        return res
+    elif item['type'] == 'accessory' or item['type'] == 'accessories':
+        res += '\t Accessory: ' + item['name'] + '\n'
+        res += '\t\t\t Attack: ' + str(item['stats']['attack']) + '\n'
+        res += '\t\t\t Defense: ' + str(item['stats']['defense']) + '\n'
+        res += '\t\t\t Speed: ' + str(item['stats']['speed']) + '\n'
+        res += '\t\t\t Luck: ' + str(item['stats']['luck']) + '\n'
+        res += '\t\t\t Price: ' + str(item['price']) + '\n'
+        res += '\t\t\t Description: ' + item['description'] + '\n'
+        return res
+    elif item['type'] == 'potion' or item['type'] == 'potions':
+        res += '\t Potion: ' + item['name'] + '\n'
+        res += '\t\t\t Effect: ' + str(item['effect']) + '\n'
+        res += '\t\t\t Price: ' + str(item['price']) + '\n'
+        res += '\t\t\t Description: ' + item['description'] + '\n'
+        return res
+    elif item['type'] == 'quest item' or item['type'] == 'quest items':
+        res += '\t Quest item: ' + item['name'] + '\n'
+        res += '\t\t\t Description: ' + item['description'] + '\n'
+        return res
+    elif item['type'] == 'consumable' or item['type'] == 'consumables':
+        res += '\t Consumable: ' + item['name'] + '\n'
+        res += '\t\t\t Description: ' + item['description'] + '\n'
+        return res
+    elif item['type'] == 'special item' or item['type'] == 'special items':
+        res += '\t Special item: ' + item['name'] + '\n'
+        res += '\t\t\t Description: ' + item['description'] + '\n'
+        return res
     else:
-        print('\t\t {} - {}'.format(item['name'], item['description']))
-        print('\t\t Price: {}'.format(item['price']))
+        return 'Vide'
 
