@@ -101,6 +101,10 @@ class Ennemy:
                       'speed': random.randint(1, 3) * difficultyFactor + level // 2 * 3, 'luck': random.randint(1, 3) * difficultyFactor + level // 2 * 3}
         return self.stats
 
+    # The loot will be generated randomly scaled by the level of the character
+    # Exemple:
+    # If the level is 10 and the difficulty is 1, the loot will be generated between 7 and 9
+    # except if there is a quest active, it will have 10-20% of chance to loot a quest item
     def generateLoot(self, level, difficulty):
         pass
 
