@@ -3,6 +3,7 @@
 # It has a name, health, energy, stats, and loot.
 # The loot is generated randomly scaled by the level of the character.
 # The ennemy can be an orc, a demon, a dragon, a goblin, a skeleton, a zombie, a skeleton
+import math
 import random
 import string
 
@@ -80,20 +81,38 @@ class Ennemy:
         self.health = level * (difficultyFactor * random.randint(9, 15))
         return self.health
 
+    # Generate the stats of the ennemy scaled by the level of the character and the difficulty
+    # Stats are like:
+    # {'currenthealth': 100, 'maxhealth': 100, 'energy': 20, 'strength': random.randint(1, 3),'defense': random.randint(1, 3), 'speed': random.randint(1, 3), 'luck': }
     def generateStats(self, level, difficulty):
-        pass
+        if difficulty == 1:
+            difficultyFactor = random.randint(1, 2)
+        elif difficulty == 2:
+            difficultyFactor = random.randint(2, 4)
+        elif difficulty == 3:
+            difficultyFactor = random.randint(4, 6)
+        elif difficulty == 4:
+            difficultyFactor = random.randint(6, 12)
+        else:
+            difficultyFactor = 1
+        self.stats = {'currenthealth': self.health, 'maxhealth': self.health, 'energy': random.randint(10, 20) + level // 2 * 3,
+                      'strength': difficultyFactor + random.randint(1, 3) * math.floor( (level // 2) * difficultyFactor),
+                      'defense': random.randint(1, 3) * difficultyFactor + level // 2 * 3,
+                      'speed': random.randint(1, 3) * difficultyFactor + level // 2 * 3, 'luck': random.randint(1, 3) * difficultyFactor + level // 2 * 3}
+        return self.stats
 
     def generateLoot(self, level, difficulty):
         pass
 
 
-# # test
-# tab = []
-# for i in range(200):
-#     ennemy = Ennemy(11, 2)
-#     tab.append(ennemy.health)
-#     print('\n')
-#
+# test
+tab = []
+for i in range(5):
+    ennemy = Ennemy(1, 1)
+    # tab.append(ennemy.stats)
+    print(ennemy.stats)
+
+
 # tab.sort()
-# # print the average of the tab
+# print the average of the tab
 # print(sum(tab) / len(tab))
