@@ -68,16 +68,16 @@ class Ennemy:
     # Generate the health of the ennemy scaled by the level of the character and the difficulty
     def generateHealth(self, level, difficulty):
         if difficulty == 1:
-            difficultyFactor = random.randint(1, 3)
+            difficultyFactor = random.randint(2, 3)
         elif difficulty == 2:
-            difficultyFactor = random.randint(3, 6)
+            difficultyFactor = random.randint(3, 5)
         elif difficulty == 3:
             difficultyFactor = random.randint(6, 9)
         elif difficulty == 4:
             difficultyFactor = random.randint(9, 13)
         else:
             difficultyFactor = 1
-        self.health = level + difficultyFactor * random.randint(5, 10)
+        self.health = level * (difficultyFactor * random.randint(9, 15))
         return self.health
 
     def generateStats(self, level, difficulty):
@@ -87,13 +87,13 @@ class Ennemy:
         pass
 
 
-# test
-
-for i in range(10):
-    print("------------------")
-    ennemy = Ennemy(1, 1)
-    print(ennemy.type)
-    print(ennemy.name)
-    print(ennemy.health)
-    print("------------------")
-    print('\n')
+# # test
+# tab = []
+# for i in range(200):
+#     ennemy = Ennemy(11, 2)
+#     tab.append(ennemy.health)
+#     print('\n')
+#
+# tab.sort()
+# # print the average of the tab
+# print(sum(tab) / len(tab))

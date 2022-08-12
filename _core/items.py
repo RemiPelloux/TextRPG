@@ -11,7 +11,7 @@ weapon_list = [
     {
         'id': '1',
         'name': 'Sword',
-        'stats': {'attack': random.randint(1, 3), 'defense': 0, 'speed': random.randint(0, 1), 'luck': random.randint(-1, 3)},
+        'stats': {'attack': random.randint(2, 3), 'defense': 0, 'speed': random.randint(0, 1), 'luck': random.randint(-1, 3)},
         'price': 10,
         'description': 'A simple sword',
         'type': 'weapon',
