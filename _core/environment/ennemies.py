@@ -15,11 +15,11 @@ class Ennemy:
         # The name of the ennemy is random
         self.name = self.generateName(self.type)
         # The health of the ennemy is random scaled by the level of the character
-        self.health = self.generateHealth(level)
+        self.health = self.generateHealth(level, difficulty)
         # The stats of the ennemy is random scaled by the level of the character
-        self.stats = self.generateStats(level)
+        self.stats = self.generateStats(level, difficulty)
         # The loot of the ennemy is random scaled by the level of the character
-        self.loot = self.generateLoot(level)
+        self.loot = self.generateLoot(level, difficulty)
         # The ennemy is created
 
     # This method is used to generate the ennemies.
@@ -29,7 +29,7 @@ class Ennemy:
     # The ennemy can be an orc, a demon, a dragon, a goblin, a skeleton, a zombie, a skeleton
 
     # This method generates the type of the ennemy, if choice is not specified generate a random number
-    def generateType(self, choice):
+    def generateType(self, choice=None):
         choice = random.randint(1, 7)
         if choice == 1:
             self.type = 'Orc'
@@ -49,27 +49,51 @@ class Ennemy:
 
     def generateName(self, ennemyType):
         self.name = ''.join(random.choice(string.ascii_uppercase) for _ in range(random.randint(5, 10))) + ' The '
-        if ennemyType == 1:
+        if ennemyType == 'Orc':
             self.name += 'Orc'
-        elif ennemyType == 2:
+        elif ennemyType == 'Demon':
             self.name += 'Demon'
-        elif ennemyType == 3:
+        elif ennemyType == 'Dragon':
             self.name += 'Dragon'
-        elif ennemyType == 4:
+        elif ennemyType == 'Goblin':
             self.name += 'Goblin'
-        elif ennemyType == 5:
+        elif ennemyType == 'Skeleton':
             self.name += 'Skeleton'
-        elif ennemyType == 6:
+        elif ennemyType == 'Zombie':
             self.name += 'Zombie'
-        elif ennemyType == 7:
+        elif ennemyType == 'Skeleton':
             self.name += 'Skeleton'
         return self.name
 
-    def generateHealth(self, level):
+    # Generate the health of the ennemy scaled by the level of the character and the difficulty
+    def generateHealth(self, level, difficulty):
+        if difficulty == 1:
+            difficultyFactor = random.randint(1, 3)
+        elif difficulty == 2:
+            difficultyFactor = random.randint(3, 6)
+        elif difficulty == 3:
+            difficultyFactor = random.randint(6, 9)
+        elif difficulty == 4:
+            difficultyFactor = random.randint(9, 13)
+        else:
+            difficultyFactor = 1
+        self.health = level + difficultyFactor * random.randint(5, 10)
+        return self.health
+
+    def generateStats(self, level, difficulty):
         pass
 
-    def generateStats(self, level):
+    def generateLoot(self, level, difficulty):
         pass
 
-    def generateLoot(self, level):
-        pass
+
+# test
+
+for i in range(10):
+    print("------------------")
+    ennemy = Ennemy(1, 1)
+    print(ennemy.type)
+    print(ennemy.name)
+    print(ennemy.health)
+    print("------------------")
+    print('\n')
