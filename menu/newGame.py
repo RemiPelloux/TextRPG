@@ -7,7 +7,7 @@
 # in the new game screen, it will ask you for a name and generate random stats.
 import json
 import os
-import core.character.character as characterCreation
+import _core.character.character as characterCreation
 
 
 def loadGame():

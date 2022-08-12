@@ -8,7 +8,7 @@ def statsMenu(character):
     # print the resume of the character
     print("Name : " + character.get_name())
     print("Level : " + str(character.get_level()))
-    print("Exp : " + str(character.get_exp()))
+    print("Exp : " + str(character.get_exp()) + " / " + str(character.get_exp_of_next_level()))
     print("Stats : " + str(character.printStats()))
     print("Money : " + str(character.get_money()))
     print("Inventory : " + str(character.printInventory()))

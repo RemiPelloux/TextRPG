@@ -268,6 +268,7 @@ def print_item(item):
         res += '\t\t\t Defense: ' + str(item['stats']['defense']) + '\n'
         res += '\t\t\t Speed: ' + str(item['stats']['speed']) + '\n'
         res += '\t\t\t Luck: ' + str(item['stats']['luck']) + '\n'
+        res += '\t\t\t Level: ' + str(item['level']) + '\n'
         res += '\t\t\t Price: ' + str(item['price']) + '\n'
         res += '\t\t\t Description: ' + item['description'] + '\n'
         return res

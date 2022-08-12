@@ -41,7 +41,7 @@ import json
 import random
 import time
 import datetime
-import core
+import _core
 import menu
 from menu.newGame import NewGame, checkSaveFilesExist, loadGame
 from menu.mainMenu import run

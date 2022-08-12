@@ -1,1 +1,48 @@
-{"name": "WTXUSSASTZ", "level": 1, "exp": 0, "stats": {"currenthealth": 100, "maxhealth": 100, "energy": 20, "strength": 2, "defense": 2, "speed": 1, "luck": 3}, "inventory": {"quest items": {}, "potions": {}, "weapons": {"1": {"id": 1, "isEquipped": true}}, "armor": {}, "accessories": {}}, "money": 1, "equipment": {"weapon": {"1": {"id": 1, "isEquipped": true}}, "armor": {}, "accessory": {}}, "quests": {"1": {}, "2": {}, "3": {}}, "shop": {"buy": []}, "quests_completed": 0, "monsters_killed": 0, "date": "08/09/2022"}
+{
+  "name": "ITDEEON",
+  "level": 1,
+  "exp": 0,
+  "stats": {
+    "currenthealth": 100,
+    "maxhealth": 100,
+    "energy": 20,
+    "strength": 3,
+    "defense": 3,
+    "speed": 3,
+    "luck": 1
+  },
+  "inventory": {
+    "quest items": {},
+    "potions": {},
+    "weapons": {
+      "1": {
+        "id": 1,
+        "isEquipped": true
+      }
+    },
+    "armor": {},
+    "accessories": {}
+  },
+  "money": 1,
+  "equipment": {
+    "weapon": {
+      "1": {
+        "id": 1,
+        "isEquipped": true
+      }
+    },
+    "armor": {},
+    "accessory": {}
+  },
+  "quests": {
+    "1": {},
+    "2": {},
+    "3": {}
+  },
+  "shop": {
+    "buy": []
+  },
+  "quests_completed": 0,
+  "monsters_killed": 0,
+  "date": "08/12/2022"
+}

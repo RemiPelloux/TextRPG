@@ -9,13 +9,18 @@ import string
 
 class Ennemy:
     # The constructor of the class
-    def __init__(self, name, health, energy, stats, ennemyType, loot):
-        self.name = name
-        self.health = health
-        self.stats = stats
-        self.type = ennemyType
-        self.loot = loot
-        self.isAlive = True
+    def __init__(self, level, difficulty):
+        # The ennemy can be an orc, a demon, a dragon, a goblin, a skeleton, a zombie, a skeleton
+        self.type = self.generateType()
+        # The name of the ennemy is random
+        self.name = self.generateName(self.type)
+        # The health of the ennemy is random scaled by the level of the character
+        self.health = self.generateHealth(level)
+        # The stats of the ennemy is random scaled by the level of the character
+        self.stats = self.generateStats(level)
+        # The loot of the ennemy is random scaled by the level of the character
+        self.loot = self.generateLoot(level)
+        # The ennemy is created
 
     # This method is used to generate the ennemies.
     # A ennemy is a random enemy scaled by the level of the character and the difficulty.
@@ -23,23 +28,8 @@ class Ennemy:
     # The loot is generated randomly scaled by the level of the character.
     # The ennemy can be an orc, a demon, a dragon, a goblin, a skeleton, a zombie, a skeleton
 
-    def generateEnnemy(self, level, difficulty):
-        # The ennemy can be an orc, a demon, a dragon, a goblin, a skeleton, a zombie, a skeleton
-        ennemyType = self.generateType()
-        # The name of the ennemy is random
-        name = self.generateName(ennemyType)
-        # The health of the ennemy is random scaled by the level of the character
-        health = self.generateHealth(level)
-        # The stats of the ennemy is random scaled by the level of the character
-        stats = self.generateStats(level)
-        # The loot of the ennemy is random scaled by the level of the character
-        loot = self.generateLoot(level)
-        # The ennemy is created
-        ennemy = Ennemy(name, health, stats, ennemyType, loot)
-        return ennemy
-
-    # This method generates the type of the ennemy
-    def generateType(self):
+    # This method generates the type of the ennemy, if choice is not specified generate a random number
+    def generateType(self, choice):
         choice = random.randint(1, 7)
         if choice == 1:
             self.type = 'Orc'

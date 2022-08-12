@@ -17,8 +17,9 @@
 import datetime
 import random
 import string
-from core import items
-from core.items import print_item
+from _core import items
+from _core.character import handleLevel
+from _core.items import print_item
 
 
 def generate_name():
@@ -105,6 +106,9 @@ class Character:
     def get_exp(self):
         return self.exp
 
+    def get_exp_of_next_level(self):
+        return handleLevel.getExpOfNextLevel(self)
+
     def get_money(self):
         return self.money
 
@@ -126,10 +130,13 @@ class Character:
     def printResume(self):
         print('Name: ' + self.name)
         print('Level: ' + str(self.level))
-        print('Exp: ' + str(self.exp))
+        print('Exp: ' + str(self.exp) + ' / ' + str(handleLevel.getExpOfNextLevel(self)))
         print('Stats: ' + str(self.stats))
+        print('\n')
         print('Inventory: ' + str(self.inventory))
+        print('\n')
         print('Equipment: ' + str(self.equipment))
+        print('\n')
         print('Quests: ' + str(self.quests))
 
     # pretty print the character's stats

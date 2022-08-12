@@ -15,7 +15,6 @@
 # levelcap['max'] = max level
 
 import random
-import character
 
 
 def generateRewardStat():
@@ -27,7 +26,7 @@ def generateRewardStat():
         'speed': 0,
         'luck': 0
     }
-    stats['health'] += 10
+    stats['health'] += 5
     stats['energy'] += 2
     stats['strength'] += random.randint(1, 3)
     stats['defense'] += random.randint(1, 3)
@@ -128,3 +127,7 @@ def addExp(player, exp):
 # print(addExp(perso, 1200))
 # print(perso.printResume())
 
+
+def getExpOfNextLevel(player):
+    level = player.level + 1
+    return levelcap[level]['exp']
