@@ -96,9 +96,9 @@ class Ennemy:
         else:
             difficultyFactor = 1
         self.stats = {'currenthealth': self.health, 'maxhealth': self.health, 'energy': random.randint(10, 20) + level // 2 * 3,
-                      'strength': difficultyFactor + random.randint(1, 3) * math.floor( (level // 2) * difficultyFactor),
-                      'defense': random.randint(1, 3) * difficultyFactor + level // 2 * 3,
-                      'speed': random.randint(1, 3) * difficultyFactor + level // 2 * 3, 'luck': random.randint(1, 3) * difficultyFactor + level // 2 * 3}
+                      'strength': difficultyFactor + random.randint(1, 3) * math.floor( (level // 3) * difficultyFactor),
+                      'defense': difficultyFactor + random.randint(1, 3) * math.floor( (level // 3) * difficultyFactor),
+                      'speed': difficultyFactor + random.randint(1, 3) * math.floor( (level // 3) * difficultyFactor), 'luck': difficultyFactor + random.randint(1, 3) * math.floor( (level // 3) * difficultyFactor)}
         return self.stats
 
     # The loot will be generated randomly scaled by the level of the character
@@ -112,7 +112,7 @@ class Ennemy:
 # test
 tab = []
 for i in range(5):
-    ennemy = Ennemy(1, 1)
+    ennemy = Ennemy(4, 2)
     # tab.append(ennemy.stats)
     print(ennemy.stats)
 

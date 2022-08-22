@@ -17,6 +17,8 @@
 import random
 
 
+
+
 def generateRewardStat():
     stats = {
         'health': 0,
@@ -100,13 +102,21 @@ levelcap = {
 }
 
 
+def bonus():
+    return random.randint(1, 2)
+
+
 # if the exp is greater than the exp required to reach the next level, add the reward stats to the player stats
 def addRewardLevel(player):
+    luckFactor = random.randint(1, 100)
+    bonusPts = 0
+    if luckFactor <= player.luck:
+        bonusPts = bonus()
     if player.exp > levelcap[player.level]['exp']:
         rewardStat = generateRewardStat()
         # print('DEBUG : rewards to be added ', rewardStat)
         for stat in player.stats:
-            player.stats[str(stat)] += rewardStat[stat]
+            player.stats[str(stat)] += rewardStat[stat] + bonusPts
         player.level += 1
         player.exp = player.exp - levelcap[player.level]['exp']
         addRewardLevel(player)
@@ -124,10 +134,12 @@ def addExp(player, exp):
 #
 #  # test
 #
-# print(addExp(perso, 1200))
+# # print(addExp(perso, 1200))
 # print(perso.printResume())
 
 
 def getExpOfNextLevel(player):
     level = player.level + 1
     return levelcap[level]['exp']
+
+

@@ -11,7 +11,7 @@ weapon_list = [
     {
         'id': '1',
         'name': 'Sword',
-        'stats': {'attack': random.randint(2, 3), 'defense': 0, 'speed': random.randint(0, 1), 'luck': random.randint(-1, 3)},
+        'stats': {'attack': random.randint(1, 3), 'defense': 0, 'speed': random.randint(0, 1), 'luck': random.randint(-1, 3)},
         'price': 10,
         'description': 'A simple sword',
         'type': 'weapon',
@@ -23,7 +23,7 @@ weapon_list = [
     {
         'id': '2',
         'name': 'Damaged Axe of the Warrior',
-        'stats': {'attack': random.randint(4, 7), 'defense': 0, 'speed': random.randint(0, 3), 'luck': random.randint(1, 5)},
+        'stats': {'attack': random.randint(3, 7), 'defense': 0, 'speed': random.randint(0, 3), 'luck': random.randint(1, 5)},
         'price': 15,
         'description': 'A simple axe',
         'type': 'weapon',
@@ -35,7 +35,7 @@ weapon_list = [
     {
         'id': '3',
         'name': 'Sacred sword',
-        'stats': {'attack': random.randint(7, 10), 'defense': 0, 'speed': random.randint(1, 3), 'luck': random.randint(1, 8)},
+        'stats': {'attack': random.randint(5, 10), 'defense': 0, 'speed': random.randint(1, 3), 'luck': random.randint(1, 8)},
         'price': 20,
         'description': 'This sword is sacred by the kiss of the gods',
         'type': 'weapon',
@@ -47,7 +47,7 @@ weapon_list = [
     {
         'id': '4',
         'name': 'Half-sword of the moon',
-        'stats': {'attack': random.randint(10, 15), 'defense': 0, 'speed': random.randint(1, 3), 'luck': random.randint(1, 10)},
+        'stats': {'attack': random.randint(10, 17), 'defense': 0, 'speed': random.randint(1, 3), 'luck': random.randint(1, 10)},
         'price': 25,
         'description': 'An antique sword, the legende says that it was forged with moonstone.',
         'type': 'weapon',
