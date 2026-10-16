@@ -1,0 +1,154 @@
+# Item catalog.
+# Each [[item]] is a template; stats are [min, max] ranges rolled for every new copy.
+# type: weapon | armor | accessory | potion | quest | consumable | tool
+
+# --- Weapons -----------------------------------------------------------------
+
+[[item]]
+id = "sword"
+name = "Sword"
+type = "weapon"
+level = 1
+price = 10
+description = "A simple sword."
+stats = { strength = [1, 3], speed = [0, 1], luck = [-1, 3] }
+
+[[item]]
+id = "damaged_warrior_axe"
+name = "Damaged Axe of the Warrior"
+type = "weapon"
+level = 3
+price = 15
+description = "A battered axe that still remembers its old master."
+stats = { strength = [3, 7], speed = [0, 3], luck = [1, 5] }
+
+[[item]]
+id = "sacred_sword"
+name = "Sacred Sword"
+type = "weapon"
+level = 5
+price = 20
+description = "This sword was blessed by the kiss of the gods."
+stats = { strength = [5, 10], speed = [1, 3], luck = [1, 8] }
+
+[[item]]
+id = "moon_half_sword"
+name = "Half-sword of the Moon"
+type = "weapon"
+level = 7
+price = 25
+description = "An antique blade. Legend says it was forged from moonstone."
+stats = { strength = [10, 17], speed = [1, 3], luck = [1, 10] }
+
+# --- Armor -------------------------------------------------------------------
+
+[[item]]
+id = "leather_armor"
+name = "Leather Armor"
+type = "armor"
+level = 1
+price = 10
+description = "A simple leather armor."
+stats = { defense = [1, 3], luck = [-1, 3] }
+
+[[item]]
+id = "chainmail"
+name = "Chainmail"
+type = "armor"
+level = 3
+price = 15
+description = "Interlocked iron rings. Noisy, but reliable."
+stats = { defense = [4, 7], luck = [1, 5] }
+
+[[item]]
+id = "plate_armor"
+name = "Plate Armor"
+type = "armor"
+level = 5
+price = 20
+description = "Heavy plates of forged steel."
+stats = { defense = [7, 10], luck = [1, 8] }
+
+[[item]]
+id = "magic_armor"
+name = "Magic Armor"
+type = "armor"
+level = 7
+price = 25
+description = "It hums softly when danger is near."
+stats = { defense = [10, 15], luck = [1, 10] }
+
+# --- Accessories -------------------------------------------------------------
+
+[[item]]
+id = "mysterious_ring"
+name = "Mysterious Ring"
+type = "accessory"
+level = 1
+price = 10
+description = "This ring is mysterious. It gives you some power."
+stats = { strength = [0, 2], defense = [0, 2], speed = [0, 2], luck = [1, 3] }
+
+[[item]]
+id = "ring_of_power"
+name = "Ring of Power"
+type = "accessory"
+level = 3
+price = 15
+description = "The power of the ring."
+stats = { strength = [1, 4], defense = [1, 4], speed = [1, 4], luck = [1, 4] }
+
+# --- Potions -----------------------------------------------------------------
+
+[[item]]
+id = "potion"
+name = "Potion"
+type = "potion"
+price = 10
+description = "Restores a little health."
+effect = { health = 10 }
+
+[[item]]
+id = "super_potion"
+name = "Super Potion"
+type = "potion"
+price = 15
+description = "Restores some health."
+effect = { health = 20 }
+
+[[item]]
+id = "mega_potion"
+name = "Mega Potion"
+type = "potion"
+price = 20
+description = "Restores a lot of health."
+effect = { health = 30 }
+
+# --- Quest items -------------------------------------------------------------
+
+[[item]]
+id = "orc_teeth"
+name = "Orc's Teeth"
+type = "quest"
+price = 10
+sellable = false
+description = "A handful of yellowed orc teeth. Someone, somewhere, wants these."
+
+# --- Fishing -----------------------------------------------------------------
+
+[[item]]
+id = "fish_bait"
+name = "Fish Bait"
+type = "consumable"
+price = 10
+sellable = false
+description = "Used to catch fish."
+
+[[item]]
+id = "fishing_rod"
+name = "Fishing Rod"
+type = "tool"
+price = 15
+sellable = false
+description = "A simple fishing rod, used to catch fish."
+stats = { luck = [2, 2] }

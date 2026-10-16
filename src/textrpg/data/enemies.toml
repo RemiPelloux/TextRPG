@@ -1,0 +1,59 @@
+# Enemy kinds and difficulty scaling.
+# `weight` controls how often a kind is picked (higher = more common).
+
+[[kind]]
+id = "orc"
+name = "Orc"
+weight = 3
+
+[[kind]]
+id = "goblin"
+name = "Goblin"
+weight = 3
+
+[[kind]]
+id = "skeleton"
+name = "Skeleton"
+weight = 2
+
+[[kind]]
+id = "zombie"
+name = "Zombie"
+weight = 2
+
+[[kind]]
+id = "demon"
+name = "Demon"
+weight = 1
+
+[[kind]]
+id = "dragon"
+name = "Dragon"
+weight = 1
+
+# Difficulty tiers. Factors are [min, max] ranges.
+#   health = level * health_factor * rand(9, 15)
+#   stat   = stat_factor + rand(1, 3) * (level // 3) * stat_factor
+[difficulty.easy]
+level = 1
+label = "Easy"
+health_factor = [2, 3]
+stat_factor = [1, 2]
+
+[difficulty.medium]
+level = 2
+label = "Medium"
+health_factor = [3, 5]
+stat_factor = [2, 4]
+
+[difficulty.hard]
+level = 3
+label = "Hard"
+health_factor = [6, 9]
+stat_factor = [4, 6]
+
+[difficulty.hell]
+level = 4
+label = "Hell"
+health_factor = [9, 13]
+stat_factor = [6, 12]
