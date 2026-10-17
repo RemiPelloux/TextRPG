@@ -10,6 +10,7 @@ import {
   WEEKLY_ENERGY,
 } from "@textrpg/engine";
 
+import { CombatBackdrop } from "@/components/art/Scenes";
 import { Icon } from "@/components/ui/Icon";
 import { useGame } from "@/lib/game";
 import { useI18n } from "@/lib/i18n-client";
@@ -33,10 +34,13 @@ export default function Hunt() {
 
   return (
     <>
-      <div className="page-head">
-        <span className="label">{t("hunt.eyebrow")}</span>
-        <h1>{t("hunt.title")}</h1>
-        <p className="dim">{t("hunt.intro")}</p>
+      <div className="banner">
+        <CombatBackdrop tone={derived.bloodMoon ? "blood" : "pale"} />
+        <div className="page-head">
+          <span className="label">{t("hunt.eyebrow")}</span>
+          <h1>{t("hunt.title")}</h1>
+          <p className="dim">{t("hunt.intro")}</p>
+        </div>
       </div>
       {view.dungeon && <p className="chip blood">{t("errors.inDungeon")}</p>}
       {hero.health < view.stats.maxHealth * 0.3 && (

@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { createHeroAction } from "@/app/actions";
+import { Icon } from "@/components/ui/Icon";
 import { useToast } from "@/components/ui/Toasts";
 import { useI18n } from "@/lib/i18n-client";
 import { sfx } from "@/lib/sfx";
@@ -52,24 +53,41 @@ export function NewHeroForm({ first }: { first: boolean }) {
   return (
     <form className="stack" onSubmit={submit}>
       <div className="field">
-        <label htmlFor="hero-name" className="label">
+        <label htmlFor="hero-name" className="sr-only">
           {t("title.nameLabel")}
         </label>
-        <input
-          id="hero-name"
-          className="input"
-          value={name}
-          maxLength={20}
-          placeholder={placeholder}
-          onChange={(e) => setName(e.target.value)}
-          autoComplete="off"
-        />
+        <div className="input-group">
+          <input
+            id="hero-name"
+            className="input"
+            value={name}
+            maxLength={20}
+            placeholder={t("title.namePlaceholder")}
+            onChange={(e) => setName(e.target.value)}
+            autoComplete="off"
+          />
+          <button
+            type="button"
+            className="dice"
+            aria-label={t("title.randomName")}
+            title={t("title.randomName")}
+            onClick={() => {
+              sfx.click();
+              setName(SUGGESTIONS[Math.floor(Math.random() * SUGGESTIONS.length)]!);
+            }}
+          >
+            <Icon name="GiRollingDices" />
+          </button>
+        </div>
       </div>
       <button className="btn primary block" type="submit" disabled={pending}>
         {pending ? t("title.creating") : first ? t("title.start") : t("title.create")}
+        <span className="chev" aria-hidden>
+          ›
+        </span>
       </button>
       {first && (
-        <p className="faint ui" style={{ fontSize: "0.72rem" }}>
+        <p className="faint" style={{ fontSize: "0.85rem", textAlign: "center" }}>
           {t("title.noSignup")}
         </p>
       )}

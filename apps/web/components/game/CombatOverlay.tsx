@@ -11,11 +11,12 @@ import {
 } from "@textrpg/engine";
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { CombatBackdrop, Portrait } from "@/components/art/Scenes";
 import { Bar } from "@/components/ui/Bar";
 import { Icon } from "@/components/ui/Icon";
 import { type Batch, useGame } from "@/lib/game";
 import { useI18n } from "@/lib/i18n-client";
-import { type Line, narrate, paragraphOf } from "@/lib/narrate";
+import { type Line, narrate } from "@/lib/narrate";
 import { reducedMotion, usePrefs } from "@/lib/prefs";
 import { sfx, vibrate } from "@/lib/sfx";
 import { enemyName, itemName, rarityClass, tx } from "@/lib/text";
@@ -376,8 +377,14 @@ export function CombatOverlay() {
       aria-modal="true"
       aria-label={t("combat.title")}
     >
+      <div className="combat-backdrop" aria-hidden>
+        <CombatBackdrop tone={boss || view.derived.bloodMoon ? "blood" : "pale"} />
+      </div>
       <header className="foe">
-        <div className="spread" style={{ alignItems: "baseline" }}>
+        <div className="foe-head">
+          <span className="seal" aria-hidden>
+            <Icon name={scene.enemy.icon} />
+          </span>
           <div className="stack" style={{ gap: 0, minWidth: 0 }}>
             <span
               className={`foe-name ${scene.enemy.elite ? "r-text r-rare" : ""} ${boss ? "r-text r-legendary" : ""}`}
@@ -435,7 +442,6 @@ export function CombatOverlay() {
               key={line.id}
               className={`line ${line.tone} ${line.rarity ? rarityClass(line.rarity as never) : ""}`}
             >
-              <span className="para">§ {paragraphOf(line.id)}</span>
               {line.text}
             </p>
           ))}
@@ -445,25 +451,32 @@ export function CombatOverlay() {
       <footer className="hero-strip">
         {fighting ? (
           <>
-            <div className="spread">
-              <span className="display" style={{ fontSize: "0.95rem" }}>
-                {challenge ? t("challenge.heroName") : view.hero.name}
+            <div className="hero-card">
+              <span className="portrait" aria-hidden>
+                <Portrait classId={challenge ? null : view.hero.classId} />
               </span>
-              <div className="row" style={{ gap: 6 }}>
-                {scene.heroStatuses.map((s) => (
-                  <span key={s.id} className={`chip ${STATUS_CHIP[s.id]}`}>
-                    {t(`status.${s.id}`)} {s.turns}
+              <div className="stack" style={{ gap: 6, minWidth: 0 }}>
+                <div className="spread">
+                  <span className="display">
+                    {challenge ? t("challenge.heroName") : view.hero.name}
                   </span>
-                ))}
+                  <div className="row" style={{ gap: 6 }}>
+                    {scene.heroStatuses.map((s) => (
+                      <span key={s.id} className={`chip ${STATUS_CHIP[s.id]}`}>
+                        {t(`status.${s.id}`)} {s.turns}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <Bar
+                  value={scene.heroHp}
+                  max={scene.heroMax}
+                  thick
+                  label={t("common.health")}
+                  text={`${scene.heroHp} / ${scene.heroMax}`}
+                />
               </div>
             </div>
-            <Bar
-              value={scene.heroHp}
-              max={scene.heroMax}
-              thick
-              label={t("common.health")}
-              text={`${scene.heroHp} / ${scene.heroMax}`}
-            />
             <div className="moves">
               <button
                 className="btn primary"

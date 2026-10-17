@@ -16,7 +16,7 @@ test("a new player plays a first hunt without signing up", async ({ page }) => {
   await closeOverlays(page);
   await expect(page.locator(".combat")).toBeHidden();
   // Energy was spent (an easy hunt costs 2, half price before level 5) and shows in the top bar.
-  await expect(page.locator(".topbar")).toContainText("19/20");
+  await expect(page.locator(".topbar")).toContainText("19 / 20");
 });
 
 test("the bag opens item details and the market sells potions", async ({ page }) => {

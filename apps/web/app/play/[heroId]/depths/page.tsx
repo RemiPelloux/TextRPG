@@ -3,6 +3,7 @@
 import { BOSS_EVERY, DUNGEON_ENERGY, type RoomType, STEPS_PER_FLOOR } from "@textrpg/engine";
 
 import { ItemMedallion } from "@/components/game/items";
+import { CombatBackdrop } from "@/components/art/Scenes";
 import { Icon } from "@/components/ui/Icon";
 import { useGame } from "@/lib/game";
 import { useI18n } from "@/lib/i18n-client";
@@ -32,10 +33,13 @@ export default function Depths() {
   if (!run) {
     return (
       <>
-        <div className="page-head">
-          <span className="label">{t("dungeon.eyebrow")}</span>
-          <h1>{t("dungeon.title")}</h1>
-          <p className="dim">{t("dungeon.intro")}</p>
+        <div className="banner">
+          <CombatBackdrop tone="gold" />
+          <div className="page-head">
+            <span className="label">{t("dungeon.eyebrow")}</span>
+            <h1>{t("dungeon.title")}</h1>
+            <p className="dim">{t("dungeon.intro")}</p>
+          </div>
         </div>
         <section className="panel ornate stack">
           <dl className="statgrid">
@@ -78,10 +82,13 @@ export default function Depths() {
 
   return (
     <>
-      <div className="page-head">
-        <span className="label">{t("dungeon.eyebrow")}</span>
-        <h1>{t("dungeon.floor", { floor: run.floor })}</h1>
-        {bossFloor && <span className="chip blood">{t("dungeon.bossFloor")}</span>}
+      <div className="banner">
+        <CombatBackdrop tone={bossFloor ? "blood" : "gold"} />
+        <div className="page-head">
+          <span className="label">{t("dungeon.eyebrow")}</span>
+          <h1>{t("dungeon.floor", { floor: run.floor })}</h1>
+          {bossFloor && <span className="chip blood">{t("dungeon.bossFloor")}</span>}
+        </div>
       </div>
 
       <div

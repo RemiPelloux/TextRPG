@@ -20,14 +20,14 @@
     "newHero": "New hero",
     "begin": "Begin the adventure",
     "nameLabel": "Your name",
-    "start": "Open the book",
+    "start": "Begin",
     "create": "Create hero",
     "creating": "Fate is taking shape…",
     "noSignup": "No sign-up: you play right away. You can save your account later.",
     "footer": "A project from 2022, raised from the dead. Up to 3 heroes per account.",
-    "subtitle": "A book in which you are the hero",
-    "publisher": "Terminal Editions · MMXXII",
-    "exlibris": "Ex libris — this book belongs to"
+    "namePlaceholder": "Your hero’s name…",
+    "randomName": "Random name",
+    "language": "Français"
   },
   "nav": {
     "camp": "Camp",
@@ -41,11 +41,10 @@
     "codex": "Codex",
     "leaderboard": "Leaderboard",
     "settings": "Settings",
-    "cube": "Cube",
-    "contents": "Contents"
+    "cube": "Cube"
   },
   "chronicle": {
-    "title": "Margin notes",
+    "title": "Chronicle",
     "empty": "Nothing has been written yet. Go hunt something."
   },
   "camp": {
@@ -95,7 +94,10 @@
     "upgrade": "Upgrade",
     "maxed": "Maxed",
     "cube": "The Cube",
-    "cubeText": "Transmute, enchant, extract powers."
+    "cubeText": "Transmute, enchant, extract powers.",
+    "map": "Map",
+    "inventory": "Inventory",
+    "event": "Event"
   },
   "hunt": {
     "eyebrow": "Training",
@@ -152,8 +154,7 @@
     "fled": "Fled",
     "defeatHint": "You wake up at camp, bruised and a little poorer. Rest or drink a potion.",
     "defeatDungeonHint": "The loot from the depths is lost. Your experience, at least, remains.",
-    "again": "Hunt again",
-    "plate": "Plate"
+    "again": "Hunt again"
   },
   "dungeon": {
     "eyebrow": "The Depths",
@@ -419,10 +420,7 @@
     "deleteYes": "Yes, delete",
     "credits": "Credits",
     "creditsText": "TextRPG was born in 2022 as FightingText: a Python RPG, in a terminal. This version is its rebirth.",
-    "icons": "Icons:",
-    "theme": "Edition",
-    "themePaper": "Paper",
-    "themeNight": "By candlelight"
+    "icons": "Icons:"
   },
   "account": {
     "title": "Account",

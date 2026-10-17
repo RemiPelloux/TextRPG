@@ -3,6 +3,7 @@
 import { RECIPES } from "@textrpg/engine";
 import Link from "next/link";
 
+import { BloodMoonArt, CampScene, FireArt } from "@/components/art/Scenes";
 import { Icon } from "@/components/ui/Icon";
 import { useGame } from "@/lib/game";
 import { useCountdown } from "@/lib/hooks";
@@ -86,47 +87,82 @@ export default function Camp() {
 
   return (
     <>
-      <div className="page-head">
-        <span className="label">{t("camp.eyebrow")}</span>
-        <h1>{t("camp.title")}</h1>
-        <p className="dim">{t(derived.night ? "camp.night" : "camp.day", { v: view.time.day })}</p>
+      <div className="banner tall">
+        <CampScene
+          lit={derived.canRest || hero.health < stats.maxHealth}
+          bloodMoon={derived.bloodMoon}
+        />
+        <nav className="quick-rail" aria-label={t("camp.places")}>
+          <Link href={`${base}/depths`}>
+            <Icon name="GiTreasureMap" />
+            {t("camp.map")}
+          </Link>
+          <Link href={`${base}/quests`}>
+            <Icon name="GiScrollUnfurled" />
+            {t("nav.quests")}
+          </Link>
+          <Link href={`${base}/bag`}>
+            <Icon name="GiKnapsack" />
+            {t("camp.inventory")}
+          </Link>
+        </nav>
+        <div className="page-head">
+          <span className="label">{t("camp.eyebrow")}</span>
+          <h1>{t("camp.title")}</h1>
+          <p className="dim">
+            {t(derived.night ? "camp.night" : "camp.day", { v: view.time.day })}
+          </p>
+        </div>
       </div>
 
-      <section className="panel ornate scene">
-        <figure className="plate" style={{ margin: 0 }}>
-          <Icon name="GiCampfire" className={`flame ${derived.canRest ? "" : "out"}`} />
-        </figure>
-        <div className="stack" style={{ gap: 10, minWidth: 0 }}>
-          <h2>{t("camp.fire")}</h2>
-          <p className="dim">{derived.canRest ? t("camp.restReady") : t("camp.restDone")}</p>
-          <div className="actions">
-            <button
-              className="btn ember"
-              disabled={busy || !derived.canRest || Boolean(view.dungeon)}
-              onClick={() => {
-                sfx.heal();
-                void dispatch({ type: "rest" });
-              }}
-            >
-              {t("camp.rest")}
-            </button>
-            <span className="chip ember">{t("camp.streak", { days: streak })}</span>
+      <section className="panel ornate">
+        <div className="feature">
+          <div className="art">
+            <FireArt lit={derived.canRest} />
           </div>
-          <p className="faint ui" style={{ fontSize: "0.75rem" }}>
-            {hero.energy >= stats.maxEnergy
-              ? t("camp.energyFull")
-              : t("camp.nextEnergy", { time: duration(nextTick, locale) })}
-          </p>
-          {derived.bloodMoon && (
-            <div className="moon-note">
-              <Icon name="GiEvilMoon" width={20} height={20} />
-              <span>
-                <strong>{t("camp.bloodMoon")}</strong> · {t("camp.bloodMoonText")}
-              </span>
+          <div className="stack" style={{ gap: 10, minWidth: 0 }}>
+            <h2>{t("camp.fire")}</h2>
+            <p>{derived.canRest ? t("camp.restReady") : t("camp.restDone")}</p>
+            <div className="actions">
+              <button
+                className="btn primary"
+                disabled={busy || !derived.canRest || Boolean(view.dungeon)}
+                onClick={() => {
+                  sfx.heal();
+                  void dispatch({ type: "rest" });
+                }}
+              >
+                <Icon name="GiCampfire" width={18} height={18} /> {t("camp.rest")}
+              </button>
+              <span className="chip ember">{t("camp.streak", { days: streak })}</span>
             </div>
-          )}
+            <p className="faint" style={{ fontSize: "0.85rem" }}>
+              {hero.energy >= stats.maxEnergy
+                ? t("camp.energyFull")
+                : t("camp.nextEnergy", { time: duration(nextTick, locale) })}
+            </p>
+          </div>
         </div>
       </section>
+
+      {derived.bloodMoon && (
+        <section className="panel ornate blood">
+          <div className="feature">
+            <div className="art">
+              <BloodMoonArt />
+            </div>
+            <div className="stack" style={{ gap: 8, minWidth: 0 }}>
+              <div className="spread">
+                <h2>{t("camp.bloodMoon")}</h2>
+                <span className="chip event">
+                  <Icon name="GiEvilMoon" width={12} height={12} /> {t("camp.event")}
+                </span>
+              </div>
+              <p>{t("camp.bloodMoonText")}</p>
+            </div>
+          </div>
+        </section>
+      )}
 
       {storyTemplate && (
         <Link href={`${base}/quests`} className="panel story">
@@ -134,7 +170,7 @@ export default function Camp() {
             <Icon name="GiQuillInk" />
           </span>
           <span className="stack" style={{ gap: 6, minWidth: 0 }}>
-            <span className="label" style={{ color: "var(--rubric)" }}>
+            <span className="label" style={{ color: "var(--gold)" }}>
               {t("camp.story", { chapter: view.story.chapter + 1 })}
             </span>
             <span className="display story-title">{tx(storyTemplate.title, locale)}</span>

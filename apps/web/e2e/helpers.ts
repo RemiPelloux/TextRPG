@@ -12,7 +12,7 @@ export async function newHero(page: Page, name = `E2E${Math.floor(Math.random() 
 /** Fight the current combat to its end, preferring auto-combat. */
 export async function fightToTheEnd(page: Page) {
   await expect(page.locator(".combat")).toBeVisible();
-  const done = page.getByRole("button", { name: /^Continuer$|^Rechasser/ }).first();
+  const done = page.getByRole("button", { name: /^Continuer|^Rechasser/ }).first();
   for (let i = 0; i < 60 && !(await done.isVisible().catch(() => false)); i++) {
     for (const name of [/Auto/, /Frapper/]) {
       const button = page.getByRole("button", { name }).first();
@@ -34,7 +34,7 @@ export async function fightToTheEnd(page: Page) {
 }
 
 export async function closeOverlays(page: Page) {
-  const cont = page.getByRole("button", { name: /^Continuer$/ });
+  const cont = page.getByRole("button", { name: /^Continuer/ });
   if (
     await cont
       .first()

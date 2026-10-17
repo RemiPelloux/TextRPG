@@ -8,9 +8,10 @@ import { Bar } from "@/components/ui/Bar";
 import { Icon } from "@/components/ui/Icon";
 import { useGame } from "@/lib/game";
 import { useI18n } from "@/lib/i18n-client";
-import { paragraphOf } from "@/lib/narrate";
 import { sfx } from "@/lib/sfx";
 import { content, rarityClass, tx } from "@/lib/text";
+
+import { Portrait } from "@/components/art/Scenes";
 
 import { CombatOverlay } from "./CombatOverlay";
 import { FishingOverlay } from "./FishingOverlay";
@@ -80,14 +81,11 @@ function useNav(): NavItem[] {
   ];
 }
 
-/** Page numbers in the table of contents, as in a printed book. */
-const FOLIOS = [1, 7, 23, 41, 53, 61, 79, 88, 97, 112, 131, 140];
-
 function NavLinks({ items, className }: { items: NavItem[]; className: string }) {
   const pathname = usePathname();
   return (
     <nav className={className} aria-label="Navigation">
-      {items.map((item, index) => (
+      {items.map((item) => (
         <Fragment key={item.href}>
           {item.group && <span className="sep" aria-hidden />}
           <Link
@@ -99,10 +97,6 @@ function NavLinks({ items, className }: { items: NavItem[]; className: string })
             <Icon name={item.icon} />
             <span>{item.label}</span>
             {item.badge ? <span className="badge num">{item.badge}</span> : null}
-            <span className="dots" aria-hidden />
-            <span className="folio" aria-hidden>
-              {FOLIOS[index]}
-            </span>
           </Link>
         </Fragment>
       ))}
@@ -118,40 +112,40 @@ function TopBar() {
     <header className="topbar">
       <div className="topbar-inner frame">
         <Link href={`/play/${heroId}/hero`} className="who">
-          <span className="crest" aria-hidden>
-            <Icon
-              name={hero.classId ? (content.classes.get(hero.classId)?.icon ?? "GiHood") : "GiHood"}
-            />
+          <span className="portrait" aria-hidden>
+            <Portrait classId={hero.classId} />
           </span>
-          <span className="display">{hero.name}</span>
-          <span className="label">
-            {t("common.level", { level: hero.level })}
-            {hero.paragon ? ` · P${hero.paragon}` : ""}
+          <span className="names">
+            <span className="display">{hero.name}</span>
+            <span className="label">
+              {t("common.level", { level: hero.level })}
+              {hero.paragon ? ` · P${hero.paragon}` : ""}
+            </span>
           </span>
         </Link>
         <div className="vitals">
           <div className="vital">
-            <Icon name="GiHearts" style={{ color: "var(--blood-text)" }} width={16} height={16} />
+            <Icon name="GiHearts" style={{ color: "var(--red-hi)" }} width={15} height={15} />
             <Bar
               value={hero.health}
               max={stats.maxHealth}
               label={t("common.health")}
-              text={`${hero.health}/${stats.maxHealth}`}
+              text={`${hero.health} / ${stats.maxHealth}`}
             />
           </div>
           <div className="vital">
             <Icon
               name="GiLightningTrio"
-              style={{ color: "var(--mana-text)" }}
-              width={16}
-              height={16}
+              style={{ color: "var(--blue-hi)" }}
+              width={15}
+              height={15}
             />
             <Bar
               value={hero.energy}
               max={stats.maxEnergy}
               kind="energy"
               label={t("common.energy")}
-              text={`${hero.energy}/${stats.maxEnergy}`}
+              text={`${hero.energy} / ${stats.maxEnergy}`}
             />
           </div>
           <Bar
@@ -163,8 +157,13 @@ function TopBar() {
           />
         </div>
         <div className="purse">
-          <span className="r-text r-rare">{hero.gold} ◉</span>
-          <span className="r-text r-magic">{hero.shards} ◆</span>
+          <span className="coins">
+            <span className="r-text r-rare">{hero.gold.toLocaleString("fr-FR")} ◉</span>
+            <span style={{ color: "var(--blue-hi)" }}>{hero.shards.toLocaleString("fr-FR")} ◆</span>
+          </span>
+          <Link href={`/play/${heroId}/settings`} className="gear" aria-label={t("nav.settings")}>
+            <Icon name="GiCog" />
+          </Link>
         </div>
       </div>
     </header>
@@ -184,7 +183,6 @@ function LogColumn() {
             key={line.id}
             className={`line ${line.tone} ${line.rarity ? rarityClass(line.rarity as never) : ""}`}
           >
-            <span className="para">§ {paragraphOf(line.id)}</span>
             {line.text}
           </p>
         ))}
@@ -270,7 +268,7 @@ export function Shell({ children }: { children: ReactNode }) {
     <div className="shell">
       <TopBar />
       <div className="main frame">
-        <div className="side" data-title={t("nav.contents")}>
+        <div className="side">
           <NavLinks items={items} className="sidenav" />
           {view.derived.bloodMoon && <div className="chip blood">{t("camp.bloodMoon")}</div>}
         </div>

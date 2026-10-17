@@ -20,14 +20,14 @@
     "newHero": "Nouveau héros",
     "begin": "Commencer l'aventure",
     "nameLabel": "Ton nom",
-    "start": "Ouvrir le livre",
+    "start": "Commencer",
     "create": "Créer le héros",
     "creating": "Le destin se met en place…",
     "noSignup": "Aucune inscription : tu joues tout de suite. Tu pourras sauvegarder ton compte plus tard.",
     "footer": "Un projet de 2022, ressuscité. Jusqu'à 3 héros par compte.",
-    "subtitle": "Un livre dont tu es le héros",
-    "publisher": "Éditions du Terminal · MMXXII",
-    "exlibris": "Ex-libris — ce livre appartient à"
+    "namePlaceholder": "Ton nom de héros…",
+    "randomName": "Un nom au hasard",
+    "language": "English"
   },
   "nav": {
     "camp": "Camp",
@@ -41,11 +41,10 @@
     "codex": "Codex",
     "leaderboard": "Classement",
     "settings": "Réglages",
-    "cube": "Cube",
-    "contents": "Sommaire"
+    "cube": "Cube"
   },
   "chronicle": {
-    "title": "Notes en marge",
+    "title": "Chronique",
     "empty": "Rien n'est encore écrit. Va donc chasser."
   },
   "camp": {
@@ -95,7 +94,10 @@
     "upgrade": "Améliorer",
     "maxed": "Au maximum",
     "cube": "Le Cube",
-    "cubeText": "Transmute, enchante, extrais des pouvoirs."
+    "cubeText": "Transmute, enchante, extrais des pouvoirs.",
+    "map": "Carte",
+    "inventory": "Inventaire",
+    "event": "Événement"
   },
   "hunt": {
     "eyebrow": "Entraînement",
@@ -152,8 +154,7 @@
     "fled": "Fuite",
     "defeatHint": "Tu te réveilles au camp, meurtri, un peu plus pauvre. Repose-toi ou bois une potion.",
     "defeatDungeonHint": "Le butin des profondeurs est perdu. Ton expérience, elle, reste.",
-    "again": "Rechasser",
-    "plate": "Planche"
+    "again": "Rechasser"
   },
   "dungeon": {
     "eyebrow": "Les Profondeurs",
@@ -419,10 +420,7 @@
     "deleteYes": "Oui, supprimer",
     "credits": "Crédits",
     "creditsText": "TextRPG est né en 2022 sous le nom de FightingText : un RPG en Python, dans un terminal. Cette version en est la renaissance.",
-    "icons": "Icônes :",
-    "theme": "Édition",
-    "themePaper": "Papier",
-    "themeNight": "Veillée"
+    "icons": "Icônes :"
   },
   "account": {
     "title": "Compte",
