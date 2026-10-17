@@ -11,6 +11,23 @@
 > Le code Python (v0.2) sert de **spécification de référence** : mêmes règles, mêmes formules,
 > même architecture en couches, portées en TypeScript.
 
+## ✅ Statut : livré en v1.0.0
+
+Toutes les phases 0 à 7 sont livrées (voir le [CHANGELOG](../../CHANGELOG.md)). Quelques choix ont
+évolué pendant la construction, toujours vers moins de dépendances et plus de contrôle :
+
+| Prévu | Réalisé | Pourquoi |
+|---|---|---|
+| Turborepo | scripts pnpm (`pnpm -r`) | 6 paquets : Turborepo n'apportait rien de plus |
+| Tailwind CSS v4 + Radix | CSS sur mesure à jetons (`app/globals.css`) | Une identité de jeu (coins coupés, lueurs de rareté) s'écrit plus simplement en CSS ; les composants accessibles sont faits maison |
+| Better Auth | Authentification maison (`packages/server/src/auth.ts`) | Comptes invités, revendication et fusion entre appareils : ~120 lignes testées, sans dépendance |
+| next-intl | i18n maison (`lib/i18n.ts`) | Pas de préfixe de langue dans les URL, variantes de phrases pour la chronique |
+| Serwist | Service worker écrit à la main (`public/sw.js`) | Compatible avec le build Turbopack de Next 16, 100 lignes lisibles |
+| Howler.js + sons Kenney | Sons synthétisés (Web Audio) | Zéro fichier audio, un accord par rareté |
+| Compétences payées en énergie | Compétences à temps de recharge | L'énergie rythme les sessions ; la dépenser en combat punissait les compétences |
+| Phase 1 en IndexedDB, serveur en phase 3 | Serveur autoritaire dès le départ | Tout a été construit d'un bloc : pas besoin de l'étape intermédiaire |
+| Saisons (phase 7) | Reportées en v1.3 | Voir [ROADMAP](../ROADMAP.md) |
+
 ---
 
 ## 1. Les décisions en bref

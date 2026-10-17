@@ -30,6 +30,7 @@ import {
   turnIn,
 } from "./quests";
 import { Rng } from "./rng";
+import { computeStats } from "./stats";
 import { syncTime } from "./time";
 import type { Action, GameEvent, GameState } from "./types";
 
@@ -195,6 +196,10 @@ export function apply(input: GameState, action: Action, opts: ApplyOptions): App
   ensureStory(ctx);
   refreshDynamicProgress(ctx);
   progression.checkAchievements(ctx);
+  // Buffs expire and gear changes: vitals never stay above their (new) maximum.
+  const stats = computeStats(state, opts.content);
+  state.hero.health = Math.min(state.hero.health, stats.maxHealth);
+  state.hero.energy = Math.min(state.hero.energy, stats.maxEnergy);
   state.rng = rng.state();
   return { state, events: ctx.events };
 }

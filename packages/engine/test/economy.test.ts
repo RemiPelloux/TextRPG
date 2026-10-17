@@ -229,3 +229,22 @@ describe("classes and talents", () => {
     );
   });
 });
+
+describe("buff expiry", () => {
+  it("never leaves health above the new maximum (found by the soak test)", () => {
+    const state = newGame();
+    const ctx = ctxFor(state, "vigor");
+    const elixir = simpleItem(ctx, "elixir_vigor");
+    state.hero.bag.push(elixir);
+    let current = act(state, { type: "item.use", uid: elixir.uid }).state;
+    current.hero.buffs[0]!.fights = 1;
+    current.hero.health = computeStats(current, content).maxHealth;
+    current = act(current, { type: "hunt.start", difficulty: "easy" }).state;
+    current.combat!.hero.stats.speed = 999;
+    current.combat!.hero.hp = current.combat!.hero.maxHp;
+    for (let i = 0; i < 10 && current.combat; i++)
+      current = act(current, { type: "combat.flee" }).state;
+    expect(current.hero.buffs).toHaveLength(0);
+    expect(current.hero.health).toBeLessThanOrEqual(computeStats(current, content).maxHealth);
+  });
+});
