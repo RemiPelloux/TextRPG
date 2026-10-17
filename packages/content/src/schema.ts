@@ -94,6 +94,37 @@ export type StatusId = z.infer<typeof StatusId>;
 
 // --- Items -------------------------------------------------------------------
 
+/** What an equipment base is made of: decides which materials it can roll. */
+export const FAMILIES = ["metal", "leather", "cloth", "wood", "bone", "gem"] as const;
+export const Family = z.enum(FAMILIES);
+export type Family = z.infer<typeof Family>;
+
+/**
+ * Procedural power templates. Items, enchantments, sigils and generated legendaries carry
+ * instances of these; the engine (procs.ts) implements them and the UI describes them.
+ */
+export const PROC_TEMPLATES = [
+  "hit_burn",
+  "hit_poison",
+  "hit_bleed",
+  "hit_chill",
+  "hit_stun",
+  "hit_weaken",
+  "hit_lifesteal",
+  "crit_damage",
+  "crit_heal",
+  "dodge_empower",
+  "kill_heal",
+  "start_evasive",
+  "start_strike",
+  "turn_strike",
+  "struck_retaliate",
+  "low_empower",
+  "low_heal",
+] as const;
+export const ProcTemplate = z.enum(PROC_TEMPLATES);
+export type ProcTemplate = z.infer<typeof ProcTemplate>;
+
 export const ITEM_KINDS = [
   "equipment",
   "potion",
@@ -114,6 +145,7 @@ export const ItemBase = z.object({
   gender: z.enum(["m", "f"]).default("m"),
   kind: ItemKind,
   slot: Slot.optional(),
+  family: Family.optional(),
   icon: z.string(),
   /** Minimum item level at which this base can drop. */
   level: z.number().int().min(1).default(1),
@@ -418,3 +450,62 @@ export const Achievement = z.object({
   reward: z.object({ gold: z.number().int().default(0), shards: z.number().int().default(0) }),
 });
 export type Achievement = z.infer<typeof Achievement>;
+
+// --- Procedural generation ---------------------------------------------------
+
+/** A material changes an item's name, its implicit strength, and adds a small trait. */
+export const Material = z.object({
+  id: z.string(),
+  /** EN: an adjective placed before the base ("Steel"). FR: a complement after it ("d'acier"). */
+  name: Text,
+  families: z.array(Family).min(1),
+  minIlvl: z.number().int().min(1),
+  weight: z.number().positive().default(10),
+  /** Multiplies the base's implicit stats. */
+  implicitMult: z.number().positive(),
+  /** A small extra stat: base + perLevel × item level. */
+  trait: z.object({ stat: StatKey, base: z.number(), perLevel: z.number() }).optional(),
+});
+export type Material = z.infer<typeof Material>;
+
+const Scaled = z.tuple([z.number(), z.number()]); // [base, perLevel]
+
+/**
+ * Sigils are procedural sets: any magic or better item can bear one, and wearing several
+ * items of the same sigil grants bonuses that scale with the lowest item level among them.
+ */
+export const Sigil = z.object({
+  id: z.string(),
+  name: Text,
+  title: Text,
+  icon: z.string(),
+  /** Hex color used for the sigil's badge. */
+  color: z.string().regex(/^#[0-9a-fA-F]{6}$/),
+  minIlvl: z.number().int().min(1),
+  lore: Text,
+  bonuses: z
+    .array(
+      z.object({
+        pieces: z.number().int().min(2).max(7),
+        stats: z.partialRecord(StatKey, Scaled).optional(),
+        proc: z
+          .object({
+            template: ProcTemplate,
+            chance: z.number().min(0).max(1).default(1),
+            value: Scaled,
+            turns: z.number().int().optional(),
+            every: z.number().int().optional(),
+          })
+          .optional(),
+      }),
+    )
+    .min(2),
+});
+export type Sigil = z.infer<typeof Sigil>;
+
+/** Word lists for procedurally named legendaries: "Vharak's Lament" / "Complainte de Vharak". */
+export const LegendNames = z.object({
+  nouns: z.array(z.object({ en: z.string(), fr: z.string() })).min(20),
+  lore: z.array(z.object({ en: z.string(), fr: z.string() })).min(8),
+});
+export type LegendNames = z.infer<typeof LegendNames>;

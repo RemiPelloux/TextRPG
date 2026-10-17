@@ -41,6 +41,7 @@ export function chooseClass(ctx: Ctx, classId: ClassId): void {
     rarity: "magic",
     slot: "weapon",
     classId,
+    origin: { src: "class", day: ctx.state.time.day },
   });
   ctx.emit(
     addToBag(ctx, weapon)

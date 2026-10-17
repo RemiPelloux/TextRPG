@@ -134,6 +134,8 @@ describe("quest items", () => {
       boss: false,
       into: "bag" as const,
     };
+    // No quest at all (daily quests could ask for teeth too).
+    state.quests = [];
     for (let i = 0; i < 30; i++) rollLoot(ctx, source);
     expect(state.hero.bag.some((i) => i.baseId === "orc_teeth")).toBe(false);
     const template = [...content.quests.values()].find(

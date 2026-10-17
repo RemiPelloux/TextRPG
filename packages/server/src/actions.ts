@@ -52,6 +52,14 @@ export const ActionSchema = z.discriminatedUnion("type", [
   z.object({ type: z.literal("fish.reel"), move: z.enum(["pull", "steady", "slack"]) }),
   simple("challenge.start"),
   simple("challenge.next"),
+  z.object({ type: z.literal("cube.transmute"), uids: z.tuple([id, id, id]) }),
+  z.object({ type: z.literal("cube.enchant"), uid: id }),
+  z.object({ type: z.literal("cube.enchantPick"), index }),
+  z.object({ type: z.literal("cube.infuse"), uid: id, donorUid: id }),
+  z.object({ type: z.literal("cube.reforge"), uid: id }),
+  z.object({ type: z.literal("cube.extract"), uid: id }),
+  z.object({ type: z.literal("cube.slot"), slot: index, key: id.nullable() }),
+  z.object({ type: z.literal("torment.set"), level: index }),
 ]);
 
 // Compile-time check: the schema and the engine's Action type describe the same thing.

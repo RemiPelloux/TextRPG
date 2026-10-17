@@ -7,14 +7,15 @@
  *   crit       : luck × 0.75 + critChance (max 60%), × (1.5 + critDamage)
  *   dodge      : (defender speed − attacker speed) × 1.5% + dodge (max 35%, 75% with Vanish)
  */
-import type { PowerId, Skill, StatusId } from "@textrpg/content";
+import type { PowerId, ProcTemplate, Skill, StatusId } from "@textrpg/content";
 
 import type { Ctx } from "./ctx";
 import type { SpawnedEnemy } from "./enemies";
 import { baseOf, removeFromBag } from "./items";
-import { activePowers, computeStats, critChanceOf } from "./stats";
+import { procKey } from "./procs";
+import { activePowers, activeProcs, computeStats, critChanceOf } from "./stats";
 import { isNight } from "./time";
-import type { Attribute, Combat, CombatContext, Side, Stats, Status, Who } from "./types";
+import type { Attribute, Combat, CombatContext, Proc, Side, Stats, Status, Who } from "./types";
 
 export type CombatOutcome = "ongoing" | "victory" | "defeat" | "fled";
 
@@ -27,6 +28,7 @@ export interface HeroSnapshot {
   stats: Stats;
   hp: number;
   powers: PowerId[];
+  procs: Proc[];
   level: number;
 }
 
@@ -36,6 +38,7 @@ export function heroSnapshot(ctx: Ctx): HeroSnapshot {
     stats,
     hp: Math.min(ctx.hero.health, stats.maxHealth),
     powers: activePowers(ctx.state, ctx.content),
+    procs: activeProcs(ctx.state, ctx.content),
     level: ctx.hero.level,
   };
 }
@@ -49,6 +52,8 @@ export function startCombat(
   const stats = { ...hero.stats };
   const combat: Combat = {
     context,
+    procs: hero.procs,
+    procsUsed: [],
     enemy: {
       stats: enemy.stats,
       hp: enemy.stats.maxHealth,
@@ -85,6 +90,15 @@ export function startCombat(
   ctx.state.combat = combat;
   ctx.emit({ type: "combatStart", enemy: enemy.info, hp: combat.enemy.hp, context: context.type });
   if (combat.mysteryAttribute) ctx.emit({ type: "mystery", attribute: combat.mysteryAttribute });
+  for (const proc of procsOf(combat, "start_evasive")) {
+    ctx.emit({ type: "procTriggered", template: proc.t });
+    applyStatus(ctx, combat, "hero", "evasive", proc.turns ?? 2);
+  }
+  for (const proc of procsOf(combat, "start_strike")) {
+    ctx.emit({ type: "procTriggered", template: proc.t });
+    // An opening blow never ends the fight on its own.
+    strike(ctx, combat, "hero", { mult: proc.value / 100, proc: proc.t, nonLethal: true });
+  }
   return combat;
 }
 
@@ -133,6 +147,39 @@ function heal(ctx: Ctx, combat: Combat, who: Who, amount: number, source: string
   ctx.emit({ type: "heal", target: who, amount: healed, source });
 }
 
+function procsOf(combat: Combat, t: ProcTemplate): Proc[] {
+  return (combat.procs ?? []).filter((p) => p.t === t);
+}
+
+const STATUS_PROCS: Partial<Record<ProcTemplate, StatusId>> = {
+  hit_burn: "burn",
+  hit_poison: "poison",
+  hit_bleed: "bleed",
+  hit_chill: "chill",
+  hit_weaken: "weaken",
+  hit_stun: "stun",
+};
+
+/** One-shot procs when the hero's health drops low. */
+function checkLowHealth(ctx: Ctx, combat: Combat): void {
+  const hero = combat.hero;
+  if (hero.hp <= 0) return;
+  (combat.procs ?? []).forEach((proc, index) => {
+    const key = procKey(proc, index);
+    if (combat.procsUsed.includes(key)) return;
+    if (proc.t === "low_empower" && hero.hp < hero.maxHp * 0.35) {
+      combat.procsUsed.push(key);
+      ctx.emit({ type: "procTriggered", template: proc.t });
+      applyStatus(ctx, combat, "hero", "empower", proc.turns ?? 3);
+    }
+    if (proc.t === "low_heal" && hero.hp < hero.maxHp * 0.3) {
+      combat.procsUsed.push(key);
+      ctx.emit({ type: "procTriggered", template: proc.t });
+      heal(ctx, combat, "hero", hero.maxHp * (proc.value / 100), "proc");
+    }
+  });
+}
+
 function isDragonbaneTarget(combat: Combat): boolean {
   return (
     combat.hero.powers.includes("dragonbane") &&
@@ -164,6 +211,10 @@ interface StrikeOptions {
   heavy?: boolean;
   counter?: boolean;
   extra?: boolean;
+  /** The strike comes from a generated power (procs never trigger other procs). */
+  proc?: ProcTemplate;
+  /** Cannot bring the target below 1 health. */
+  nonLethal?: boolean;
 }
 
 /** One hit from `by` to the other side. Returns true if the target died. */
@@ -184,6 +235,12 @@ function strike(ctx: Ctx, combat: Combat, by: Who, opts: StrikeOptions): boolean
   );
   if (!opts.heavy && rng.chance(dodgeChance / 100)) {
     ctx.emit({ type: "dodge", by: target });
+    if (target === "hero") {
+      for (const proc of procsOf(combat, "dodge_empower")) {
+        ctx.emit({ type: "procTriggered", template: proc.t });
+        applyStatus(ctx, combat, "hero", "empower", proc.turns ?? 2);
+      }
+    }
     if (target === "hero" && combat.hero.powers.includes("counter_dodge") && !opts.counter) {
       ctx.emit({ type: "counter" });
       return strike(ctx, combat, "hero", { mult: 0.6, counter: true });
@@ -225,7 +282,10 @@ function strike(ctx: Ctx, combat: Combat, by: Who, opts: StrikeOptions): boolean
   }
   if (crit) {
     const moon = heroAttacking && combat.night && combat.hero.powers.includes("moonblade") ? 1 : 0;
-    raw *= 1.5 + a.critDamage / 100 + moon;
+    const procBonus = heroAttacking
+      ? procsOf(combat, "crit_damage").reduce((sum, p) => sum + p.value, 0) / 100
+      : 0;
+    raw *= 1.5 + a.critDamage / 100 + moon + procBonus;
   }
   const attackerLevel = heroAttacking ? combat.hero.level : combat.enemy.info.level;
   const mitigation = d.defense / (d.defense + 20 + 5 * attackerLevel);
@@ -233,6 +293,7 @@ function strike(ctx: Ctx, combat: Combat, by: Who, opts: StrikeOptions): boolean
   if (target === "hero" && combat.guarding)
     damage *= opts.heavy ? GUARD_HEAVY_FACTOR : GUARD_FACTOR;
   damage = Math.max(1, Math.round(damage));
+  if (opts.nonLethal) damage = Math.max(0, Math.min(damage, defender.hp - 1));
 
   const died = hurt(ctx, combat, target, damage);
   ctx.emit({
@@ -242,8 +303,26 @@ function strike(ctx: Ctx, combat: Combat, by: Who, opts: StrikeOptions): boolean
     crit,
     ...(opts.skill ? { skillId: opts.skill.id } : {}),
     ...(opts.extra ? { extra: true } : {}),
+    ...(opts.proc ? { proc: opts.proc } : {}),
   });
   if (heroAttacking && crit) ctx.state.counters.crits += 1;
+  if (heroAttacking) {
+    const procLeech = procsOf(combat, "hit_lifesteal").reduce((sum, p) => sum + p.value, 0);
+    if (procLeech > 0) heal(ctx, combat, "hero", damage * (procLeech / 100), "proc");
+    if (crit) {
+      for (const proc of procsOf(combat, "crit_heal")) {
+        heal(ctx, combat, "hero", combat.hero.maxHp * (proc.value / 100), "proc");
+      }
+    }
+    if (died) {
+      for (const proc of procsOf(combat, "kill_heal")) {
+        ctx.emit({ type: "procTriggered", template: proc.t });
+        heal(ctx, combat, "hero", combat.hero.maxHp * (proc.value / 100), "proc");
+      }
+    }
+  } else {
+    checkLowHealth(ctx, combat);
+  }
 
   // Life steal and drain
   const steal = a.lifeSteal / 100 + (opts.skill?.effect.drain ?? 0);
@@ -279,11 +358,30 @@ function strike(ctx: Ctx, combat: Combat, by: Who, opts: StrikeOptions): boolean
     }
     if (powers.includes("frost_core") && rng.chance(0.3))
       applyStatus(ctx, combat, "enemy", "chill", 2);
+    if (!opts.proc) {
+      for (const proc of combat.procs ?? []) {
+        const status = STATUS_PROCS[proc.t];
+        if (!status || !rng.chance(proc.chance)) continue;
+        ctx.emit({ type: "procTriggered", template: proc.t });
+        const dot = DOT_STATUSES.includes(status)
+          ? Math.max(1, Math.round(damage * (proc.value / 100)))
+          : 0;
+        applyStatus(ctx, combat, "enemy", status, proc.turns ?? 2, dot);
+      }
+    }
   } else {
     const onHit = combat.enemy.info.onHit;
     if (onHit && rng.chance(onHit.chance)) {
       const dot = DOT_STATUSES.includes(onHit.status) ? Math.max(1, Math.round(damage * 0.3)) : 0;
       applyStatus(ctx, combat, "hero", onHit.status, onHit.turns, dot);
+    }
+    if (!opts.counter && combat.enemy.hp > 0) {
+      for (const proc of procsOf(combat, "struck_retaliate")) {
+        if (!rng.chance(proc.chance)) continue;
+        ctx.emit({ type: "procTriggered", template: proc.t });
+        if (strike(ctx, combat, "hero", { mult: proc.value / 100, proc: proc.t, counter: true }))
+          break;
+      }
     }
   }
   return false;
@@ -335,6 +433,7 @@ function endRound(ctx: Ctx, combat: Combat): void {
       if (DOT_STATUSES.includes(status.id) && status.value > 0 && side.hp > 0) {
         ctx.emit({ type: "dot", target: who, status: status.id, damage: status.value });
         hurt(ctx, combat, who, status.value);
+        if (who === "hero") checkLowHealth(ctx, combat);
       }
     }
     side.statuses = side.statuses
@@ -437,6 +536,16 @@ export function combatMove(ctx: Ctx, move: CombatMove): CombatOutcome {
           if (skill.effect.guaranteedCrit) combat.nextCrit = true;
         };
       }
+      // Rhythm powers: every N turns, an extra strike after the hero's action.
+      const act = heroAct;
+      heroAct = () => {
+        act();
+        for (const proc of procsOf(combat, "turn_strike")) {
+          if (combat.enemy.hp <= 0 || (combat.turn + 1) % (proc.every ?? 3) !== 0) continue;
+          ctx.emit({ type: "procTriggered", template: proc.t });
+          strike(ctx, combat, "hero", { mult: proc.value / 100, proc: proc.t });
+        }
+      };
       if (heroFirst) {
         heroAct();
         enemyTurn(ctx, combat);

@@ -1,0 +1,484 @@
+[
+  {
+    "id": "wolf",
+    "name": {
+      "en": "Wolf",
+      "fr": "Loup"
+    },
+    "title": {
+      "en": "Bloodline of the Wolf",
+      "fr": "Lignée du Loup"
+    },
+    "icon": "GiWolfHead",
+    "color": "#a9b6c8",
+    "minIlvl": 1,
+    "lore": {
+      "en": "They hunt in silence, and they never hunt alone.",
+      "fr": "Ils chassent en silence, et jamais seuls."
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stats": {
+          "speed": [1, 0.25]
+        }
+      },
+      {
+        "pieces": 3,
+        "stats": {
+          "speed": [1, 0.25],
+          "critChance": [2, 0.15]
+        }
+      },
+      {
+        "pieces": 4,
+        "proc": {
+          "template": "hit_bleed",
+          "chance": 0.25,
+          "value": [25, 0.6],
+          "turns": 3
+        }
+      },
+      {
+        "pieces": 6,
+        "stats": {
+          "speed": [2.5, 0.6],
+          "damagePct": [12, 0.75]
+        },
+        "proc": {
+          "template": "kill_heal",
+          "chance": 1,
+          "value": [6, 0.4]
+        }
+      }
+    ]
+  },
+  {
+    "id": "raven",
+    "name": {
+      "en": "Raven",
+      "fr": "Corbeau"
+    },
+    "title": {
+      "en": "Bloodline of the Raven",
+      "fr": "Lignée du Corbeau"
+    },
+    "icon": "GiRaven",
+    "color": "#a58be0",
+    "minIlvl": 1,
+    "lore": {
+      "en": "The raven has already seen how this ends.",
+      "fr": "Le corbeau sait déjà comment cela finit."
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stats": {
+          "luck": [2, 0.3]
+        }
+      },
+      {
+        "pieces": 3,
+        "stats": {
+          "luck": [2, 0.3],
+          "critChance": [2, 0.15]
+        }
+      },
+      {
+        "pieces": 4,
+        "proc": {
+          "template": "crit_heal",
+          "chance": 1,
+          "value": [2, 0.15]
+        }
+      },
+      {
+        "pieces": 6,
+        "stats": {
+          "luck": [5, 0.75],
+          "critChance": [5, 0.35]
+        },
+        "proc": {
+          "template": "hit_weaken",
+          "chance": 0.2,
+          "value": [0, 0],
+          "turns": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "ember",
+    "name": {
+      "en": "Ember",
+      "fr": "Braise"
+    },
+    "title": {
+      "en": "Bloodline of the Ember",
+      "fr": "Lignée de la Braise"
+    },
+    "icon": "GiFlame",
+    "color": "#e8673a",
+    "minIlvl": 1,
+    "lore": {
+      "en": "Some fires were lit before the world, and refuse to go out.",
+      "fr": "Certains feux furent allumés avant le monde, et refusent de s'éteindre."
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stats": {
+          "damagePct": [5, 0.3]
+        }
+      },
+      {
+        "pieces": 3,
+        "stats": {
+          "damagePct": [5, 0.3],
+          "critDamage": [6, 0.5]
+        }
+      },
+      {
+        "pieces": 4,
+        "proc": {
+          "template": "hit_burn",
+          "chance": 0.25,
+          "value": [25, 0.6],
+          "turns": 3
+        }
+      },
+      {
+        "pieces": 6,
+        "stats": {
+          "damagePct": [12, 0.75]
+        },
+        "proc": {
+          "template": "turn_strike",
+          "chance": 1,
+          "value": [50, 2.5],
+          "every": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "bear",
+    "name": {
+      "en": "Bear",
+      "fr": "Ours"
+    },
+    "title": {
+      "en": "Bloodline of the Bear",
+      "fr": "Lignée de l'Ours"
+    },
+    "icon": "GiBearHead",
+    "color": "#b8875a",
+    "minIlvl": 1,
+    "lore": {
+      "en": "It sleeps through the long winter. Do not be what wakes it.",
+      "fr": "Il dort tout l'hiver. Ne sois pas ce qui le réveille."
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stats": {
+          "maxHealth": [10, 2.5]
+        }
+      },
+      {
+        "pieces": 3,
+        "stats": {
+          "maxHealth": [10, 2.5],
+          "defense": [1.5, 0.35]
+        }
+      },
+      {
+        "pieces": 4,
+        "proc": {
+          "template": "struck_retaliate",
+          "chance": 0.3,
+          "value": [40, 2]
+        }
+      },
+      {
+        "pieces": 6,
+        "stats": {
+          "maxHealth": [25, 6],
+          "defense": [3.5, 0.9]
+        },
+        "proc": {
+          "template": "low_empower",
+          "chance": 1,
+          "value": [0, 0],
+          "turns": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "serpent",
+    "name": {
+      "en": "Serpent",
+      "fr": "Serpent"
+    },
+    "title": {
+      "en": "Bloodline of the Serpent",
+      "fr": "Lignée du Serpent"
+    },
+    "icon": "GiSnake",
+    "color": "#9fcc4e",
+    "minIlvl": 5,
+    "lore": {
+      "en": "The bite is a kindness. The venom is the lesson.",
+      "fr": "La morsure est une faveur. Le venin, une leçon."
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stats": {
+          "dodge": [2, 0.15]
+        }
+      },
+      {
+        "pieces": 3,
+        "stats": {
+          "dodge": [2, 0.15],
+          "speed": [1, 0.25]
+        }
+      },
+      {
+        "pieces": 4,
+        "proc": {
+          "template": "hit_poison",
+          "chance": 0.25,
+          "value": [25, 0.6],
+          "turns": 3
+        }
+      },
+      {
+        "pieces": 6,
+        "stats": {
+          "dodge": [5, 0.35],
+          "speed": [2.5, 0.6]
+        },
+        "proc": {
+          "template": "dodge_empower",
+          "chance": 1,
+          "value": [0, 0],
+          "turns": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "moon",
+    "name": {
+      "en": "Moon",
+      "fr": "Lune"
+    },
+    "title": {
+      "en": "Bloodline of the Moon",
+      "fr": "Lignée de la Lune"
+    },
+    "icon": "GiMoonClaws",
+    "color": "#cdd8ff",
+    "minIlvl": 5,
+    "lore": {
+      "en": "Under a full moon, every wound opens wider.",
+      "fr": "Sous la pleine lune, chaque blessure s'ouvre plus grand."
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stats": {
+          "critChance": [2, 0.15]
+        }
+      },
+      {
+        "pieces": 3,
+        "stats": {
+          "critChance": [2, 0.15],
+          "critDamage": [8, 0.6]
+        }
+      },
+      {
+        "pieces": 4,
+        "proc": {
+          "template": "crit_damage",
+          "chance": 1,
+          "value": [30, 2]
+        }
+      },
+      {
+        "pieces": 6,
+        "stats": {
+          "critChance": [5, 0.35],
+          "critDamage": [20, 1.5]
+        },
+        "proc": {
+          "template": "start_evasive",
+          "chance": 1,
+          "value": [0, 0],
+          "turns": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "frost",
+    "name": {
+      "en": "Frost",
+      "fr": "Givre"
+    },
+    "title": {
+      "en": "Bloodline of the Frost",
+      "fr": "Lignée du Givre"
+    },
+    "icon": "GiSnowflake1",
+    "color": "#72d4ea",
+    "minIlvl": 9,
+    "lore": {
+      "en": "The cold does not hate you. It simply keeps you.",
+      "fr": "Le froid ne te hait pas. Il te garde, simplement."
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stats": {
+          "defense": [1.5, 0.35]
+        }
+      },
+      {
+        "pieces": 3,
+        "stats": {
+          "defense": [2, 0.5],
+          "maxHealth": [5, 1.25]
+        }
+      },
+      {
+        "pieces": 4,
+        "proc": {
+          "template": "hit_chill",
+          "chance": 0.2,
+          "value": [0, 0],
+          "turns": 2
+        }
+      },
+      {
+        "pieces": 6,
+        "stats": {
+          "defense": [3.5, 0.9],
+          "maxHealth": [15, 3.5]
+        },
+        "proc": {
+          "template": "hit_stun",
+          "chance": 0.08,
+          "value": [0, 0],
+          "turns": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "crown",
+    "name": {
+      "en": "Crown",
+      "fr": "Couronne"
+    },
+    "title": {
+      "en": "Bloodline of the Crown",
+      "fr": "Lignée de la Couronne"
+    },
+    "icon": "GiCrown",
+    "color": "#d9a93f",
+    "minIlvl": 9,
+    "lore": {
+      "en": "Kings are buried with their gold. Someone always digs them up.",
+      "fr": "Les rois sont enterrés avec leur or. Quelqu'un finit toujours par creuser."
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stats": {
+          "goldFind": [12, 1]
+        }
+      },
+      {
+        "pieces": 3,
+        "stats": {
+          "goldFind": [12, 1],
+          "magicFind": [8, 0.6]
+        }
+      },
+      {
+        "pieces": 4,
+        "proc": {
+          "template": "start_strike",
+          "chance": 1,
+          "value": [60, 3]
+        }
+      },
+      {
+        "pieces": 6,
+        "stats": {
+          "goldFind": [30, 2.5],
+          "magicFind": [25, 2],
+          "luck": [3, 0.5]
+        }
+      }
+    ]
+  },
+  {
+    "id": "hollow",
+    "name": {
+      "en": "Hollow",
+      "fr": "Creux"
+    },
+    "title": {
+      "en": "Bloodline of the Hollow",
+      "fr": "Lignée du Creux"
+    },
+    "icon": "GiSkullCrack",
+    "color": "#c9507f",
+    "minIlvl": 14,
+    "lore": {
+      "en": "What is empty must be filled, and it is never particular about with what.",
+      "fr": "Ce qui est vide doit être rempli, et ne choisit jamais avec quoi."
+    },
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stats": {
+          "lifeSteal": [1.5, 0.12]
+        }
+      },
+      {
+        "pieces": 3,
+        "stats": {
+          "lifeSteal": [1.5, 0.12],
+          "maxHealth": [8, 2]
+        }
+      },
+      {
+        "pieces": 4,
+        "proc": {
+          "template": "low_heal",
+          "chance": 1,
+          "value": [12, 0.6]
+        }
+      },
+      {
+        "pieces": 6,
+        "stats": {
+          "lifeSteal": [3.5, 0.3],
+          "maxHealth": [25, 6]
+        },
+        "proc": {
+          "template": "hit_lifesteal",
+          "chance": 1,
+          "value": [4, 0.3]
+        }
+      }
+    ]
+  }
+]

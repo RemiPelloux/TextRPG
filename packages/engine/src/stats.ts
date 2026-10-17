@@ -6,6 +6,7 @@ import {
   type GameState,
   type Item,
   type ParagonStat,
+  type Proc,
   type StatBag,
   type Stats,
 } from "./types";
@@ -49,7 +50,7 @@ export function itemStats(item: Item, content: Content): StatBag {
   if (item.identified) {
     add(total, item.fixed);
     const stats = affixStats(content);
-    for (const affix of item.affixes) {
+    for (const affix of [...item.affixes, ...(item.enchant?.affix ? [item.enchant.affix] : [])]) {
       const stat = stats.get(affix.id);
       if (stat) total[stat] = (total[stat] ?? 0) + affix.value;
     }
@@ -71,9 +72,85 @@ export function equippedSetCounts(state: GameState, content: Content): Map<strin
   return counts;
 }
 
-/** Powers granted by equipped legendaries and active set bonuses. */
+/**
+ * Sigils worn: how many pieces of each, and the "set level" (lowest item level among them),
+ * which scales the bonuses. Unidentified items don't count.
+ */
+export function sigilCounts(state: GameState): Map<string, { count: number; level: number }> {
+  const counts = new Map<string, { count: number; level: number }>();
+  for (const item of Object.values(state.hero.equipment)) {
+    if (!item?.sigil || !item.identified) continue;
+    const entry = counts.get(item.sigil) ?? { count: 0, level: Infinity };
+    entry.count += 1;
+    entry.level = Math.min(entry.level, item.ilvl);
+    counts.set(item.sigil, entry);
+  }
+  return counts;
+}
+
+function scaled([base, perLevel]: [number, number], level: number): number {
+  return Math.round((base + perLevel * level) * 10) / 10;
+}
+
+/** Stats granted by active sigil bonuses. */
+export function sigilStats(state: GameState, content: Content): StatBag {
+  const out: StatBag = {};
+  for (const [id, { count, level }] of sigilCounts(state)) {
+    const sigil = content.sigils.get(id);
+    for (const bonus of sigil?.bonuses ?? []) {
+      if (count < bonus.pieces || !bonus.stats) continue;
+      for (const [stat, value] of Object.entries(bonus.stats) as [StatKey, [number, number]][]) {
+        out[stat] = (out[stat] ?? 0) + scaled(value, level);
+      }
+    }
+  }
+  return out;
+}
+
+/** Every generated power active right now: items, enchantments, sigil bonuses, cube slots. */
+export function activeProcs(state: GameState, content: Content): Proc[] {
+  const procs: Proc[] = [];
+  for (const item of Object.values(state.hero.equipment)) {
+    if (!item?.identified) continue;
+    procs.push(...(item.procs ?? []));
+    if (item.enchant?.proc) procs.push(item.enchant.proc);
+  }
+  for (const [id, { count, level }] of sigilCounts(state)) {
+    for (const bonus of content.sigils.get(id)?.bonuses ?? []) {
+      if (count < bonus.pieces || !bonus.proc) continue;
+      const { template, chance, value, turns, every } = bonus.proc;
+      procs.push({
+        t: template,
+        chance,
+        value: scaled(value, level),
+        ...(turns ? { turns } : {}),
+        ...(every ? { every } : {}),
+      });
+    }
+  }
+  for (const power of cubeSlotted(state)) procs.push(...(power.procs ?? []));
+  return procs;
+}
+
+/** Cube powers currently placed in an unlocked slot. */
+export function cubeSlotted(state: GameState) {
+  const unlocked = CUBE_SLOT_LEVELS.filter((level) => state.hero.level >= level).length;
+  return state.cube.slots
+    .slice(0, unlocked)
+    .map((key) => state.cube.powers.find((p) => p.key === key))
+    .filter((p): p is NonNullable<typeof p> => Boolean(p));
+}
+
+/** Hero level needed to open each cube slot. */
+export const CUBE_SLOT_LEVELS = [1, 10, 20];
+
+/** Powers granted by equipped legendaries, active set bonuses and the cube. */
 export function activePowers(state: GameState, content: Content): PowerId[] {
   const powers = new Set<PowerId>();
+  for (const power of cubeSlotted(state)) {
+    const legendary = power.legendaryId ? content.legendaries.get(power.legendaryId) : undefined;
+    if (legendary) powers.add(legendary.power);
+  }
   for (const item of Object.values(state.hero.equipment)) {
     if (item?.legendaryId && item.identified) {
       const legendary = content.legendaries.get(item.legendaryId);
@@ -101,6 +178,7 @@ export function computeStats(state: GameState, content: Content): Stats {
       if (count >= bonus.pieces && bonus.stats) add(stats, bonus.stats);
     }
   }
+  add(stats, sigilStats(state, content));
   if (hero.classId) {
     const heroClass = content.classes.get(hero.classId)!;
     add(stats, heroClass.passive);

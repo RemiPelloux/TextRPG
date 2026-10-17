@@ -172,5 +172,140 @@
         }
       }
     ]
+  },
+  {
+    "id": "wanderer",
+    "name": {
+      "en": "The Wanderer's Garb",
+      "fr": "Tenue du Vagabond"
+    },
+    "minIlvl": 1,
+    "pieces": [
+      {
+        "id": "wanderer_hood",
+        "baseId": "leather_cap",
+        "name": {
+          "en": "Wanderer's Hood",
+          "fr": "Capuche du Vagabond"
+        },
+        "fixed": {
+          "maxHealth": [5, 10]
+        }
+      },
+      {
+        "id": "wanderer_coat",
+        "baseId": "leather_armor",
+        "name": {
+          "en": "Wanderer's Coat",
+          "fr": "Manteau du Vagabond"
+        },
+        "fixed": {
+          "maxHealth": [5, 10],
+          "defense": [1, 2]
+        }
+      },
+      {
+        "id": "wanderer_soles",
+        "baseId": "leather_boots",
+        "name": {
+          "en": "Wanderer's Soles",
+          "fr": "Semelles du Vagabond"
+        },
+        "fixed": {
+          "speed": [1, 3]
+        }
+      }
+    ],
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stats": {
+          "maxHealth": 15
+        },
+        "text": {
+          "en": "+15 maximum health.",
+          "fr": "+15 PV maximum."
+        }
+      },
+      {
+        "pieces": 3,
+        "stats": {
+          "speed": 3,
+          "dodge": 3
+        },
+        "text": {
+          "en": "+3 speed and +3% dodge.",
+          "fr": "+3 vitesse et +3 % d'esquive."
+        }
+      }
+    ]
+  },
+  {
+    "id": "gravedigger",
+    "name": {
+      "en": "The Gravedigger's Tools",
+      "fr": "Outils du Fossoyeur"
+    },
+    "minIlvl": 2,
+    "pieces": [
+      {
+        "id": "gravedigger_spade",
+        "baseId": "sword",
+        "name": {
+          "en": "Gravedigger's Edge",
+          "fr": "Lame du Fossoyeur"
+        },
+        "fixed": {
+          "strength": [1, 3]
+        }
+      },
+      {
+        "id": "gravedigger_gloves",
+        "baseId": "cloth_gloves",
+        "name": {
+          "en": "Gravedigger's Mitts",
+          "fr": "Mitaines du Fossoyeur"
+        },
+        "fixed": {
+          "strength": [1, 2],
+          "luck": [1, 3]
+        }
+      },
+      {
+        "id": "gravedigger_charm",
+        "baseId": "bone_necklace",
+        "name": {
+          "en": "Gravedigger's Charm",
+          "fr": "Breloque du Fossoyeur"
+        },
+        "fixed": {
+          "maxHealth": [5, 10],
+          "goldFind": [3, 6]
+        }
+      }
+    ],
+    "bonuses": [
+      {
+        "pieces": 2,
+        "stats": {
+          "goldFind": 15
+        },
+        "text": {
+          "en": "+15% gold found.",
+          "fr": "+15 % d'or trouvé."
+        }
+      },
+      {
+        "pieces": 3,
+        "stats": {
+          "damagePct": 8,
+          "lifeSteal": 2
+        },
+        "text": {
+          "en": "+8% damage and +2% life steal.",
+          "fr": "+8 % de dégâts et +2 % de vol de vie."
+        }
+      }
+    ]
   }
 ]

@@ -23,7 +23,7 @@ export function generateName(ctx: Ctx, syllables: [number, number] = [2, 3]): st
   return name.charAt(0).toUpperCase() + name.slice(1);
 }
 
-type Mods = { hp: number; atk: number; def: number; spd: number };
+export type Mods = { hp: number; atk: number; def: number; spd: number };
 
 /** Base enemy curve. Tuned with tools/simulate against an average-geared hero of the same level. */
 export function enemyStats(level: number, ...mods: Mods[]): Stats {
@@ -72,11 +72,12 @@ export function spawnEnemy(
   ctx: Ctx,
   level: number,
   difficulty: Difficulty,
-  opts: { elite?: boolean; kind?: EnemyKind; bloodMoon?: boolean } = {},
+  opts: { elite?: boolean; kind?: EnemyKind; bloodMoon?: boolean; extra?: Mods[] } = {},
 ): SpawnedEnemy {
   const kind = opts.kind ?? pickKind(ctx, level);
   const mods: Mods[] = [kind.mods, difficulty.mods];
   if (opts.bloodMoon) mods.push({ hp: 1.25, atk: 1.2, def: 1, spd: 1 });
+  if (opts.extra) mods.push(...opts.extra);
   if (opts.elite) mods.push({ hp: 1.6, atk: 1.15, def: 1.1, spd: 1 });
   const stats = enemyStats(level, ...mods);
   const info: EnemyInfo = { proper: generateName(ctx), kindId: kind.id, level, icon: kind.icon };
@@ -96,8 +97,9 @@ export function spawnBoss(
   boss: Boss,
   level: number,
   difficulty: Difficulty,
+  extra: Mods[] = [],
 ): SpawnedEnemy {
-  const stats = enemyStats(level, boss.mods, difficulty.mods);
+  const stats = enemyStats(level, boss.mods, difficulty.mods, ...extra);
   stats.luck += 5;
   const info: EnemyInfo = {
     proper: "",

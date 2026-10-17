@@ -7,16 +7,24 @@ import type { Content, PowerId } from "@textrpg/content";
 import { challengeAvailable } from "./challenge";
 import { availableSkills } from "./combat";
 import { buildingValue, RECIPES } from "./economy";
-import { weeklyAvailable } from "./encounters";
+import { maxTorment, weeklyAvailable } from "./encounters";
 import { canFish } from "./fishing";
 import { bagCapacity } from "./items";
 import { expToNext, paragonPoints, talentPoints } from "./leveling";
 import { canRest } from "./progression";
-import { activePowers, computeStats, equippedSetCounts, powerScore } from "./stats";
+import {
+  activePowers,
+  activeProcs,
+  computeStats,
+  CUBE_SLOT_LEVELS,
+  equippedSetCounts,
+  powerScore,
+  sigilCounts,
+} from "./stats";
 import { isBloodMoon, isNight, nextTickIn } from "./time";
-import type { Fishing, GameEvent, GameState, Hero, Item, Stats } from "./types";
+import type { Fishing, GameEvent, GameState, Hero, Item, Stats, Proc } from "./types";
 
-export type ClientItem = Item & { hiddenAffixes?: number };
+export type ClientItem = Item & { hiddenAffixes?: number; hiddenProcs?: number };
 
 export interface ClientView {
   hero: Omit<Hero, "bag" | "equipment"> & {
@@ -39,6 +47,8 @@ export interface ClientView {
   codex: GameState["codex"];
   achievements: string[];
   pity: number;
+  cube: GameState["cube"];
+  mercy: number;
   time: Pick<
     GameState["time"],
     "day" | "tzOffset" | "lastRestDay" | "dungeonCheckpoint" | "orcsToday"
@@ -59,13 +69,31 @@ export interface ClientView {
     challengeAvailable: boolean;
     canFish: boolean;
     skills: string[];
+    maxTorment: number;
+    cubeSlots: number;
+    sigils: Record<string, { count: number; level: number }>;
+    procs: Proc[];
   };
 }
 
 export function redactItem(item: Item): ClientItem {
   if (item.identified) return item;
-  const { legendaryId: _l, setPieceId: _s, rareName: _r, ...rest } = item;
-  return { ...rest, affixes: [], fixed: {}, hiddenAffixes: item.affixes.length };
+  const {
+    legendaryId: _l,
+    setPieceId: _s,
+    rareName: _r,
+    procs: _p,
+    legend: _g,
+    sigil: _i,
+    ...rest
+  } = item;
+  return {
+    ...rest,
+    affixes: [],
+    fixed: {},
+    hiddenAffixes: item.affixes.length,
+    ...(item.procs?.length ? { hiddenProcs: item.procs.length } : {}),
+  };
 }
 
 /** Events carry items too (loot): hide what is not identified yet. */
@@ -107,6 +135,8 @@ export function toClientView(state: GameState, content: Content, now: number): C
     codex: state.codex,
     achievements: state.achievements,
     pity: state.pity,
+    cube: state.cube,
+    mercy: state.mercy,
     time: {
       day: state.time.day,
       tzOffset: state.time.tzOffset,
@@ -129,6 +159,10 @@ export function toClientView(state: GameState, content: Content, now: number): C
       weeklyAvailable: weeklyAvailable(ctxLike),
       challengeAvailable: challengeAvailable(ctxLike),
       canFish: canFish(ctxLike),
+      maxTorment: maxTorment(state),
+      cubeSlots: CUBE_SLOT_LEVELS.filter((level) => state.hero.level >= level).length,
+      sigils: Object.fromEntries(sigilCounts(state)),
+      procs: activeProcs(state, content),
       skills: availableSkills({ content, hero: state.hero } as never, state.hero.level).map(
         (s) => s.id,
       ),

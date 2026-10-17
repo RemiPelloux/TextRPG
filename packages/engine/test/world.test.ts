@@ -30,6 +30,9 @@ describe("story", () => {
     ) {
       state = fightOut(act(state, { type: "hunt.start", difficulty: "easy" }).state).state;
     }
+    // The next chapter may require a level the kills alone did not give.
+    const next = content.quests.get(story()[0]!.next!)!;
+    state.hero.level = Math.max(state.hero.level, next.minLevel);
     const { state: after, events } = act(state, { type: "quest.turnIn", uid: first.uid });
     expect(ofType(events, "questDone")[0]!.templateId).toBe(first.templateId);
     expect(after.story.chapter).toBe(1);

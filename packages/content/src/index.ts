@@ -8,10 +8,13 @@ import enemiesJson from "../data/enemies.json";
 import eventsJson from "../data/events.json";
 import fishJson from "../data/fish.json";
 import itemsJson from "../data/items.json";
+import legendNamesJson from "../data/legend-names.json";
 import legendariesJson from "../data/legendaries.json";
+import materialsJson from "../data/materials.json";
 import questsJson from "../data/quests.json";
 import rareNamesJson from "../data/rare-names.json";
 import setsJson from "../data/sets.json";
+import sigilsJson from "../data/sigils.json";
 import * as S from "./schema";
 
 export * from "./schema";
@@ -36,6 +39,9 @@ export interface Content {
   events: S.DungeonEvent[];
   buildings: Map<S.Building["id"], S.Building>;
   achievements: S.Achievement[];
+  materials: S.Material[];
+  sigils: Map<string, S.Sigil>;
+  legendNames: S.LegendNames;
 }
 
 export class ContentError extends Error {}
@@ -174,6 +180,11 @@ export function buildContent(): Content {
         "achievement",
       ).values(),
     ],
+    materials: [
+      ...byId(parse(z.array(S.Material), materialsJson, "materials.json"), "material").values(),
+    ],
+    sigils: byId(parse(z.array(S.Sigil), sigilsJson, "sigils.json"), "sigil"),
+    legendNames: parse(S.LegendNames, legendNamesJson, "legend-names.json"),
   };
   validate(content);
   return content;

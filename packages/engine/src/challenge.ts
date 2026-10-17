@@ -56,6 +56,7 @@ function fight(ctx: Ctx): void {
       stats,
       hp: challenge.hp,
       powers: [],
+      procs: [],
       level: CHALLENGE_LEVEL,
     },
   );

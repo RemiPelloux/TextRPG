@@ -7,7 +7,7 @@ import type { Boss } from "@textrpg/content";
 import { startCombat } from "./combat";
 import type { Ctx } from "./ctx";
 import { spawnBoss, spawnEnemy } from "./enemies";
-import { assertIdle, spendEnergy } from "./encounters";
+import { announceMercy, assertIdle, fightMods, spendEnergy } from "./encounters";
 import { addToBag } from "./items";
 import { generateEquipment, rollRarity } from "./loot";
 import { computeStats } from "./stats";
@@ -100,15 +100,18 @@ export function openDoor(ctx: Ctx, index: number): void {
   if (!room) ctx.fail("unknownDoor");
   ctx.emit({ type: "dungeonRoom", room, floor: dungeon.floor, step: dungeon.step });
 
-  const level = enemyLevelForFloor(ctx.hero.level, dungeon.floor);
+  const level = enemyLevelForFloor(ctx.hero.level, dungeon.floor) + ctx.hero.torment;
   const stats = computeStats(ctx.state, ctx.content);
+  const origin = { src: "dungeon" as const, floor: dungeon.floor, day: ctx.state.time.day };
   switch (room) {
     case "fight":
     case "elite": {
       const enemy = spawnEnemy(ctx, level, dungeonDifficulty(ctx, dungeon.floor), {
         elite: room === "elite",
+        extra: fightMods(ctx),
       });
       startCombat(ctx, enemy, { type: "dungeon", floor: dungeon.floor, boss: false });
+      announceMercy(ctx);
       return;
     }
     case "boss": {
@@ -117,8 +120,10 @@ export function openDoor(ctx: Ctx, index: number): void {
         bossForFloor(ctx, dungeon.floor),
         level + 1,
         dungeonDifficulty(ctx, dungeon.floor),
+        fightMods(ctx),
       );
       startCombat(ctx, boss, { type: "dungeon", floor: dungeon.floor, boss: true });
+      announceMercy(ctx);
       return;
     }
     case "treasure": {
@@ -128,7 +133,12 @@ export function openDoor(ctx: Ctx, index: number): void {
         stats.magicFind,
         level,
       );
-      const item = generateEquipment(ctx, { ilvl: level, rarity, classId: ctx.hero.classId });
+      const item = generateEquipment(ctx, {
+        ilvl: level,
+        rarity,
+        classId: ctx.hero.classId,
+        origin,
+      });
       dungeon.stash.push(item);
       dungeon.stashGold += Math.round((10 + 6 * dungeon.floor) * ctx.rng.float(0.8, 1.4));
       ctx.emit({ type: "treasure" });
@@ -195,6 +205,7 @@ export function chooseEvent(ctx: Ctx, choiceIndex: number): void {
       ilvl: enemyLevelForFloor(ctx.hero.level, dungeon.floor),
       rarity: outcome.rarity,
       classId: ctx.hero.classId,
+      origin: { src: "event", floor: dungeon.floor, day: ctx.state.time.day },
     });
     dungeon.stash.push(item);
     ctx.emit({ type: "loot", item });

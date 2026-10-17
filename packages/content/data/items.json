@@ -1,51 +1,80 @@
 [
   {
     "id": "sword",
-    "name": { "en": "Sword", "fr": "Épée" },
+    "name": {
+      "en": "Sword",
+      "fr": "Épée"
+    },
     "gender": "f",
     "kind": "equipment",
     "slot": "weapon",
+    "family": "metal",
     "icon": "GiBroadsword",
     "level": 1,
     "price": 10,
     "weaponClass": "warrior",
-    "implicit": { "strength": [2, 4] },
-    "flavor": { "en": "A simple sword.", "fr": "Une simple épée." }
+    "implicit": {
+      "strength": [2, 4]
+    },
+    "flavor": {
+      "en": "A simple sword.",
+      "fr": "Une simple épée."
+    }
   },
   {
     "id": "dagger",
-    "name": { "en": "Dagger", "fr": "Dague" },
+    "name": {
+      "en": "Dagger",
+      "fr": "Dague"
+    },
     "gender": "f",
     "kind": "equipment",
     "slot": "weapon",
+    "family": "metal",
     "icon": "GiPlainDagger",
     "level": 1,
     "price": 10,
     "weaponClass": "ranger",
-    "implicit": { "strength": [1, 3], "critChance": [2, 4] }
+    "implicit": {
+      "strength": [1, 3],
+      "critChance": [2, 4]
+    }
   },
   {
     "id": "oak_staff",
-    "name": { "en": "Oak Staff", "fr": "Bâton de chêne" },
+    "name": {
+      "en": "Oak Staff",
+      "fr": "Bâton de chêne"
+    },
     "kind": "equipment",
     "slot": "weapon",
+    "family": "wood",
     "icon": "GiWizardStaff",
     "level": 1,
     "price": 10,
     "weaponClass": "occultist",
-    "implicit": { "strength": [1, 3], "damagePct": [3, 6] }
+    "implicit": {
+      "strength": [1, 3],
+      "damagePct": [3, 6]
+    }
   },
   {
     "id": "battle_axe",
-    "name": { "en": "Battle Axe", "fr": "Hache de guerre" },
+    "name": {
+      "en": "Battle Axe",
+      "fr": "Hache de guerre"
+    },
     "gender": "f",
     "kind": "equipment",
     "slot": "weapon",
+    "family": "metal",
     "icon": "GiBattleAxe",
     "level": 3,
     "price": 15,
     "weaponClass": "warrior",
-    "implicit": { "strength": [4, 7] },
+    "implicit": {
+      "strength": [4, 7]
+    },
     "flavor": {
       "en": "It still remembers its old master.",
       "fr": "Elle se souvient encore de son ancien maître."
@@ -53,38 +82,58 @@
   },
   {
     "id": "short_bow",
-    "name": { "en": "Short Bow", "fr": "Arc court" },
+    "name": {
+      "en": "Short Bow",
+      "fr": "Arc court"
+    },
     "kind": "equipment",
     "slot": "weapon",
+    "family": "wood",
     "icon": "GiPocketBow",
     "level": 3,
     "price": 15,
     "weaponClass": "ranger",
-    "implicit": { "strength": [3, 6], "speed": [1, 2] }
+    "implicit": {
+      "strength": [3, 6],
+      "speed": [1, 2]
+    }
   },
   {
     "id": "bone_wand",
-    "name": { "en": "Bone Wand", "fr": "Baguette d'os" },
+    "name": {
+      "en": "Bone Wand",
+      "fr": "Baguette d'os"
+    },
     "gender": "f",
     "kind": "equipment",
     "slot": "weapon",
+    "family": "bone",
     "icon": "GiOrbWand",
     "level": 3,
     "price": 15,
     "weaponClass": "occultist",
-    "implicit": { "strength": [3, 5], "lifeSteal": [1, 3] }
+    "implicit": {
+      "strength": [3, 5],
+      "lifeSteal": [1, 3]
+    }
   },
   {
     "id": "longsword",
-    "name": { "en": "Longsword", "fr": "Épée longue" },
+    "name": {
+      "en": "Longsword",
+      "fr": "Épée longue"
+    },
     "gender": "f",
     "kind": "equipment",
     "slot": "weapon",
+    "family": "metal",
     "icon": "GiPointySword",
     "level": 5,
     "price": 20,
     "weaponClass": "warrior",
-    "implicit": { "strength": [6, 10] },
+    "implicit": {
+      "strength": [6, 10]
+    },
     "flavor": {
       "en": "Blessed by the kiss of the gods, or so the smith claims.",
       "fr": "Bénie par le baiser des dieux, à en croire le forgeron."
@@ -92,130 +141,203 @@
   },
   {
     "id": "flanged_mace",
-    "name": { "en": "Flanged Mace", "fr": "Masse à ailettes" },
+    "name": {
+      "en": "Flanged Mace",
+      "fr": "Masse à ailettes"
+    },
     "gender": "f",
     "kind": "equipment",
     "slot": "weapon",
+    "family": "metal",
     "icon": "GiFlangedMace",
     "level": 6,
     "price": 22,
     "weaponClass": "warrior",
-    "implicit": { "strength": [7, 11], "critDamage": [5, 10] }
+    "implicit": {
+      "strength": [7, 11],
+      "critDamage": [5, 10]
+    }
   },
   {
     "id": "crossbow",
-    "name": { "en": "Crossbow", "fr": "Arbalète" },
+    "name": {
+      "en": "Crossbow",
+      "fr": "Arbalète"
+    },
     "gender": "f",
     "kind": "equipment",
     "slot": "weapon",
+    "family": "wood",
     "icon": "GiCrossbow",
     "level": 7,
     "price": 25,
     "weaponClass": "ranger",
-    "implicit": { "strength": [7, 11], "critChance": [2, 5] }
+    "implicit": {
+      "strength": [7, 11],
+      "critChance": [2, 5]
+    }
   },
   {
     "id": "crystal_wand",
-    "name": { "en": "Crystal Wand", "fr": "Baguette de cristal" },
+    "name": {
+      "en": "Crystal Wand",
+      "fr": "Baguette de cristal"
+    },
     "gender": "f",
     "kind": "equipment",
     "slot": "weapon",
+    "family": "gem",
     "icon": "GiCrystalWand",
     "level": 7,
     "price": 25,
     "weaponClass": "occultist",
-    "implicit": { "strength": [6, 10], "damagePct": [5, 10] }
+    "implicit": {
+      "strength": [6, 10],
+      "damagePct": [5, 10]
+    }
   },
   {
     "id": "greatsword",
-    "name": { "en": "Greatsword", "fr": "Espadon" },
+    "name": {
+      "en": "Greatsword",
+      "fr": "Espadon"
+    },
     "kind": "equipment",
     "slot": "weapon",
+    "family": "metal",
     "icon": "GiTwoHandedSword",
     "level": 10,
     "price": 35,
     "weaponClass": "warrior",
-    "implicit": { "strength": [11, 16] }
+    "implicit": {
+      "strength": [11, 16]
+    }
   },
   {
     "id": "storm_bow",
-    "name": { "en": "Storm Bow", "fr": "Arc de l'orage" },
+    "name": {
+      "en": "Storm Bow",
+      "fr": "Arc de l'orage"
+    },
     "kind": "equipment",
     "slot": "weapon",
+    "family": "wood",
     "icon": "GiLightningBow",
     "level": 12,
     "price": 40,
     "weaponClass": "ranger",
-    "implicit": { "strength": [12, 17], "critChance": [3, 6] }
+    "implicit": {
+      "strength": [12, 17],
+      "critChance": [3, 6]
+    }
   },
   {
     "id": "skull_staff",
-    "name": { "en": "Skull Staff", "fr": "Bâton à crâne" },
+    "name": {
+      "en": "Skull Staff",
+      "fr": "Bâton à crâne"
+    },
     "kind": "equipment",
     "slot": "weapon",
+    "family": "bone",
     "icon": "GiSkullStaff",
     "level": 12,
     "price": 40,
     "weaponClass": "occultist",
-    "implicit": { "strength": [11, 16], "lifeSteal": [2, 4] }
+    "implicit": {
+      "strength": [11, 16],
+      "lifeSteal": [2, 4]
+    }
   },
   {
     "id": "runeblade",
-    "name": { "en": "Runeblade", "fr": "Lame runique" },
+    "name": {
+      "en": "Runeblade",
+      "fr": "Lame runique"
+    },
     "gender": "f",
     "kind": "equipment",
     "slot": "weapon",
+    "family": "metal",
     "icon": "GiRuneSword",
     "level": 16,
     "price": 55,
     "weaponClass": "warrior",
-    "implicit": { "strength": [16, 23], "critDamage": [10, 18] }
+    "implicit": {
+      "strength": [16, 23],
+      "critDamage": [10, 18]
+    }
   },
   {
     "id": "twin_fangs",
-    "name": { "en": "Twin Fangs", "fr": "Crocs jumeaux" },
+    "name": {
+      "en": "Twin Fangs",
+      "fr": "Crocs jumeaux"
+    },
     "kind": "equipment",
     "slot": "weapon",
+    "family": "metal",
     "icon": "GiDaggers",
     "level": 16,
     "price": 55,
     "weaponClass": "ranger",
-    "implicit": { "strength": [14, 20], "critChance": [4, 8] }
+    "implicit": {
+      "strength": [14, 20],
+      "critChance": [4, 8]
+    }
   },
   {
     "id": "lunar_wand",
-    "name": { "en": "Lunar Wand", "fr": "Baguette lunaire" },
+    "name": {
+      "en": "Lunar Wand",
+      "fr": "Baguette lunaire"
+    },
     "gender": "f",
     "kind": "equipment",
     "slot": "weapon",
+    "family": "bone",
     "icon": "GiLunarWand",
     "level": 16,
     "price": 55,
     "weaponClass": "occultist",
-    "implicit": { "strength": [15, 21], "damagePct": [8, 14] }
+    "implicit": {
+      "strength": [15, 21],
+      "damagePct": [8, 14]
+    }
   },
-
   {
     "id": "leather_armor",
-    "name": { "en": "Leather Armor", "fr": "Armure de cuir" },
+    "name": {
+      "en": "Leather Armor",
+      "fr": "Armure de cuir"
+    },
     "gender": "f",
     "kind": "equipment",
     "slot": "armor",
+    "family": "leather",
     "icon": "GiLeatherArmor",
     "level": 1,
     "price": 10,
-    "implicit": { "defense": [1, 3] }
+    "implicit": {
+      "defense": [1, 3]
+    }
   },
   {
     "id": "chainmail",
-    "name": { "en": "Chainmail", "fr": "Cotte de mailles" },
+    "name": {
+      "en": "Chainmail",
+      "fr": "Cotte de mailles"
+    },
     "gender": "f",
     "kind": "equipment",
     "slot": "armor",
+    "family": "metal",
     "icon": "GiChainMail",
     "level": 3,
     "price": 15,
-    "implicit": { "defense": [4, 7] },
+    "implicit": {
+      "defense": [4, 7]
+    },
     "flavor": {
       "en": "Interlocked iron rings. Noisy, but reliable.",
       "fr": "Des anneaux de fer entrelacés. Bruyant, mais fiable."
@@ -223,25 +345,39 @@
   },
   {
     "id": "plate_armor",
-    "name": { "en": "Plate Armor", "fr": "Armure de plates" },
+    "name": {
+      "en": "Plate Armor",
+      "fr": "Armure de plates"
+    },
     "gender": "f",
     "kind": "equipment",
     "slot": "armor",
+    "family": "metal",
     "icon": "GiBreastplate",
     "level": 5,
     "price": 20,
-    "implicit": { "defense": [7, 10], "maxHealth": [5, 10] }
+    "implicit": {
+      "defense": [7, 10],
+      "maxHealth": [5, 10]
+    }
   },
   {
     "id": "warded_armor",
-    "name": { "en": "Warded Armor", "fr": "Armure runique" },
+    "name": {
+      "en": "Warded Armor",
+      "fr": "Armure runique"
+    },
     "gender": "f",
     "kind": "equipment",
     "slot": "armor",
+    "family": "metal",
     "icon": "GiHeartArmor",
     "level": 8,
     "price": 28,
-    "implicit": { "defense": [10, 15], "maxHealth": [8, 15] },
+    "implicit": {
+      "defense": [10, 15],
+      "maxHealth": [8, 15]
+    },
     "flavor": {
       "en": "It hums softly when danger is near.",
       "fr": "Elle bourdonne doucement à l'approche du danger."
@@ -249,175 +385,276 @@
   },
   {
     "id": "layered_armor",
-    "name": { "en": "Layered Armor", "fr": "Armure feuilletée" },
+    "name": {
+      "en": "Layered Armor",
+      "fr": "Armure feuilletée"
+    },
     "gender": "f",
     "kind": "equipment",
     "slot": "armor",
+    "family": "metal",
     "icon": "GiLayeredArmor",
     "level": 12,
     "price": 40,
-    "implicit": { "defense": [14, 20], "maxHealth": [12, 22] }
+    "implicit": {
+      "defense": [14, 20],
+      "maxHealth": [12, 22]
+    }
   },
   {
     "id": "spiked_armor",
-    "name": { "en": "Spiked Armor", "fr": "Armure à pointes" },
+    "name": {
+      "en": "Spiked Armor",
+      "fr": "Armure à pointes"
+    },
     "gender": "f",
     "kind": "equipment",
     "slot": "armor",
+    "family": "metal",
     "icon": "GiSpikedArmor",
     "level": 16,
     "price": 55,
-    "implicit": { "defense": [18, 25], "thorns": [4, 8] }
+    "implicit": {
+      "defense": [18, 25],
+      "thorns": [4, 8]
+    }
   },
-
   {
     "id": "leather_cap",
-    "name": { "en": "Leather Cap", "fr": "Coiffe de cuir" },
+    "name": {
+      "en": "Leather Cap",
+      "fr": "Coiffe de cuir"
+    },
     "gender": "f",
     "kind": "equipment",
     "slot": "helm",
+    "family": "leather",
     "icon": "GiLightHelm",
     "level": 1,
     "price": 8,
-    "implicit": { "defense": [1, 2] }
+    "implicit": {
+      "defense": [1, 2]
+    }
   },
   {
     "id": "visored_helm",
-    "name": { "en": "Visored Helm", "fr": "Heaume à visière" },
+    "name": {
+      "en": "Visored Helm",
+      "fr": "Heaume à visière"
+    },
     "kind": "equipment",
     "slot": "helm",
+    "family": "metal",
     "icon": "GiVisoredHelm",
     "level": 5,
     "price": 18,
-    "implicit": { "defense": [3, 6] }
+    "implicit": {
+      "defense": [3, 6]
+    }
   },
   {
     "id": "horned_helm",
-    "name": { "en": "Horned Helm", "fr": "Casque à cornes" },
+    "name": {
+      "en": "Horned Helm",
+      "fr": "Casque à cornes"
+    },
     "kind": "equipment",
     "slot": "helm",
+    "family": "metal",
     "icon": "GiHornedHelm",
     "level": 10,
     "price": 32,
-    "implicit": { "defense": [6, 9], "strength": [1, 3] }
+    "implicit": {
+      "defense": [6, 9],
+      "strength": [1, 3]
+    }
   },
   {
     "id": "overlord_helm",
-    "name": { "en": "Overlord Helm", "fr": "Heaume du suzerain" },
+    "name": {
+      "en": "Overlord Helm",
+      "fr": "Heaume du suzerain"
+    },
     "kind": "equipment",
     "slot": "helm",
+    "family": "metal",
     "icon": "GiOverlordHelm",
     "level": 15,
     "price": 50,
-    "implicit": { "defense": [10, 14], "maxHealth": [10, 20] }
+    "implicit": {
+      "defense": [10, 14],
+      "maxHealth": [10, 20]
+    }
   },
-
   {
     "id": "cloth_gloves",
-    "name": { "en": "Cloth Gloves", "fr": "Gants de toile" },
+    "name": {
+      "en": "Cloth Gloves",
+      "fr": "Gants de toile"
+    },
     "kind": "equipment",
     "slot": "gloves",
+    "family": "cloth",
     "icon": "GiGloves",
     "level": 1,
     "price": 8,
-    "implicit": { "strength": [1, 2] }
+    "implicit": {
+      "strength": [1, 2]
+    }
   },
   {
     "id": "gauntlets",
-    "name": { "en": "Gauntlets", "fr": "Gantelets" },
+    "name": {
+      "en": "Gauntlets",
+      "fr": "Gantelets"
+    },
     "kind": "equipment",
     "slot": "gloves",
+    "family": "metal",
     "icon": "GiGauntlet",
     "level": 6,
     "price": 20,
-    "implicit": { "strength": [2, 4], "defense": [1, 3] }
+    "implicit": {
+      "strength": [2, 4],
+      "defense": [1, 3]
+    }
   },
   {
     "id": "fur_gloves",
-    "name": { "en": "Hunter Gloves", "fr": "Gants de chasseur" },
+    "name": {
+      "en": "Hunter Gloves",
+      "fr": "Gants de chasseur"
+    },
     "kind": "equipment",
     "slot": "gloves",
+    "family": "leather",
     "icon": "GiWinterGloves",
     "level": 12,
     "price": 40,
-    "implicit": { "strength": [3, 6], "critChance": [2, 4] }
+    "implicit": {
+      "strength": [3, 6],
+      "critChance": [2, 4]
+    }
   },
-
   {
     "id": "leather_boots",
-    "name": { "en": "Leather Boots", "fr": "Bottes de cuir" },
+    "name": {
+      "en": "Leather Boots",
+      "fr": "Bottes de cuir"
+    },
     "gender": "f",
     "kind": "equipment",
     "slot": "boots",
+    "family": "leather",
     "icon": "GiLeatherBoot",
     "level": 1,
     "price": 8,
-    "implicit": { "speed": [1, 2] }
+    "implicit": {
+      "speed": [1, 2]
+    }
   },
   {
     "id": "iron_boots",
-    "name": { "en": "Iron Boots", "fr": "Bottes de fer" },
+    "name": {
+      "en": "Iron Boots",
+      "fr": "Bottes de fer"
+    },
     "gender": "f",
     "kind": "equipment",
     "slot": "boots",
+    "family": "metal",
     "icon": "GiMetalBoot",
     "level": 6,
     "price": 20,
-    "implicit": { "speed": [2, 3], "defense": [1, 3] }
+    "implicit": {
+      "speed": [2, 3],
+      "defense": [1, 3]
+    }
   },
   {
     "id": "steel_boots",
-    "name": { "en": "Steel Greaves", "fr": "Grèves d'acier" },
+    "name": {
+      "en": "Steel Greaves",
+      "fr": "Grèves d'acier"
+    },
     "gender": "f",
     "kind": "equipment",
     "slot": "boots",
+    "family": "metal",
     "icon": "GiSteeltoeBoots",
     "level": 12,
     "price": 40,
-    "implicit": { "speed": [3, 5], "defense": [3, 5] }
+    "implicit": {
+      "speed": [3, 5],
+      "defense": [3, 5]
+    }
   },
-
   {
     "id": "bone_necklace",
-    "name": { "en": "Bone Necklace", "fr": "Collier d'os" },
+    "name": {
+      "en": "Bone Necklace",
+      "fr": "Collier d'os"
+    },
     "kind": "equipment",
     "slot": "amulet",
+    "family": "bone",
     "icon": "GiPrimitiveNecklace",
     "level": 2,
     "price": 12,
-    "implicit": { "luck": [1, 3] }
+    "implicit": {
+      "luck": [1, 3]
+    }
   },
   {
     "id": "gem_pendant",
-    "name": { "en": "Gem Pendant", "fr": "Pendentif serti" },
+    "name": {
+      "en": "Gem Pendant",
+      "fr": "Pendentif serti"
+    },
     "kind": "equipment",
     "slot": "amulet",
+    "family": "gem",
     "icon": "GiGemPendant",
     "level": 8,
     "price": 30,
-    "implicit": { "luck": [2, 4], "maxHealth": [5, 10] }
+    "implicit": {
+      "luck": [2, 4],
+      "maxHealth": [5, 10]
+    }
   },
   {
     "id": "ornate_amulet",
-    "name": { "en": "Ornate Amulet", "fr": "Amulette ouvragée" },
+    "name": {
+      "en": "Ornate Amulet",
+      "fr": "Amulette ouvragée"
+    },
     "gender": "f",
     "kind": "equipment",
     "slot": "amulet",
+    "family": "gem",
     "icon": "GiIntricateNecklace",
     "level": 14,
     "price": 50,
-    "implicit": { "luck": [3, 6], "magicFind": [3, 6] }
+    "implicit": {
+      "luck": [3, 6],
+      "magicFind": [3, 6]
+    }
   },
-
   {
     "id": "mysterious_ring",
-    "name": { "en": "Mysterious Ring", "fr": "Anneau mystérieux" },
+    "name": {
+      "en": "Mysterious Ring",
+      "fr": "Anneau mystérieux"
+    },
     "kind": "equipment",
     "slot": "ring",
+    "family": "gem",
     "icon": "GiRing",
     "level": 1,
     "price": 10,
-    "implicit": { "luck": [1, 3] },
+    "implicit": {
+      "luck": [1, 3]
+    },
     "flavor": {
       "en": "This ring is mysterious. It gives you some power.",
       "fr": "Cet anneau est mystérieux. Il te donne un peu de pouvoir."
@@ -425,37 +662,61 @@
   },
   {
     "id": "ring_of_power",
-    "name": { "en": "Ring of Power", "fr": "Anneau de pouvoir" },
+    "name": {
+      "en": "Ring of Power",
+      "fr": "Anneau de pouvoir"
+    },
     "kind": "equipment",
     "slot": "ring",
+    "family": "gem",
     "icon": "GiPowerRing",
     "level": 3,
     "price": 15,
-    "implicit": { "strength": [1, 2], "defense": [1, 2], "speed": [1, 2], "luck": [1, 2] },
-    "flavor": { "en": "The power of the ring.", "fr": "Le pouvoir de l'anneau." }
+    "implicit": {
+      "strength": [1, 2],
+      "defense": [1, 2],
+      "speed": [1, 2],
+      "luck": [1, 2]
+    },
+    "flavor": {
+      "en": "The power of the ring.",
+      "fr": "Le pouvoir de l'anneau."
+    }
   },
   {
     "id": "skull_ring",
-    "name": { "en": "Skull Signet", "fr": "Chevalière au crâne" },
+    "name": {
+      "en": "Skull Signet",
+      "fr": "Chevalière au crâne"
+    },
     "gender": "f",
     "kind": "equipment",
     "slot": "ring",
+    "family": "bone",
     "icon": "GiSkullRing",
     "level": 10,
     "price": 35,
-    "implicit": { "lifeSteal": [1, 3], "critChance": [1, 3] }
+    "implicit": {
+      "lifeSteal": [1, 3],
+      "critChance": [1, 3]
+    }
   },
-
   {
     "id": "fishing_rod",
-    "name": { "en": "Fishing Rod", "fr": "Canne à pêche" },
+    "name": {
+      "en": "Fishing Rod",
+      "fr": "Canne à pêche"
+    },
     "gender": "f",
     "kind": "equipment",
     "slot": "tool",
+    "family": "wood",
     "icon": "GiFishingPole",
     "level": 1,
     "price": 15,
-    "implicit": { "luck": [2, 2] },
+    "implicit": {
+      "luck": [2, 2]
+    },
     "droppable": false,
     "marketable": true,
     "sellable": false,
@@ -464,50 +725,78 @@
       "fr": "Une simple canne, pour attraper du poisson."
     }
   },
-
   {
     "id": "potion",
-    "name": { "en": "Potion", "fr": "Potion" },
+    "name": {
+      "en": "Potion",
+      "fr": "Potion"
+    },
     "gender": "f",
     "kind": "potion",
     "icon": "GiHealthPotion",
     "price": 10,
-    "effect": { "healPct": 0.3 },
+    "effect": {
+      "healPct": 0.3
+    },
     "marketable": true,
-    "flavor": { "en": "Restores a little health.", "fr": "Rend un peu de santé." }
+    "flavor": {
+      "en": "Restores a little health.",
+      "fr": "Rend un peu de santé."
+    }
   },
   {
     "id": "super_potion",
-    "name": { "en": "Super Potion", "fr": "Super potion" },
+    "name": {
+      "en": "Super Potion",
+      "fr": "Super potion"
+    },
     "gender": "f",
     "kind": "potion",
     "icon": "GiStandingPotion",
     "level": 5,
     "price": 25,
-    "effect": { "healPct": 0.55 },
+    "effect": {
+      "healPct": 0.55
+    },
     "marketable": true,
-    "flavor": { "en": "Restores some health.", "fr": "Rend une bonne partie de la santé." }
+    "flavor": {
+      "en": "Restores some health.",
+      "fr": "Rend une bonne partie de la santé."
+    }
   },
   {
     "id": "mega_potion",
-    "name": { "en": "Mega Potion", "fr": "Méga potion" },
+    "name": {
+      "en": "Mega Potion",
+      "fr": "Méga potion"
+    },
     "gender": "f",
     "kind": "potion",
     "icon": "GiMagicPotion",
     "level": 10,
     "price": 60,
-    "effect": { "healPct": 1 },
+    "effect": {
+      "healPct": 1
+    },
     "marketable": true,
-    "flavor": { "en": "Restores all health.", "fr": "Rend toute la santé." }
+    "flavor": {
+      "en": "Restores all health.",
+      "fr": "Rend toute la santé."
+    }
   },
   {
     "id": "energy_tonic",
-    "name": { "en": "Energy Tonic", "fr": "Tonique d'énergie" },
+    "name": {
+      "en": "Energy Tonic",
+      "fr": "Tonique d'énergie"
+    },
     "kind": "potion",
     "icon": "GiFizzingFlask",
     "level": 2,
     "price": 40,
-    "effect": { "energy": 5 },
+    "effect": {
+      "energy": 5
+    },
     "marketable": true,
     "flavor": {
       "en": "Bitter, fizzy, and wonderfully awakening.",
@@ -516,12 +805,19 @@
   },
   {
     "id": "elixir_vigor",
-    "name": { "en": "Elixir of Vigor", "fr": "Élixir de vigueur" },
+    "name": {
+      "en": "Elixir of Vigor",
+      "fr": "Élixir de vigueur"
+    },
     "kind": "elixir",
     "icon": "GiHeartBottle",
     "level": 2,
     "price": 35,
-    "buff": { "stat": "maxHealth", "value": 25, "fights": 3 },
+    "buff": {
+      "stat": "maxHealth",
+      "value": 25,
+      "fights": 3
+    },
     "marketable": true,
     "flavor": {
       "en": "For the next 3 fights, you will have more health.",
@@ -530,22 +826,36 @@
   },
   {
     "id": "elixir_might",
-    "name": { "en": "Elixir of Might", "fr": "Élixir de puissance" },
+    "name": {
+      "en": "Elixir of Might",
+      "fr": "Élixir de puissance"
+    },
     "kind": "elixir",
     "icon": "GiFireBottle",
     "level": 4,
     "price": 45,
-    "buff": { "stat": "damagePct", "value": 20, "fights": 3 },
+    "buff": {
+      "stat": "damagePct",
+      "value": 20,
+      "fights": 3
+    },
     "marketable": true
   },
   {
     "id": "elixir_fortune",
-    "name": { "en": "Elixir of Fortune", "fr": "Élixir de fortune" },
+    "name": {
+      "en": "Elixir of Fortune",
+      "fr": "Élixir de fortune"
+    },
     "kind": "elixir",
     "icon": "GiBottledBolt",
     "level": 6,
     "price": 70,
-    "buff": { "stat": "magicFind", "value": 50, "fights": 5 },
+    "buff": {
+      "stat": "magicFind",
+      "value": 50,
+      "fights": 5
+    },
     "marketable": true,
     "flavor": {
       "en": "Things just seem to fall your way.",
@@ -554,7 +864,10 @@
   },
   {
     "id": "identify_scroll",
-    "name": { "en": "Scroll of Identify", "fr": "Parchemin d'identification" },
+    "name": {
+      "en": "Scroll of Identify",
+      "fr": "Parchemin d'identification"
+    },
     "kind": "scroll",
     "icon": "GiScrollUnfurled",
     "price": 8,
@@ -566,18 +879,26 @@
   },
   {
     "id": "fish_bait",
-    "name": { "en": "Fish Bait", "fr": "Appât" },
+    "name": {
+      "en": "Fish Bait",
+      "fr": "Appât"
+    },
     "kind": "bait",
     "icon": "GiWorms",
     "price": 4,
     "marketable": true,
     "sellable": false,
-    "flavor": { "en": "Used to catch fish.", "fr": "Pour attraper du poisson." }
+    "flavor": {
+      "en": "Used to catch fish.",
+      "fr": "Pour attraper du poisson."
+    }
   },
-
   {
     "id": "orc_teeth",
-    "name": { "en": "Orc's Teeth", "fr": "Dents d'orc" },
+    "name": {
+      "en": "Orc's Teeth",
+      "fr": "Dents d'orc"
+    },
     "gender": "f",
     "kind": "quest",
     "icon": "GiTooth",
@@ -591,7 +912,10 @@
   },
   {
     "id": "goblin_ear",
-    "name": { "en": "Goblin Ear", "fr": "Oreille de gobelin" },
+    "name": {
+      "en": "Goblin Ear",
+      "fr": "Oreille de gobelin"
+    },
     "gender": "f",
     "kind": "quest",
     "icon": "GiElfEar",
@@ -601,7 +925,10 @@
   },
   {
     "id": "bone_dust",
-    "name": { "en": "Bone Dust", "fr": "Poussière d'os" },
+    "name": {
+      "en": "Bone Dust",
+      "fr": "Poussière d'os"
+    },
     "gender": "f",
     "kind": "quest",
     "icon": "GiDustCloud",
@@ -611,7 +938,10 @@
   },
   {
     "id": "demon_horn",
-    "name": { "en": "Demon Horn", "fr": "Corne de démon" },
+    "name": {
+      "en": "Demon Horn",
+      "fr": "Corne de démon"
+    },
     "gender": "f",
     "kind": "quest",
     "icon": "GiHornedSkull",
@@ -621,7 +951,10 @@
   },
   {
     "id": "moonstone",
-    "name": { "en": "Moonstone Shard", "fr": "Éclat de pierre de lune" },
+    "name": {
+      "en": "Moonstone Shard",
+      "fr": "Éclat de pierre de lune"
+    },
     "kind": "quest",
     "icon": "GiFloatingCrystal",
     "price": 0,

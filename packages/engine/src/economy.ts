@@ -364,6 +364,7 @@ export function refreshMarket(ctx: Ctx): void {
       ilvl: ctx.hero.level,
       rarity,
       classId: ctx.hero.classId,
+      origin: { src: "market", day: ctx.state.time.day },
     });
     item.identified = true;
     offers.push({ uid: ctx.uid("m"), item, price: buyValue(item, ctx.content), sold: false });

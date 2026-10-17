@@ -1,0 +1,258 @@
+{
+  "nouns": [
+    {
+      "en": "Lament",
+      "fr": "Complainte"
+    },
+    {
+      "en": "Last Word",
+      "fr": "Dernier Mot"
+    },
+    {
+      "en": "Oath",
+      "fr": "Serment"
+    },
+    {
+      "en": "Hunger",
+      "fr": "Faim"
+    },
+    {
+      "en": "Grief",
+      "fr": "Chagrin"
+    },
+    {
+      "en": "Vigil",
+      "fr": "Veille"
+    },
+    {
+      "en": "Requiem",
+      "fr": "Requiem"
+    },
+    {
+      "en": "Promise",
+      "fr": "Promesse"
+    },
+    {
+      "en": "Folly",
+      "fr": "Folie"
+    },
+    {
+      "en": "Reckoning",
+      "fr": "Jugement"
+    },
+    {
+      "en": "Silence",
+      "fr": "Silence"
+    },
+    {
+      "en": "Mercy",
+      "fr": "Miséricorde"
+    },
+    {
+      "en": "Wrath",
+      "fr": "Courroux"
+    },
+    {
+      "en": "Penance",
+      "fr": "Pénitence"
+    },
+    {
+      "en": "Shadow",
+      "fr": "Ombre"
+    },
+    {
+      "en": "Embrace",
+      "fr": "Étreinte"
+    },
+    {
+      "en": "Debt",
+      "fr": "Dette"
+    },
+    {
+      "en": "Secret",
+      "fr": "Secret"
+    },
+    {
+      "en": "Heresy",
+      "fr": "Hérésie"
+    },
+    {
+      "en": "Remorse",
+      "fr": "Remords"
+    },
+    {
+      "en": "Bargain",
+      "fr": "Marché"
+    },
+    {
+      "en": "Vow",
+      "fr": "Vœu"
+    },
+    {
+      "en": "Curse",
+      "fr": "Malédiction"
+    },
+    {
+      "en": "Legacy",
+      "fr": "Héritage"
+    },
+    {
+      "en": "Torment",
+      "fr": "Tourment"
+    },
+    {
+      "en": "Ruin",
+      "fr": "Ruine"
+    },
+    {
+      "en": "Whisper",
+      "fr": "Murmure"
+    },
+    {
+      "en": "Dirge",
+      "fr": "Chant funèbre"
+    },
+    {
+      "en": "Spite",
+      "fr": "Rancune"
+    },
+    {
+      "en": "Eulogy",
+      "fr": "Éloge funèbre"
+    },
+    {
+      "en": "Gambit",
+      "fr": "Pari"
+    },
+    {
+      "en": "Sin",
+      "fr": "Péché"
+    },
+    {
+      "en": "Pride",
+      "fr": "Orgueil"
+    },
+    {
+      "en": "Thirst",
+      "fr": "Soif"
+    },
+    {
+      "en": "Burden",
+      "fr": "Fardeau"
+    },
+    {
+      "en": "Testament",
+      "fr": "Testament"
+    },
+    {
+      "en": "Lullaby",
+      "fr": "Berceuse"
+    },
+    {
+      "en": "Undoing",
+      "fr": "Perte"
+    },
+    {
+      "en": "Answer",
+      "fr": "Réponse"
+    },
+    {
+      "en": "Wake",
+      "fr": "Veillée"
+    },
+    {
+      "en": "Ransom",
+      "fr": "Rançon"
+    },
+    {
+      "en": "Toll",
+      "fr": "Glas"
+    },
+    {
+      "en": "Absolution",
+      "fr": "Absolution"
+    },
+    {
+      "en": "Betrayal",
+      "fr": "Trahison"
+    },
+    {
+      "en": "Farewell",
+      "fr": "Adieu"
+    }
+  ],
+  "lore": [
+    {
+      "en": "Forged for {proper}, who never came back from the Depths.",
+      "fr": "Forgé pour {proper}, qui ne revint jamais des Profondeurs."
+    },
+    {
+      "en": "What remains of {proper} is heavier than it looks.",
+      "fr": "Ce qui reste de {proper} pèse plus lourd qu'il n'y paraît."
+    },
+    {
+      "en": "{proper} swore never to part with it. {proper} kept that promise.",
+      "fr": "{proper} jura de ne jamais s'en séparer. {proper} a tenu parole."
+    },
+    {
+      "en": "They buried {proper} with it. Someone was not satisfied with that.",
+      "fr": "On enterra {proper} avec. Quelqu'un n'en fut pas satisfait."
+    },
+    {
+      "en": "Some nights, it still answers to the name of {proper}.",
+      "fr": "Certaines nuits, cela répond encore au nom de {proper}."
+    },
+    {
+      "en": "{proper} paid for it in gold. The rest was paid later.",
+      "fr": "{proper} le paya en or. Le reste fut payé plus tard."
+    },
+    {
+      "en": "The last thing {proper} ever touched. Probably.",
+      "fr": "La dernière chose que {proper} ait touchée. Probablement."
+    },
+    {
+      "en": "Three kings fought over it. {proper} outlived them all, briefly.",
+      "fr": "Trois rois se le disputèrent. {proper} leur survécut à tous, brièvement."
+    },
+    {
+      "en": "Carved with a single word in the tongue of {proper}: \"Again.\"",
+      "fr": "Gravé d'un seul mot dans la langue de {proper} : « Encore. »"
+    },
+    {
+      "en": "{proper} was warned. {proper} was always warned.",
+      "fr": "On avait prévenu {proper}. On prévenait toujours {proper}."
+    },
+    {
+      "en": "It remembers the hands of {proper}, and finds yours wanting.",
+      "fr": "Cela se souvient des mains de {proper}, et trouve les tiennes décevantes."
+    },
+    {
+      "en": "Recovered from the ashes of {proper}'s house. Only this did not burn.",
+      "fr": "Retrouvé dans les cendres de la maison de {proper}. Seul cela n'a pas brûlé."
+    },
+    {
+      "en": "The priests of {proper} still pray for its return. Do not tell them.",
+      "fr": "Les prêtres de {proper} prient encore pour son retour. Ne leur dis rien."
+    },
+    {
+      "en": "{proper} called it a gift. Nobody who received it agreed.",
+      "fr": "{proper} appelait cela un cadeau. Aucun de ceux qui le reçurent n'en convint."
+    },
+    {
+      "en": "Whispers of {proper} cling to it like old blood.",
+      "fr": "Les murmures de {proper} s'y accrochent comme du vieux sang."
+    },
+    {
+      "en": "Taken from {proper}'s tomb, along with a curse nobody read.",
+      "fr": "Pris dans le tombeau de {proper}, avec une malédiction que personne n'a lue."
+    },
+    {
+      "en": "{proper} went down nine floors to find it, and stayed on the tenth.",
+      "fr": "{proper} descendit neuf étages pour le trouver, et resta au dixième."
+    },
+    {
+      "en": "Every owner after {proper} died rich. Every one.",
+      "fr": "Tous les propriétaires après {proper} moururent riches. Tous."
+    }
+  ]
+}

@@ -9,7 +9,7 @@ import { Rng } from "./rng";
 import { dayIndex } from "./time";
 import type { GameState } from "./types";
 
-export const SCHEMA_VERSION = 1;
+export const SCHEMA_VERSION = 2;
 export const MAX_NAME_LENGTH = 20;
 
 export interface NewGameOptions {
@@ -63,6 +63,7 @@ export function createGame(opts: NewGameOptions): GameState {
       equipment: {},
       buffs: [],
       buildings: { forge: 0, satchel: 0, market: 0, alchemist: 0 },
+      torment: 0,
     },
     combat: null,
     dungeon: null,
@@ -77,6 +78,8 @@ export function createGame(opts: NewGameOptions): GameState {
     codex: { kills: {}, legendaries: [], setPieces: [], fish: [] },
     achievements: [],
     pity: 0,
+    cube: { powers: [], slots: [null, null, null], offer: null },
+    mercy: 0,
     time: {
       tzOffset,
       day,
@@ -95,9 +98,11 @@ export function createGame(opts: NewGameOptions): GameState {
     ilvl: 1,
     rarity: "common",
     slot: "weapon",
+    origin: { src: "start", day },
   });
   state.hero.equipment.weapon.baseId = "sword";
   state.hero.equipment.weapon.implicit = { strength: 3 };
+  delete state.hero.equipment.weapon.sigil;
   addToBag(ctx, simpleItem(ctx, "potion", 3));
   addToBag(ctx, simpleItem(ctx, "identify_scroll", 1));
   refreshMarket(ctx);

@@ -15,8 +15,9 @@ import {
   onDungeonVictory,
   openDoor,
 } from "./dungeon";
+import * as cube from "./cube";
 import * as economy from "./economy";
-import { type CombatHooks, playCombat, startHunt, startWeekly } from "./encounters";
+import { type CombatHooks, playCombat, setTorment, startHunt, startWeekly } from "./encounters";
 import { cast, reel } from "./fishing";
 import { migrate } from "./migrations";
 import * as progression from "./progression";
@@ -72,6 +73,14 @@ const BLOCKED_IN_DUNGEON = new Set<Action["type"]>([
   "forge.reroll",
   "forge.salvage",
   "alchemy.brew",
+  "cube.transmute",
+  "cube.enchant",
+  "cube.enchantPick",
+  "cube.infuse",
+  "cube.reforge",
+  "cube.extract",
+  "cube.slot",
+  "torment.set",
 ]);
 
 function guard(ctx: Ctx, action: Action): void {
@@ -170,6 +179,22 @@ function dispatch(ctx: Ctx, action: Action): void {
       return startChallenge(ctx);
     case "challenge.next":
       return nextChallengeFight(ctx);
+    case "cube.transmute":
+      return cube.transmute(ctx, action.uids);
+    case "cube.enchant":
+      return cube.enchant(ctx, action.uid);
+    case "cube.enchantPick":
+      return cube.pickEnchant(ctx, action.index);
+    case "cube.infuse":
+      return cube.infuse(ctx, action.uid, action.donorUid);
+    case "cube.reforge":
+      return cube.reforge(ctx, action.uid);
+    case "cube.extract":
+      return cube.extract(ctx, action.uid);
+    case "cube.slot":
+      return cube.setCubeSlot(ctx, action.slot, action.key);
+    case "torment.set":
+      return setTorment(ctx, action.level);
     default: {
       const unknown: never = action;
       throw new GameError("unknownAction", { type: String((unknown as { type: string }).type) });

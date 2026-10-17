@@ -121,7 +121,8 @@
       },
       "reward": {
         "exp": 100,
-        "gold": 40
+        "gold": 40,
+        "rarity": "set"
       },
       "next": "act1_teeth_and_nets",
       "outro": {

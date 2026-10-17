@@ -4,6 +4,7 @@ import type {
   Counter,
   DifficultyId,
   PowerId,
+  ProcTemplate,
   Rarity,
   Slot,
   StatKey,
@@ -25,6 +26,48 @@ export interface RolledAffix {
   value: number;
 }
 
+/**
+ * A procedural power instance. `value` is a percentage whose meaning depends on the template
+ * (DoT strength, extra damage, healing...). See procs.ts.
+ */
+export interface Proc {
+  t: ProcTemplate;
+  chance: number;
+  value: number;
+  turns?: number;
+  every?: number;
+}
+
+export interface Enchant {
+  affix?: RolledAffix;
+  proc?: Proc;
+}
+
+/** Where an item came from: every drop has a story. */
+export interface Origin {
+  src:
+    | "start"
+    | "hunt"
+    | "dungeon"
+    | "boss"
+    | "weekly"
+    | "quest"
+    | "craft"
+    | "market"
+    | "event"
+    | "class";
+  enemy?: { proper: string; kindId: string; bossId?: string };
+  floor?: number;
+  day: number;
+}
+
+/** Name parts of a procedurally generated legendary. */
+export interface LegendName {
+  noun: number;
+  proper: string;
+  lore: number;
+}
+
 export interface Item {
   uid: string;
   baseId: string;
@@ -42,6 +85,19 @@ export interface Item {
   rareName?: [number, number];
   upgrade: number;
   locked: boolean;
+  /** Procedural identity (v2). Absent on simple items like potions. */
+  material?: string;
+  /** 0-100: how well this copy was made. Scales the implicit stats. */
+  quality?: number;
+  /** Unique serial shown on the item ("№ 4F2K9"). */
+  seed?: string;
+  origin?: Origin;
+  /** Procedural set affinity. */
+  sigil?: string;
+  /** Generated powers (procedural legendaries, mythic rares). */
+  procs?: Proc[];
+  legend?: LegendName;
+  enchant?: Enchant;
 }
 
 // --- Hero --------------------------------------------------------------------
@@ -88,6 +144,24 @@ export interface Hero {
   equipment: Partial<Record<Slot, Item>>;
   buffs: Buff[];
   buildings: Record<BuildingId, number>;
+  /** Endgame difficulty (0 = off), selectable at level 20. */
+  torment: number;
+}
+
+/** A power extracted into the cube, usable from a cube slot. */
+export interface CubePower {
+  key: string;
+  baseId: string;
+  legendaryId?: string;
+  legend?: LegendName;
+  procs?: Proc[];
+}
+
+export interface CubeState {
+  powers: CubePower[];
+  slots: (string | null)[];
+  /** Enchantment options waiting for the player's choice. */
+  offer: { uid: string; options: Enchant[] } | null;
 }
 
 // --- Quests ------------------------------------------------------------------
@@ -136,6 +210,10 @@ export interface Side {
 
 export interface Combat {
   context: CombatContext;
+  /** Generated powers active this fight (items, enchants, sigils, cube). */
+  procs: Proc[];
+  /** One-shot procs already used this fight. */
+  procsUsed: string[];
   enemy: Side & { info: EnemyInfo; windup: boolean; enraged: boolean };
   hero: Side & { powers: PowerId[]; level: number };
   turn: number;
@@ -220,6 +298,9 @@ export interface GameState {
   };
   achievements: string[];
   pity: number;
+  cube: CubeState;
+  /** Consecutive defeats: enemies ease off a little (max 3). */
+  mercy: number;
   time: {
     /** Player clock offset from UTC in minutes (as given by `Date#getTimezoneOffset`, negated sign handled in time.ts). */
     tzOffset: number;
@@ -275,7 +356,15 @@ export type Action =
   | { type: "fish.cast" }
   | { type: "fish.reel"; move: Reel }
   | { type: "challenge.start" }
-  | { type: "challenge.next" };
+  | { type: "challenge.next" }
+  | { type: "cube.transmute"; uids: [string, string, string] }
+  | { type: "cube.enchant"; uid: string }
+  | { type: "cube.enchantPick"; index: number }
+  | { type: "cube.infuse"; uid: string; donorUid: string }
+  | { type: "cube.reforge"; uid: string }
+  | { type: "cube.extract"; uid: string }
+  | { type: "cube.slot"; slot: number; key: string | null }
+  | { type: "torment.set"; level: number };
 
 export type ActionType = Action["type"];
 
@@ -285,7 +374,24 @@ export type Who = "hero" | "enemy";
 
 export type GameEvent =
   | { type: "combatStart"; enemy: EnemyInfo; hp: number; context: CombatContext["type"] }
-  | { type: "hit"; by: Who; damage: number; crit: boolean; skillId?: string; extra?: boolean }
+  | {
+      type: "hit";
+      by: Who;
+      damage: number;
+      crit: boolean;
+      skillId?: string;
+      extra?: boolean;
+      proc?: ProcTemplate;
+    }
+  | { type: "procTriggered"; template: ProcTemplate }
+  | { type: "mercy"; level: number }
+  | { type: "transmuted"; rarity: Rarity }
+  | { type: "enchantOffer"; uid: string; count: number }
+  | { type: "enchanted"; uid: string }
+  | { type: "infused"; uid: string; sigil: string }
+  | { type: "reforged"; uid: string }
+  | { type: "extracted"; key: string }
+  | { type: "tormentSet"; level: number }
   | { type: "dodge"; by: Who }
   | { type: "statusApplied"; target: Who; status: StatusId; turns: number }
   | { type: "dot"; target: Who; status: StatusId; damage: number }

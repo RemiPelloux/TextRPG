@@ -182,6 +182,7 @@ export function turnIn(ctx: Ctx, uid: string): void {
       ilvl: ctx.hero.level + 1,
       rarity: reward.rarity,
       classId: ctx.hero.classId,
+      origin: { src: "quest", day: ctx.state.time.day },
     });
     ctx.emit(addToBag(ctx, item) ? { type: "loot", item } : { type: "loot", item, lost: true });
   }
