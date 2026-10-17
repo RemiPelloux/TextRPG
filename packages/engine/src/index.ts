@@ -48,6 +48,7 @@ export {
   computeStats,
   critChanceOf,
   CUBE_SLOT_LEVELS,
+  heroPower,
   itemStats,
   PARAGON_PER_POINT,
   powerScore,

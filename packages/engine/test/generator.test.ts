@@ -1,7 +1,15 @@
 import { PROC_TEMPLATES } from "@textrpg/content";
 import { describe, expect, it } from "vitest";
 
-import { computeStats, type GameState, itemStats, migrate, type Proc } from "../src";
+import {
+  computeStats,
+  type GameState,
+  heroPower,
+  itemStats,
+  migrate,
+  powerScore,
+  type Proc,
+} from "../src";
 import { simpleItem } from "../src/items";
 import { generateEquipment, rollAffix } from "../src/loot";
 import { rollProc } from "../src/procs";
@@ -363,5 +371,17 @@ describe("save migration", () => {
     expect(migrated.hero.torment).toBe(0);
     expect(migrated.hero.equipment.weapon!.seed).toMatch(/^[0-9A-Z]{5}$/);
     expect(act(migrated, { type: "hunt.start", difficulty: "easy" }).state.combat).not.toBeNull();
+  });
+});
+
+describe("power score", () => {
+  it("counts generated powers, so a legendary is not a downgrade from a similar rare", () => {
+    const state = newGame("power");
+    const before = heroPower(state, content);
+    state.hero.equipment.weapon!.procs = [{ t: "hit_burn", chance: 0.3, value: 30, turns: 3 }];
+    state.hero.equipment.weapon!.identified = true;
+    expect(heroPower(state, content)).toBeGreaterThan(before);
+    const stats = computeStats(state, content);
+    expect(powerScore({ ...stats, lifeSteal: 10 })).toBeGreaterThan(powerScore(stats));
   });
 });

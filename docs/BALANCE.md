@@ -43,17 +43,35 @@ Combat (`pnpm simulate`), héros bien équipé, santé pleine : facile ≈ 100 %
 ```
                           casual   regular  hardcore
 level 5                      0.5       0.8       0.6
-level 10                     6.5       4.8       3.7
-level 20                    20.5      13.8      11.3
+level 10                     6.5       4.5       3.5
+level 20                    18.9      13.9      12.3
 first craft                  —         0.8       0.3
-first sigil bonus            0.5       1.3       0.4
-first legendary              3.9       2.9       1.3
+first sigil bonus            0.5       1.4       0.4
+first legendary              3.9       3.3       1.3
 first set item               0.5       0.5       0.3
-fights / day                22.4      30.1      28.0
-defeats / 100 fights         1.1       3.2       5.8
-paragon (day 30)             9.0      26.0      50.0
-torment (day 30)             2.0       2.0       5.0
+fights / day                21.6      29.3      26.0
+defeats / 100 fights         0.9       3.1       4.9
+paragon (day 30)            17        52        75
+torment (day 30)             3         7         8
 ```
+
+Sur 60 jours (4 bots) : Parangon 103 / 216 / 250, tourment 9 / 9 / 10.
+
+## Audit balance-keeper (v1.1)
+
+Premier audit de l'agent `balance-keeper`, et ce qui en a été retenu :
+
+| Constat | Suite |
+|---|---|
+| Le score de puissance ignorait les pouvoirs (procs, pouvoirs de légendaires, vol de vie, épines) : un légendaire paraissait moins bon qu'un rare bien tiré, pour les joueurs comme pour les bots. | **Corrigé** : `powerScore(stats, powers)` et `heroPower` (chaque pouvoir ≈ +4 %), vol de vie et épines comptés ; les flèches ▲▼ du sac comptent aussi les pouvoirs. |
+| Les bots n'équipaient jamais de légendaire, ne recyclaient rien, n'amélioraient rien : la fin de partie était mal mesurée (sac plein, or inutilisé). | **Corrigé** dans `bot.ts` : extraction et recyclage quand le sac se remplit, forge quand l'or abonde, baisse du tourment quand même le normal devient difficile. |
+| « Les tourments 7 à 10 sont un mur. » | **Non retenu** : c'était un artefact des bots sans forge ni légendaires. Mesurés correctement, les joueurs atteignent T7-8 au jour 30. |
+| L'occultiste dominait à partir du niveau 15 (enfer niv. 20 : 85 % contre 58 % guerrier, 43 % rôdeur). | **Corrigé en partie** : Drain de vie (drain 0,5 → 0,3), Feu de l'âme (×2 → ×1,4, brûlure 0,35 → 0,25), Maléfice (affaiblissement 3 → 2 tours). Enfer niv. 20 ≈ 70 % ; reste un peu au-dessus de la bande 15-60 % aux niveaux 18-20, à surveiller. |
+| Le rôdeur était faible du niveau 5 au niveau 10. | **Corrigé** : +4 % d'esquive en passif. |
+| Les bonus de sceau à 2-3 pièces pèsent peu ; le set complet est fort. | **À décider** : doubler les statistiques à 2-3 pièces dans `sigils.json` si les joueurs les ignorent. |
+| Le Cube est très abordable en fin de partie. | **Accepté** : la forge (+10) est le vrai puits d'or ; à revoir avec l'économie. |
+
+**Question ouverte (design)** : avec les tourments actuels, un joueur régulier atteint le tourment maximal en ~2 mois. Pour une fin de partie plus longue : plus de tourments, saisons (roadmap v1.4), ou progression des tourments liée au Parangon plus lente (`maxTorment`).
 
 ## Leviers et ce qu'ils font
 

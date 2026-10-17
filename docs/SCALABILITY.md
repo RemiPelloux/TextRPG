@@ -31,7 +31,7 @@ Ordre de grandeur : un joueur actif envoie environ une action toutes les 5 à 10
 
 | Donnée | Croissance | Garde-fou |
 |---|---|---|
-| `heroes.state` | ~25 Kio en fin de partie | sac borné (`bagCapacity`), chronique et événements jamais stockés |
+| `heroes.state` | 25 à 30 Kio en fin de partie (sac plein) | sac borné (`bagCapacity`), chronique et événements jamais stockés |
 | `action_log` | une ligne par action | purgé après 30 jours par `/api/cron/maintenance` (chaque jour, 04:17 UTC), index `action_log_created_idx` |
 | `sessions` | une par connexion | sessions expirées purgées par la même tâche, index `sessions_expires_idx` |
 | classements | lus à chaque visite | `boardCache` : 30 s de cache par instance, une seule requête partagée pendant ce temps |

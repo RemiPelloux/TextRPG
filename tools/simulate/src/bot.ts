@@ -14,7 +14,7 @@ import {
   type GameState,
   huntEnergy,
   type Item,
-  powerScore,
+  heroPower,
 } from "@textrpg/engine";
 
 const HOUR = 3_600_000;
@@ -131,7 +131,7 @@ export class Bot {
   }
 
   private score(state: GameState): number {
-    return powerScore(computeStats(state, this.content));
+    return heroPower(state, this.content);
   }
 
   private isGear(item: Item): boolean {
@@ -187,6 +187,12 @@ export class Bot {
       this.act({ type: "quest.accept", uid: offer.uid });
     if (this.profile.usesCube) this.craft();
     this.act({ type: "item.sellJunk" });
+    this.clearBag();
+    // Spend spare gold at the forge, like players do once they are rich.
+    if (this.state.hero.gold > 3000) {
+      for (const item of Object.values(this.state.hero.equipment))
+        if (item) this.act({ type: "forge.upgrade", uid: item.uid });
+    }
     // Keep a few potions around.
     const potions = this.state.hero.bag.find((i) => i.baseId === "potion")?.quantity ?? 0;
     for (let i = potions; i < 3; i++) this.act({ type: "market.buyStock", itemId: "potion" });
@@ -196,14 +202,30 @@ export class Bot {
     if (this.state.hero.level >= 20) {
       const before = this.state.hero.torment;
       // Climb torments while hell stays comfortable, step back on a losing streak.
-      const next =
-        this.winRate.hell > 0.75 ? before + 1 : this.winRate.hell < 0.4 ? before - 1 : before;
+      // The torment applies to every difficulty: struggling on normal also means too high.
+      const struggling =
+        this.winRate.normal < 0.75 || (this.winRate.hell < 0.4 && this.winRate.hard < 0.6);
+      const next = this.winRate.hell > 0.75 ? before + 1 : struggling ? before - 1 : before;
       if (next !== before && next >= 0 && this.act({ type: "torment.set", level: next })) {
         this.winRate.hell = 0.6;
+        this.winRate.hard = Math.max(this.winRate.hard, 0.7);
+        this.winRate.normal = Math.max(this.winRate.normal, 0.9);
         if (next > 0) this.m.firstTorment ??= Math.round(this.day * 100) / 100;
       }
     }
     if (this.sigilBonusActive()) this.m.firstSigilBonus ??= Math.round(this.day * 100) / 100;
+  }
+
+  /** When the bag fills up: keep legendary powers in the cube, salvage the rest of the surplus. */
+  private clearBag(): void {
+    const gear = () =>
+      this.state.hero.bag.filter((i) => this.isGear(i) && i.identified && !i.locked);
+    if (this.state.hero.bag.length < 16) return;
+    if (this.profile.usesCube)
+      for (const item of gear())
+        if (item.legendaryId || item.legend) this.act({ type: "cube.extract", uid: item.uid });
+    for (const item of gear().slice(0, this.state.hero.bag.length - 12))
+      this.act({ type: "forge.salvage", uid: item.uid });
   }
 
   private wears(sigil: string): boolean {

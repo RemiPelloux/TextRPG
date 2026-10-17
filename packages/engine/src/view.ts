@@ -18,7 +18,7 @@ import {
   computeStats,
   CUBE_SLOT_LEVELS,
   equippedSetCounts,
-  powerScore,
+  heroPower,
   sigilCounts,
 } from "./stats";
 import { isBloodMoon, isNight, nextTickIn } from "./time";
@@ -120,7 +120,7 @@ export function toClientView(state: GameState, content: Content, now: number): C
     stats,
     powers: activePowers(state, content),
     setCounts: Object.fromEntries(equippedSetCounts(state, content)),
-    power: powerScore(stats),
+    power: heroPower(state, content),
     combat: state.combat,
     dungeon: state.dungeon
       ? { ...state.dungeon, stash: state.dungeon.stash.map(redactItem) }

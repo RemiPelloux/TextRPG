@@ -203,15 +203,32 @@ export function computeStats(state: GameState, content: Content): Stats {
   return stats;
 }
 
-/** One number to compare heroes and items: a rough "damage x survivability" score. */
-export function powerScore(stats: Stats): number {
+/** Each generated power or legendary power is worth about this share of total power. */
+export const POWER_WEIGHT = 0.04;
+
+/**
+ * One number to compare heroes and items: a rough "damage x survivability" score.
+ * `powers` counts generated powers (procs) and legendary/set powers: without them, legendaries
+ * looked like downgrades next to a well-rolled rare.
+ */
+export function powerScore(stats: Stats, powers = 0): number {
   const offense =
     (6 + stats.strength * 1.6) *
     (1 + stats.damagePct / 100) *
-    (1 + (Math.min(60, critChanceOf(stats)) / 100) * (0.5 + stats.critDamage / 100));
+    (1 + (Math.min(60, critChanceOf(stats)) / 100) * (0.5 + stats.critDamage / 100)) *
+    (1 + stats.thorns / 400);
   const defense =
-    stats.maxHealth * (1 + stats.defense / 40) * (1 + Math.min(40, stats.dodge) / 100);
-  return Math.round(Math.sqrt(offense * defense) * 10);
+    stats.maxHealth *
+    (1 + stats.defense / 40) *
+    (1 + Math.min(40, stats.dodge) / 100) *
+    (1 + Math.min(30, stats.lifeSteal) / 100);
+  return Math.round(Math.sqrt(offense * defense) * 10 * (1 + POWER_WEIGHT * powers));
+}
+
+/** Power of the hero as equipped right now, powers included. */
+export function heroPower(state: GameState, content: Content): number {
+  const powers = activeProcs(state, content).length + activePowers(state, content).length;
+  return powerScore(computeStats(state, content), powers);
 }
 
 export function critChanceOf(stats: Stats): number {

@@ -71,6 +71,20 @@ export function upgradeScore(diff: Partial<Record<StatKey, number>>): number {
   );
 }
 
+/** Powers count too: a legendary with a weaker roll can still be the better item. */
+function powersOf(item: ClientItem | undefined): number {
+  if (!item?.identified) return 0;
+  return (
+    (item.procs?.length ?? 0) +
+    (item.enchant?.proc ? 1 : 0) +
+    (item.legendaryId || item.setPieceId ? 1 : 0)
+  );
+}
+
+export function powerDelta(item: ClientItem, equipped: ClientItem | undefined): number {
+  return 12 * (powersOf(item) - powersOf(equipped));
+}
+
 export function ItemRow({
   item,
   equipped,
@@ -85,7 +99,7 @@ export function ItemRow({
   const { t, locale } = useI18n();
   const base = baseOf(item);
   const isGear = base.kind === "equipment";
-  const score = isGear ? upgradeScore(compareTo(item, equipped)) : 0;
+  const score = isGear ? upgradeScore(compareTo(item, equipped)) + powerDelta(item, equipped) : 0;
   return (
     <button type="button" className={`item-row ${rarityClass(item.rarity)}`} onClick={onSelect}>
       <ItemMedallion item={item} />
