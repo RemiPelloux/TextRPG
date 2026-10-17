@@ -1,6 +1,7 @@
 import { getDb, listHeroes } from "@textrpg/db";
 import Link from "next/link";
 
+import { Icon } from "@/components/ui/Icon";
 import { translator } from "@/lib/i18n";
 import { currentLocale, currentSession } from "@/lib/session";
 import { content, tx } from "@/lib/text";
@@ -18,9 +19,18 @@ export default async function Title() {
 
   return (
     <div className="title-screen">
+      <div className="embers" aria-hidden>
+        {Array.from({ length: 16 }, (_, i) => (
+          <i key={i} />
+        ))}
+      </div>
       <div className="title-card">
-        <div className="stack" style={{ gap: 10 }}>
-          <span className="logo">TextRPG</span>
+        <div className="stack" style={{ gap: 14, alignItems: "center" }}>
+          <span className="seal big emblem" aria-hidden>
+            <Icon name="GiSpellBook" />
+          </span>
+          <h1 className="logo">TextRPG</h1>
+          <span className="flourish" aria-hidden />
           <p className="motto" aria-label={t("title.motto")}>
             <span>{t("title.motto1")}</span>
             <span>{t("title.motto2")}</span>

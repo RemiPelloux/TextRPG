@@ -113,12 +113,11 @@ export default async function Leaderboard({
   }
 
   return (
-    <div
-      className="main"
-      style={{ gridTemplateColumns: "minmax(0, 1fr)", maxWidth: 860, paddingBottom: 40 }}
-    >
+    <div className="solo frame">
       <div className="page">
-        <Link href="/">← TextRPG</Link>
+        <Link href="/" className="back ui">
+          ← TextRPG
+        </Link>
         <div className="page-head">
           <span className="label">{t("leaderboard.eyebrow")}</span>
           <h1>{t("leaderboard.title")}</h1>

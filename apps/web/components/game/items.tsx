@@ -169,7 +169,7 @@ function SigilBlock({
   const count = worn?.count ?? 0;
   const level = worn ? Math.min(worn.level, item.ilvl) : item.ilvl;
   return (
-    <div className="sigil stack" style={{ gap: 2, ["--sigil" as string]: sigil.color }}>
+    <div className="sigil-block stack" style={{ gap: 2, ["--sigil" as string]: sigil.color }}>
       <span className="ui sigil-title">
         <Icon name={sigil.icon} /> {t("items.sigil", { name: tx(sigil.name, locale) })}
         <span className="faint"> · {t("items.sigilCount", { count, max: sigilMax(sigil) })}</span>

@@ -287,7 +287,8 @@
       "story": "Story",
       "board": "Notice",
       "daily": "Daily"
-    }
+    },
+    "activeEmpty": "No notice taken. Pick one from the board below."
   },
   "market": {
     "eyebrow": "The stall",

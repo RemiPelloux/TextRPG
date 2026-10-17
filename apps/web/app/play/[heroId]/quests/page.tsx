@@ -2,7 +2,6 @@
 
 import { MAX_BOARD_QUESTS, type QuestInstance } from "@textrpg/engine";
 
-import { Bar } from "@/components/ui/Bar";
 import { Icon } from "@/components/ui/Icon";
 import { useGame } from "@/lib/game";
 import { useI18n } from "@/lib/i18n-client";
@@ -58,20 +57,23 @@ function QuestCard({ quest, offer }: { quest: QuestInstance; offer?: boolean }) 
       <h3>{tx(template.title, locale)}</h3>
       <p className="quote">{tx(template.text, locale)}</p>
       {!offer && (
-        <div className="stack" style={{ gap: 4 }}>
-          <Bar
-            value={quest.progress}
-            max={quest.goal}
-            kind="exp"
-            label={t("quests.progressLabel")}
-          />
+        <div className="stack" style={{ gap: 6 }}>
+          <span
+            className="progress"
+            role="progressbar"
+            aria-label={t("quests.progressLabel")}
+            aria-valuenow={quest.progress}
+            aria-valuemax={quest.goal}
+          >
+            <span style={{ width: `${Math.min(100, (100 * quest.progress) / quest.goal)}%` }} />
+          </span>
           <span className="label">
             {t("quests.progress", { progress: quest.progress, goal: quest.goal })}
           </span>
         </div>
       )}
       <Reward quest={quest} />
-      <div className="row">
+      <div className="quest-actions">
         {offer ? (
           <button
             className="btn primary small"
@@ -91,7 +93,7 @@ function QuestCard({ quest, offer }: { quest: QuestInstance; offer?: boolean }) 
             </button>
             {template.type !== "story" && (
               <button
-                className="btn ghost small"
+                className="linkish"
                 disabled={busy}
                 onClick={() => void dispatch({ type: "quest.abandon", uid: quest.uid })}
               >
@@ -154,6 +156,7 @@ export default function Quests() {
         <h2 className="label">
           {t("quests.active")} ({board.length}/{MAX_BOARD_QUESTS})
         </h2>
+        {board.length === 0 && <p className="faint">{t("quests.activeEmpty")}</p>}
         <div className="grid-cards">
           {board.map((q) => (
             <QuestCard key={q.uid} quest={q} />

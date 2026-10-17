@@ -287,7 +287,8 @@
       "story": "Histoire",
       "board": "Annonce",
       "daily": "Du jour"
-    }
+    },
+    "activeEmpty": "Aucune annonce acceptée. Choisis-en une sur le tableau ci-dessous."
   },
   "market": {
     "eyebrow": "L'échoppe",

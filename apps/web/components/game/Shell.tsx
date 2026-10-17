@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { type ReactNode, useEffect } from "react";
+import { Fragment, type ReactNode, useEffect } from "react";
 
 import { Bar } from "@/components/ui/Bar";
 import { Icon } from "@/components/ui/Icon";
@@ -20,6 +20,8 @@ interface NavItem {
   label: string;
   badge?: number;
   mobile: boolean;
+  /** Starts a new group in the side navigation. */
+  group?: boolean;
 }
 
 function useNav(): NavItem[] {
@@ -56,11 +58,23 @@ function useNav(): NavItem[] {
       badge: ready,
       mobile: true,
     },
-    { href: `${base}/market`, icon: "GiTwoCoins", label: t("nav.market"), mobile: false },
+    {
+      href: `${base}/market`,
+      icon: "GiTwoCoins",
+      label: t("nav.market"),
+      mobile: false,
+      group: true,
+    },
     { href: `${base}/forge`, icon: "GiAnvil", label: t("nav.forge"), mobile: false },
     { href: `${base}/cube`, icon: "GiCube", label: t("nav.cube"), mobile: false },
     { href: `${base}/codex`, icon: "GiSpellBook", label: t("nav.codex"), mobile: false },
-    { href: `/leaderboard`, icon: "GiLaurelsTrophy", label: t("nav.leaderboard"), mobile: false },
+    {
+      href: `/leaderboard`,
+      icon: "GiLaurelsTrophy",
+      label: t("nav.leaderboard"),
+      mobile: false,
+      group: true,
+    },
     { href: `${base}/settings`, icon: "GiCog", label: t("nav.settings"), mobile: false },
   ];
 }
@@ -70,17 +84,19 @@ function NavLinks({ items, className }: { items: NavItem[]; className: string })
   return (
     <nav className={className} aria-label="Navigation">
       {items.map((item) => (
-        <Link
-          key={item.href}
-          href={item.href}
-          className="navlink"
-          aria-current={pathname === item.href ? "page" : undefined}
-          onClick={() => sfx.click()}
-        >
-          <Icon name={item.icon} />
-          <span>{item.label}</span>
-          {item.badge ? <span className="badge num">{item.badge}</span> : null}
-        </Link>
+        <Fragment key={item.href}>
+          {item.group && <span className="sep" aria-hidden />}
+          <Link
+            href={item.href}
+            className="navlink"
+            aria-current={pathname === item.href ? "page" : undefined}
+            onClick={() => sfx.click()}
+          >
+            <Icon name={item.icon} />
+            <span>{item.label}</span>
+            {item.badge ? <span className="badge num">{item.badge}</span> : null}
+          </Link>
+        </Fragment>
       ))}
     </nav>
   );
@@ -92,11 +108,14 @@ function TopBar() {
   const { hero, stats, derived } = view;
   return (
     <header className="topbar">
-      <div className="topbar-inner">
+      <div className="topbar-inner frame">
         <Link href={`/play/${heroId}/hero`} className="who">
-          <span className="display" style={{ fontSize: "0.95rem" }}>
-            {hero.name}
+          <span className="crest" aria-hidden>
+            <Icon
+              name={hero.classId ? (content.classes.get(hero.classId)?.icon ?? "GiHood") : "GiHood"}
+            />
           </span>
+          <span className="display">{hero.name}</span>
           <span className="label">
             {t("common.level", { level: hero.level })}
             {hero.paragon ? ` · P${hero.paragon}` : ""}
@@ -241,7 +260,7 @@ export function Shell({ children }: { children: ReactNode }) {
   return (
     <div className="shell">
       <TopBar />
-      <div className="main">
+      <div className="main frame">
         <div className="side">
           <NavLinks items={items} className="sidenav" />
           {view.derived.bloodMoon && <div className="chip blood">{t("camp.bloodMoon")}</div>}

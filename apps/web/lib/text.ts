@@ -85,8 +85,14 @@ export function itemName(item: ClientItem, locale: Locale, t: T): string {
   return (locale === "fr" ? [baseName, m] : [m, baseName]).filter(Boolean).join(" ");
 }
 
-/** "Iron" (an adjective in English) / "de fer" (a complement in French). */
-export function materialName(item: { material?: string }, locale: Locale): string {
+/**
+ * "Iron" (an adjective in English) / "de fer" (a complement in French). Bases that already name
+ * their material ("Armure de cuir", "Gants de toile") keep their name as is: "Armure de cuir de
+ * cuir brut" reads like a stutter. The French name decides, so both languages agree.
+ */
+export function materialName(item: { material?: string; baseId?: string }, locale: Locale): string {
+  const base = item.baseId ? content.items.get(item.baseId) : undefined;
+  if (base && /\s(de|d'|en)\s?/i.test(base.name.fr)) return "";
   return tx(content.materials.find((m) => m.id === item.material)?.name, locale);
 }
 

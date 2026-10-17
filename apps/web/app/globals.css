@@ -36,6 +36,24 @@
   --font-body: "Spectral", Georgia, "Times New Roman", serif;
   --font-ui: "Inter Variable", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --text-base: 17px;
+  /* Ink of the rubrics: section titles and initials, like a hand-copied grimoire */
+  --rubric: #d9934a;
+  --edge: #2c2f3d;
+  --edge-strong: #3b3f52;
+  /* Spacing scale: every margin and gap comes from here */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+  --s7: 48px;
+  /* Layout frame shared by the top bar and the page, so columns line up */
+  --frame: 1320px;
+  --col-nav: 220px;
+  --col-log: 300px;
+  --col-gap: var(--s5);
+  --topbar-h: 64px;
   /* Shape */
   --cut: 9px;
   --gutter: max(16px, env(safe-area-inset-left, 0px));
@@ -490,70 +508,104 @@ p {
   color: var(--blood-text);
 }
 
-/* ------------------------------------------------------------ Shell */
+/* ------------------------------------------------------------ Shell
+ * One frame for everything: the top bar and the page share the same max width, side padding and
+ * columns (nav | page | chronicle), so the hero's name sits above the nav, the vitals above the
+ * page and the purse above the chronicle, at every width.
+ */
 .shell {
   min-height: 100dvh;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+}
+.frame {
+  width: 100%;
+  max-width: calc(var(--frame) + var(--gutter) + var(--gutter-r));
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter-r);
 }
 .topbar {
   position: sticky;
   top: env(safe-area-inset-top, 0px);
   z-index: 30;
-  background: color-mix(in oklab, var(--ink-950) 88%, transparent);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--ink-700);
-  padding: 8px var(--gutter-r) 8px var(--gutter);
+  background: color-mix(in oklab, var(--ink-950) 86%, transparent);
+  backdrop-filter: blur(10px) saturate(1.2);
+  border-bottom: 1px solid var(--edge);
+  box-shadow: 0 1px 0 rgba(201, 162, 74, 0.06);
 }
 .topbar-inner {
+  min-height: var(--topbar-h);
+  padding-block: var(--s2);
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: 14px;
+  grid-template-columns: minmax(0, auto) minmax(0, 1fr) auto;
+  column-gap: var(--s4);
   align-items: center;
-  max-width: 1400px;
-  margin: 0 auto;
 }
 .topbar .who {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: var(--s2);
+  align-items: center;
   text-decoration: none;
   color: inherit;
   min-width: 0;
-  max-width: 34vw;
+  max-width: 36vw;
+}
+.topbar .who .crest {
+  grid-row: span 2;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 30%, var(--ink-700), var(--ink-950));
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--gold) 50%, transparent),
+    0 0 12px rgba(201, 162, 74, 0.15);
+}
+.topbar .who .crest svg {
+  width: 18px;
+  height: 18px;
 }
 .topbar .who .display {
+  font-size: 0.95rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.topbar .who .label {
+  font-size: 0.62rem;
 }
 .topbar .vitals {
   display: grid;
   gap: 3px;
   min-width: 0;
   width: 100%;
-  max-width: 460px;
+  max-width: 520px;
 }
 .topbar .vital {
   display: grid;
   grid-template-columns: 16px minmax(0, 1fr);
-  gap: 6px;
+  gap: var(--s2);
   align-items: center;
 }
 .topbar .purse {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  display: grid;
+  justify-items: end;
   gap: 2px;
   font-family: var(--font-ui);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
 .bar.slim {
-  height: 5px;
+  height: 4px;
   border-color: transparent;
-  margin-left: 22px;
+  margin-left: 24px;
 }
 body::before {
   content: "";
@@ -565,25 +617,18 @@ body::before {
 }
 
 .main {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 16px var(--gutter-r) calc(var(--nav-h) + 28px + env(safe-area-inset-bottom, 0px))
-    var(--gutter);
+  padding-top: var(--s5);
+  padding-bottom: calc(var(--nav-h) + var(--s6) + env(safe-area-inset-bottom, 0px));
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 20px;
+  column-gap: var(--col-gap);
+  align-items: start;
 }
 .page {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-}
-.page-head {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  gap: var(--s5);
 }
 .side,
 .log-col {
@@ -600,10 +645,11 @@ body::before {
   padding: 0 var(--gutter-r) env(safe-area-inset-bottom, 0px) var(--gutter);
   background: linear-gradient(
     180deg,
-    color-mix(in oklab, var(--ink-900) 92%, transparent),
+    color-mix(in oklab, var(--ink-900) 94%, transparent),
     var(--ink-950)
   );
-  border-top: 1px solid var(--ink-600);
+  border-top: 1px solid var(--edge-strong);
+  box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.45);
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   backdrop-filter: blur(10px);
@@ -613,59 +659,99 @@ body::before {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2px;
+  gap: 3px;
   color: var(--parchment-faint);
   text-decoration: none;
   font-family: var(--font-ui);
-  font-size: 0.64rem;
+  font-size: 0.62rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   position: relative;
   min-width: 0;
+  transition: color 120ms ease;
+}
+.navlink span {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .navlink svg {
   width: 22px;
   height: 22px;
+  flex: none;
+}
+.navlink:hover {
+  color: var(--parchment);
 }
 .navlink[aria-current="page"] {
   color: var(--gold-bright);
+}
+.navlink[aria-current="page"] svg {
+  filter: drop-shadow(0 0 8px rgba(232, 196, 106, 0.45));
 }
 .navlink[aria-current="page"]::before {
   content: "";
   position: absolute;
   top: 0;
-  left: 25%;
-  right: 25%;
+  left: 28%;
+  right: 28%;
   height: 2px;
   background: var(--gold);
   box-shadow: 0 0 10px var(--gold);
 }
 .navlink .badge {
   position: absolute;
-  top: 8px;
-  right: calc(50% - 18px);
+  top: 7px;
+  right: calc(50% - 20px);
   min-width: 16px;
   height: 16px;
   padding: 0 4px;
   border-radius: 8px;
   background: var(--ember);
   color: #fff;
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   display: grid;
   place-items: center;
+  box-shadow: 0 0 0 2px var(--ink-950);
 }
 
 @media (min-width: 760px) {
+  :root {
+    --gutter: max(28px, env(safe-area-inset-left, 0px));
+    --gutter-r: max(28px, env(safe-area-inset-right, 0px));
+  }
+  .topbar-inner,
   .main {
-    grid-template-columns: 240px minmax(0, 1fr);
-    padding-bottom: 40px;
+    grid-template-columns: var(--col-nav) minmax(0, 1fr);
+    column-gap: var(--col-gap);
+  }
+  .topbar-inner .purse {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
+  .topbar-inner .vitals {
+    grid-column: 2;
+    grid-row: 1;
+    max-width: min(520px, calc(100% - 120px));
+  }
+  .topbar .who {
+    max-width: none;
+  }
+  .main {
+    padding-top: var(--s6);
+    padding-bottom: var(--s7);
+  }
+  .page {
+    gap: var(--s6);
   }
   .side {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: var(--s4);
     position: sticky;
-    top: 84px;
+    top: calc(var(--topbar-h) + var(--s6));
     align-self: start;
   }
   .bottomnav {
@@ -679,18 +765,27 @@ body::before {
   .sidenav .navlink {
     flex-direction: row;
     justify-content: flex-start;
-    gap: 10px;
-    font-size: 0.82rem;
-    padding: 9px 12px;
+    gap: var(--s3);
+    font-size: 0.84rem;
+    letter-spacing: 0.01em;
+    padding: 9px var(--s3);
     color: var(--parchment-dim);
   }
+  .sidenav .navlink svg {
+    width: 20px;
+    height: 20px;
+    opacity: 0.85;
+  }
+  .sidenav .navlink:hover {
+    background: color-mix(in oklab, var(--ink-800) 60%, transparent);
+  }
   .sidenav .navlink[aria-current="page"] {
-    background: var(--ink-800);
+    background: linear-gradient(90deg, var(--ink-800), transparent);
     color: var(--gold-bright);
   }
   .sidenav .navlink[aria-current="page"]::before {
-    top: 15%;
-    bottom: 15%;
+    top: 18%;
+    bottom: 18%;
     left: 0;
     right: auto;
     width: 2px;
@@ -699,20 +794,41 @@ body::before {
   .sidenav .navlink .badge {
     position: static;
     margin-left: auto;
+    box-shadow: none;
+  }
+  .sidenav .sep {
+    height: 1px;
+    margin: var(--s2) var(--s3);
+    background: linear-gradient(90deg, var(--edge-strong), transparent);
   }
 }
 @media (min-width: 1200px) {
+  .topbar-inner,
   .main {
-    grid-template-columns: 240px minmax(0, 1fr) 320px;
+    grid-template-columns: var(--col-nav) minmax(0, 1fr) var(--col-log);
+  }
+  .topbar-inner .purse {
+    grid-column: 3;
+    justify-self: end;
+  }
+  .topbar-inner .vitals {
+    max-width: 560px;
   }
   .log-col {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--s3);
     position: sticky;
-    top: 84px;
+    top: calc(var(--topbar-h) + var(--s6));
     align-self: start;
-    max-height: calc(100dvh - 110px);
+    max-height: calc(100dvh - var(--topbar-h) - var(--s6) * 2);
+  }
+}
+@media (min-width: 1440px) {
+  :root {
+    --col-nav: 232px;
+    --col-log: 320px;
+    --col-gap: var(--s6);
   }
 }
 
@@ -1131,19 +1247,19 @@ body::before {
   background: linear-gradient(90deg, var(--parchment-faint), var(--gold-bright));
 }
 /* Sigils: procedural sets, each with its own hue. */
-.sigil {
+.sigil-block {
   --sigil: var(--r-set);
   border-left: 2px solid var(--sigil);
   padding-left: 10px;
 }
-.sigil .sigil-title {
+.sigil-block .sigil-title {
   color: var(--sigil);
   font-weight: 600;
   display: inline-flex;
   align-items: center;
   gap: 6px;
 }
-.sigil .setline.on {
+.sigil-block .setline.on {
   color: var(--sigil);
 }
 .tooltip .provenance {
@@ -1660,4 +1776,720 @@ table.board tr.me td {
 }
 .tile svg {
   flex: none;
+}
+
+/* ================================================================== Identity
+ * "Grimoire sombre": a hand-copied book read by candlelight. Three signatures repeat everywhere:
+ *   - rubrics: section titles in ochre ink with a fading rule, like a scribe's red headings;
+ *   - illuminated initials: the first letter of every page title in gold;
+ *   - clasps: ornate panels are held by a gold hairline and a small clasp at the top.
+ */
+body {
+  background:
+    radial-gradient(60% 50% at 12% -8%, rgba(226, 112, 58, 0.09) 0%, transparent 70%),
+    radial-gradient(120% 80% at 50% -10%, #1a1d2b 0%, transparent 60%),
+    radial-gradient(140% 120% at 50% 120%, #000 0%, transparent 55%), var(--ink-950);
+  background-attachment: fixed;
+}
+
+h1 {
+  font-size: clamp(1.7rem, 1.2rem + 1.6vw, 2.3rem);
+  letter-spacing: 0.05em;
+}
+h2 {
+  font-size: clamp(1.1rem, 1rem + 0.35vw, 1.3rem);
+}
+
+/* Page heads: eyebrow rubric, illuminated title, intro, then a flourish. */
+.page-head {
+  display: grid;
+  gap: var(--s2);
+  padding-bottom: var(--s4);
+  position: relative;
+}
+.page-head::before,
+.page-head::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+}
+.page-head::before {
+  left: 1px;
+  bottom: 1px;
+  width: 7px;
+  height: 7px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  box-shadow: 0 0 8px rgba(201, 162, 74, 0.6);
+}
+.page-head::after {
+  left: 16px;
+  bottom: 4px;
+  width: min(200px, 55%);
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  opacity: 0.7;
+}
+.page-head > .label {
+  color: var(--rubric);
+}
+.page-head h1::first-letter {
+  color: var(--gold-bright);
+  text-shadow: 0 0 22px rgba(232, 196, 106, 0.35);
+}
+.page-head > p {
+  max-width: 62ch;
+  font-size: 1.02rem;
+}
+.page-head .head-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s3);
+  flex-wrap: wrap;
+}
+
+/* Rubrics: section titles in ochre ink, followed by a rule that fades out. */
+.page h2.label,
+.rubric {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  color: var(--rubric);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  margin: 0;
+}
+.page h2.label::after,
+.rubric::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--rubric) 45%, transparent),
+    transparent
+  );
+}
+.page section.stack {
+  gap: var(--s4);
+}
+
+/* Panels: a warmer edge, a faint inner light, and the clasp on ornate ones. */
+.panel {
+  border-color: var(--edge);
+  box-shadow: inset 0 1px 0 rgba(255, 240, 210, 0.035);
+  padding: var(--s4);
+}
+.panel.ornate {
+  border-color: var(--edge-strong);
+  background:
+    radial-gradient(120% 70% at 50% 0%, rgba(201, 162, 74, 0.06), transparent 60%),
+    linear-gradient(180deg, var(--ink-850), var(--ink-900));
+}
+.panel.ornate::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: calc(50% - 5px);
+  width: 10px;
+  height: 10px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  box-shadow: 0 0 10px rgba(201, 162, 74, 0.6);
+}
+a.panel,
+button.panel {
+  transition:
+    border-color 140ms ease,
+    background 140ms ease,
+    transform 140ms ease;
+}
+a.panel:hover,
+button.panel:hover {
+  border-color: color-mix(in oklab, var(--gold) 45%, var(--edge));
+}
+@media (min-width: 760px) {
+  .panel {
+    padding: 20px;
+  }
+  .panel.flat,
+  .panel.compact {
+    padding: var(--s4);
+  }
+}
+.panel.sigil-block {
+  border-left: 2px solid var(--sigil);
+  padding-left: var(--s4);
+}
+.grid-cards {
+  gap: var(--s3);
+}
+@media (min-width: 760px) {
+  .grid-cards {
+    gap: var(--s4);
+  }
+}
+
+/* Tiles: a place or a shortcut. Icon in a seal, title, one line, optional action. */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s3);
+}
+@media (min-width: 560px) {
+  .tiles {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (min-width: 760px) {
+  /* Next to the side nav, the page column decides: 2 tiles on tablets, 3 on desktops. */
+  .tiles {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--s4);
+  }
+}
+.place {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: var(--s2);
+  text-decoration: none;
+  color: inherit;
+  padding: var(--s4);
+  min-height: 132px;
+}
+.place h3 {
+  font-size: 0.95rem;
+}
+.place p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--parchment-dim);
+}
+.place .btn {
+  align-self: end;
+  margin-top: var(--s1);
+}
+.seal {
+  --tone: var(--gold);
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  color: var(--tone);
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 30%, var(--ink-700), #07080b 80%);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--tone) 45%, transparent),
+    inset 0 0 12px color-mix(in oklab, var(--tone) 18%, transparent),
+    0 0 0 3px var(--ink-900),
+    0 0 0 4px color-mix(in oklab, var(--tone) 18%, transparent);
+  flex: none;
+}
+.seal svg {
+  width: 22px;
+  height: 22px;
+}
+.seal.big {
+  width: 64px;
+  height: 64px;
+}
+.seal.big svg {
+  width: 36px;
+  height: 36px;
+}
+
+/* Lists: rows inside one panel instead of a pile of cards. */
+.list {
+  display: grid;
+}
+.list-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--s3);
+  padding: var(--s3) 0;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in oklab, var(--edge) 70%, transparent);
+}
+.list-row:first-child {
+  padding-top: 0;
+}
+.list-row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.list-row .title {
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  letter-spacing: 0.03em;
+}
+.list-row .sub {
+  font-size: 0.88rem;
+  color: var(--parchment-dim);
+  line-height: 1.4;
+}
+a.list-row .chev {
+  color: var(--parchment-faint);
+  transition: transform 140ms ease;
+}
+a.list-row:hover .chev {
+  transform: translateX(3px);
+  color: var(--gold);
+}
+.pips {
+  display: inline-flex;
+  gap: 3px;
+}
+.pips i {
+  width: 7px;
+  height: 7px;
+  transform: rotate(45deg);
+  border: 1px solid var(--gold);
+}
+.pips i.on {
+  background: var(--gold);
+}
+
+/* The camp scene: the fire is the heart of the camp. */
+.scene {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--s4);
+  align-items: start;
+  background:
+    radial-gradient(70% 120% at 0% 100%, rgba(226, 112, 58, 0.16), transparent 60%),
+    radial-gradient(120% 70% at 50% 0%, rgba(201, 162, 74, 0.06), transparent 60%),
+    linear-gradient(180deg, var(--ink-850), var(--ink-900));
+}
+.scene.moon {
+  background:
+    radial-gradient(70% 120% at 100% 0%, rgba(179, 38, 30, 0.22), transparent 60%),
+    radial-gradient(70% 120% at 0% 100%, rgba(226, 112, 58, 0.14), transparent 60%),
+    linear-gradient(180deg, var(--ink-850), var(--ink-900));
+}
+.scene .flame {
+  width: 64px;
+  height: 64px;
+}
+.scene .actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s2) var(--s3);
+}
+@media (min-width: 760px) {
+  .scene {
+    gap: var(--s5);
+    padding: var(--s5);
+  }
+  .scene .flame {
+    width: 84px;
+    height: 84px;
+  }
+}
+.progress {
+  height: 4px;
+  background: var(--ink-700);
+  overflow: hidden;
+}
+.progress > span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--gold-bright));
+}
+
+/* The chronicle column: a journal page. */
+.log-col.panel {
+  padding: var(--s4) var(--s4) var(--s3);
+  background: linear-gradient(180deg, rgba(230, 220, 196, 0.025), transparent 40%), var(--ink-900);
+}
+.log-col .label {
+  color: var(--rubric);
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+}
+.log-col .chronicle {
+  font-size: 0.9rem;
+  line-height: 1.45;
+  gap: 6px;
+  padding-right: 4px;
+  padding-top: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink-600) transparent;
+}
+
+/* Item rows: tighter, rarity rail, and hover light. */
+.item-row {
+  gap: var(--s3);
+  padding: 10px var(--s3);
+  border-color: var(--edge);
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--r, transparent) 7%, var(--ink-900)),
+    var(--ink-900) 40%
+  );
+  transition: background 120ms ease;
+}
+.item-row:hover {
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--r, transparent) 14%, var(--ink-850)),
+    var(--ink-850) 45%
+  );
+}
+.item-row .medallion {
+  --size: 46px;
+}
+@media (min-width: 760px) {
+  .item-row .medallion {
+    --size: 50px;
+  }
+}
+
+/* Tabs: underline in gold, scroll without a bar, never cut a label in half on load. */
+.tabs {
+  gap: 0;
+  scroll-padding-inline: var(--s2);
+  mask-image: linear-gradient(90deg, #000 calc(100% - 24px), transparent);
+}
+
+/* Combat: the arena is a centered card on large screens; skills sit in a tidy grid. */
+.foe-name {
+  font-size: clamp(1rem, 0.85rem + 1.2vw, 1.3rem);
+  line-height: 1.2;
+}
+.moves .skills {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.moves .skills .btn {
+  font-size: 0.72rem;
+  line-height: 1.15;
+  min-height: 44px;
+  padding: 6px 10px;
+}
+@media (min-width: 560px) {
+  .moves .skills {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (min-width: 760px) {
+  .combat {
+    align-content: center;
+    grid-template-rows: auto auto auto;
+    gap: var(--s4);
+  }
+  .combat .stage .chronicle {
+    min-height: 150px;
+    max-height: 30vh;
+  }
+}
+
+/* Statgrid and quests breathe a bit more. */
+.statgrid {
+  gap: var(--s2) var(--s5);
+}
+.quote {
+  border-left-color: color-mix(in oklab, var(--rubric) 50%, transparent);
+}
+
+/* Camp: story ribbon, blood moon note, settings link, wrapping list rows. */
+.story {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: var(--s4);
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+.story .story-title {
+  font-size: 1.15rem;
+}
+.story .chev,
+.list-row .chev {
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--parchment-faint);
+}
+.moon-note {
+  display: flex;
+  gap: var(--s2);
+  align-items: flex-start;
+  font-size: 0.9rem;
+  color: var(--blood-text);
+  border-top: 1px solid color-mix(in oklab, var(--blood) 40%, transparent);
+  padding-top: var(--s3);
+  margin-top: var(--s1);
+}
+.moon-note strong {
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+}
+.moon-note svg {
+  flex: none;
+  margin-top: 2px;
+}
+.settings-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  color: var(--parchment-dim);
+  text-decoration: none;
+  font-size: 0.8rem;
+  justify-self: start;
+}
+.settings-link:hover {
+  color: var(--gold-bright);
+}
+@media (max-width: 559px) {
+  .list-row.wrap {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .list-row.wrap > :last-child {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+
+.side .chip {
+  justify-content: center;
+  padding: 6px 10px;
+  font-size: 0.72rem;
+}
+.log-col.panel {
+  min-height: 260px;
+}
+
+/* Quests: actions on one line, abandon as a quiet link. */
+.quest {
+  gap: var(--s3);
+}
+.quest-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s3);
+  flex-wrap: wrap;
+  margin-top: var(--s1);
+}
+.linkish {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 6px 0;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: var(--parchment-faint);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.linkish:hover:not(:disabled) {
+  color: var(--blood-text);
+}
+
+/* Paperdoll: slots keep a steady rhythm instead of spreading over the whole width. */
+.paperdoll {
+  grid-template-columns: repeat(4, minmax(0, 92px));
+  justify-content: space-around;
+  gap: var(--s4) var(--s3);
+}
+
+/* Title screen: an emblem, a flourish, and embers rising from an unseen fire. */
+.title-screen {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(50% 40% at 50% 100%, rgba(226, 112, 58, 0.14), transparent 70%),
+    radial-gradient(60% 50% at 50% 30%, rgba(201, 162, 74, 0.06), transparent 70%);
+}
+.title-card {
+  position: relative;
+  z-index: 1;
+  gap: var(--s5);
+}
+.title-card .logo {
+  margin: 0;
+  line-height: 1;
+}
+.emblem {
+  --tone: var(--gold);
+  --r: var(--gold);
+  animation: glow 3.2s ease-in-out infinite;
+}
+.flourish {
+  width: 220px;
+  max-width: 70%;
+  height: 9px;
+  background: linear-gradient(
+      90deg,
+      transparent,
+      var(--gold) 45%,
+      transparent 45% 55%,
+      var(--gold) 55%,
+      transparent
+    )
+    0 50% / 100% 1px no-repeat;
+  position: relative;
+}
+.flourish::after {
+  content: "";
+  position: absolute;
+  left: calc(50% - 4px);
+  top: 0.5px;
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+.title-card .panel {
+  text-align: left;
+}
+.embers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.embers i {
+  position: absolute;
+  bottom: -10px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #ffb36b;
+  box-shadow: 0 0 8px 2px rgba(255, 140, 42, 0.6);
+  opacity: 0;
+  animation: ember-rise 9s linear infinite;
+}
+.embers i:nth-child(1) {
+  left: 8%;
+  animation-delay: 0s;
+}
+.embers i:nth-child(2) {
+  left: 15%;
+  animation-delay: 3.1s;
+  animation-duration: 11s;
+}
+.embers i:nth-child(3) {
+  left: 22%;
+  animation-delay: 6.2s;
+}
+.embers i:nth-child(4) {
+  left: 30%;
+  animation-delay: 1.4s;
+  animation-duration: 12s;
+}
+.embers i:nth-child(5) {
+  left: 37%;
+  animation-delay: 4.8s;
+}
+.embers i:nth-child(6) {
+  left: 44%;
+  animation-delay: 7.5s;
+  animation-duration: 10s;
+}
+.embers i:nth-child(7) {
+  left: 51%;
+  animation-delay: 2.2s;
+}
+.embers i:nth-child(8) {
+  left: 57%;
+  animation-delay: 5.6s;
+  animation-duration: 13s;
+}
+.embers i:nth-child(9) {
+  left: 63%;
+  animation-delay: 0.8s;
+}
+.embers i:nth-child(10) {
+  left: 69%;
+  animation-delay: 3.9s;
+  animation-duration: 11s;
+}
+.embers i:nth-child(11) {
+  left: 75%;
+  animation-delay: 6.8s;
+}
+.embers i:nth-child(12) {
+  left: 81%;
+  animation-delay: 1.9s;
+  animation-duration: 12s;
+}
+.embers i:nth-child(13) {
+  left: 86%;
+  animation-delay: 4.3s;
+}
+.embers i:nth-child(14) {
+  left: 91%;
+  animation-delay: 7.1s;
+  animation-duration: 10s;
+}
+.embers i:nth-child(15) {
+  left: 4%;
+  animation-delay: 5.1s;
+  animation-duration: 14s;
+}
+.embers i:nth-child(16) {
+  left: 96%;
+  animation-delay: 2.7s;
+  animation-duration: 12s;
+}
+@keyframes ember-rise {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  60% {
+    transform: translate(18px, -55vh) scale(0.8);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-12px, -105vh) scale(0.4);
+    opacity: 0;
+  }
+}
+:root[data-motion="reduced"] .embers {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .embers {
+    display: none;
+  }
+}
+
+/* Standalone pages (leaderboard): same gutters as the game, one readable column. */
+.solo {
+  max-width: calc(880px + var(--gutter) + var(--gutter-r));
+  padding-top: calc(env(safe-area-inset-top, 0px) + var(--s5));
+  padding-bottom: var(--s7);
+}
+.back {
+  font-size: 0.8rem;
+  color: var(--parchment-dim);
+  text-decoration: none;
+  justify-self: start;
+}
+.back:hover {
+  color: var(--gold-bright);
+}
+@media (max-width: 559px) {
+  table.board th,
+  table.board td {
+    padding: 8px 6px;
+  }
+}
+
+/* Codex: creatures not met yet stay small; the text says the rest. */
+.unknown-entry {
+  padding-block: var(--s3);
+}
+.sheet-secondary {
+  border-top: 1px solid var(--edge);
+  padding-top: var(--s3);
+  gap: var(--s2);
 }

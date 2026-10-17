@@ -106,7 +106,9 @@ export function ItemSheet({
               {t("actions.salvage")}
             </button>
           )}
-          {isGear && (
+        </div>
+        {isGear && (
+          <div className="row sheet-secondary">
             <button
               className="btn ghost small"
               disabled={busy}
@@ -114,8 +116,6 @@ export function ItemSheet({
             >
               {t(item.locked ? "actions.unlock" : "actions.lock")}
             </button>
-          )}
-          {isGear && (
             <Link
               className="btn ghost small"
               href={`/play/${heroId}/forge?item=${item.uid}`}
@@ -123,8 +123,11 @@ export function ItemSheet({
             >
               {t("actions.toForge")}
             </Link>
-          )}
-        </div>
+            <Link className="btn ghost small" href={`/play/${heroId}/cube`} onClick={onClose}>
+              {t("nav.cube")}
+            </Link>
+          </div>
+        )}
       </div>
     </Sheet>
   );

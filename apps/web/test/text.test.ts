@@ -93,6 +93,13 @@ describe("generated items", () => {
     expect(itemName(iron, "fr", fr)).toBe("Épée de fer");
   });
 
+  it("never names the material twice", () => {
+    const armor = [...content.items.values()].find((i) => / de /.test(i.name.fr) && i.slot)!;
+    const named = item({ baseId: armor.id, material: "iron" });
+    expect(itemName(named, "fr", fr)).toBe(armor.name.fr);
+    expect(itemName(named, "en", en)).toBe(armor.name.en);
+  });
+
   it("name procedural legendaries, eliding in French", () => {
     const legend = item({ rarity: "legendary", legend: { noun: 0, proper: "Aldric", lore: 0 } });
     const noun = content.legendNames.nouns[0]!;

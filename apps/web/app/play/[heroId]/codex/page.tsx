@@ -45,7 +45,11 @@ export default function Codex() {
           {content.enemyKinds.map((kind) => {
             const kills = view.codex.kills[kind.id] ?? 0;
             return (
-              <article key={kind.id} className="panel stack" style={{ opacity: kills ? 1 : 0.6 }}>
+              <article
+                key={kind.id}
+                className={`panel stack ${kills ? "" : "unknown-entry"}`}
+                style={{ opacity: kills ? 1 : 0.6 }}
+              >
                 <div className="row">
                   <Icon
                     name={kind.icon}
@@ -58,7 +62,7 @@ export default function Codex() {
                     <span className="label">{t("codex.kills", { count: kills })}</span>
                   </div>
                 </div>
-                <p className="flavor">{kills ? tx(kind.lore, locale) : t("codex.unknownLore")}</p>
+                {kills > 0 && <p className="flavor">{tx(kind.lore, locale)}</p>}
               </article>
             );
           })}
@@ -149,7 +153,7 @@ export default function Codex() {
           {[...content.sigils.values()].map((sigil) => (
             <article
               key={sigil.id}
-              className="panel stack sigil"
+              className="panel stack sigil-block"
               style={{ ["--sigil" as string]: sigil.color }}
             >
               <h2 className="sigil-title">

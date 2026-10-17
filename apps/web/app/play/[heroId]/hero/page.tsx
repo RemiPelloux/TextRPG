@@ -164,7 +164,7 @@ export default function Hero() {
           return (
             <div
               key={id}
-              className="sigil stack"
+              className="sigil-block stack"
               style={{ gap: 2, ["--sigil" as string]: sigil.color }}
             >
               <span className="ui sigil-title">
