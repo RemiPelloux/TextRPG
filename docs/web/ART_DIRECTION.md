@@ -1,229 +1,132 @@
-# Direction artistique — *Grimoire sombre*
+# Direction artistique — *Le Livre dont tu es le héros*
 
-> Un RPG qui se **lit** comme un vieux grimoire et se **joue** comme une app moderne.
-> Le texte reste au premier plan (c'est un TextRPG), mis en valeur par la lumière, la typographie
-> et les couleurs du loot à la Diablo.
+> TextRPG est un livre. Un livre-jeu des années 80 qu'on aurait retrouvé au grenier, annoté au
+> crayon, avec sa feuille d'aventure tachée et ses gravures. On le lit, on y joue, on y écrit.
 
----
+## 1. D'où vient l'âme
 
-## 1. Les intentions
+Le jeu s'appelle **TextRPG**. Il est né en 2022 dans un terminal, sous le nom de FightingText.
+Sa devise parle à la deuxième personne : *« Le monde est mystérieux. Le monde est dangereux. Tu
+as une épée. »* C'est exactement la voix des **livres dont vous êtes le héros** (Défis
+Fantastiques, Loup Solitaire, la collection Folio Junior) : des paragraphes numérotés, une
+feuille d'aventure à remplir, des gravures à la plume, une seule couleur d'imprimerie.
 
-1. **Le texte est le héros.** Le journal de combat, les descriptions d'objets et le lore sont soignés, lisibles, rythmés. Aucune illustration ne vole la vedette aux mots.
-2. **L'obscurité fait ressortir la lumière.** Fond d'encre très sombre ; ce qui compte brille : l'or, les critiques, les objets rares.
-3. **La couleur a un sens.** Le jaune ne sert qu'aux objets Rares, l'orange aux Légendaires. Le joueur apprend ces codes en 5 minutes, et un éclat orange suffit à faire battre son cœur.
-4. **Chaque action répond.** Toute interaction a un retour visuel, sonore ou haptique en moins de 100 ms.
+La direction artistique ne cherche donc pas à « faire fantasy ». Elle fait **livre**. Le mot est
+le héros, le papier est le monde, l'encre est la seule lumière.
 
----
+### Ce qu'on refuse (le style « généré »)
+- L'or brillant partout, les lueurs, les dégradés néon, les halos derrière chaque icône.
+- Les peintures de château au clair de lune, les héros de dos en cape, les visages générés.
+- Les polices « épiques » lisses (Cinzel, Trajan), les capitales espacées sur tout.
+- Les coins biseautés de jeu mobile, les boutons qui ressemblent à des lingots.
+- Le noir bleuté uniforme qui rend tous les jeux identiques.
 
-## 2. Couleurs
+## 2. Les cinq signatures
 
-Définies comme variables CSS (Tailwind v4 `@theme`), donc modifiables en un seul endroit.
+1. **Le papier.** Un fond crème vieilli avec un grain fin et des bords légèrement plus sombres,
+   comme une page manipulée. Jamais blanc, jamais pur.
+2. **L'encre et le vermillon.** Tout est imprimé en encre brun-noir. Une seule couleur d'accent,
+   le **vermillon** des rubriques médiévales et des livres-jeux : titres de section, dégâts,
+   danger, lettrines. Les raretés d'objets sont des encres d'imprimerie, pas des néons.
+3. **Les paragraphes numérotés.** La chronique est faite de paragraphes « § 214 ». Chaque coup,
+   chaque butin a son numéro, comme dans un livre-jeu.
+4. **La feuille d'aventure.** La fiche du héros est une feuille à remplir : cases, lignes
+   pointillées, chiffres tapés à la machine.
+5. **Les planches gravées.** Les créatures et les lieux sont des gravures sur bois (les icônes
+   en aplat d'encre), encadrées et légendées : *Planche IV — Le Spectre*.
 
-### Le monde
-| Jeton | Valeur | Usage |
+## 3. Couleurs
+
+Deux éditions du même livre : **Papier** (par défaut) et **Veillée**, le même livre lu à la
+bougie, pour la nuit. Toutes les couleurs sont des variables CSS dans `apps/web/app/globals.css`.
+
+| Rôle | Papier | Veillée |
 |---|---|---|
-| `--ink-950` | `#0a0b10` | Fond de l'app |
-| `--ink-900` | `#12141c` | Panneaux |
-| `--ink-800` | `#1b1e29` | Cartes, champs, survol |
-| `--ink-600` | `#343949` | Bordures, séparateurs |
-| `--parchment` | `#e6dcc4` | Texte principal |
-| `--parchment-dim` | `#a49b86` | Texte secondaire, descriptions |
-| `--gold` | `#c9a24a` | Or, titres, éléments précieux, focus |
-| `--ember` | `#e2703a` | Feu de camp, appels à l'action |
-| `--blood` | `#b3261e` | PV, dégâts reçus, danger |
-| `--mana` | `#3d6fd6` | Énergie |
-| `--venom` | `#5fae4e` | Poison, soins |
+| Page (`--paper`) | `#ece3cf` | `#1a1612` |
+| Encart, cases (`--paper-2`) | `#e3d8bf` | `#231e18` |
+| Sélection, appui (`--paper-3`) | `#d6c8a8` | `#2e2820` |
+| Encre (`--ink`) | `#211c16` | `#e9ddc4` |
+| Encre secondaire (`--ink-2`) | `#4f4639` | `#b8ab8f` |
+| Crayon, légendes (`--ink-3`) | `#857965` | `#857a66` |
+| Filets (`--rule`) | `#b9aa8a` | `#3d362b` |
+| **Vermillon** (`--red`) | `#b0361f` | `#e06a4c` |
+| Énergie (`--blue`) | `#2a4a86` | `#8fa9e3` |
 
-### Les raretés (inspirées de Diablo, ajustées pour le contraste sur fond sombre)
-| Rareté | Texte | Lueur / bordure |
+### Raretés : des encres d'imprimerie
+Lisibles sur papier, reconnaissables en un coup d'œil, jamais lumineuses.
+
+| Rareté | Papier | Veillée |
 |---|---|---|
-| Commun | `#cfc8b8` | aucune |
-| Magique | `#6f8dff` | bleu, discrète |
-| Rare | `#f2d046` | jaune, douce |
-| Légendaire | `#ff8c2a` | orange, **pulsation lente** |
-| Set | `#3fd67a` | vert |
-| Ancestral | `#ff4a3d` | rouge, pulsation + particules |
+| Commun | `#3d352b` encre | `#d8cdb6` |
+| Magique | `#2a4b8d` bleu de Prusse | `#8eaaf5` |
+| Rare | `#8f5f0f` ocre | `#e0b04a` |
+| Légendaire | `#b4471b` terre brûlée | `#f0884a` |
+| Set | `#2c6a3d` vert de vessie | `#6cc487` |
+| Ancestral | `#8b1d2c` sang-de-bœuf | `#f2646f` |
 
-Toutes les couleurs de texte ont un contraste **≥ 4,5:1** sur `--ink-900` (WCAG AA). La rareté
-est aussi indiquée par une **icône et un mot** (jamais par la couleur seule).
+## 4. Typographie : trois voix
 
-**Thème clair ?** Non : l'obscurité fait partie de l'identité du jeu. On propose à la place un
-mode **« contraste élevé »**.
-
----
-
-## 3. Typographie
-
-| Rôle | Police (Google Fonts) | Usage |
+| Voix | Police | Usage |
 |---|---|---|
-| Titres, noms d'objets | **Cinzel** (600–700) | Capitales gravées : *SACRED SWORD*, écrans, boss |
-| Récit, journal, descriptions | **Spectral** (400, italique) | Le ton « grimoire » : lisible et littéraire |
-| Interface, chiffres | **Inter** (chiffres tabulaires) | Statistiques, prix, dégâts : alignés et nets |
+| **Le graveur** | IM Fell English (et SC) | Titres, lettrines, noms d'objets et de créatures. Fontes gravées en 1670, encrage irrégulier : elles ont une main. |
+| **Le livre** | EB Garamond | Tout le texte : récit, descriptions, chronique. Le caractère du livre français. |
+| **La machine** | Courier Prime | Chiffres, statistiques, coûts, étiquettes système. La machine à écrire de la feuille d'aventure, et un clin d'œil au terminal de 2022. |
 
-- Taille de base de **17 px** sur mobile (le texte est le jeu) ; interligne 1,55.
-- Le texte de saveur des objets est en *Spectral italique*, couleur `--parchment-dim`, entre guillemets.
+Règles :
+- Corps de texte à 18 px, interlignage 1,5, lignes de 60 à 70 signes.
+- Titres de page en IM Fell avec **lettrine vermillon**.
+- Titres de section (« rubriques ») en IM Fell SC vermillon, suivis d'un filet.
+- Les chiffres sont toujours en Courier Prime : on lit une fiche, pas une affiche.
+- Pas de capitales espacées hors des petites étiquettes machine.
 
----
+## 5. Ornements et matières
 
-## 4. Matières et textures
+- **Filets** : simple filet d'encre, double filet pour les cadres importants (comme les encadrés
+  d'imprimerie). Pas de coins coupés, pas d'ombres portées.
+- **Fleurons** : ❦ et ✠ servent de séparateurs, avec parcimonie.
+- **Hachures** : les barres de vie se remplissent de hachures d'encre ; les planches ont un fond
+  hachuré léger, comme une gravure.
+- **Cases** : les niveaux, les pièces de set et les points de talent sont des cases à cocher
+  (☐ ☒), comme sur une feuille d'aventure.
+- **Tampons** : les actions principales sont des tampons encreurs (texte en petites capitales
+  dans un double cadre) ; au survol, l'encre remplit le tampon.
 
-- **Fond** : très léger grain de papier (SVG `feTurbulence`, opacité 3 %) + vignettage sombre sur les bords.
-- **Panneaux** : bordure fine `--ink-600`, coins à **encoches** (pas de coins arrondis « app SaaS ») réalisés en `clip-path`, ornement doré discret en haut des panneaux importants.
-- **Icônes** : [game-icons.net](https://game-icons.net), monochromes, colorées par la rareté ; posées sur un **médaillon** sombre avec un liseré de la couleur de rareté.
-- **Pas d'illustrations peintes au départ.** Plus tard, des silhouettes d'ennemis en ombre chinoise (un SVG par type) peuvent apparaître derrière le journal de combat.
+## 6. Mise en page : le livre ouvert
 
----
+- **En-tête courant** (comme en haut d'une page imprimée) : le nom du héros, sa ligne
+  d'endurance, sa bourse. Petites capitales et chiffres machine.
+- **Desktop : trois colonnes comme un livre ouvert.**
+  - À gauche, le **Sommaire**, avec ses points de conduite et ses numéros de page.
+  - Au centre, la page.
+  - À droite, les **notes en marge** : la chronique, en italique, avec ses numéros de paragraphe.
+- **Mobile** : une page, des **onglets de livre** en bas (comme des signets).
+- **Folio** en bas de chaque page.
+- Marges généreuses : 16 px minimum sur téléphone, 28 px dès la tablette, une colonne de texte
+  qui ne dépasse jamais 70 signes.
 
-## 5. Les écrans
+## 7. Images
 
-### Combat — téléphone
-```
-┌─────────────────────────────────┐
-│  ☠☠  GRAKTHOR L'ORC        Nv 4 │
-│  ████████████░░░░░░  86 / 140   │  ← barre rouge, la partie perdue s'efface en douceur
-│                                 │
-│        ╭───────────────╮        │
-│        │   (silhouette │        │  ← icône ennemi, tremble quand elle est touchée
-│        │     d'orc)    │  -23!  │  ← chiffre qui flotte (doré = critique)
-│        ╰───────────────╯        │
-│ ─────────────────────────────── │
-│ Grakthor lève sa hache rouillée…│  ← journal (Spectral), nouvelles lignes en fondu
-│ Tu esquives et ripostes :       │
-│ CRITIQUE ! 23 dégâts.           │
-│ ─────────────────────────────── │
-│ ARIA        ♥ 92/115  ⚡ 14/26  │
-│ ┌──────────┐ ┌──────────┐       │
-│ │ FRAPPER  │ │COMPÉTENCE│       │  ← gros boutons pour le pouce, en bas de l'écran
-│ ├──────────┤ ├──────────┤       │
-│ │ POTION ×3│ │  FUIR    │  AUTO │
-│ └──────────┘ └──────────┘       │
-├─────────────────────────────────┤
-│  🔥Camp  ⚔Chasse  🛡Héros  🎒Sac  📜Quêtes │  ← navigation du bas
-└─────────────────────────────────┘
-```
+Les icônes de game-icons.net sont des silhouettes pleines : imprimées en encre sur papier, elles
+deviennent des **gravures sur bois**. On ne les met jamais dans un halo. Une créature est une
+**planche** : cadre double, fond légèrement hachuré, légende en italique. Pas d'illustration
+peinte, pas d'image générée.
 
-### Fin de combat — le butin
-```
-┌─────────────────────────────────┐
-│          ✦ VICTOIRE ✦           │
-│      +48 exp   ████████░░ Nv 4  │
-│      +17 or   (compteur qui défile)
-│                                 │
-│   ┃          ┃                  │  ← piliers de lumière de la couleur des objets
-│ ┌─┸──┐    ┌──┸─┐                │
-│ │ 🗡  │    │ ⚗  │                │  ← médaillons qui tombent l'un après l'autre
-│ └────┘    └────┘                │
-│ Épée longue   Potion ×1         │
-│ inconnue ▲    (commune)         │
-│ (Rare, jaune)                   │
-│                                 │
-│ [ IDENTIFIER ]  [ CONTINUER ]   │
-└─────────────────────────────────┘
-```
+## 8. Mouvement et son
 
-### Info-bulle d'objet (le cœur Diablo)
-```
-┌───────────────────────────────────┐
-│  DEMI-LAME DE LA LUNE             │  ← Cinzel, orange, lueur pulsante
-│  Épée légendaire · ilvl 12        │
-│ ───────────────────────────────── │
-│  14 – 19 dégâts                   │  ← Inter, gros
-│  +7 Force                    ▲ +3 │  ← comparaison avec l'arme portée
-│  +12 % Vitesse               ▲    │
-│  +4 Chance                   ▼ −2 │
-│ ───────────────────────────────── │
-│  ✦ La nuit, tes coups critiques   │  ← pouvoir légendaire, orange
-│    infligent +100 % de dégâts.    │
-│ ───────────────────────────────── │
-│  « Une lame antique. La légende   │  ← Spectral italique, texte de la v0.1
-│    dit qu'elle fut forgée dans la │
-│    pierre de lune. »              │
-│                                   │
-│  Niveau requis 7      Vente 125 ◉ │
-│  [ ÉQUIPER ]  [ COMPARER ]  [ … ] │
-└───────────────────────────────────┘
-```
-- Mobile : ouverte en *bottom sheet* au toucher. Desktop : au survol, à côté du curseur.
-- Les affixes non identifiés s'affichent `??? ???` avec un léger flou animé.
+- L'encre **apparaît** (le texte se dépose comme de l'encre qui sèche), elle ne glisse pas.
+- Un coup reçu fait **trembler la page**, pas l'écran entier.
+- Un butin rare se **découvre** : la carte se retourne, une seule fois.
+- Respect de « mouvement réduit » : tout devient instantané.
 
-### Héros — poupée d'équipement
-```
-        ┌────┐
-        │ ⛑  │ Tête
- ┌────┐ ├────┤ ┌────┐
- │ 🗡  │ │ 🛡  │ │ 💍 │     Arme · Armure · Accessoire
- └────┘ └────┘ └────┘     (+ emplacements débloqués : gants, bottes, amulette…)
-  Force 24 ▲   Défense 18   Vitesse 11   Chance 9
-  Bonus de set (2/4) : +10 % vitesse
-```
+## 9. La voix
 
-### Desktop (> 1024 px)
-```
-┌───────────────┬──────────────────────────────┬────────────────┐
-│ FICHE HÉROS   │        SCÈNE                 │ JOURNAL        │
-│ Aria  Nv 4    │  (combat, camp, marché…)     │ ou INVENTAIRE  │
-│ ♥ ⚡ attributs│                              │ (onglets)      │
-│ équipement    │  raccourcis : 1-4, A, Espace │                │
-└───────────────┴──────────────────────────────┴────────────────┘
-```
+Deuxième personne, phrases courtes, présent. Le jeu parle comme le narrateur d'un livre-jeu :
+« Tu entres. Il fait froid. Rends-toi au § 12. » Les boutons sont des verbes à l'infinitif
+(Chasser, Se reposer, Garder), jamais « Valider ».
 
----
+## 10. Accessibilité
 
-## 6. Mouvement : le *game feel*
-
-Animations avec **Motion** ; durée courte, effets francs.
-
-| Moment | Effet |
-|---|---|
-| Coup porté | L'ennemi recule de 4 px, flash blanc de 80 ms, chiffre qui monte et s'efface |
-| **Critique** | Chiffre doré plus gros, **tremblement de l'écran** 150 ms, vibration courte (Android) |
-| Esquive | Texte *« Esquivé »* qui glisse de côté |
-| PV qui baissent | La barre baisse tout de suite ; une « barre fantôme » claire la suit avec 400 ms de retard |
-| Butin | Les médaillons tombent avec un léger rebond, décalés de 120 ms |
-| **Légendaire** | Ralenti : pilier orange, 0,8 s de suspense, le médaillon se retourne comme une carte, son dédié |
-| Identification | Les `???` se dissipent lettre par lettre |
-| Montée de niveau | Plein écran : halo doré, gains de statistiques qui apparaissent un par un |
-| Or | Compteur qui défile, tintement |
-| Énergie pleine | Le feu de camp s'anime au retour sur le Camp |
-
-**`prefers-reduced-motion`** : aucun tremblement, aucun ralenti, uniquement des fondus. Un
-réglage « Animations : complètes / réduites » existe aussi dans les options.
-
----
-
-## 7. Son
-
-- **Howler.js**, sons **Kenney** (CC0) : impacts, épées, pièces, potions, interface.
-- **Un son par rareté** à l'apparition du butin : le joueur reconnaît un légendaire **les yeux fermés**.
-- Ambiance discrète par lieu : feu de camp, vent des terres de chasse, gouttes des profondeurs.
-- **Muet par défaut** jusqu'au premier geste (règle des navigateurs), puis mémorisé. Réglages séparés pour la musique et les effets.
-
----
-
-## 8. Ton et écriture
-
-- Garder l'esprit de la v0.1 : phrases courtes, inquiétantes, un brin d'ironie.
-  > *This is mysterious. This is dangerous.* → *« Le monde est mystérieux. Le monde est dangereux. Tu as une épée. »*
-- Descriptions d'objets : une phrase de saveur maximum. Réutiliser celles de la v0.1 (*« forged with moonstone »*, *« sacred by the kiss of the gods »*).
-- Le journal de combat varie ses formulations (3–5 variantes par événement) pour ne jamais lasser.
-- FR et EN écrits avec le même soin (next-intl) ; pas de traduction automatique brute.
-
----
-
-## 9. Accessibilité
-
-- Contraste AA partout ; rareté = couleur **+ icône + mot**.
-- Navigation complète au clavier (desktop) et lecteur d'écran : le journal de combat est une région `aria-live="polite"`.
-- Cibles tactiles ≥ 44 × 44 px ; actions principales dans la zone du pouce.
-- Taille de texte réglable (100 / 115 / 130 %).
-- Pas d'information transmise uniquement par le son.
-
----
-
-## 10. Livrables design (avant de coder les écrans)
-
-- [ ] Fichier de jetons (`theme.css`) : couleurs, typo, espacements, ombres, lueurs
-- [ ] Planche de composants : `Button` (primaire, secondaire, danger), `Panel`, `HealthBar`, `EnergyBar`, `ItemMedallion`, `ItemTooltip`, `CombatLog`, `BottomNav`
-- [ ] Maquette interactive de l'écran de combat et de l'écran de butin (mobile + desktop)
-- [ ] Sélection des ~60 premières icônes game-icons.net (armes, armures, anneaux, potions, ennemis)
-- [ ] Sélection des ~25 premiers sons
+- Contraste du texte ≥ 7:1 sur papier (encre `#211c16` sur `#ece3cf`), ≥ 4,5:1 partout ailleurs.
+- La rareté n'est jamais portée par la couleur seule : le nom de la rareté est toujours écrit.
+- Mode contraste élevé : papier plus clair, encre noire, filets plus épais.
+- Les tailles de texte (100 / 115 / 130 %) agrandissent tout, y compris les chiffres.

@@ -4,13 +4,14 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "TextRPG",
     short_name: "TextRPG",
-    description: "A dark, choice-driven RPG. The world is mysterious. The world is dangerous.",
+    description:
+      "A book in which you are the hero. The world is mysterious. The world is dangerous.",
     start_url: "/",
     scope: "/",
     display: "standalone",
     orientation: "portrait",
-    background_color: "#0a0b10",
-    theme_color: "#0a0b10",
+    background_color: "#ece3cf",
+    theme_color: "#ece3cf",
     categories: ["games"],
     icons: [
       { src: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },

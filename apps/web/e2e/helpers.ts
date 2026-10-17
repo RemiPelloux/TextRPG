@@ -3,7 +3,7 @@ import { expect, type Page } from "@playwright/test";
 export async function newHero(page: Page, name = `E2E${Math.floor(Math.random() * 1e6)}`) {
   await page.goto("/");
   await page.fill("#hero-name", name);
-  await page.getByRole("button", { name: /Commencer|Créer le héros/ }).click();
+  await page.getByRole("button", { name: /Ouvrir le livre|Commencer|Créer le héros/ }).click();
   await page.waitForURL(/\/play\/[0-9a-f-]+$/);
   await expect(page.getByRole("heading", { name: "Le Camp" })).toBeVisible();
   return { name, url: page.url() };
@@ -18,9 +18,13 @@ export async function fightToTheEnd(page: Page) {
       const button = page.getByRole("button", { name }).first();
       if (
         (await button.isVisible().catch(() => false)) &&
-        (await button.isEnabled().catch(() => false))
+        // Bounded: if the fight ends right now, the button disappears and an unbounded check
+        // would wait for it until the test times out.
+        (await button.isEnabled({ timeout: 1_000 }).catch(() => false))
       ) {
-        await button.click();
+        // The fight can end mid-click: the result screen then covers the button. Don't wait for it
+        // to come back, look again on the next turn of the loop.
+        await button.click({ timeout: 2_000 }).catch(() => {});
         break;
       }
     }

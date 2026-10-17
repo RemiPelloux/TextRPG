@@ -1,22 +1,27 @@
 # TextRPG
 
 [![CI](https://github.com/RemiPelloux/TextRPG/actions/workflows/ci.yml/badge.svg)](https://github.com/RemiPelloux/TextRPG/actions/workflows/ci.yml)
-![Version](https://img.shields.io/badge/version-1.0.0-c9a24a)
+![Version](https://img.shields.io/badge/version-1.1.0-b0361f)
 ![Next.js](https://img.shields.io/badge/Next.js-16-black)
 ![PWA](https://img.shields.io/badge/PWA-installable-5a0fc8)
 
 > *Le monde est mystérieux. Le monde est dangereux. Tu as une épée.*
 
-Un RPG sombre qui se joue **au choix**, dans le navigateur ou installé sur ton téléphone.
-Chasse, loot à la Diablo, donjons, quêtes, classes : une histoire qui se lit comme un grimoire,
-un jeu qui se joue en sessions courtes, rythmées par l'énergie.
+Un **livre dont tu es le héros**, qui se joue dans le navigateur ou installé sur ton téléphone.
+Chasse, loot à la Diablo, donjons, quêtes, classes : du papier, de l'encre, des gravures et des
+paragraphes numérotés, comme les livres-jeux des années 80. Le jeu se joue en sessions courtes,
+rythmées par l'énergie.
 
 <p align="center">
   <img src="docs/images/title.jpg" width="230" alt="Écran titre">
   <img src="docs/images/combat.jpg" width="230" alt="Combat">
   <img src="docs/images/quests.jpg" width="230" alt="Quêtes">
 </p>
-<p align="center"><img src="docs/images/desktop.jpg" width="720" alt="Le camp sur ordinateur"></p>
+<p align="center"><img src="docs/images/desktop.jpg" width="720" alt="Le camp sur ordinateur, édition Papier"></p>
+<p align="center"><img src="docs/images/night.jpg" width="720" alt="Les terres de chasse, édition Veillée"></p>
+
+Deux éditions du même livre : **Papier** et **Veillée** (à lire à la bougie). La direction
+artistique est décrite dans [docs/web/ART_DIRECTION.md](docs/web/ART_DIRECTION.md).
 
 ## Ce que contient le jeu (v1.1)
 
@@ -85,7 +90,7 @@ docs/                architecture, déploiement, game design, direction artistiq
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Comment le jeu est construit, et comment ajouter du contenu |
 | [docs/DEPLOY.md](docs/DEPLOY.md) | Mettre le jeu en ligne (Vercel + Neon), notifications, cron |
 | [docs/web/GAME_DESIGN.md](docs/web/GAME_DESIGN.md) | Boucles de jeu, combat, loot, rétention éthique |
-| [docs/web/ART_DIRECTION.md](docs/web/ART_DIRECTION.md) | La direction artistique « Grimoire sombre » |
+| [docs/web/ART_DIRECTION.md](docs/web/ART_DIRECTION.md) | La direction artistique « Le Livre dont tu es le héros » |
 | [docs/web/PLAN.md](docs/web/PLAN.md) | Le plan de refonte et les décisions prises en chemin |
 | [docs/BALANCE.md](docs/BALANCE.md) | Cibles d'équilibrage, leviers, méthode |
 | [docs/SCALABILITY.md](docs/SCALABILITY.md) | Mesures de charge et prochains paliers |

@@ -316,3 +316,13 @@ export function narrate(
       return null;
   }
 }
+
+/**
+ * The paragraph number of a chronicle line, as in a gamebook ("§ 214"). Derived from the line
+ * id so it never changes, and scattered over 1-400 because gamebooks never read in order.
+ */
+export function paragraphOf(id: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < id.length; i++) h = Math.imul(h ^ id.charCodeAt(i), 16777619);
+  return ((h >>> 0) % 400) + 1;
+}

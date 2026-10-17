@@ -2,7 +2,22 @@
 
 Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), versionnage [SemVer](https://semver.org/lang/fr/).
 
-## [1.1.0] — 2026-10-17 — *Forge infinie*
+## [Non publié] — *Le Livre dont tu es le héros*
+
+### Direction artistique
+- Nouvelle identité : un livre-jeu des années 80 plutôt qu'un « dark fantasy » générique. Papier vieilli, encre brun-noir, une seule couleur d'accent (le vermillon), des raretés traitées comme des encres d'imprimerie. Voir [docs/web/ART_DIRECTION.md](docs/web/ART_DIRECTION.md).
+- Trois voix typographiques : IM Fell English (titres, lettrines, noms), EB Garamond (récit), Courier Prime (chiffres et feuille d'aventure, en hommage au terminal de 2022).
+- Signatures :
+  - sommaire avec points de conduite et numéros de page ;
+  - chronique en notes en marge, en paragraphes numérotés (« § 214 ») ;
+  - créatures et feu de camp en planches gravées ;
+  - boutons en tampons encreurs, jauges hachurées ;
+  - couverture avec ex-libris ;
+  - signets sur mobile.
+- Deux éditions : Papier (par défaut) et Veillée (nuit), choisies dans les réglages, appliquées avant le premier affichage.
+- Passe de mise en page : une grille commune à la barre du haut et à la page, échelle d'espacement unique, marges de 16 px sur téléphone et 28 px dès la tablette ; classement corrigé sur mobile.
+
+ — 2026-10-17 — *Forge infinie*
 
 Chaque objet est unique, les sets comptent dès le niveau 1, le Cube ouvre le craft dès le premier jour, et l'équilibrage est désormais mesuré par des bots qui jouent des semaines entières.
 

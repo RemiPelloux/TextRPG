@@ -10,6 +10,8 @@ export interface Prefs {
   text: "normal" | "large" | "xl";
   contrast: "normal" | "high";
   speed: 1 | 2;
+  /** Two editions of the same book: paper (default) or read by candlelight. */
+  theme: "paper" | "night";
 }
 
 const DEFAULTS: Prefs = {
@@ -18,6 +20,7 @@ const DEFAULTS: Prefs = {
   text: "normal",
   contrast: "normal",
   speed: 1,
+  theme: "paper",
 };
 const KEY = "textrpg.prefs";
 
@@ -31,6 +34,7 @@ function apply(prefs: Prefs) {
   root.dataset.motion = prefs.motion;
   root.dataset.text = prefs.text;
   root.dataset.contrast = prefs.contrast;
+  root.dataset.theme = prefs.theme;
 }
 
 export function PrefsProvider({ children }: { children: ReactNode }) {

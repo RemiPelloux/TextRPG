@@ -38,6 +38,8 @@ test("the bag opens item details and the market sells potions", async ({ page })
 test("the hero sheet, quests, depths and codex render", async ({ page }) => {
   const { url } = await newHero(page);
   for (const [path, heading] of [
+    ["", "Le Camp"],
+    ["/hunt", "Terres de chasse"],
     ["/hero", "Équipement"],
     ["/quests", "Quêtes"],
     ["/depths", "Sous la ville"],
@@ -48,6 +50,11 @@ test("the hero sheet, quests, depths and codex render", async ({ page }) => {
   ] as const) {
     await page.goto(url + path);
     await expect(page.getByRole("heading", { name: heading }).first()).toBeVisible();
+    // Nothing may widen the page on a phone: the whole layout (and fixed overlays) would shift.
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    );
+    expect(overflow, `${path || "/"} is wider than the screen`).toBeLessThanOrEqual(0);
   }
 });
 

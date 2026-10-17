@@ -19,28 +19,25 @@ export default async function Title() {
 
   return (
     <div className="title-screen">
-      <div className="embers" aria-hidden>
-        {Array.from({ length: 16 }, (_, i) => (
-          <i key={i} />
-        ))}
-      </div>
       <div className="title-card">
-        <div className="stack" style={{ gap: 14, alignItems: "center" }}>
-          <span className="seal big emblem" aria-hidden>
-            <Icon name="GiSpellBook" />
-          </span>
+        <header className="cover">
+          <span className="publisher">{t("title.publisher")}</span>
           <h1 className="logo">TextRPG</h1>
-          <span className="flourish" aria-hidden />
+          <p className="subtitle">{t("title.subtitle")}</p>
+          <Icon name="GiCrossedSwords" className="woodcut" aria-hidden />
+          <span className="fleuron" aria-hidden>
+            ❦
+          </span>
           <p className="motto" aria-label={t("title.motto")}>
             <span>{t("title.motto1")}</span>
             <span>{t("title.motto2")}</span>
             <span>{t("title.motto3")}</span>
           </p>
-        </div>
+        </header>
 
         {heroes.length > 0 && (
           <section className="panel ornate stack" aria-labelledby="continue">
-            <h2 id="continue" className="label" style={{ fontSize: "0.7rem" }}>
+            <h2 id="continue" className="label">
               {t("title.continue")}
             </h2>
             {heroes.map((hero) => (
@@ -63,9 +60,9 @@ export default async function Title() {
         )}
 
         {heroes.length < 3 && (
-          <section className="panel stack" aria-labelledby="new-hero">
-            <h2 id="new-hero" className="label" style={{ fontSize: "0.7rem" }}>
-              {heroes.length ? t("title.newHero") : t("title.begin")}
+          <section className="panel stack ex-libris" aria-labelledby="new-hero">
+            <h2 id="new-hero" className="label">
+              {heroes.length ? t("title.newHero") : t("title.exlibris")}
             </h2>
             <NewHeroForm first={heroes.length === 0} />
           </section>

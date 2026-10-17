@@ -15,7 +15,7 @@ import { Bar } from "@/components/ui/Bar";
 import { Icon } from "@/components/ui/Icon";
 import { type Batch, useGame } from "@/lib/game";
 import { useI18n } from "@/lib/i18n-client";
-import { type Line, narrate } from "@/lib/narrate";
+import { type Line, narrate, paragraphOf } from "@/lib/narrate";
 import { reducedMotion, usePrefs } from "@/lib/prefs";
 import { sfx, vibrate } from "@/lib/sfx";
 import { enemyName, itemName, rarityClass, tx } from "@/lib/text";
@@ -435,6 +435,7 @@ export function CombatOverlay() {
               key={line.id}
               className={`line ${line.tone} ${line.rarity ? rarityClass(line.rarity as never) : ""}`}
             >
+              <span className="para">§ {paragraphOf(line.id)}</span>
               {line.text}
             </p>
           ))}

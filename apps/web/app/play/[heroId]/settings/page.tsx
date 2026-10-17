@@ -163,6 +163,16 @@ export default function Settings() {
           ]}
         />
 
+        <h2 className="label">{t("settings.theme")}</h2>
+        <Choice
+          name="theme"
+          value={prefs.theme}
+          options={[
+            { value: "paper", label: t("settings.themePaper") },
+            { value: "night", label: t("settings.themeNight") },
+          ]}
+        />
+
         <h2 className="label">{t("settings.contrast")}</h2>
         <Choice
           name="contrast"

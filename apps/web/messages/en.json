@@ -20,11 +20,14 @@
     "newHero": "New hero",
     "begin": "Begin the adventure",
     "nameLabel": "Your name",
-    "start": "Begin",
+    "start": "Open the book",
     "create": "Create hero",
     "creating": "Fate is taking shape…",
     "noSignup": "No sign-up: you play right away. You can save your account later.",
-    "footer": "A project from 2022, raised from the dead. Up to 3 heroes per account."
+    "footer": "A project from 2022, raised from the dead. Up to 3 heroes per account.",
+    "subtitle": "A book in which you are the hero",
+    "publisher": "Terminal Editions · MMXXII",
+    "exlibris": "Ex libris — this book belongs to"
   },
   "nav": {
     "camp": "Camp",
@@ -38,10 +41,11 @@
     "codex": "Codex",
     "leaderboard": "Leaderboard",
     "settings": "Settings",
-    "cube": "Cube"
+    "cube": "Cube",
+    "contents": "Contents"
   },
   "chronicle": {
-    "title": "Chronicle",
+    "title": "Margin notes",
     "empty": "Nothing has been written yet. Go hunt something."
   },
   "camp": {
@@ -148,7 +152,8 @@
     "fled": "Fled",
     "defeatHint": "You wake up at camp, bruised and a little poorer. Rest or drink a potion.",
     "defeatDungeonHint": "The loot from the depths is lost. Your experience, at least, remains.",
-    "again": "Hunt again"
+    "again": "Hunt again",
+    "plate": "Plate"
   },
   "dungeon": {
     "eyebrow": "The Depths",
@@ -414,7 +419,10 @@
     "deleteYes": "Yes, delete",
     "credits": "Credits",
     "creditsText": "TextRPG was born in 2022 as FightingText: a Python RPG, in a terminal. This version is its rebirth.",
-    "icons": "Icons:"
+    "icons": "Icons:",
+    "theme": "Edition",
+    "themePaper": "Paper",
+    "themeNight": "By candlelight"
   },
   "account": {
     "title": "Account",

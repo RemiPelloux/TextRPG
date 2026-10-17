@@ -92,8 +92,10 @@ export default function Camp() {
         <p className="dim">{t(derived.night ? "camp.night" : "camp.day", { v: view.time.day })}</p>
       </div>
 
-      <section className={`panel ornate scene ${derived.bloodMoon ? "moon" : ""}`}>
-        <Icon name="GiCampfire" className={`flame ${derived.canRest ? "" : "out"}`} />
+      <section className="panel ornate scene">
+        <figure className="plate" style={{ margin: 0 }}>
+          <Icon name="GiCampfire" className={`flame ${derived.canRest ? "" : "out"}`} />
+        </figure>
         <div className="stack" style={{ gap: 10, minWidth: 0 }}>
           <h2>{t("camp.fire")}</h2>
           <p className="dim">{derived.canRest ? t("camp.restReady") : t("camp.restDone")}</p>

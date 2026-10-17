@@ -20,11 +20,14 @@
     "newHero": "Nouveau héros",
     "begin": "Commencer l'aventure",
     "nameLabel": "Ton nom",
-    "start": "Commencer",
+    "start": "Ouvrir le livre",
     "create": "Créer le héros",
     "creating": "Le destin se met en place…",
     "noSignup": "Aucune inscription : tu joues tout de suite. Tu pourras sauvegarder ton compte plus tard.",
-    "footer": "Un projet de 2022, ressuscité. Jusqu'à 3 héros par compte."
+    "footer": "Un projet de 2022, ressuscité. Jusqu'à 3 héros par compte.",
+    "subtitle": "Un livre dont tu es le héros",
+    "publisher": "Éditions du Terminal · MMXXII",
+    "exlibris": "Ex-libris — ce livre appartient à"
   },
   "nav": {
     "camp": "Camp",
@@ -38,10 +41,11 @@
     "codex": "Codex",
     "leaderboard": "Classement",
     "settings": "Réglages",
-    "cube": "Cube"
+    "cube": "Cube",
+    "contents": "Sommaire"
   },
   "chronicle": {
-    "title": "Chronique",
+    "title": "Notes en marge",
     "empty": "Rien n'est encore écrit. Va donc chasser."
   },
   "camp": {
@@ -148,7 +152,8 @@
     "fled": "Fuite",
     "defeatHint": "Tu te réveilles au camp, meurtri, un peu plus pauvre. Repose-toi ou bois une potion.",
     "defeatDungeonHint": "Le butin des profondeurs est perdu. Ton expérience, elle, reste.",
-    "again": "Rechasser"
+    "again": "Rechasser",
+    "plate": "Planche"
   },
   "dungeon": {
     "eyebrow": "Les Profondeurs",
@@ -414,7 +419,10 @@
     "deleteYes": "Oui, supprimer",
     "credits": "Crédits",
     "creditsText": "TextRPG est né en 2022 sous le nom de FightingText : un RPG en Python, dans un terminal. Cette version en est la renaissance.",
-    "icons": "Icônes :"
+    "icons": "Icônes :",
+    "theme": "Édition",
+    "themePaper": "Papier",
+    "themeNight": "Veillée"
   },
   "account": {
     "title": "Compte",
