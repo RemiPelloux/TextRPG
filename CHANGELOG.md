@@ -2,6 +2,38 @@
 
 Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), versionnage [SemVer](https://semver.org/lang/fr/).
 
+## [1.1.0] — 2026-10-17 — *Forge infinie*
+
+Chaque objet est unique, les sets comptent dès le niveau 1, le Cube ouvre le craft dès le premier jour, et l'équilibrage est désormais mesuré par des bots qui jouent des semaines entières.
+
+### Butin
+- **Générateur d'objets** : 32 matières (fer, os, soie d'ombre, métal stellaire…), qualité 0-100 %, numéro de série, provenance (« Arraché à Grakthor l'Orc, le 14 oct. »). Plus de 99,5 % des objets générés sont distincts, même parmi les communs.
+- **Pouvoirs générés** : 17 modèles (brûlure, saignement, vol de vie, cadence, riposte, dernier souffle…) dont les valeurs grandissent avec le niveau d'objet.
+- **Légendaires procéduraux** : nom (« Complainte d'Aldric »), légende et 1 pouvoir (2 pour un ancestral), en plus des 13 légendaires faits main ; rares mythiques avec un pouvoir.
+- **Sceaux** : 9 lignées (Loup, Corbeau, Braise, Ours…) portables sur n'importe quel objet, bonus à 2, 3, 4 et 6 pièces dès le niveau 1, butin intelligent qui complète la première paire. Deux nouveaux sets faits main de bas niveau.
+- Les affixes continuent de grandir au-delà du niveau d'objet 20.
+
+### Cube
+- Dès le niveau 1 : **transmuter** 3 objets en 1 de la rareté suivante, **enchanter** (3 propositions, une à garder), **infuser** un sceau, **reforger**, **extraire** le pouvoir d'un légendaire et le placer dans l'un des 3 emplacements (niveaux 1, 10 et 20).
+
+### Difficulté et progression
+- **Tourments** 1 à 10 au niveau 20 (un de plus tous les 3 niveaux de Parangon) : ennemis plus forts, récompenses et découverte magique en hausse.
+- **Pitié** : après des défaites d'affilée, les ennemis faiblissent un peu jusqu'à la prochaine victoire.
+- **Premiers pas** : niveaux 1 à 4 plus rapides, chasses à moitié prix avant le niveau 5 ; la classe se débloque le premier jour.
+- **Second souffle** : une chasse gagnée rend de la santé, les combats s'enchaînent.
+- Ennemis retouchés : plus de « mur » aux niveaux 2-3, normal et difficile plus mordants, courbe d'expérience étirée après le niveau 5.
+
+### Outils et plateforme
+- `pnpm simulate:progression` : 3 profils de joueurs (casual, regular, hardcore) jouent des semaines ; `--check` vérifie les cibles de [docs/BALANCE.md](docs/BALANCE.md). Les bots ont trouvé un plantage (transmuter des cannes à pêche), corrigé.
+- `pnpm simulate:bench` et `pnpm simulate:load` : coût du moteur et charge réelle sur Postgres ([docs/SCALABILITY.md](docs/SCALABILITY.md)).
+- Moteur 5× plus rapide en fin de partie (copie d'état sans `structuredClone`).
+- Maintenance quotidienne (`/api/cron/maintenance`) : purge du journal d'actions et des sessions expirées, avec les index nécessaires ; classements en cache 30 s.
+- Workflow **Balance** hebdomadaire et agents Claude Code `balance-keeper` et `loot-smith` (`.claude/agents/`).
+- Sauvegardes migrées automatiquement (schéma v2).
+
+### Interface
+- Infobulles v2 (qualité, pouvoirs, enchantement, sceau et progression, légende, provenance), page **Cube**, sélecteur de tourment, sceaux et pouvoirs actifs sur la fiche du héros, onglet Sceaux du codex, chronique des nouveaux événements, le tout en français et en anglais.
+
 ## [1.0.0] — 2026-10-17 — *Legend*
 
 Refonte complète en jeu web : Next.js, PWA, serveur autoritaire. La version Python est conservée dans `legacy/python`.

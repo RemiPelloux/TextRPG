@@ -1,0 +1,63 @@
+name: Balance
+
+# Weekly health check of the game's balance: bots play a month of game time and the medians
+# are compared with the targets in docs/BALANCE.md. A red run means a change (content, engine,
+# or a dependency of both) moved the game away from its targets: hand it to the balance-keeper
+# agent (.claude/agents/balance-keeper.md) or retune by hand.
+
+on:
+  schedule:
+    - cron: "23 6 * * 1" # Mondays, 06:23 UTC
+  workflow_dispatch:
+    inputs:
+      days:
+        description: Days of game time each bot plays
+        default: "30"
+      bots:
+        description: Bots per player profile
+        default: "6"
+
+permissions:
+  contents: read
+
+jobs:
+  balance:
+    name: Progression targets
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Fight report
+        run: |
+          {
+            echo "## Fights (win · turns · health left)"
+            echo '```'
+            pnpm -s simulate 300
+            echo '```'
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Engine benchmark
+        run: |
+          {
+            echo "## Engine benchmark"
+            echo '```'
+            pnpm -s simulate:bench 1000
+            echo '```'
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Progression against targets
+        env:
+          DAYS: ${{ inputs.days || '30' }}
+          BOTS: ${{ inputs.bots || '6' }}
+        run: |
+          set -o pipefail
+          {
+            echo "## Progression ($BOTS bots × $DAYS days per profile)"
+            echo '```'
+            pnpm -s simulate:progression "$DAYS" "$BOTS" --check 2>&1
+            echo '```'
+          } | tee -a "$GITHUB_STEP_SUMMARY"

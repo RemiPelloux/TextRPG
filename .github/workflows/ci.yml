@@ -26,6 +26,8 @@ jobs:
       - run: pnpm --filter @textrpg/content --filter @textrpg/engine --filter @textrpg/web test
       - name: Balance report
         run: pnpm simulate 60
+      - name: Progression smoke (bots play 5 days through every system)
+        run: pnpm simulate:progression 5 1
 
   integration:
     name: Server + end-to-end (Postgres)

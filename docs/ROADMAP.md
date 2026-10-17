@@ -16,9 +16,16 @@ Tout le plan des phases 0 à 7 de [docs/web/PLAN.md](web/PLAN.md) : moteur autor
 loot à la Diablo, donjons, pêche, Acte I, classes, talents, Parangon, défi quotidien,
 classements, succès, codex, PWA, FR/EN. Le détail est dans le [CHANGELOG](../CHANGELOG.md).
 
+## ✅ v1.1 — *Forge infinie* (fait)
+
+Générateur d'objets (matières, qualité, provenance, pouvoirs générés, légendaires procéduraux),
+sceaux dès le niveau 1, Cube (transmutation, enchantement, infusion, reforge, extraction),
+tourments, pitié, sprint d'équilibrage mesuré par bots, montée en charge
+([BALANCE](BALANCE.md), [SCALABILITY](SCALABILITY.md)), agents `balance-keeper` et `loot-smith`.
+
 ---
 
-## v1.1 — *Polish & Launch*
+## v1.2 — *Polish & Launch*
 
 Le jeu est complet. Cette version sert à le **faire jouer**.
 
@@ -32,7 +39,7 @@ Le jeu est complet. Cette version sert à le **faire jouer**.
 - [ ] Lighthouse mobile ≥ 90 en CI ; page de statut
 - [ ] Choix d'une licence (MIT si tu veux des contributions)
 
-## v1.2 — *Act II : Au-dessus*
+## v1.3 — *Act II : Au-dessus*
 
 La fin de l'Acte I l'annonce : *« It is above. »*
 
@@ -42,7 +49,7 @@ La fin de l'Acte I l'annonce : *« It is above. »*
 - [ ] Gemmes à sertir (emplacements sur les objets Rares et plus)
 - [ ] Recettes de forge : transmuter 3 objets Rares en 1 Légendaire aléatoire
 
-## v1.3 — *Seasons*
+## v1.4 — *Seasons*
 
 - [ ] Saisons de 2 mois : nouveau héros saisonnier, classement saisonnier, récompenses cosmétiques
 - [ ] Un modificateur de règles par saison (ex. « les critiques soignent », « double élites »)

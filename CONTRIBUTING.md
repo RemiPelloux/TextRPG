@@ -27,7 +27,8 @@ Et avant une version : `pnpm build && pnpm e2e`. La CI lance tout cela à chaque
 
 - **Le moteur reste pur** : pas d'accès réseau, pas de `Date.now()`, pas de `Math.random()` dans `packages/engine`. Le temps arrive par `now`, le hasard par `ctx.rng`.
 - **Une règle de jeu = des tests** dans `packages/engine/test`. Un bug corrigé = un test de régression.
-- **Le contenu est de la donnée** : objets, ennemis, quêtes et chiffres d'équilibrage vont dans `packages/content/data`. Après un changement d'équilibrage, regarde `pnpm simulate`.
+- **Le contenu est de la donnée** : objets, ennemis, quêtes et chiffres d'équilibrage vont dans `packages/content/data`. Après un changement d'équilibrage, lance `pnpm simulate` et `pnpm simulate:progression 30 6 --check` (cibles dans [docs/BALANCE.md](docs/BALANCE.md)), ou confie-le à l'agent `balance-keeper` (`.claude/agents/`).
+- **Nouveaux champs dans la sauvegarde** : une migration dans `packages/engine/src/migrations.ts` (et `SCHEMA_VERSION` + 1), avec un test.
 - **Rien de secret côté client** : tout ce qui sort du serveur passe par `toClientView` / `redactEvents`.
 - **Chaque texte de l'interface est traduit** dans `apps/web/messages/fr.json` et `en.json` (un test vérifie la parité).
 - **Nouvelle icône** : `pnpm --filter @textrpg/web icons`.
