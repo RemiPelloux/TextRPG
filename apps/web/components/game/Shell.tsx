@@ -58,6 +58,7 @@ function useNav(): NavItem[] {
     },
     { href: `${base}/market`, icon: "GiTwoCoins", label: t("nav.market"), mobile: false },
     { href: `${base}/forge`, icon: "GiAnvil", label: t("nav.forge"), mobile: false },
+    { href: `${base}/cube`, icon: "GiCube", label: t("nav.cube"), mobile: false },
     { href: `${base}/codex`, icon: "GiSpellBook", label: t("nav.codex"), mobile: false },
     { href: `/leaderboard`, icon: "GiLaurelsTrophy", label: t("nav.leaderboard"), mobile: false },
     { href: `${base}/settings`, icon: "GiCog", label: t("nav.settings"), mobile: false },

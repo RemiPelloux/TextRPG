@@ -32,7 +32,7 @@ function ForgeInner() {
 
       {item ? (
         <section className="panel ornate stack" style={{ gap: 16 }}>
-          <ItemTooltip item={item} setCounts={view.setCounts} />
+          <ItemTooltip item={item} setCounts={view.setCounts} sigils={view.derived.sigils} />
           <hr className="divider" />
           {(() => {
             const cost = upgradeCost(item);

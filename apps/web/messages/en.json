@@ -37,7 +37,8 @@
     "forge": "Forge",
     "codex": "Codex",
     "leaderboard": "Leaderboard",
-    "settings": "Settings"
+    "settings": "Settings",
+    "cube": "Cube"
   },
   "chronicle": {
     "title": "Chronicle",
@@ -88,7 +89,9 @@
     "buildings": "Camp buildings",
     "buildingLevel": "Lvl {level}/{max}",
     "upgrade": "Upgrade",
-    "maxed": "Maxed"
+    "maxed": "Maxed",
+    "cube": "The Cube",
+    "cubeText": "Transmute, enchant, extract powers."
   },
   "hunt": {
     "eyebrow": "Training",
@@ -111,7 +114,13 @@
     "weeklyGo": "Face it",
     "weeklyDone": "Already slain this week",
     "weeklyLocked": "Level 5 required",
-    "lowHealth": "Your health is low. Drink a potion or rest at camp before you hunt."
+    "lowHealth": "Your health is low. Drink a potion or rest at camp before you hunt.",
+    "torment": "Torment",
+    "tormentText": "Beyond level 20: stronger enemies (+{level} levels), rewards +{reward}%, magic find +{mf}%.",
+    "tormentNone": "None",
+    "tormentLocked": "Torments unlock at level 20.",
+    "mercy": "Mercy {level}: enemies are {pct}% weaker after your defeats.",
+    "beginner": "First steps: hunts cost half until level 5."
   },
   "challenge": {
     "eyebrow": "Today's ranking",
@@ -202,7 +211,10 @@
     "learn": "Learn {name}",
     "resetTalents": "Reset",
     "paragon": "Paragon",
-    "paragonText": "Beyond level 20, every experience threshold grants you a point to spend. Progress never ends."
+    "paragonText": "Beyond level 20, every experience threshold grants you a point to spend. Progress never ends.",
+    "sigils": "Sigils",
+    "sigilsEmpty": "No sigil worn. Two pieces of the same sigil are enough for a first bonus.",
+    "generated": "Active powers"
   },
   "bag": {
     "eyebrow": "Inventory",
@@ -230,7 +242,15 @@
     "energy": "Restores {amount} energy",
     "buff": "{stat} for {fights} fights",
     "withScroll": "with a scroll",
-    "bagFull": "Bag full"
+    "bagFull": "Bag full",
+    "legendName": "{proper}'s {noun}",
+    "quality": "Quality {pct}%",
+    "serial": "No. {serial}",
+    "hiddenProc": "✦ Hidden power",
+    "enchant": "Enchantment",
+    "sigil": "{name} sigil",
+    "sigilCount": "{count}/{max} worn",
+    "found": "Found on {date}"
   },
   "actions": {
     "equip": "Equip",
@@ -329,7 +349,8 @@
       "sets": "Sets",
       "fish": "Fish",
       "achievements": "Achievements",
-      "odds": "Odds"
+      "odds": "Odds",
+      "sigils": "Sigils"
     },
     "kills": "{count} slain",
     "unknownLore": "You have never slain one. Yet.",
@@ -341,7 +362,9 @@
     "oddsText": "Base chances per fight, before your magic find. Elites roll twice, bosses three times with a guaranteed rare item.",
     "difficulty": "Difficulty",
     "drop": "Loot",
-    "pity": "Bad-luck protection: {pity} win(s) without a legendary, so +{bonus}% on the next roll."
+    "pity": "Bad-luck protection: {pity} win(s) without a legendary, so +{bonus}% on the next roll.",
+    "sigilFrom": "From item level {ilvl}",
+    "pieces": "({pieces})"
   },
   "leaderboard": {
     "eyebrow": "The names that are remembered",
@@ -525,7 +548,8 @@
       "lifeSteal": "You drink a little of its life: +{amount}.",
       "drain": "The drain restores you: +{amount}.",
       "potion": "You drink a potion: +{amount}.",
-      "soulHarvest": "You harvest its soul: +{amount}."
+      "soulHarvest": "You harvest its soul: +{amount}.",
+      "proc": "Your power heals you: +{amount}."
     },
     "enemyHeal": "{enemy} feeds on your pain: +{amount}.",
     "thorns": "Thorns reflect {damage} damage.",
@@ -595,7 +619,19 @@
     "challengeScore": "Challenge: {score} points.",
     "challengeDone": "Challenge complete: {score} points.",
     "classUnlocked": "You can now choose your class.",
-    "shards": "+{amount} shards."
+    "shards": "+{amount} shards.",
+    "proc": "✦ {power}!",
+    "heroProc": "✦ {power}: {hero} strikes again, {damage} damage.",
+    "mercy": "Enemies go easier on you (mercy {level}).",
+    "secondWind": "Second wind: +{amount} health.",
+    "transmuted": "The Cube rumbles. Out comes a {rarity} item.",
+    "enchantOffer": "The Cube shows you {count} enchantments.",
+    "enchanted": "The enchantment takes. The item hums softly.",
+    "infused": "The {sigil} sigil sinks into the metal.",
+    "reforged": "The Cube recasts the item. Nothing is as it was.",
+    "extracted": "The legendary dissolves; its power stays in the Cube.",
+    "tormentSet": "Torment {level}. The world grows darker.",
+    "tormentOff": "You return to a world without torment."
   },
   "errors": {
     "server": "The world faltered. Try again in a moment.",
@@ -673,6 +709,106 @@
     "unknownSkill": "Skill unavailable.",
     "unknownStat": "Unknown attribute.",
     "unknownTalent": "Unknown talent.",
-    "weeklyDone": "The weekly boss is already slain."
+    "weeklyDone": "The weekly boss is already slain.",
+    "needThreeItems": "Pick three different items.",
+    "sameRarity": "All three items must share a rarity.",
+    "cannotTransmute": "This rarity cannot be transmuted.",
+    "identifyFirst": "Identify the item first.",
+    "noOffer": "No enchantment is waiting.",
+    "noSigil": "The donor has no sigil.",
+    "cannotInfuse": "Set items already have their lineage.",
+    "noPower": "There is no power to keep.",
+    "alreadyExtracted": "This power is already in the Cube.",
+    "slotLocked": "This slot opens at level {level}.",
+    "tormentLocked": "This torment is not within your reach yet.",
+    "notForCube": "Tools don't go in the Cube."
+  },
+  "origin": {
+    "start": "Your first companion in arms",
+    "hunt": "Taken from {enemy}",
+    "huntAnon": "Picked up while hunting",
+    "dungeon": "Brought up from the Depths, floor {floor}",
+    "boss": "Trophy of {enemy}, floor {floor}",
+    "weekly": "Torn from the weekly boss",
+    "quest": "Quest reward",
+    "craft": "Born in the Cube",
+    "market": "Bought at the market",
+    "event": "Found by the wayside",
+    "class": "A gift from your new path"
+  },
+  "procs": {
+    "hit_burn": "{chance}% chance on hit to set the enemy ablaze: {value}% of the damage per turn for {turns} turns",
+    "hit_poison": "{chance}% chance on hit to poison: {value}% of the damage per turn for {turns} turns",
+    "hit_bleed": "{chance}% chance on hit to cause bleeding: {value}% of the damage per turn for {turns} turns",
+    "hit_chill": "{chance}% chance on hit to chill the enemy for {turns} turns",
+    "hit_stun": "{chance}% chance on hit to stun the enemy",
+    "hit_weaken": "{chance}% chance on hit to weaken the enemy for {turns} turns",
+    "hit_lifesteal": "Every hit heals you for {value}% of the damage dealt",
+    "crit_damage": "Your critical hits deal {value}% more damage",
+    "crit_heal": "Every critical hit restores {value}% of your health",
+    "dodge_empower": "Dodging empowers you for {turns} turns",
+    "kill_heal": "Killing an enemy restores {value}% of your health",
+    "start_evasive": "You start every fight evasive for {turns} turns",
+    "start_strike": "You open every fight with a {value}% strike (never lethal)",
+    "turn_strike": "Every {every} turns, an extra strike for {value}%",
+    "struck_retaliate": "{chance}% chance when struck to strike back for {value}%",
+    "low_empower": "Below 35% health, you are empowered for {turns} turns (once per fight)",
+    "low_heal": "Below 30% health, you recover {value}% of your health (once per fight)"
+  },
+  "procName": {
+    "hit_burn": "Ignite",
+    "hit_poison": "Venom",
+    "hit_bleed": "Laceration",
+    "hit_chill": "Frost",
+    "hit_stun": "Shatter",
+    "hit_weaken": "Wither",
+    "hit_lifesteal": "Thirst",
+    "crit_damage": "Cruelty",
+    "crit_heal": "Rapture",
+    "dodge_empower": "Off-beat",
+    "kill_heal": "Quarry",
+    "start_evasive": "First shadow",
+    "start_strike": "First blood",
+    "turn_strike": "Cadence",
+    "struck_retaliate": "Grudge",
+    "low_empower": "Back to the wall",
+    "low_heal": "Last breath"
+  },
+  "cube": {
+    "eyebrow": "The artifact",
+    "title": "The Cube",
+    "intro": "A cube of black stone that hums when you come near. Nothing you put in comes out the same.",
+    "tab": {
+      "transmute": "Transmute",
+      "enchant": "Enchant",
+      "infuse": "Infuse",
+      "reforge": "Reforge",
+      "powers": "Powers"
+    },
+    "transmuteText": "Three items of the same rarity become one of the next rarity. The first one you pick decides the slot.",
+    "transmuteGo": "Transmute",
+    "picked": "{count}/3 picked",
+    "into": "→ {rarity}",
+    "nothing": "Nothing here yet.",
+    "enchantText": "The Cube shows you three enchantments for an item; you keep one. An item carries a single enchantment: a new one replaces the old.",
+    "enchantGo": "Ask the Cube",
+    "choose": "Choose your enchantment",
+    "keep": "Keep",
+    "infuseText": "Give an item the sigil of another. The donor is destroyed.",
+    "target": "Item to infuse",
+    "donor": "Donor (destroyed)",
+    "infuseGo": "Infuse",
+    "reforgeText": "Recasts every property of a rare or legendary item. The best or the worst may come out.",
+    "reforgeGo": "Reforge",
+    "powersText": "Destroy a legendary to keep its power, then place powers in the Cube's slots: they work as if you wore the item.",
+    "slot": "Slot {n}",
+    "slotLocked": "Level {level}",
+    "empty": "Empty",
+    "extract": "Extract",
+    "extractable": "Extractable legendaries",
+    "library": "Extracted powers",
+    "place": "Place",
+    "remove": "Remove",
+    "alreadyKnown": "Power already extracted"
   }
 }

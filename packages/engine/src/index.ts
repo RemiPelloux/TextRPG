@@ -1,6 +1,14 @@
 export { CHALLENGE_FIGHTS, challengeHeroStats } from "./challenge";
 export { availableSkills } from "./combat";
 export { GameError } from "./ctx";
+export {
+  enchantCost,
+  infuseCost,
+  powerKey,
+  reforgeCost,
+  TRANSMUTE_NEXT,
+  transmuteCost,
+} from "./cube";
 export { BOSS_EVERY, DUNGEON_ENERGY, STEPS_PER_FLOOR } from "./dungeon";
 export {
   identifyCost,
@@ -36,7 +44,14 @@ export { talentResetCost } from "./progression";
 export { MAX_BOARD_QUESTS } from "./quests";
 export { apply, type ApplyOptions, type ApplyResult } from "./reducer";
 export { Rng, type RngState, seedFrom } from "./rng";
-export { computeStats, critChanceOf, itemStats, PARAGON_PER_POINT, powerScore } from "./stats";
+export {
+  computeStats,
+  critChanceOf,
+  CUBE_SLOT_LEVELS,
+  itemStats,
+  PARAGON_PER_POINT,
+  powerScore,
+} from "./stats";
 export { DAY, dayIndex, isBloodMoon, TICK } from "./time";
 export * from "./types";
 export { type ClientItem, type ClientView, redactEvents, redactItem, toClientView } from "./view";

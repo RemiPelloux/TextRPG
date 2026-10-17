@@ -11,7 +11,13 @@ import {
 } from "@textrpg/engine";
 import { useState } from "react";
 
-import { ItemMedallion, slotOrder } from "@/components/game/items";
+import {
+  ItemMedallion,
+  ProcLine,
+  sigilBonusText,
+  sigilMax,
+  slotOrder,
+} from "@/components/game/items";
 import { ItemSheet } from "@/components/game/ItemSheet";
 import { Icon } from "@/components/ui/Icon";
 import { useGame } from "@/lib/game";
@@ -146,6 +152,45 @@ export default function Hero() {
           })}
         </section>
       )}
+
+      <section className="panel stack">
+        <h2 className="label">{t("hero.sigils")}</h2>
+        {Object.keys(view.derived.sigils).length === 0 && (
+          <p className="faint">{t("hero.sigilsEmpty")}</p>
+        )}
+        {Object.entries(view.derived.sigils).map(([id, { count, level }]) => {
+          const sigil = content.sigils.get(id);
+          if (!sigil) return null;
+          return (
+            <div
+              key={id}
+              className="sigil stack"
+              style={{ gap: 2, ["--sigil" as string]: sigil.color }}
+            >
+              <span className="ui sigil-title">
+                <Icon name={sigil.icon} /> {tx(sigil.title, locale)} ({count}/{sigilMax(sigil)})
+              </span>
+              {sigil.bonuses.map((bonus) => (
+                <span
+                  key={bonus.pieces}
+                  className={`setline ui ${count >= bonus.pieces ? "on" : "faint"}`}
+                  style={{ fontSize: "0.8rem" }}
+                >
+                  ({bonus.pieces}) {sigilBonusText(bonus, level, t, locale)}
+                </span>
+              ))}
+            </div>
+          );
+        })}
+        {view.derived.procs.length > 0 && (
+          <>
+            <h3 className="label">{t("hero.generated")}</h3>
+            {view.derived.procs.map((proc, i) => (
+              <ProcLine key={i} proc={proc} />
+            ))}
+          </>
+        )}
+      </section>
 
       {!hero.classId && (
         <section className="panel ornate stack">

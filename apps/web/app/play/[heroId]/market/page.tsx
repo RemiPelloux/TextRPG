@@ -107,6 +107,7 @@ export default function Market() {
                 baseOf(offer.item).slot ? view.hero.equipment[baseOf(offer.item).slot!] : undefined
               }
               setCounts={view.setCounts}
+              sigils={view.derived.sigils}
             />
             <button
               className="btn primary"

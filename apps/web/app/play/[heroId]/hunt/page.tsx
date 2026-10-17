@@ -1,7 +1,14 @@
 "use client";
 
 import { DIFFICULTY_IDS } from "@textrpg/content";
-import { CHALLENGE_FIGHTS, huntEnergy, WEEKLY_ENERGY } from "@textrpg/engine";
+import {
+  CHALLENGE_FIGHTS,
+  CLASS_LEVEL,
+  huntEnergy,
+  MAX_LEVEL,
+  tormentRewards,
+  WEEKLY_ENERGY,
+} from "@textrpg/engine";
 
 import { Icon } from "@/components/ui/Icon";
 import { useGame } from "@/lib/game";
@@ -48,10 +55,20 @@ export default function Hunt() {
         </div>
       )}
 
+      <div className="row">
+        {hero.level < CLASS_LEVEL && <span className="chip gold">{t("hunt.beginner")}</span>}
+        {view.mercy > 0 && (
+          <span className="chip mana">
+            {t("hunt.mercy", { level: view.mercy, pct: view.mercy * 8 })}
+          </span>
+        )}
+      </div>
+      <TormentPicker />
+
       <div className="grid-cards">
         {DIFFICULTY_IDS.map((id) => {
           const difficulty = content.difficulties.get(id)!;
-          const level = Math.max(1, hero.level + difficulty.levelOffset);
+          const level = Math.max(1, hero.level + difficulty.levelOffset + hero.torment);
           const cost = huntEnergy(hero, difficulty);
           const enough = hero.energy >= cost;
           return (
@@ -179,5 +196,51 @@ export default function Hunt() {
         )}
       </section>
     </>
+  );
+}
+
+function TormentPicker() {
+  const { t } = useI18n();
+  const { view, dispatch, busy } = useGame();
+  const { hero, derived } = view;
+  if (hero.level < MAX_LEVEL) {
+    return hero.level >= 15 ? <p className="faint ui">{t("hunt.tormentLocked")}</p> : null;
+  }
+  // At torment 0, preview what the first torment brings.
+  const shown = Math.max(1, hero.torment);
+  const rewards = tormentRewards(shown);
+  return (
+    <section className="panel ornate stack" style={{ gap: 10 }}>
+      <div className="spread">
+        <h2 className="r-text r-ancestral">{t("hunt.torment")}</h2>
+        <span className="chip blood">
+          {hero.torment > 0 ? `T${hero.torment}` : t("hunt.tormentNone")}
+        </span>
+      </div>
+      <div className="row" role="radiogroup" aria-label={t("hunt.torment")}>
+        {Array.from({ length: derived.maxTorment + 1 }, (_, level) => (
+          <button
+            key={level}
+            role="radio"
+            aria-checked={hero.torment === level}
+            className={`btn small ${hero.torment === level ? "primary" : "ghost"}`}
+            disabled={busy || Boolean(view.combat || view.dungeon)}
+            onClick={() => {
+              sfx.click();
+              void dispatch({ type: "torment.set", level });
+            }}
+          >
+            {level === 0 ? t("hunt.tormentNone") : `T${level}`}
+          </button>
+        ))}
+      </div>
+      <p className="dim">
+        {t("hunt.tormentText", {
+          level: shown,
+          reward: Math.round((rewards.mult - 1) * 100),
+          mf: rewards.magicFind,
+        })}
+      </p>
+    </section>
   );
 }

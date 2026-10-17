@@ -37,7 +37,8 @@
     "forge": "Forge",
     "codex": "Codex",
     "leaderboard": "Classement",
-    "settings": "Réglages"
+    "settings": "Réglages",
+    "cube": "Cube"
   },
   "chronicle": {
     "title": "Chronique",
@@ -88,7 +89,9 @@
     "buildings": "Bâtiments du camp",
     "buildingLevel": "Niv. {level}/{max}",
     "upgrade": "Améliorer",
-    "maxed": "Au maximum"
+    "maxed": "Au maximum",
+    "cube": "Le Cube",
+    "cubeText": "Transmute, enchante, extrais des pouvoirs."
   },
   "hunt": {
     "eyebrow": "Entraînement",
@@ -111,7 +114,13 @@
     "weeklyGo": "Affronter",
     "weeklyDone": "Déjà vaincu cette semaine",
     "weeklyLocked": "Niveau 5 requis",
-    "lowHealth": "Ta santé est basse. Bois une potion ou repose-toi au camp avant de chasser."
+    "lowHealth": "Ta santé est basse. Bois une potion ou repose-toi au camp avant de chasser.",
+    "torment": "Tourment",
+    "tormentText": "Au-delà du niveau 20 : ennemis plus forts (+{level} niveaux), récompenses +{reward} %, découverte magique +{mf} %.",
+    "tormentNone": "Aucun",
+    "tormentLocked": "Les tourments se débloquent au niveau 20.",
+    "mercy": "Pitié {level} : les ennemis faiblissent de {pct} % après tes défaites.",
+    "beginner": "Premiers pas : chasses à moitié prix jusqu'au niveau 5."
   },
   "challenge": {
     "eyebrow": "Classement du jour",
@@ -202,7 +211,10 @@
     "learn": "Apprendre {name}",
     "resetTalents": "Réinitialiser",
     "paragon": "Parangon",
-    "paragonText": "Au-delà du niveau 20, chaque palier d'expérience te donne un point à placer. La progression ne s'arrête jamais."
+    "paragonText": "Au-delà du niveau 20, chaque palier d'expérience te donne un point à placer. La progression ne s'arrête jamais.",
+    "sigils": "Sceaux",
+    "sigilsEmpty": "Aucun sceau porté. Deux pièces du même sceau suffisent pour un premier bonus.",
+    "generated": "Pouvoirs actifs"
   },
   "bag": {
     "eyebrow": "Inventaire",
@@ -230,7 +242,15 @@
     "energy": "Rend {amount} points d'énergie",
     "buff": "{stat} pendant {fights} combats",
     "withScroll": "avec un parchemin",
-    "bagFull": "Sac plein"
+    "bagFull": "Sac plein",
+    "legendName": "{noun} {de}{proper}",
+    "quality": "Qualité {pct} %",
+    "serial": "№ {serial}",
+    "hiddenProc": "✦ Pouvoir caché",
+    "enchant": "Enchantement",
+    "sigil": "Sceau {name}",
+    "sigilCount": "{count}/{max} portés",
+    "found": "Trouvé le {date}"
   },
   "actions": {
     "equip": "Équiper",
@@ -329,7 +349,8 @@
       "sets": "Sets",
       "fish": "Poissons",
       "achievements": "Succès",
-      "odds": "Probabilités"
+      "odds": "Probabilités",
+      "sigils": "Sceaux"
     },
     "kills": "{count} vaincu(s)",
     "unknownLore": "Tu n'en as encore jamais vaincu.",
@@ -341,7 +362,9 @@
     "oddsText": "Chances de base par combat, avant ta découverte magique. Les élites tirent deux fois, les boss trois fois avec un objet rare garanti.",
     "difficulty": "Difficulté",
     "drop": "Butin",
-    "pity": "Protection contre la malchance : {pity} victoire(s) sans légendaire, soit +{bonus} % sur la prochaine chance."
+    "pity": "Protection contre la malchance : {pity} victoire(s) sans légendaire, soit +{bonus} % sur la prochaine chance.",
+    "sigilFrom": "À partir du niveau d'objet {ilvl}",
+    "pieces": "({pieces})"
   },
   "leaderboard": {
     "eyebrow": "Les noms qu'on retient",
@@ -528,7 +551,8 @@
       "lifeSteal": "Tu bois un peu de sa vie : +{amount}.",
       "drain": "Le drain te restaure : +{amount}.",
       "potion": "Tu bois une potion : +{amount}.",
-      "soulHarvest": "Tu récoltes son âme : +{amount}."
+      "soulHarvest": "Tu récoltes son âme : +{amount}.",
+      "proc": "Ton pouvoir te soigne : +{amount}."
     },
     "enemyHeal": "{enemy} se nourrit de ta douleur : +{amount}.",
     "thorns": "Les épines renvoient {damage} dégâts.",
@@ -598,7 +622,19 @@
     "challengeScore": "Défi : {score} points.",
     "challengeDone": "Défi terminé : {score} points.",
     "classUnlocked": "Tu peux maintenant choisir ta classe.",
-    "shards": "+{amount} éclats."
+    "shards": "+{amount} éclats.",
+    "proc": "✦ {power} !",
+    "heroProc": "✦ {power} : {hero} frappe encore, {damage} dégâts.",
+    "mercy": "Les ennemis te ménagent (pitié {level}).",
+    "secondWind": "Second souffle : +{amount} santé.",
+    "transmuted": "Le Cube gronde. Il en sort un objet {rarity}.",
+    "enchantOffer": "Le Cube te montre {count} enchantements.",
+    "enchanted": "L'enchantement prend. L'objet vibre doucement.",
+    "infused": "Le sceau {sigil} s'imprime dans le métal.",
+    "reforged": "Le Cube refond l'objet. Rien n'est plus comme avant.",
+    "extracted": "Le légendaire se dissout ; son pouvoir reste dans le Cube.",
+    "tormentSet": "Tourment {level}. Le monde s'assombrit.",
+    "tormentOff": "Tu reviens à un monde sans tourment."
   },
   "errors": {
     "server": "Le monde a vacillé. Réessaie dans un instant.",
@@ -676,6 +712,106 @@
     "unknownSkill": "Compétence indisponible.",
     "unknownStat": "Caractéristique inconnue.",
     "unknownTalent": "Talent inconnu.",
-    "weeklyDone": "Le boss de la semaine est déjà vaincu."
+    "weeklyDone": "Le boss de la semaine est déjà vaincu.",
+    "needThreeItems": "Choisis trois objets différents.",
+    "sameRarity": "Les trois objets doivent être de même rareté.",
+    "cannotTransmute": "Cette rareté ne se transmute pas.",
+    "identifyFirst": "Identifie l'objet d'abord.",
+    "noOffer": "Aucun enchantement en attente.",
+    "noSigil": "Le donneur n'a pas de sceau.",
+    "cannotInfuse": "Les objets de set ont déjà leur lignée.",
+    "noPower": "Aucun pouvoir à garder.",
+    "alreadyExtracted": "Ce pouvoir est déjà dans le Cube.",
+    "slotLocked": "Cet emplacement s'ouvre au niveau {level}.",
+    "tormentLocked": "Ce tourment n'est pas encore à ta portée.",
+    "notForCube": "Les outils n'entrent pas dans le Cube."
+  },
+  "origin": {
+    "start": "Ton premier compagnon d'armes",
+    "hunt": "Arraché à {enemy}",
+    "huntAnon": "Ramassé à la chasse",
+    "dungeon": "Remonté des Profondeurs, étage {floor}",
+    "boss": "Trophée de {enemy}, étage {floor}",
+    "weekly": "Arraché au boss de la semaine",
+    "quest": "Récompense de quête",
+    "craft": "Né dans le Cube",
+    "market": "Acheté au marché",
+    "event": "Trouvé au détour du chemin",
+    "class": "Don de ta nouvelle voie"
+  },
+  "procs": {
+    "hit_burn": "{chance} % de chances à chaque coup d'enflammer l'ennemi : {value} % des dégâts par tour pendant {turns} tours",
+    "hit_poison": "{chance} % de chances à chaque coup d'empoisonner : {value} % des dégâts par tour pendant {turns} tours",
+    "hit_bleed": "{chance} % de chances à chaque coup de faire saigner : {value} % des dégâts par tour pendant {turns} tours",
+    "hit_chill": "{chance} % de chances à chaque coup de glacer l'ennemi pendant {turns} tours",
+    "hit_stun": "{chance} % de chances à chaque coup d'étourdir l'ennemi",
+    "hit_weaken": "{chance} % de chances à chaque coup d'affaiblir l'ennemi pendant {turns} tours",
+    "hit_lifesteal": "Chaque coup te rend {value} % des dégâts infligés",
+    "crit_damage": "Tes coups critiques infligent {value} % de dégâts en plus",
+    "crit_heal": "Chaque coup critique te rend {value} % de ta santé",
+    "dodge_empower": "Esquiver te galvanise pendant {turns} tours",
+    "kill_heal": "Achever un ennemi te rend {value} % de ta santé",
+    "start_evasive": "Tu commences chaque combat insaisissable pendant {turns} tours",
+    "start_strike": "Tu ouvres chaque combat par un coup de {value} % (jamais mortel)",
+    "turn_strike": "Tous les {every} tours, un coup supplémentaire de {value} %",
+    "struck_retaliate": "{chance} % de chances, quand on te frappe, de riposter à {value} %",
+    "low_empower": "Sous 35 % de santé, tu es galvanisé pendant {turns} tours (une fois par combat)",
+    "low_heal": "Sous 30 % de santé, tu récupères {value} % de ta santé (une fois par combat)"
+  },
+  "procName": {
+    "hit_burn": "Embrasement",
+    "hit_poison": "Venin",
+    "hit_bleed": "Lacération",
+    "hit_chill": "Givre",
+    "hit_stun": "Fracas",
+    "hit_weaken": "Flétrissure",
+    "hit_lifesteal": "Soif",
+    "crit_damage": "Cruauté",
+    "crit_heal": "Extase",
+    "dodge_empower": "Contre-temps",
+    "kill_heal": "Curée",
+    "start_evasive": "Ombre première",
+    "start_strike": "Premier sang",
+    "turn_strike": "Cadence",
+    "struck_retaliate": "Rancune",
+    "low_empower": "Dos au mur",
+    "low_heal": "Dernier souffle"
+  },
+  "cube": {
+    "eyebrow": "L'artefact",
+    "title": "Le Cube",
+    "intro": "Un cube de pierre noire qui bourdonne quand on l'approche. Ce qu'on y met n'en ressort jamais pareil.",
+    "tab": {
+      "transmute": "Transmuter",
+      "enchant": "Enchanter",
+      "infuse": "Infuser",
+      "reforge": "Reforger",
+      "powers": "Pouvoirs"
+    },
+    "transmuteText": "Trois objets de même rareté deviennent un objet de la rareté suivante. Le premier choisi décide de l'emplacement.",
+    "transmuteGo": "Transmuter",
+    "picked": "{count}/3 choisis",
+    "into": "→ {rarity}",
+    "nothing": "Rien ici pour l'instant.",
+    "enchantText": "Le Cube te montre trois enchantements pour un objet ; tu en gardes un. Un objet ne porte qu'un enchantement : le nouveau remplace l'ancien.",
+    "enchantGo": "Interroger le Cube",
+    "choose": "Choisis ton enchantement",
+    "keep": "Garder",
+    "infuseText": "Donne à un objet le sceau d'un autre. Le donneur est détruit.",
+    "target": "Objet à infuser",
+    "donor": "Donneur (détruit)",
+    "infuseGo": "Infuser",
+    "reforgeText": "Refond toutes les propriétés d'un objet rare ou légendaire. Le meilleur comme le pire peuvent sortir.",
+    "reforgeGo": "Reforger",
+    "powersText": "Détruis un légendaire pour garder son pouvoir, puis place tes pouvoirs dans les emplacements du Cube : ils agissent comme si tu portais l'objet.",
+    "slot": "Emplacement {n}",
+    "slotLocked": "Niveau {level}",
+    "empty": "Vide",
+    "extract": "Extraire",
+    "extractable": "Légendaires extractibles",
+    "library": "Pouvoirs extraits",
+    "place": "Placer",
+    "remove": "Retirer",
+    "alreadyKnown": "Pouvoir déjà extrait"
   }
 }

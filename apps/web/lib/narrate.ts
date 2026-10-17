@@ -39,6 +39,13 @@ export function narrate(
     case "hit": {
       const skill = event.skillId ? tx(content.skills.get(event.skillId)?.name, locale) : "";
       const params = { ...base, damage: event.damage, skill };
+      if (event.by === "hero" && event.proc) {
+        return {
+          text: t("log.heroProc", { ...params, power: t(`procName.${event.proc}`) }),
+          tone: event.crit ? "crit" : "loot",
+          rarity: "legendary",
+        };
+      }
       if (event.by === "hero") {
         const key = event.crit
           ? "log.heroCrit"
@@ -117,7 +124,9 @@ export function narrate(
       };
     case "victory":
       return {
-        text: t("log.victory", { ...base, exp: event.exp, gold: event.gold }),
+        text:
+          t("log.victory", { ...base, exp: event.exp, gold: event.gold }) +
+          (event.healed ? ` ${t("log.secondWind", { ...base, amount: event.healed })}` : ""),
         tone: "good",
       };
     case "defeat":
@@ -263,6 +272,44 @@ export function narrate(
       };
     case "classUnlocked":
       return { text: t("log.classUnlocked", base), tone: "crit" };
+    case "procTriggered":
+      return {
+        text: t("log.proc", { ...base, power: t(`procName.${event.template}`) }),
+        tone: "loot",
+        rarity: "legendary",
+      };
+    case "mercy":
+      return { text: t("log.mercy", { ...base, level: event.level }), tone: "sys" };
+    case "transmuted":
+      return {
+        text: t("log.transmuted", { ...base, rarity: t(`rarity.${event.rarity}`).toLowerCase() }),
+        tone: "loot",
+        rarity: event.rarity,
+      };
+    case "enchantOffer":
+      return { text: t("log.enchantOffer", { ...base, count: event.count }), tone: "sys" };
+    case "enchanted":
+      return { text: t("log.enchanted", base), tone: "loot", rarity: "magic" };
+    case "infused":
+      return {
+        text: t("log.infused", {
+          ...base,
+          sigil: tx(content.sigils.get(event.sigil)?.name, locale),
+        }),
+        tone: "loot",
+        rarity: "set",
+      };
+    case "reforged":
+      return { text: t("log.reforged", base), tone: "loot", rarity: "rare" };
+    case "extracted":
+      return { text: t("log.extracted", base), tone: "loot", rarity: "legendary" };
+    case "tormentSet":
+      return {
+        text: event.level
+          ? t("log.tormentSet", { ...base, level: event.level })
+          : t("log.tormentOff", base),
+        tone: event.level ? "bad" : "sys",
+      };
     case "shardsGained":
       return { text: t("log.shards", { ...base, amount: event.amount }), tone: "sys" };
     default:

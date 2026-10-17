@@ -44,7 +44,9 @@ export function ItemSheet({
         <ItemTooltip
           item={item}
           equipped={equippedSlot ? undefined : equipped}
+          worn={Boolean(equippedSlot)}
           setCounts={view.setCounts}
+          sigils={view.derived.sigils}
         />
         <div className="row">
           {isGear && !equippedSlot && (

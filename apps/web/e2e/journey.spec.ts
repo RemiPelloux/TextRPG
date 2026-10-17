@@ -15,8 +15,8 @@ test("a new player plays a first hunt without signing up", async ({ page }) => {
   await expect(page.getByRole("heading", { name: /Victoire|Défaite|Fuite/ })).toBeVisible();
   await closeOverlays(page);
   await expect(page.locator(".combat")).toBeHidden();
-  // Energy was spent (20 → 18) and shows in the top bar.
-  await expect(page.locator(".topbar")).toContainText("18/20");
+  // Energy was spent (an easy hunt costs 2, half price before level 5) and shows in the top bar.
+  await expect(page.locator(".topbar")).toContainText("19/20");
 });
 
 test("the bag opens item details and the market sells potions", async ({ page }) => {
@@ -43,6 +43,7 @@ test("the hero sheet, quests, depths and codex render", async ({ page }) => {
     ["/depths", "Sous la ville"],
     ["/codex", "Codex"],
     ["/forge", "La forge"],
+    ["/cube", "Le Cube"],
     ["/settings", "Réglages"],
   ] as const) {
     await page.goto(url + path);
@@ -109,4 +110,19 @@ test("PWA: manifest, service worker and icons are served", async ({ request }) =
 test("the leaderboard is public", async ({ page }) => {
   await page.goto("/leaderboard?board=daily");
   await expect(page.getByRole("heading", { name: "Classement" })).toBeVisible();
+});
+
+test("the cube opens from level 1 and shows its slots, sigils sit in the codex", async ({
+  page,
+}) => {
+  const { url } = await newHero(page);
+  await page.goto(url + "/cube");
+  await expect(page.getByRole("heading", { name: "Le Cube" })).toBeVisible();
+  await expect(page.getByRole("button", { name: /Transmuter/ })).toBeDisabled();
+  await page.getByRole("tab", { name: "Pouvoirs" }).click();
+  await expect(page.getByText("Emplacement 1")).toBeVisible();
+  await expect(page.getByText("Niveau 10")).toBeVisible();
+  await page.goto(url + "/codex");
+  await page.getByRole("tab", { name: "Sceaux" }).click();
+  await expect(page.getByRole("heading", { name: /Lignée du Loup/ })).toBeVisible();
 });

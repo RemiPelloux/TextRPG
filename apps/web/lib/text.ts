@@ -1,6 +1,6 @@
 /** Turning content and items into words, in the player's language. */
 import { getContent, type Rarity, type StatKey, type Text } from "@textrpg/content";
-import type { ClientItem } from "@textrpg/engine";
+import { type ClientItem, DAY, type Origin, type Proc } from "@textrpg/engine";
 
 import type { Locale, T } from "./i18n";
 
@@ -60,6 +60,10 @@ export function itemName(item: ClientItem, locale: Locale, t: T): string {
     const name = tx(content.legendaries.get(item.legendaryId)?.name, locale) || baseName;
     return item.rarity === "ancestral" ? t("items.ancestral", { name }) : name;
   }
+  if (item.legend) {
+    const name = legendName(item.legend, locale, t);
+    return item.rarity === "ancestral" ? t("items.ancestral", { name }) : name;
+  }
   if (item.setPieceId)
     return tx(content.setPieces.get(item.setPieceId)?.piece.name, locale) || baseName;
   if (item.rareName) {
@@ -74,9 +78,57 @@ export function itemName(item: ClientItem, locale: Locale, t: T): string {
     const suffix = affixes.find((a) => a!.type === "suffix");
     const p = prefix ? tx(prefix.name, locale, feminine) : "";
     const s = suffix ? tx(suffix.name, locale) : "";
-    return (locale === "fr" ? [baseName, p, s] : [p, baseName, s]).filter(Boolean).join(" ");
+    const m = materialName(item, locale);
+    return (locale === "fr" ? [baseName, m, p, s] : [p, m, baseName, s]).filter(Boolean).join(" ");
   }
-  return baseName;
+  const m = materialName(item, locale);
+  return (locale === "fr" ? [baseName, m] : [m, baseName]).filter(Boolean).join(" ");
+}
+
+/** "Iron" (an adjective in English) / "de fer" (a complement in French). */
+export function materialName(item: { material?: string }, locale: Locale): string {
+  return tx(content.materials.find((m) => m.id === item.material)?.name, locale);
+}
+
+/** Procedural legendaries: "Aldric's Lament" / "Complainte d'Aldric". */
+export function legendName(legend: { noun: number; proper: string }, locale: Locale, t: T): string {
+  const noun = tx(content.legendNames.nouns[legend.noun], locale);
+  const elided = /^[aeiouyhàâéèêîôû]/i.test(legend.proper);
+  return t("items.legendName", { noun, proper: legend.proper, de: elided ? "d'" : "de " });
+}
+
+export function legendLore(legend: { lore: number; proper: string }, locale: Locale): string {
+  return tx(content.legendNames.lore[legend.lore], locale).replaceAll("{proper}", legend.proper);
+}
+
+/** What a generated power does, with its numbers. */
+export function procText(proc: Proc, t: T, locale: Locale): string {
+  return t(`procs.${proc.t}`, {
+    chance: Math.round(proc.chance * 100),
+    value: formatNumber(proc.value, locale),
+    turns: proc.turns ?? 0,
+    every: proc.every ?? 0,
+  });
+}
+
+export function procName(template: string, t: T): string {
+  return t(`procName.${template}`);
+}
+
+/** Every drop has a story: where it came from. */
+export function originText(origin: Origin, locale: Locale, t: T): string {
+  const enemy = origin.enemy ? enemyName(origin.enemy, locale, t) : "";
+  if (origin.src === "hunt" && !enemy) return t("origin.huntAnon");
+  return t(`origin.${origin.src}`, { enemy, floor: origin.floor ?? 0 });
+}
+
+export function dayDate(day: number, locale: Locale): string {
+  return new Date(day * DAY).toLocaleDateString(locale === "fr" ? "fr-FR" : "en-US", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  });
 }
 
 export function rarityClass(rarity: Rarity): string {

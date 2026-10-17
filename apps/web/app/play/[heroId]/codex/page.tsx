@@ -4,19 +4,20 @@ import { DIFFICULTY_IDS } from "@textrpg/content";
 import { PITY_STEP } from "@textrpg/engine";
 import { useState } from "react";
 
+import { sigilBonusText } from "@/components/game/items";
 import { Bar } from "@/components/ui/Bar";
 import { Icon } from "@/components/ui/Icon";
 import { useGame } from "@/lib/game";
 import { useI18n } from "@/lib/i18n-client";
 import { content, tx } from "@/lib/text";
 
-type Tab = "bestiary" | "legendaries" | "sets" | "fish" | "achievements" | "odds";
+type Tab = "bestiary" | "legendaries" | "sets" | "sigils" | "fish" | "achievements" | "odds";
 
 export default function Codex() {
   const { t, locale } = useI18n();
   const { view } = useGame();
   const [tab, setTab] = useState<Tab>("bestiary");
-  const tabs: Tab[] = ["bestiary", "legendaries", "sets", "fish", "achievements", "odds"];
+  const tabs: Tab[] = ["bestiary", "legendaries", "sets", "sigils", "fish", "achievements", "odds"];
   const bosses = [...content.bosses.values()];
 
   return (
@@ -136,6 +137,29 @@ export default function Codex() {
               {set.bonuses.map((b) => (
                 <span key={b.pieces} className="ui dim" style={{ fontSize: "0.8rem" }}>
                   ({b.pieces}) {tx(b.text, locale)}
+                </span>
+              ))}
+            </article>
+          ))}
+        </div>
+      )}
+
+      {tab === "sigils" && (
+        <div className="grid-cards">
+          {[...content.sigils.values()].map((sigil) => (
+            <article
+              key={sigil.id}
+              className="panel stack sigil"
+              style={{ ["--sigil" as string]: sigil.color }}
+            >
+              <h2 className="sigil-title">
+                <Icon name={sigil.icon} width={26} height={26} /> {tx(sigil.title, locale)}
+              </h2>
+              <span className="label">{t("codex.sigilFrom", { ilvl: sigil.minIlvl })}</span>
+              <p className="flavor">{tx(sigil.lore, locale)}</p>
+              {sigil.bonuses.map((b) => (
+                <span key={b.pieces} className="ui dim" style={{ fontSize: "0.8rem" }}>
+                  ({b.pieces}) {sigilBonusText(b, view.hero.level, t, locale)}
                 </span>
               ))}
             </article>

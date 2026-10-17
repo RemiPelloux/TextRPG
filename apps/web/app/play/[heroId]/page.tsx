@@ -172,6 +172,12 @@ export default function Camp() {
               text: t("camp.forgeText"),
             },
             {
+              href: `${base}/cube`,
+              icon: "GiCube",
+              title: t("camp.cube"),
+              text: t("camp.cubeText"),
+            },
+            {
               href: `${base}/codex`,
               icon: "GiSpellBook",
               title: t("nav.codex"),
