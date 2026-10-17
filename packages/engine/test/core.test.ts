@@ -155,3 +155,14 @@ describe("client view", () => {
     expect(secret.hiddenAffixes).toBe(1);
   });
 });
+
+describe("event redaction", () => {
+  it("hides unidentified loot in events and in the dungeon stash", async () => {
+    const { redactEvents } = await import("../src");
+    const secret = { uid: "s", baseId: "longsword", rarity: "legendary" as const, ilvl: 9, identified: false, quantity: 1, implicit: {}, affixes: [{ id: "x", tier: 0, value: 1 }], fixed: { strength: 3 }, legendaryId: "moon_half_sword", upgrade: 0, locked: false };
+    expect(JSON.stringify(redactEvents([{ type: "loot", item: secret }]))).not.toContain("moon_half_sword");
+    const state = newGame();
+    state.dungeon = { floor: 1, step: 0, doors: ["fight"], stash: [secret], stashGold: 0, stashShards: 0, atStairs: false };
+    expect(JSON.stringify(toClientView(state, content, NOON))).not.toContain("moon_half_sword");
+  });
+});

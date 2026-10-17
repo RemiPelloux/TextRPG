@@ -24,6 +24,7 @@ import {
   type GameState,
   migrate,
   powerScore,
+  redactEvents,
   sanitizeName,
   toClientView,
 } from "@textrpg/engine";
@@ -107,7 +108,7 @@ export async function act(db: Db, userId: string, heroId: string, input: unknown
     if (finished?.type === "challengeScore" && result.state.challenge) {
       await recordDailyRun(db, result.state.challenge.day, heroId, result.state.hero.name, finished.score);
     }
-    return { ok: true, view: toClientView(result.state, content, now), events: result.events };
+    return { ok: true, view: toClientView(result.state, content, now), events: redactEvents(result.events) };
   }
   return { ok: false, error: "conflict" };
 }

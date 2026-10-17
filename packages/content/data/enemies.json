@@ -133,7 +133,8 @@
       "lore": {
         "en": "The webs in the depths are older than the city above.",
         "fr": "Les toiles des profondeurs sont plus vieilles que la ville au-dessus."
-      }
+      },
+      "gender": "f"
     },
     {
       "id": "demon",
@@ -387,28 +388,32 @@
       "id": "enraged",
       "name": {
         "en": "Enraged",
-        "fr": "Enragé"
+        "fr": "Enragé",
+        "frF": "Enragée"
       }
     },
     {
       "id": "armored",
       "name": {
         "en": "Armored",
-        "fr": "Cuirassé"
+        "fr": "Cuirassé",
+        "frF": "Cuirassée"
       }
     },
     {
       "id": "venomous",
       "name": {
         "en": "Venomous",
-        "fr": "Venimeux"
+        "fr": "Venimeux",
+        "frF": "Venimeuse"
       }
     },
     {
       "id": "burning",
       "name": {
         "en": "Burning",
-        "fr": "Ardent"
+        "fr": "Ardent",
+        "frF": "Ardente"
       }
     }
   ],

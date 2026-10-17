@@ -170,6 +170,8 @@ const Mods = z.object({
 export const EnemyKind = z.object({
   id: z.string(),
   name: Text,
+  /** French grammatical gender, for "l'Orc" / "la Araignée" style names. */
+  gender: z.enum(["m", "f"]).default("m"),
   icon: z.string(),
   weight: z.number().positive(),
   minLevel: z.number().int().default(1),

@@ -14,7 +14,7 @@ import { expToNext, paragonPoints, talentPoints } from "./leveling";
 import { canRest } from "./progression";
 import { activePowers, computeStats, equippedSetCounts, powerScore } from "./stats";
 import { isBloodMoon, isNight, nextTickIn } from "./time";
-import type { Fishing, GameState, Hero, Item, Stats } from "./types";
+import type { Fishing, GameEvent, GameState, Hero, Item, Stats } from "./types";
 
 export type ClientItem = Item & { hiddenAffixes?: number };
 
@@ -28,7 +28,7 @@ export interface ClientView {
   setCounts: Record<string, number>;
   power: number;
   combat: GameState["combat"];
-  dungeon: GameState["dungeon"];
+  dungeon: (Omit<NonNullable<GameState["dungeon"]>, "stash"> & { stash: ClientItem[] }) | null;
   fishing: Omit<Fishing, "answer"> | null;
   challenge: GameState["challenge"];
   quests: GameState["quests"];
@@ -65,6 +65,11 @@ export function redactItem(item: Item): ClientItem {
   return { ...rest, affixes: [], fixed: {}, hiddenAffixes: item.affixes.length };
 }
 
+/** Events carry items too (loot): hide what is not identified yet. */
+export function redactEvents(events: GameEvent[]): GameEvent[] {
+  return events.map((event) => (event.type === "loot" ? { ...event, item: redactItem(event.item) } : event));
+}
+
 export function toClientView(state: GameState, content: Content, now: number): ClientView {
   const stats = computeStats(state, content);
   const equipment: ClientView["hero"]["equipment"] = {};
@@ -84,7 +89,7 @@ export function toClientView(state: GameState, content: Content, now: number): C
     setCounts: Object.fromEntries(equippedSetCounts(state, content)),
     power: powerScore(stats),
     combat: state.combat,
-    dungeon: state.dungeon,
+    dungeon: state.dungeon ? { ...state.dungeon, stash: state.dungeon.stash.map(redactItem) } : null,
     fishing,
     challenge: state.challenge,
     quests: state.quests,

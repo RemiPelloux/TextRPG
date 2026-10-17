@@ -17,4 +17,4 @@ export { Rng, type RngState, seedFrom } from "./rng";
 export { computeStats, critChanceOf, itemStats, PARAGON_PER_POINT, powerScore } from "./stats";
 export { DAY, dayIndex, isBloodMoon, TICK } from "./time";
 export * from "./types";
-export { type ClientItem, type ClientView, redactItem, toClientView } from "./view";
+export { type ClientItem, type ClientView, redactEvents, redactItem, toClientView } from "./view";
