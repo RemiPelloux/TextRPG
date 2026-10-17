@@ -2,22 +2,30 @@
 
 Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), versionnage [SemVer](https://semver.org/lang/fr/).
 
-## [Non publié] — *Le Livre dont tu es le héros*
+## [1.2.0] — 2026-10-17 — *Nuit dorée*
 
 ### Direction artistique
-- Nouvelle identité : un livre-jeu des années 80 plutôt qu'un « dark fantasy » générique. Papier vieilli, encre brun-noir, une seule couleur d'accent (le vermillon), des raretés traitées comme des encres d'imprimerie. Voir [docs/web/ART_DIRECTION.md](docs/web/ART_DIRECTION.md).
-- Trois voix typographiques : IM Fell English (titres, lettrines, noms), EB Garamond (récit), Courier Prime (chiffres et feuille d'aventure, en hommage au terminal de 2022).
-- Signatures :
-  - sommaire avec points de conduite et numéros de page ;
-  - chronique en notes en marge, en paragraphes numérotés (« § 214 ») ;
-  - créatures et feu de camp en planches gravées ;
-  - boutons en tampons encreurs, jauges hachurées ;
-  - couverture avec ex-libris ;
-  - signets sur mobile.
-- Deux éditions : Papier (par défaut) et Veillée (nuit), choisies dans les réglages, appliquées avant le premier affichage.
-- Passe de mise en page : une grille commune à la barre du haut et à la page, échelle d'espacement unique, marges de 16 px sur téléphone et 28 px dès la tablette ; classement corrigé sur mobile.
+- Le jeu devient illustré : une nuit dorée sur le royaume.
+  - **Scènes dessinées en vectoriel et animées** : titre (lune, château, aqueduc, héros à la cape rouge), camp (tentes, bannière, feu vivant), chasse, Profondeurs, lune de sang, décor de chaque combat.
+  - **Portrait du héros** teinté par sa classe, dans un médaillon doré.
+  - **Matières** : cadres dorés à coins ornés (cadre rouge pour les événements), boutons d'or avec reflet et boutons d'acier cerclés d'or, toujours avec icône.
+- Écrans retravaillés :
+  - **titre** : emblème, logo doré, panneau d'entrée avec nom aléatoire au dé, raccourcis ronds ;
+  - **barre du héros** : portrait, jauges, bourse, réglages ;
+  - **camp** : bannière illustrée, raccourcis Carte/Quêtes/Inventaire, carte du feu de camp, événement lune de sang ;
+  - **combat** : décor, emblème de l'ennemi, chronique encadrée, portrait du héros.
+- Mouvement :
+  - **ambiance** : étoiles, brume, braises, flammes, parallaxe, monstre qui flotte ;
+  - **interface** : reflet sur l'or ;
+  - désactivé par « mouvement réduit ».
+- Polices : Cinzel et Cinzel Decorative (titres), EB Garamond (texte).
+- Mise en page :
+  - grille commune barre du haut / page, échelle d'espacement, marges 16 px / 28 px ;
+  - aucune page plus large que l'écran, vérifié par les tests e2e ;
+  - corrigé : une étiquette élargissait la page Chasse sur téléphone.
+- README refait avec bannière animée et démonstrations animées.
 
- — 2026-10-17 — *Forge infinie*
+## [1.1.0] — 2026-10-17 — *Forge infinie*
 
 Chaque objet est unique, les sets comptent dès le niveau 1, le Cube ouvre le craft dès le premier jour, et l'équilibrage est désormais mesuré par des bots qui jouent des semaines entières.
 
