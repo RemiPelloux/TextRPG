@@ -162,8 +162,20 @@ export async function deleteHero(db: Db, userId: string, heroId: string): Promis
   await db.delete(heroes).where(and(eq(heroes.id, heroId), eq(heroes.userId, userId)));
 }
 
-export async function pruneActionLog(db: Db, olderThan: Date): Promise<void> {
-  await db.delete(actionLog).where(lt(actionLog.createdAt, olderThan));
+export async function pruneActionLog(db: Db, olderThan: Date): Promise<number> {
+  const rows = await db
+    .delete(actionLog)
+    .where(lt(actionLog.createdAt, olderThan))
+    .returning({ id: actionLog.id });
+  return rows.length;
+}
+
+export async function pruneSessions(db: Db, now: Date): Promise<number> {
+  const rows = await db
+    .delete(sessions)
+    .where(lt(sessions.expiresAt, now))
+    .returning({ tokenHash: sessions.tokenHash });
+  return rows.length;
 }
 
 // --- Leaderboards ------------------------------------------------------------

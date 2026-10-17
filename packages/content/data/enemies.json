@@ -451,8 +451,8 @@
       "energy": 3,
       "levelOffset": 0,
       "mods": {
-        "hp": 1.05,
-        "atk": 1.2,
+        "hp": 1.2,
+        "atk": 1.35,
         "def": 1,
         "spd": 1
       },
@@ -475,8 +475,8 @@
       "energy": 5,
       "levelOffset": 1,
       "mods": {
-        "hp": 1.45,
-        "atk": 1.45,
+        "hp": 1.6,
+        "atk": 1.6,
         "def": 1.15,
         "spd": 1.05
       },

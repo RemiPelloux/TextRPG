@@ -47,4 +47,6 @@ for (const level of levels) {
     );
   }
 }
-console.log("\nTargets: easy ≈ 95%, normal ≈ 85%, hard ≈ 55%, hell ≈ 20%; 3-8 turns per fight.");
+console.log(
+  "\nTargets (docs/BALANCE.md): easy ≈ 100%, normal ≥ 95% with 65-80% health left, hard 55-90%, hell 15-60%; 2-8 turns.",
+);

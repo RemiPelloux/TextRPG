@@ -11,8 +11,12 @@ export const MAX_LEVEL = 20;
 export const CLASS_LEVEL = 5;
 export const PARAGON_EXP = 7000;
 
+/** The first levels come fast: the class (level 5) should unlock on the first day. */
+const FIRST_STEPS = [60, 130, 230, 360];
+
 export function expToNext(level: number): number {
-  return level >= MAX_LEVEL ? PARAGON_EXP : Math.round(100 * Math.pow(level, 1.4));
+  if (level >= MAX_LEVEL) return PARAGON_EXP;
+  return FIRST_STEPS[level - 1] ?? Math.round(100 * Math.pow(level, 1.5));
 }
 
 export function talentPoints(hero: Hero): number {

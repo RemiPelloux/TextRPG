@@ -184,9 +184,15 @@ importers:
       '@textrpg/content':
         specifier: workspace:*
         version: link:../../packages/content
+      '@textrpg/db':
+        specifier: workspace:*
+        version: link:../../packages/db
       '@textrpg/engine':
         specifier: workspace:*
         version: link:../../packages/engine
+      '@textrpg/server':
+        specifier: workspace:*
+        version: link:../../packages/server
     devDependencies:
       '@types/node':
         specifier: ^24.19.2

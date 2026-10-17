@@ -2,6 +2,7 @@ import { PROC_TEMPLATES } from "@textrpg/content";
 import { describe, expect, it } from "vitest";
 
 import { computeStats, type GameState, itemStats, migrate, type Proc } from "../src";
+import { simpleItem } from "../src/items";
 import { generateEquipment, rollAffix } from "../src/loot";
 import { rollProc } from "../src/procs";
 import { activeProcs, sigilCounts } from "../src/stats";
@@ -27,7 +28,8 @@ describe("the item generator", () => {
         item.rareName,
       ]);
     expect(new Set(items.map((i) => i.seed)).size).toBeGreaterThan(1490);
-    expect(new Set(items.map(fingerprint)).size).toBe(items.length);
+    // Identical twins can happen among plain commons, but almost never.
+    expect(new Set(items.map(fingerprint)).size).toBeGreaterThan(items.length * 0.995);
     expect(new Set(items.map((i) => i.material)).size).toBeGreaterThan(20);
   });
 
@@ -225,6 +227,16 @@ describe("the cube", () => {
     expect(content.items.get(result.baseId)!.slot).toBe("boots");
     expect(result.ilvl).toBe(6);
     expect(after.hero.bag.filter((i) => items.some((x) => x.uid === i.uid))).toHaveLength(0);
+  });
+
+  it("keeps tools out (fishing rods have nothing to transmute)", () => {
+    const state = rich();
+    const ctx = ctxFor(state, "rods");
+    const rods = [0, 1, 2].map(() => simpleItem(ctx, "fishing_rod"));
+    state.hero.bag.push(...rods);
+    const uids = rods.map((i) => i.uid) as [string, string, string];
+    expect(() => act(state, { type: "cube.transmute", uids })).toThrow("notForCube");
+    expect(() => act(state, { type: "cube.enchant", uid: uids[0] })).toThrow("notForCube");
   });
 
   it("refuses mixed rarities", () => {

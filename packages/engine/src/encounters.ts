@@ -4,12 +4,12 @@ import type { DifficultyId } from "@textrpg/content";
 import { autoFight, type CombatMove, type CombatOutcome, combatMove, startCombat } from "./combat";
 import type { Ctx } from "./ctx";
 import { type Mods, spawnBoss, spawnEnemy } from "./enemies";
-import { grantExp, MAX_LEVEL } from "./leveling";
+import { CLASS_LEVEL, grantExp, MAX_LEVEL } from "./leveling";
 import { rollLoot } from "./loot";
 import { onKill } from "./quests";
 import { computeStats } from "./stats";
 import { isBloodMoon, weekIndex } from "./time";
-import type { Combat, GameState, Origin } from "./types";
+import type { Combat, GameState, Hero, Origin } from "./types";
 
 export const WEEKLY_BOSS = "blood_moon_wyrm";
 export const WEEKLY_ENERGY = 5;
@@ -77,11 +77,16 @@ export function spendEnergy(ctx: Ctx, amount: number): void {
   ctx.emit({ type: "energySpent", amount });
 }
 
+/** Before the class unlocks, hunts cost half: the first day should never feel stingy. */
+export function huntEnergy(hero: Pick<Hero, "level">, difficulty: { energy: number }): number {
+  return hero.level < CLASS_LEVEL ? Math.ceil(difficulty.energy / 2) : difficulty.energy;
+}
+
 export function startHunt(ctx: Ctx, difficultyId: DifficultyId): void {
   assertIdle(ctx);
   const difficulty = ctx.content.difficulties.get(difficultyId);
   if (!difficulty) ctx.fail("unknownDifficulty");
-  spendEnergy(ctx, difficulty.energy);
+  spendEnergy(ctx, huntEnergy(ctx.hero, difficulty));
   const level = Math.max(1, ctx.hero.level + difficulty.levelOffset + ctx.hero.torment);
   const bloodMoon = isBloodMoon(ctx.state.time.day);
   const enemy = spawnEnemy(ctx, level, difficulty, {
@@ -138,6 +143,17 @@ function decrementBuffs(ctx: Ctx): void {
   ctx.hero.buffs = ctx.hero.buffs.filter((b) => b.fights > 0);
 }
 
+/**
+ * Second wind: a won hunt gives back some health, so fights chain into a session instead of
+ * stopping after three. Generous before the class unlocks.
+ */
+export function secondWind(ctx: Ctx, maxHp: number): number {
+  const share = ctx.hero.level < CLASS_LEVEL ? 0.15 : 0.06;
+  const before = ctx.hero.health;
+  ctx.hero.health = Math.min(maxHp, before + Math.ceil(maxHp * share));
+  return ctx.hero.health - before;
+}
+
 function rewardKill(ctx: Ctx, combat: Combat): void {
   const { info } = combat.enemy;
   const counters = ctx.state.counters;
@@ -187,8 +203,9 @@ function rewardKill(ctx: Ctx, combat: Combat): void {
     }
   }
   ctx.hero.health = combat.hero.hp;
+  const healed = context.type === "hunt" ? secondWind(ctx, combat.hero.maxHp) : 0;
   const exp = grantExp(ctx, base.exp);
-  ctx.emit({ type: "victory", exp, gold, shards });
+  ctx.emit({ type: "victory", exp, gold, shards, ...(healed ? { healed } : {}) });
 
   onKill(ctx, info.kindId, {
     ...(info.bossId ? { bossId: info.bossId } : {}),

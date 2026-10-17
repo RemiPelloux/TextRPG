@@ -38,8 +38,8 @@ const EARLY_SET_CHANCE = 0.012;
 const EARLY_SET_ILVL = 10;
 
 export const SIGIL_CHANCE: Record<Rarity, number> = {
-  common: 0.12,
-  magic: 0.35,
+  common: 0.2,
+  magic: 0.45,
   rare: 0.5,
   legendary: 0.45,
   set: 0,
@@ -47,6 +47,8 @@ export const SIGIL_CHANCE: Record<Rarity, number> = {
 };
 /** When the hero already wears sigils, new sigils favor them ("smart loot"). */
 const SMART_SIGIL_CHANCE = 0.4;
+/** A lone piece calls for its twin: the first 2-piece bonus should come quickly. */
+const PAIR_SIGIL_CHANCE = 0.65;
 
 export function rollRarity(ctx: Ctx, table: RarityTable, magicFind: number, ilvl: number): Rarity {
   const mf = 1 + magicFind / 100;
@@ -214,6 +216,9 @@ function rollSigil(ctx: Ctx, rarity: Rarity, ilvl: number): string | undefined {
   const worn = Object.values(ctx.hero.equipment)
     .map((i) => i?.sigil)
     .filter((s): s is string => Boolean(s) && pool.some((p) => p.id === s));
+  const lone = worn.filter((s) => worn.indexOf(s) === worn.lastIndexOf(s));
+  if (lone.length && worn.length === lone.length && ctx.rng.chance(PAIR_SIGIL_CHANCE))
+    return ctx.rng.pick(lone);
   if (worn.length && ctx.rng.chance(SMART_SIGIL_CHANCE)) return ctx.rng.pick(worn);
   return ctx.rng.pick(pool).id;
 }

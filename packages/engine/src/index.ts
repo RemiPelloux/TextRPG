@@ -11,7 +11,15 @@ export {
   STOCK,
   upgradeCost,
 } from "./economy";
-export { killRewards, WEEKLY_ENERGY } from "./encounters";
+export {
+  huntEnergy,
+  killRewards,
+  MAX_MERCY,
+  maxTorment,
+  TORMENT_MAX,
+  tormentRewards,
+  WEEKLY_ENERGY,
+} from "./encounters";
 export { FISH_ENERGY } from "./fishing";
 export { baseOf, buyValue, RARITY_ORDER, SALVAGE_SHARDS, sellValue } from "./items";
 export { CLASS_LEVEL, expToNext, MAX_LEVEL } from "./leveling";

@@ -48,17 +48,25 @@ function pay(ctx: Ctx, cost: { shards: number; gold: number }): void {
   ctx.hero.shards -= cost.shards;
 }
 
+/** Only combat gear goes in the cube: tools (fishing rods) have no affixes to work with. */
+function assertCubeable(ctx: Ctx, item: Item | undefined): asserts item is Item {
+  if (!item) ctx.fail("unknownItem");
+  const base = baseOf(ctx.content, item.baseId);
+  if (base.kind !== "equipment") ctx.fail("unknownItem");
+  if (base.slot === "tool") ctx.fail("notForCube");
+}
+
 /** Equipment you own: in the bag or worn. */
 function ownedGear(ctx: Ctx, uid: string): Item {
   const item =
     findInBag(ctx.state, uid) ?? Object.values(ctx.hero.equipment).find((i) => i?.uid === uid);
-  if (!item || baseOf(ctx.content, item.baseId).kind !== "equipment") ctx.fail("unknownItem");
+  assertCubeable(ctx, item);
   return item;
 }
 
 function bagGear(ctx: Ctx, uid: string): Item {
   const item = findInBag(ctx.state, uid);
-  if (!item || baseOf(ctx.content, item.baseId).kind !== "equipment") ctx.fail("unknownItem");
+  assertCubeable(ctx, item);
   if (item.locked) ctx.fail("itemLocked");
   return item;
 }

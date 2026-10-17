@@ -4,6 +4,7 @@
  */
 import type { Content } from "@textrpg/content";
 
+import { clonePlain } from "./clone";
 import { nextChallengeFight, onChallengeEnd, startChallenge } from "./challenge";
 import { Ctx, GameError } from "./ctx";
 import {
@@ -206,7 +207,7 @@ function dispatch(ctx: Ctx, action: Action): void {
  * Resolve one action. Never mutates the input: on a GameError the caller keeps the old state.
  */
 export function apply(input: GameState, action: Action, opts: ApplyOptions): ApplyResult {
-  const state = migrate(structuredClone(input));
+  const state = migrate(clonePlain(input));
   const rng = new Rng(state.rng);
   const ctx = new Ctx(state, opts.content, rng, opts.now);
 

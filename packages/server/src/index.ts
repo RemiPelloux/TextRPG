@@ -22,5 +22,7 @@ export {
   MAX_HEROES,
   ServiceError,
 } from "./game";
+export { boardCache, TtlCache } from "./cache";
+export { ACTION_LOG_DAYS, runMaintenance } from "./maintenance";
 export { energyFullTargets } from "./push";
 export { RateLimiter } from "./rateLimit";

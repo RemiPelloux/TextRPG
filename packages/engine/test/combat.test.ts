@@ -7,15 +7,21 @@ import { act, fightOut, godMode, newGame, ofType, play, weakling } from "./helpe
 describe("hunting", () => {
   it("costs energy and starts a fight scaled by difficulty", () => {
     const { state, events } = act(newGame(), { type: "hunt.start", difficulty: "normal" });
-    expect(state.hero.energy).toBe(17);
+    // Beginners pay half (rounded up) until the class unlocks.
+    expect(state.hero.energy).toBe(18);
     expect(state.combat?.enemy.info.level).toBe(1);
     expect(ofType(events, "combatStart")).toHaveLength(1);
+    const veteran = newGame();
+    veteran.hero.level = 5;
+    expect(act(veteran, { type: "hunt.start", difficulty: "normal" }).state.hero.energy).toBe(17);
   });
 
   it("refuses without enough energy", () => {
     const state = newGame();
     state.hero.energy = 1;
-    expect(() => act(state, { type: "hunt.start", difficulty: "easy" })).toThrow("notEnoughEnergy");
+    expect(() => act(state, { type: "hunt.start", difficulty: "normal" })).toThrow(
+      "notEnoughEnergy",
+    );
   });
 
   it("only allows combat actions during a fight", () => {

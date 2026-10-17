@@ -73,6 +73,18 @@ function candidates(state: GameState, rng: Rng): Action[] {
     { type: "class.choose", classId: rng.pick(["warrior", "ranger", "occultist"] as const) },
     { type: "talent.learn", talentId: rng.pick(["w_toughness", "r_precision", "o_hunger"]) },
     { type: "paragon.spend", stat: "maxHealth" },
+    { type: "cube.transmute", uids: [pickUid(), pickUid(), pickUid()] },
+    { type: "cube.enchant", uid: pickUid() },
+    { type: "cube.enchantPick", index: rng.int(0, 3) },
+    { type: "cube.infuse", uid: pickUid(), donorUid: pickUid() },
+    { type: "cube.reforge", uid: pickUid() },
+    { type: "cube.extract", uid: pickUid() },
+    {
+      type: "cube.slot",
+      slot: rng.int(0, 2),
+      key: state.cube.powers.length ? rng.pick(state.cube.powers).key : null,
+    },
+    { type: "torment.set", level: rng.int(0, 3) },
     ...(equipped.length ? [{ type: "item.unequip", slot: rng.pick(equipped) } as Action] : []),
   ];
 }
@@ -94,6 +106,14 @@ function checkInvariants(state: GameState): void {
     expect(state.combat.enemy.hp).toBeGreaterThan(0);
   }
   expect(hero.level).toBeLessThanOrEqual(20);
+  expect(hero.torment).toBeGreaterThanOrEqual(0);
+  expect(state.mercy).toBeLessThanOrEqual(3);
+  const powers = new Set(state.cube.powers.map((p) => p.key));
+  expect(powers.size).toBe(state.cube.powers.length);
+  const slotted = state.cube.slots.filter((k): k is string => k !== null);
+  expect(slotted.every((k) => powers.has(k))).toBe(true);
+  expect(new Set(slotted).size).toBe(slotted.length);
+  if (state.cube.offer) expect(state.cube.offer.options.length).toBe(3);
 }
 
 describe("soak", () => {

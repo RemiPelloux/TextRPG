@@ -24,8 +24,10 @@ import {
   parseAction,
   RateLimiter,
   resolveSession,
+  runMaintenance,
   ServiceError,
   startGuestSession,
+  TtlCache,
 } from "../src";
 
 const URL =
@@ -173,5 +175,40 @@ describe("rate limiter", () => {
     const limiter = new RateLimiter({ capacity: 3, refillPerSecond: 1 });
     expect([1, 2, 3, 4].map(() => limiter.take("u", 0))).toEqual([true, true, true, false]);
     expect(limiter.take("u", 1000)).toBe(true);
+  });
+});
+
+describe("maintenance", () => {
+  it("prunes old action logs and expired sessions, keeping the rest", async () => {
+    const { userId } = await startGuestSession(db);
+    const heroId = await createHero(db, userId, { name: "Aria", tzOffset: 0 }, NOW);
+    await act(db, userId, heroId, { type: "rest" }, NOW);
+    await db.insert(schema.actionLog).values({
+      heroId,
+      action: { type: "sync" },
+      version: 0,
+      createdAt: new Date(Date.now() - 40 * 86_400_000),
+    });
+    await db.insert(schema.sessions).values({
+      tokenHash: "expired",
+      userId,
+      expiresAt: new Date(Date.now() - 1000),
+    });
+    expect(await runMaintenance(db)).toEqual({ actions: 1, sessions: 1 });
+    const left = await db.select().from(schema.actionLog);
+    expect(left.length).toBeGreaterThan(0);
+  });
+});
+
+describe("board cache", () => {
+  it("serves one load to everyone until it expires, and forgets failures", async () => {
+    const cache = new TtlCache(1000);
+    let loads = 0;
+    const load = async () => ++loads;
+    await Promise.all([cache.get("k", load, 0), cache.get("k", load, 10)]);
+    expect(await cache.get("k", load, 999)).toBe(1);
+    expect(await cache.get("k", load, 1000)).toBe(2);
+    await expect(cache.get("bad", () => Promise.reject(new Error("db")), 0)).rejects.toThrow();
+    expect(await cache.get("bad", load, 1)).toBe(3);
   });
 });

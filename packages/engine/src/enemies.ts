@@ -38,8 +38,8 @@ export function enemyStats(level: number, ...mods: Mods[]): Stats {
   );
   // Heroes grow faster than linearly (gear tiers, talents): so do enemies.
   const growth = 1 + 0.035 * level;
-  // Below level 5 the hero has almost no gear yet: enemies go easier on newcomers.
-  const novice = { hp: Math.min(1, 0.7 + 0.06 * level), atk: Math.min(1, 0.55 + 0.09 * level) };
+  // Until level 6 the hero has almost no gear yet: enemies go easier on newcomers.
+  const novice = { hp: Math.min(1, 0.66 + 0.055 * level), atk: Math.min(1, 0.5 + 0.08 * level) };
   const stats = emptyStats();
   stats.maxHealth = Math.round((45 + 22 * level) * growth * novice.hp * m.hp);
   stats.strength = Math.round((2.5 + 2 * level) * growth * novice.atk * m.atk * 10) / 10;

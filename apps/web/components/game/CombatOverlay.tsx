@@ -1,7 +1,14 @@
 "use client";
 
 import { getContent, type StatusId } from "@textrpg/content";
-import type { ClientItem, Combat, EnemyInfo, GameEvent, Status } from "@textrpg/engine";
+import {
+  type ClientItem,
+  type Combat,
+  type EnemyInfo,
+  type GameEvent,
+  huntEnergy,
+  type Status,
+} from "@textrpg/engine";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Bar } from "@/components/ui/Bar";
@@ -351,7 +358,7 @@ export function CombatOverlay() {
     scene.context.type === "hunt" && !view.combat
       ? (() => {
           const difficulty = scene.context.difficulty;
-          const cost = content.difficulties.get(difficulty)!.energy;
+          const cost = huntEnergy(view.hero, content.difficulties.get(difficulty)!);
           return {
             difficulty,
             cost,

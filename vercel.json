@@ -4,5 +4,8 @@
   "installCommand": "pnpm install --frozen-lockfile",
   "outputDirectory": "apps/web/.next",
   "framework": "nextjs",
-  "crons": [{ "path": "/api/cron/notify", "schedule": "0 17 * * *" }]
+  "crons": [
+    { "path": "/api/cron/notify", "schedule": "0 17 * * *" },
+    { "path": "/api/cron/maintenance", "schedule": "17 4 * * *" }
+  ]
 }

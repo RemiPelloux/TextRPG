@@ -5,11 +5,16 @@
   "type": "module",
   "scripts": {
     "start": "tsx src/index.ts",
-    "typecheck": "tsc --noEmit"
+    "progression": "tsx src/progression.ts",
+    "bench": "tsx src/bench.ts",
+    "typecheck": "tsc --noEmit",
+    "load": "tsx src/load.ts"
   },
   "dependencies": {
     "@textrpg/content": "workspace:*",
-    "@textrpg/engine": "workspace:*"
+    "@textrpg/engine": "workspace:*",
+    "@textrpg/db": "workspace:*",
+    "@textrpg/server": "workspace:*"
   },
   "devDependencies": {
     "tsx": "^4.23.15",

@@ -1,7 +1,7 @@
 "use client";
 
 import { DIFFICULTY_IDS } from "@textrpg/content";
-import { CHALLENGE_FIGHTS, WEEKLY_ENERGY } from "@textrpg/engine";
+import { CHALLENGE_FIGHTS, huntEnergy, WEEKLY_ENERGY } from "@textrpg/engine";
 
 import { Icon } from "@/components/ui/Icon";
 import { useGame } from "@/lib/game";
@@ -52,7 +52,8 @@ export default function Hunt() {
         {DIFFICULTY_IDS.map((id) => {
           const difficulty = content.difficulties.get(id)!;
           const level = Math.max(1, hero.level + difficulty.levelOffset);
-          const enough = hero.energy >= difficulty.energy;
+          const cost = huntEnergy(hero, difficulty);
+          const enough = hero.energy >= cost;
           return (
             <article key={id} className={`panel stack ${id === "hell" ? "ornate" : ""}`}>
               <div className="spread">
@@ -98,7 +99,7 @@ export default function Hunt() {
                   void dispatch({ type: "hunt.start", difficulty: id });
                 }}
               >
-                {t("hunt.go")} <span className="cost">⚡{difficulty.energy}</span>
+                {t("hunt.go")} <span className="cost">⚡{cost}</span>
               </button>
             </article>
           );

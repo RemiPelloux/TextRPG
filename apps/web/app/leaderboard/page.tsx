@@ -1,4 +1,5 @@
 import { dailyLeaderboard, deepestHeroes, getDb, listHeroes, topHeroes } from "@textrpg/db";
+import { boardCache } from "@textrpg/server";
 import { dayIndex } from "@textrpg/engine";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -33,7 +34,7 @@ export default async function Leaderboard({
 
   let table;
   if (board === "depth") {
-    const rows = await deepestHeroes(db);
+    const rows = await boardCache.get("depth", () => deepestHeroes(db));
     table = (
       <table className="board">
         <thead>
@@ -59,7 +60,7 @@ export default async function Leaderboard({
       </table>
     );
   } else if (board === "daily") {
-    const rows = await dailyLeaderboard(db, today);
+    const rows = await boardCache.get(`daily:${today}`, () => dailyLeaderboard(db, today));
     table = (
       <table className="board">
         <thead>
@@ -81,7 +82,7 @@ export default async function Leaderboard({
       </table>
     );
   } else {
-    const rows = await topHeroes(db);
+    const rows = await boardCache.get("power", () => topHeroes(db));
     table = (
       <table className="board">
         <thead>

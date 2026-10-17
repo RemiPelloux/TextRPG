@@ -36,7 +36,7 @@ export const sessions = pgTable(
     createdAt: timestamp({ withTimezone: true }).notNull().defaultNow(),
     expiresAt: timestamp({ withTimezone: true }).notNull(),
   },
-  (t) => [index("sessions_user_idx").on(t.userId)],
+  (t) => [index("sessions_user_idx").on(t.userId), index("sessions_expires_idx").on(t.expiresAt)],
 );
 
 /**
@@ -81,7 +81,11 @@ export const actionLog = pgTable(
     version: integer().notNull(),
     createdAt: timestamp({ withTimezone: true }).notNull().defaultNow(),
   },
-  (t) => [index("action_log_hero_idx").on(t.heroId, t.createdAt)],
+  (t) => [
+    index("action_log_hero_idx").on(t.heroId, t.createdAt),
+    // The daily maintenance deletes by age across every hero.
+    index("action_log_created_idx").on(t.createdAt),
+  ],
 );
 
 /** One daily challenge result per hero and day. */

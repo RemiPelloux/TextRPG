@@ -406,7 +406,7 @@ export type GameEvent =
   | { type: "counter" }
   | { type: "mystery"; attribute: Attribute }
   | { type: "flee"; success: boolean }
-  | { type: "victory"; exp: number; gold: number; shards: number }
+  | { type: "victory"; exp: number; gold: number; shards: number; healed?: number }
   | { type: "defeat"; goldLost: number; stashLost: boolean }
   | { type: "loot"; item: Item; lost?: boolean }
   | { type: "goldGained"; amount: number; source: string }

@@ -11,7 +11,8 @@ import {
   toClientView,
 } from "../src";
 import { grantExp } from "../src/leveling";
-import { act, content, ctxFor, newGame, NOON } from "./helpers";
+import { clonePlain } from "../src/clone";
+import { act, content, ctxFor, fightOut, godMode, newGame, NOON } from "./helpers";
 
 describe("rng", () => {
   it("is deterministic for a seed", () => {
@@ -61,7 +62,8 @@ describe("new game", () => {
 
 describe("leveling", () => {
   it("follows a growing curve and caps at 20", () => {
-    expect(expToNext(1)).toBe(100);
+    expect(expToNext(1)).toBe(60);
+    expect(expToNext(5)).toBe(Math.round(100 * 5 ** 1.5));
     expect(expToNext(2)).toBeGreaterThan(expToNext(1));
     expect(expToNext(MAX_LEVEL)).toBeGreaterThan(0);
   });
@@ -71,7 +73,7 @@ describe("leveling", () => {
     state.hero.health = 10;
     const ctx = ctxFor(state);
     const before = { ...state.hero.base };
-    grantExp(ctx, 130);
+    grantExp(ctx, 90);
     expect(state.hero.level).toBe(2);
     expect(state.hero.exp).toBe(30);
     expect(state.hero.base.maxHealth).toBe(before.maxHealth + 10);
@@ -198,5 +200,19 @@ describe("event redaction", () => {
       atStairs: false,
     };
     expect(JSON.stringify(toClientView(state, content, NOON))).not.toContain("moon_half_sword");
+  });
+});
+
+describe("state cloning", () => {
+  it("copies a lived-in save exactly, sharing nothing", () => {
+    let state = godMode(newGame("clone"));
+    for (let i = 0; i < 10; i++)
+      state = fightOut(act(state, { type: "hunt.start", difficulty: "hard" }).state).state;
+    const copy = clonePlain(state);
+    expect(copy).toEqual(structuredClone(state));
+    copy.hero.bag.push(copy.hero.bag[0]!);
+    copy.hero.base.strength += 1;
+    expect(state.hero.bag.length).not.toBe(copy.hero.bag.length);
+    expect(state.hero.base.strength).not.toBe(copy.hero.base.strength);
   });
 });
