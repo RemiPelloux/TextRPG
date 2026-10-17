@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 28" width="720" height="28" aria-hidden="true">
+<style>
+.l { stroke: #d4a24c; stroke-width: 1.2; stroke-dasharray: 330; stroke-dashoffset: 330; animation: draw 1.6s ease-out forwards; }
+.gem { fill: #f3d07a; transform-box: fill-box; transform-origin: center; animation: pulse 3.2s ease-in-out infinite; }
+.dot { fill: #d4a24c; opacity: .8; }
+@keyframes draw { to { stroke-dashoffset: 0 } }
+@keyframes pulse { 0%,100% { transform: scale(1) rotate(0); opacity: .8 } 50% { transform: scale(1.25) rotate(90deg); opacity: 1 } }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; stroke-dashoffset: 0 !important; } }
+</style>
+<path class="l" d="M342 14 H12"/><path class="l" d="M378 14 H708"/>
+<circle class="dot" cx="8" cy="14" r="2.5"/><circle class="dot" cx="712" cy="14" r="2.5"/>
+<path class="gem" d="M360 4 L370 14 L360 24 L350 14 Z"/>
+</svg>

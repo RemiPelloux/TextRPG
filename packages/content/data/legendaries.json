@@ -1,0 +1,289 @@
+[
+  {
+    "id": "moon_half_sword",
+    "baseId": "longsword",
+    "name": {
+      "en": "Half-sword of the Moon",
+      "fr": "Demi-lame de la Lune"
+    },
+    "minIlvl": 7,
+    "fixed": {
+      "strength": [4, 6],
+      "critChance": [3, 5]
+    },
+    "power": "moonblade",
+    "powerText": {
+      "en": "At night (20:00 to 06:00), your critical hits deal +100% damage.",
+      "fr": "La nuit (de 20 h à 6 h), tes coups critiques infligent +100 % de dégâts."
+    },
+    "flavor": {
+      "en": "An antique sword. The legend says it was forged with moonstone. The legend forgot to say which half is missing.",
+      "fr": "Une épée antique. La légende dit qu'elle fut forgée dans la pierre de lune. Elle oublie de dire où est passée l'autre moitié."
+    }
+  },
+  {
+    "id": "the_mysterious_ring",
+    "baseId": "mysterious_ring",
+    "name": {
+      "en": "The Mysterious Ring",
+      "fr": "L'Anneau Mystérieux"
+    },
+    "minIlvl": 1,
+    "fixed": {
+      "luck": [3, 5],
+      "magicFind": [10, 15]
+    },
+    "power": "mystery_ring",
+    "powerText": {
+      "en": "At the start of each fight, one random attribute (strength, defense, speed or luck) is doubled.",
+      "fr": "Au début de chaque combat, un attribut au hasard (force, défense, vitesse ou chance) est doublé."
+    },
+    "flavor": {
+      "en": "This is mysterious. This is dangerous. You put it on anyway.",
+      "fr": "C'est mystérieux. C'est dangereux. Tu l'enfiles quand même."
+    }
+  },
+  {
+    "id": "strung_orc_teeth",
+    "baseId": "bone_necklace",
+    "name": {
+      "en": "Strung Orc Teeth",
+      "fr": "Dents d'Orc enfilées"
+    },
+    "minIlvl": 2,
+    "fixed": {
+      "strength": [3, 5],
+      "maxHealth": [15, 25]
+    },
+    "power": "orc_trophy",
+    "powerText": {
+      "en": "+5% damage for each orc killed today (max +50%).",
+      "fr": "+5 % de dégâts par orc tué aujourd'hui (max +50 %)."
+    },
+    "flavor": {
+      "en": "Every tooth is a story. None of them end well for the orc.",
+      "fr": "Chaque dent est une histoire. Aucune ne finit bien pour l'orc."
+    }
+  },
+  {
+    "id": "mail_of_the_last_bastion",
+    "baseId": "chainmail",
+    "name": {
+      "en": "Mail of the Last Bastion",
+      "fr": "Cotte du Dernier Rempart"
+    },
+    "minIlvl": 4,
+    "fixed": {
+      "defense": [5, 7],
+      "maxHealth": [20, 30]
+    },
+    "power": "last_bastion",
+    "powerText": {
+      "en": "Once per fight, survive a lethal blow with 1 health.",
+      "fr": "Une fois par combat, survis à un coup mortel avec 1 PV."
+    },
+    "flavor": {
+      "en": "Its last wearer held the gate alone for three days. The gate fell. He didn't.",
+      "fr": "Son dernier porteur a tenu la porte seul pendant trois jours. La porte est tombée. Pas lui."
+    }
+  },
+  {
+    "id": "the_long_thirst",
+    "baseId": "dagger",
+    "name": {
+      "en": "The Long Thirst",
+      "fr": "La Longue Soif"
+    },
+    "minIlvl": 6,
+    "fixed": {
+      "lifeSteal": [2, 4],
+      "critChance": [3, 4]
+    },
+    "power": "vampire_fang",
+    "powerText": {
+      "en": "Heal for 20% of all damage you deal.",
+      "fr": "Tu te soignes de 20 % de tous les dégâts que tu infliges."
+    },
+    "flavor": {
+      "en": "Carved from the fang of something that never learned to stop drinking.",
+      "fr": "Taillée dans le croc d'une chose qui n'a jamais appris à cesser de boire."
+    }
+  },
+  {
+    "id": "thunderstep_greaves",
+    "baseId": "iron_boots",
+    "name": {
+      "en": "Thunderstep Greaves",
+      "fr": "Grèves du Pas-de-Tonnerre"
+    },
+    "minIlvl": 8,
+    "fixed": {
+      "speed": [3, 4],
+      "defense": [4, 6]
+    },
+    "power": "thunderstep",
+    "powerText": {
+      "en": "Your hits have a 20% chance to stun the enemy for 1 turn.",
+      "fr": "Tes coups ont 20 % de chances d'étourdir l'ennemi pendant 1 tour."
+    },
+    "flavor": {
+      "en": "The storm walks in them. Try not to stand in puddles.",
+      "fr": "L'orage marche dedans. Évite les flaques."
+    }
+  },
+  {
+    "id": "ring_of_the_loaded_die",
+    "baseId": "ring_of_power",
+    "name": {
+      "en": "Ring of the Loaded Die",
+      "fr": "Anneau du Dé pipé"
+    },
+    "minIlvl": 4,
+    "fixed": {
+      "luck": [4, 6],
+      "goldFind": [20, 30]
+    },
+    "power": "gambler",
+    "powerText": {
+      "en": "+100% gold found.",
+      "fr": "+100 % d'or trouvé."
+    },
+    "flavor": {
+      "en": "Its owner never lost a game. Someone eventually lost patience.",
+      "fr": "Son propriétaire n'a jamais perdu une partie. Quelqu'un a fini par perdre patience."
+    }
+  },
+  {
+    "id": "ember_heart",
+    "baseId": "gem_pendant",
+    "name": {
+      "en": "Ember Heart",
+      "fr": "Cœur de Braise"
+    },
+    "minIlvl": 9,
+    "fixed": {
+      "damagePct": [8, 12],
+      "maxHealth": [15, 25]
+    },
+    "power": "ember_heart",
+    "powerText": {
+      "en": "Your hits have a 30% chance to burn the enemy for 3 turns.",
+      "fr": "Tes coups ont 30 % de chances de brûler l'ennemi pendant 3 tours."
+    },
+    "flavor": {
+      "en": "It beats. Slowly. Warmly. It is not your heart, and it knows it.",
+      "fr": "Il bat. Lentement. Chaudement. Ce n'est pas ton cœur, et il le sait."
+    }
+  },
+  {
+    "id": "hands_of_the_first_shadow",
+    "baseId": "gauntlets",
+    "name": {
+      "en": "Hands of the First Shadow",
+      "fr": "Mains de la Première Ombre"
+    },
+    "minIlvl": 6,
+    "fixed": {
+      "critChance": [3, 5],
+      "speed": [2, 3]
+    },
+    "power": "shadow_first",
+    "powerText": {
+      "en": "Your first attack in each fight is a guaranteed critical hit.",
+      "fr": "Ta première attaque de chaque combat est un coup critique garanti."
+    },
+    "flavor": {
+      "en": "The first shadow struck before the first light. It has not missed since.",
+      "fr": "La première ombre a frappé avant la première lumière. Elle n'a jamais manqué depuis."
+    }
+  },
+  {
+    "id": "wyrmbreaker_helm",
+    "baseId": "horned_helm",
+    "name": {
+      "en": "Wyrmbreaker Helm",
+      "fr": "Heaume Brise-Wyrm"
+    },
+    "minIlvl": 12,
+    "fixed": {
+      "defense": [5, 7],
+      "maxHealth": [20, 30]
+    },
+    "power": "dragonbane",
+    "powerText": {
+      "en": "You take 30% less damage from dragons and demons, and deal 30% more to them.",
+      "fr": "Tu subis 30 % de dégâts en moins des dragons et des démons, et tu leur en infliges 30 % de plus."
+    },
+    "flavor": {
+      "en": "The horns are real. So was the dragon. Briefly.",
+      "fr": "Les cornes sont vraies. Le dragon aussi. Brièvement."
+    }
+  },
+  {
+    "id": "rimecaller",
+    "baseId": "crystal_wand",
+    "name": {
+      "en": "Rimecaller",
+      "fr": "Appel-du-Givre"
+    },
+    "minIlvl": 10,
+    "fixed": {
+      "damagePct": [10, 14],
+      "critChance": [3, 4]
+    },
+    "power": "frost_core",
+    "powerText": {
+      "en": "Your hits have a 30% chance to chill the enemy (slowed) for 2 turns.",
+      "fr": "Tes coups ont 30 % de chances de glacer l'ennemi (ralenti) pendant 2 tours."
+    },
+    "flavor": {
+      "en": "A splinter of the long winter. It remembers when the world was quiet.",
+      "fr": "Un éclat du long hiver. Il se souvient du temps où le monde se taisait."
+    }
+  },
+  {
+    "id": "the_red_hunger",
+    "baseId": "greatsword",
+    "name": {
+      "en": "The Red Hunger",
+      "fr": "La Faim Rouge"
+    },
+    "minIlvl": 14,
+    "fixed": {
+      "strength": [5, 7],
+      "damagePct": [10, 14],
+      "critDamage": [12, 18]
+    },
+    "power": "blood_frenzy",
+    "powerText": {
+      "en": "Below 50% health, you deal 40% more damage.",
+      "fr": "Sous 50 % de PV, tu infliges 40 % de dégâts en plus."
+    },
+    "flavor": {
+      "en": "It gets hungrier when you bleed. So do you.",
+      "fr": "Elle a plus faim quand tu saignes. Toi aussi."
+    }
+  },
+  {
+    "id": "crook_of_the_soulreaper",
+    "baseId": "skull_staff",
+    "name": {
+      "en": "Crook of the Soulreaper",
+      "fr": "Bâton du Faucheur d'âmes"
+    },
+    "minIlvl": 13,
+    "fixed": {
+      "damagePct": [10, 14],
+      "maxHealth": [15, 25]
+    },
+    "power": "soul_harvest",
+    "powerText": {
+      "en": "Killing an enemy heals you for 15% of your maximum health.",
+      "fr": "Tuer un ennemi te soigne de 15 % de tes PV maximum."
+    },
+    "flavor": {
+      "en": "The skull on top still whispers names. Lately, some of them are yours.",
+      "fr": "Le crâne au sommet murmure encore des noms. Ces derniers temps, certains sont le tien."
+    }
+  }
+]

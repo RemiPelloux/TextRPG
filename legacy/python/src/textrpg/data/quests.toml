@@ -1,0 +1,20 @@
+# Quest catalog. Rewards are [min, max] ranges rolled when the quest is accepted.
+# target: an enemy kind id from enemies.toml, or omit it for "any enemy".
+
+[[quest]]
+id = "cull_the_wilds"
+title = "Kill 10 enemies"
+kind = "kill"
+goal = 10
+reward_exp = [8, 30]
+reward_money = [70, 130]
+
+[[quest]]
+id = "orc_hunt"
+title = "Kill 10 orcs"
+kind = "kill"
+goal = 10
+target = "orc"
+reward_exp = [8, 30]
+reward_money = [70, 130]
+reward_item = "orc_teeth"

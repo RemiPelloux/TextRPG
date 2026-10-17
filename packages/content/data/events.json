@@ -1,0 +1,855 @@
+[
+  {
+    "id": "weeping_statue",
+    "title": {
+      "en": "The Weeping Statue",
+      "fr": "La Statue qui pleure"
+    },
+    "text": {
+      "en": "A stone woman weeps in the dark. The tears are warm. They smell of iron.",
+      "fr": "Une femme de pierre pleure dans le noir. Ses larmes sont tièdes. Elles sentent le fer."
+    },
+    "choices": [
+      {
+        "label": {
+          "en": "Drink the tears",
+          "fr": "Boire les larmes"
+        },
+        "outcomes": [
+          {
+            "weight": 3,
+            "text": {
+              "en": "Salt, iron, and something like mercy. Your wounds close.",
+              "fr": "Du sel, du fer, et quelque chose comme de la pitié. Tes plaies se referment."
+            },
+            "healPct": 0.4
+          },
+          {
+            "weight": 1,
+            "text": {
+              "en": "It was not mercy. It was blood. Hers, or yours.",
+              "fr": "Ce n'était pas de la pitié. C'était du sang. Le sien, ou le tien."
+            },
+            "damagePct": 0.2
+          }
+        ]
+      },
+      {
+        "label": {
+          "en": "Wipe her face",
+          "fr": "Lui essuyer le visage"
+        },
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": {
+              "en": "She stops weeping. Something in your chest grows stronger.",
+              "fr": "Elle cesse de pleurer. Quelque chose grandit dans ta poitrine."
+            },
+            "buff": {
+              "stat": "defense",
+              "value": 6,
+              "fights": 3
+            }
+          },
+          {
+            "weight": 1,
+            "text": {
+              "en": "A coin was hidden in her eye. Rude to take it. You take it.",
+              "fr": "Une pièce était cachée dans son œil. Impoli de la prendre. Tu la prends."
+            },
+            "gold": 40
+          }
+        ]
+      },
+      {
+        "label": {
+          "en": "Walk away",
+          "fr": "S'éloigner"
+        },
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": {
+              "en": "Behind you, the weeping turns into laughter. You don't look back.",
+              "fr": "Derrière toi, les pleurs deviennent des rires. Tu ne te retournes pas."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "abandoned_altar",
+    "title": {
+      "en": "The Abandoned Altar",
+      "fr": "L'Autel abandonné"
+    },
+    "text": {
+      "en": "An altar to a god nobody remembers. The candles are still lit. Somebody remembers.",
+      "fr": "Un autel dédié à un dieu dont personne ne se souvient. Les cierges brûlent encore. Quelqu'un se souvient."
+    },
+    "choices": [
+      {
+        "label": {
+          "en": "Offer your blood",
+          "fr": "Offrir ton sang"
+        },
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": {
+              "en": "The god accepts. It was hungry. Its gift is heavy and bright.",
+              "fr": "Le dieu accepte. Il avait faim. Son présent est lourd et brillant."
+            },
+            "damagePct": 0.15,
+            "rarity": "rare"
+          },
+          {
+            "weight": 1,
+            "text": {
+              "en": "The god accepts, and gives nothing back. Gods.",
+              "fr": "Le dieu accepte, et ne rend rien. Les dieux, tout de même."
+            },
+            "damagePct": 0.25
+          },
+          {
+            "weight": 1,
+            "text": {
+              "en": "The candles flare. Power burns in your arms.",
+              "fr": "Les cierges s'embrasent. Une force brûle dans tes bras."
+            },
+            "damagePct": 0.1,
+            "buff": {
+              "stat": "strength",
+              "value": 8,
+              "fights": 4
+            }
+          }
+        ]
+      },
+      {
+        "label": {
+          "en": "Steal the offerings",
+          "fr": "Voler les offrandes"
+        },
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": {
+              "en": "Old coins, older bones. You keep the coins.",
+              "fr": "Des pièces anciennes, des os plus anciens encore. Tu gardes les pièces."
+            },
+            "gold": 60
+          },
+          {
+            "weight": 1,
+            "text": {
+              "en": "The candles go out all at once. Something touches your neck.",
+              "fr": "Les cierges s'éteignent d'un coup. Quelque chose te touche la nuque."
+            },
+            "gold": 30,
+            "damagePct": 0.2
+          }
+        ]
+      },
+      {
+        "label": {
+          "en": "Pray",
+          "fr": "Prier"
+        },
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": {
+              "en": "Nobody answers. Strangely, you feel rested.",
+              "fr": "Personne ne répond. Étrangement, tu te sens reposé."
+            },
+            "healPct": 0.2
+          },
+          {
+            "weight": 1,
+            "text": {
+              "en": "A shard of light falls into your palm.",
+              "fr": "Un éclat de lumière tombe dans ta paume."
+            },
+            "shards": 6
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "merchant_ghost",
+    "title": {
+      "en": "The Merchant Ghost",
+      "fr": "Le Marchand fantôme"
+    },
+    "text": {
+      "en": "A translucent peddler unrolls his wares. \"Everything must go,\" he says. \"I did.\"",
+      "fr": "Un colporteur translucide déroule sa marchandise. « Tout doit disparaître, dit-il. Moi, c'est fait. »"
+    },
+    "choices": [
+      {
+        "label": {
+          "en": "Pay with gold you don't have",
+          "fr": "Payer avec de l'or que tu n'as pas"
+        },
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": {
+              "en": "He laughs. Ghosts appreciate a bluff. He hands you something anyway.",
+              "fr": "Il rit. Les fantômes apprécient le bluff. Il te tend quand même quelque chose."
+            },
+            "rarity": "magic"
+          },
+          {
+            "weight": 1,
+            "text": {
+              "en": "He does not laugh. Your purse feels lighter. So does your soul.",
+              "fr": "Il ne rit pas. Ta bourse est plus légère. Ton âme aussi."
+            },
+            "damagePct": 0.15
+          }
+        ]
+      },
+      {
+        "label": {
+          "en": "Buy him a drink",
+          "fr": "Lui offrir à boire"
+        },
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": {
+              "en": "He drinks through you. It tickles. He leaves you a tip.",
+              "fr": "Il boit à travers toi. Ça chatouille. Il te laisse un pourboire."
+            },
+            "gold": 50,
+            "energy": 1
+          }
+        ]
+      },
+      {
+        "label": {
+          "en": "Ask how he died",
+          "fr": "Lui demander comment il est mort"
+        },
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": {
+              "en": "\"Bad bargain,\" he says, and vanishes. A few shards remain where he stood.",
+              "fr": "« Mauvaise affaire », dit-il, et il disparaît. Quelques éclats restent à sa place."
+            },
+            "shards": 5
+          },
+          {
+            "weight": 1,
+            "text": {
+              "en": "He shows you. You wish he hadn't. You'll be more careful now.",
+              "fr": "Il te montre. Tu aurais préféré qu'il s'abstienne. Tu seras plus prudent désormais."
+            },
+            "buff": {
+              "stat": "dodge",
+              "value": 5,
+              "fights": 3
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "locked_chest",
+    "title": {
+      "en": "The Locked Chest",
+      "fr": "Le Coffre verrouillé"
+    },
+    "text": {
+      "en": "An iron-bound chest sits alone in the corridor. Too alone. Chests don't usually wait for people.",
+      "fr": "Un coffre cerclé de fer trône seul au milieu du couloir. Trop seul. Les coffres n'attendent pas les gens, d'habitude."
+    },
+    "choices": [
+      {
+        "label": {
+          "en": "Force it open",
+          "fr": "Le forcer"
+        },
+        "outcomes": [
+          {
+            "weight": 3,
+            "text": {
+              "en": "Gold. Real gold. The world is kind, sometimes.",
+              "fr": "De l'or. Du vrai. Le monde est gentil, parfois."
+            },
+            "gold": 100
+          },
+          {
+            "weight": 1,
+            "text": {
+              "en": "Among the gold, something rarer.",
+              "fr": "Parmi l'or, quelque chose de plus rare."
+            },
+            "gold": 40,
+            "rarity": "rare"
+          },
+          {
+            "weight": 2,
+            "text": {
+              "en": "The chest has teeth. The chest has many teeth.",
+              "fr": "Le coffre a des dents. Le coffre a beaucoup de dents."
+            },
+            "damagePct": 0.3
+          }
+        ]
+      },
+      {
+        "label": {
+          "en": "Kick it first",
+          "fr": "Lui donner un coup de pied d'abord"
+        },
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": {
+              "en": "It yelps and scuttles away. Wise. You find what it was sitting on.",
+              "fr": "Il glapit et détale. Sage décision. Tu trouves ce sur quoi il était assis."
+            },
+            "gold": 35
+          },
+          {
+            "weight": 1,
+            "text": {
+              "en": "It doesn't move. Your foot does. Painfully.",
+              "fr": "Il ne bouge pas. Ton pied, si. Douloureusement."
+            },
+            "damagePct": 0.1,
+            "gold": 60
+          }
+        ]
+      },
+      {
+        "label": {
+          "en": "Leave it alone",
+          "fr": "Le laisser tranquille"
+        },
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": {
+              "en": "As you walk away, you hear it sigh.",
+              "fr": "En t'éloignant, tu l'entends soupirer."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "well_of_whispers",
+    "title": {
+      "en": "The Well of Whispers",
+      "fr": "Le Puits aux murmures"
+    },
+    "text": {
+      "en": "The well is dry, but it is not quiet. Voices rise from below. One of them says your name.",
+      "fr": "Le puits est sec, mais pas silencieux. Des voix montent du fond. L'une d'elles prononce ton nom."
+    },
+    "choices": [
+      {
+        "label": {
+          "en": "Answer the voice",
+          "fr": "Répondre à la voix"
+        },
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": {
+              "en": "It tells you a secret about the world. You feel wiser, and worse.",
+              "fr": "Elle te confie un secret sur le monde. Tu te sens plus sage, et plus mal."
+            },
+            "shards": 12,
+            "damagePct": 0.1
+          },
+          {
+            "weight": 1,
+            "text": {
+              "en": "It tells you where it hid its treasure. It does not tell you why it's dead.",
+              "fr": "Elle te dit où elle a caché son trésor. Elle ne te dit pas pourquoi elle est morte."
+            },
+            "gold": 90
+          }
+        ]
+      },
+      {
+        "label": {
+          "en": "Throw in a coin",
+          "fr": "Jeter une pièce"
+        },
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": {
+              "en": "The whispers hush. You feel lucky.",
+              "fr": "Les murmures se taisent. Tu te sens chanceux."
+            },
+            "buff": {
+              "stat": "luck",
+              "value": 6,
+              "fights": 4
+            }
+          },
+          {
+            "weight": 1,
+            "text": {
+              "en": "The coin comes back up. With friends.",
+              "fr": "La pièce remonte. Avec des amies."
+            },
+            "gold": 70
+          }
+        ]
+      },
+      {
+        "label": {
+          "en": "Cover your ears",
+          "fr": "Te boucher les oreilles"
+        },
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": {
+              "en": "You walk on. The voice keeps saying your name, softer and softer.",
+              "fr": "Tu continues. La voix répète ton nom, de plus en plus bas."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sleeping_wolf",
+    "title": {
+      "en": "The Sleeping Wolf",
+      "fr": "Le Loup endormi"
+    },
+    "text": {
+      "en": "A wolf the size of a cart sleeps across the passage. Its paws twitch. It is dreaming of running. Or of you.",
+      "fr": "Un loup grand comme une charrette dort en travers du passage. Ses pattes tressaillent. Il rêve qu'il court. Ou de toi."
+    },
+    "choices": [
+      {
+        "label": {
+          "en": "Sneak past",
+          "fr": "Passer en douce"
+        },
+        "outcomes": [
+          {
+            "weight": 3,
+            "text": {
+              "en": "Not a single twig. You're getting good at this.",
+              "fr": "Pas une brindille. Tu deviens doué."
+            },
+            "buff": {
+              "stat": "speed",
+              "value": 4,
+              "fights": 3
+            }
+          },
+          {
+            "weight": 1,
+            "text": {
+              "en": "One twig. One eye opens. You run very, very fast.",
+              "fr": "Une brindille. Un œil s'ouvre. Tu cours très, très vite."
+            },
+            "damagePct": 0.25
+          }
+        ]
+      },
+      {
+        "label": {
+          "en": "Steal from its den",
+          "fr": "Piller sa tanière"
+        },
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": {
+              "en": "Bones, rings, a still-warm purse. The previous owners won't need them.",
+              "fr": "Des os, des bagues, une bourse encore tiède. Les anciens propriétaires n'en ont plus besoin."
+            },
+            "gold": 80,
+            "rarity": "magic"
+          },
+          {
+            "weight": 1,
+            "text": {
+              "en": "It wakes. You leave a piece of yourself behind.",
+              "fr": "Il se réveille. Tu laisses un morceau de toi derrière."
+            },
+            "damagePct": 0.35
+          }
+        ]
+      },
+      {
+        "label": {
+          "en": "Lie down beside it",
+          "fr": "T'allonger à côté de lui"
+        },
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": {
+              "en": "Its warmth seeps into you. You sleep, and nothing eats you. A miracle.",
+              "fr": "Sa chaleur t'envahit. Tu dors, et rien ne te mange. Un miracle."
+            },
+            "healPct": 0.5,
+            "energy": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "black_mirror",
+    "title": {
+      "en": "The Black Mirror",
+      "fr": "Le Miroir noir"
+    },
+    "text": {
+      "en": "A mirror of black glass. Your reflection is a little late. And it's smiling.",
+      "fr": "Un miroir de verre noir. Ton reflet a un léger retard. Et il sourit."
+    },
+    "choices": [
+      {
+        "label": {
+          "en": "Smile back",
+          "fr": "Lui rendre son sourire"
+        },
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": {
+              "en": "It nods, approving. You feel sharper, crueler.",
+              "fr": "Il hoche la tête, approbateur. Tu te sens plus vif, plus cruel."
+            },
+            "buff": {
+              "stat": "critChance",
+              "value": 6,
+              "fights": 3
+            }
+          },
+          {
+            "weight": 1,
+            "text": {
+              "en": "It stops smiling. The glass cracks. So does something in you.",
+              "fr": "Il cesse de sourire. Le verre se fend. Quelque chose en toi aussi."
+            },
+            "damagePct": 0.2
+          }
+        ]
+      },
+      {
+        "label": {
+          "en": "Shatter it",
+          "fr": "Le briser"
+        },
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": {
+              "en": "Shards everywhere. Some of them glow.",
+              "fr": "Des éclats partout. Certains luisent."
+            },
+            "shards": 10
+          },
+          {
+            "weight": 1,
+            "text": {
+              "en": "Seven years of bad luck, delivered all at once.",
+              "fr": "Sept ans de malheur, livrés d'un coup."
+            },
+            "damagePct": 0.3,
+            "shards": 15
+          }
+        ]
+      },
+      {
+        "label": {
+          "en": "Look away",
+          "fr": "Détourner le regard"
+        },
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": {
+              "en": "When you look back, the mirror is empty. You decide not to think about it.",
+              "fr": "Quand tu regardes à nouveau, le miroir est vide. Tu décides de ne pas y penser."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dead_adventurer",
+    "title": {
+      "en": "The Last Camp",
+      "fr": "Le Dernier Bivouac"
+    },
+    "text": {
+      "en": "A cold campfire. A bedroll. A skeleton still holding its sword, facing the dark. It almost made it.",
+      "fr": "Un feu de camp froid. Une couverture. Un squelette qui tient encore son épée, face aux ténèbres. Il y était presque."
+    },
+    "choices": [
+      {
+        "label": {
+          "en": "Search the pack",
+          "fr": "Fouiller le sac"
+        },
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": {
+              "en": "Rations, a few coins, a letter you decide not to read.",
+              "fr": "Des rations, quelques pièces, une lettre que tu choisis de ne pas lire."
+            },
+            "gold": 45,
+            "healPct": 0.15
+          },
+          {
+            "weight": 1,
+            "text": {
+              "en": "Beneath the bedroll: the treasure that got them killed.",
+              "fr": "Sous la couverture : le trésor qui les a fait tuer."
+            },
+            "rarity": "rare"
+          }
+        ]
+      },
+      {
+        "label": {
+          "en": "Rest by the fire",
+          "fr": "Te reposer près du feu"
+        },
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": {
+              "en": "You relight it. For one night, the dark keeps its distance.",
+              "fr": "Tu le rallumes. Pour une nuit, les ténèbres gardent leurs distances."
+            },
+            "healPct": 0.35,
+            "energy": 2
+          },
+          {
+            "weight": 1,
+            "text": {
+              "en": "Whatever killed them comes back for seconds.",
+              "fr": "Ce qui les a tués revient se resservir."
+            },
+            "damagePct": 0.25
+          }
+        ]
+      },
+      {
+        "label": {
+          "en": "Bury them",
+          "fr": "L'enterrer"
+        },
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": {
+              "en": "It takes an hour. You feel lighter. The dead remember kindness.",
+              "fr": "Cela prend une heure. Tu te sens plus léger. Les morts se souviennent de la bonté."
+            },
+            "buff": {
+              "stat": "maxHealth",
+              "value": 30,
+              "fights": 5
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "moonlit_pool",
+    "title": {
+      "en": "The Moonlit Pool",
+      "fr": "Le Bassin sous la lune"
+    },
+    "text": {
+      "en": "Deep underground, a pool reflects a moon that cannot be there. The reflection is red at the edges.",
+      "fr": "Loin sous terre, un bassin reflète une lune qui ne peut pas être là. Le reflet est rouge sur les bords."
+    },
+    "choices": [
+      {
+        "label": {
+          "en": "Bathe",
+          "fr": "T'y baigner"
+        },
+        "outcomes": [
+          {
+            "weight": 3,
+            "text": {
+              "en": "The water is cold and kind. Your wounds forget themselves.",
+              "fr": "L'eau est froide et douce. Tes blessures s'oublient."
+            },
+            "healPct": 0.5
+          },
+          {
+            "weight": 1,
+            "text": {
+              "en": "The red spreads to your skin. It stings. It also feels like power.",
+              "fr": "Le rouge gagne ta peau. Ça pique. Ça ressemble aussi à de la puissance."
+            },
+            "damagePct": 0.15,
+            "buff": {
+              "stat": "damagePct",
+              "value": 20,
+              "fights": 3
+            }
+          }
+        ]
+      },
+      {
+        "label": {
+          "en": "Reach for the reflection",
+          "fr": "Saisir le reflet"
+        },
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": {
+              "en": "Your fingers close on something solid. A piece of the moon.",
+              "fr": "Tes doigts se referment sur quelque chose de solide. Un morceau de lune."
+            },
+            "rarity": "legendary"
+          },
+          {
+            "weight": 4,
+            "text": {
+              "en": "The water bites. Of course it bites.",
+              "fr": "L'eau mord. Évidemment qu'elle mord."
+            },
+            "damagePct": 0.3
+          },
+          {
+            "weight": 3,
+            "text": {
+              "en": "Only water. Glittering, worthless, and a few shards of light.",
+              "fr": "Rien que de l'eau. Scintillante, inutile, et quelques éclats de lumière."
+            },
+            "shards": 4
+          }
+        ]
+      },
+      {
+        "label": {
+          "en": "Drink",
+          "fr": "Boire"
+        },
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": {
+              "en": "It tastes of silver. You feel awake. Very awake.",
+              "fr": "Elle a un goût d'argent. Tu te sens éveillé. Très éveillé."
+            },
+            "energy": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "voice_in_the_dark",
+    "title": {
+      "en": "A Voice in the Dark",
+      "fr": "Une voix dans le noir"
+    },
+    "text": {
+      "en": "\"I can make you stronger,\" says the dark. \"I only want a little. You'll barely notice.\"",
+      "fr": "« Je peux te rendre plus fort, dit l'obscurité. Je ne veux qu'un peu. Tu le remarqueras à peine. »"
+    },
+    "choices": [
+      {
+        "label": {
+          "en": "Accept the deal",
+          "fr": "Accepter le marché"
+        },
+        "outcomes": [
+          {
+            "weight": 2,
+            "text": {
+              "en": "It takes a little. You notice. You also feel magnificent.",
+              "fr": "Elle prend un peu. Tu le remarques. Tu te sens aussi magnifique."
+            },
+            "damagePct": 0.2,
+            "buff": {
+              "stat": "strength",
+              "value": 10,
+              "fights": 5
+            }
+          },
+          {
+            "weight": 1,
+            "text": {
+              "en": "It takes more than a little. It leaves something behind, though.",
+              "fr": "Elle prend plus qu'un peu. Mais elle laisse quelque chose derrière elle."
+            },
+            "damagePct": 0.35,
+            "rarity": "rare"
+          }
+        ]
+      },
+      {
+        "label": {
+          "en": "Haggle",
+          "fr": "Marchander"
+        },
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": {
+              "en": "The dark is amused. It pays you to go away.",
+              "fr": "L'obscurité s'amuse. Elle te paie pour que tu t'en ailles."
+            },
+            "gold": 120
+          },
+          {
+            "weight": 1,
+            "text": {
+              "en": "The dark is not amused.",
+              "fr": "L'obscurité ne s'amuse pas."
+            },
+            "damagePct": 0.2
+          }
+        ]
+      },
+      {
+        "label": {
+          "en": "Refuse",
+          "fr": "Refuser"
+        },
+        "outcomes": [
+          {
+            "weight": 1,
+            "text": {
+              "en": "\"Next time,\" says the dark. It sounds certain. Your resolve hardens.",
+              "fr": "« La prochaine fois », dit l'obscurité. Elle a l'air sûre d'elle. Ta résolution se durcit."
+            },
+            "buff": {
+              "stat": "defense",
+              "value": 5,
+              "fights": 3
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

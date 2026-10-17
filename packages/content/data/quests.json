@@ -1,0 +1,838 @@
+{
+  "npcs": [
+    {
+      "id": "warden",
+      "name": {
+        "en": "Old Marrow",
+        "fr": "Le vieux Marrow"
+      },
+      "title": {
+        "en": "Camp Warden",
+        "fr": "Gardien du camp"
+      },
+      "icon": "GiCowled"
+    },
+    {
+      "id": "seer",
+      "name": {
+        "en": "Ysolde",
+        "fr": "Ysolde"
+      },
+      "title": {
+        "en": "the Blind Seer",
+        "fr": "la Voyante aveugle"
+      },
+      "icon": "GiHoodedFigure"
+    },
+    {
+      "id": "smith",
+      "name": {
+        "en": "Brann",
+        "fr": "Brann"
+      },
+      "title": {
+        "en": "Blacksmith",
+        "fr": "Forgeron"
+      },
+      "icon": "GiAnvil"
+    },
+    {
+      "id": "merchant",
+      "name": {
+        "en": "Odile",
+        "fr": "Odile"
+      },
+      "title": {
+        "en": "Merchant",
+        "fr": "Marchande"
+      },
+      "icon": "GiSwapBag"
+    },
+    {
+      "id": "huntress",
+      "name": {
+        "en": "Vesna",
+        "fr": "Vesna"
+      },
+      "title": {
+        "en": "Huntress",
+        "fr": "Chasseresse"
+      },
+      "icon": "GiHoodedAssassin"
+    },
+    {
+      "id": "fisher",
+      "name": {
+        "en": "Gaspard",
+        "fr": "Gaspard"
+      },
+      "title": {
+        "en": "Fisherman",
+        "fr": "Pêcheur"
+      },
+      "icon": "GiLuckyFisherman"
+    }
+  ],
+  "quests": [
+    {
+      "id": "act1_awakening",
+      "type": "story",
+      "title": {
+        "en": "Awakening",
+        "fr": "Réveil"
+      },
+      "text": {
+        "en": "You're awake. Good. The last one didn't wake. Goblins are sniffing at the palisade: go remind them we bite back.",
+        "fr": "Tu es réveillé. Bien. Le dernier ne s'est pas réveillé. Des gobelins rôdent autour de la palissade : va leur rappeler qu'ici, on mord aussi."
+      },
+      "giver": "warden",
+      "minLevel": 1,
+      "objective": {
+        "kind": "kill",
+        "target": "goblin",
+        "count": 3
+      },
+      "reward": {
+        "exp": 50,
+        "gold": 20
+      },
+      "next": "act1_the_seer",
+      "outro": {
+        "en": "Not bad. You might last a week. The seer wants to see you. She's been waiting since before you arrived.",
+        "fr": "Pas mal. Tu tiendras peut-être une semaine. La voyante veut te voir. Elle t'attendait avant même ton arrivée."
+      }
+    },
+    {
+      "id": "act1_the_seer",
+      "type": "story",
+      "title": {
+        "en": "The Blind Seer",
+        "fr": "La Voyante aveugle"
+      },
+      "text": {
+        "en": "I cannot see you, stranger. But I see what follows you. The dead walk, and the moon bleeds. Grow stronger before you ask me why.",
+        "fr": "Je ne te vois pas, étranger. Mais je vois ce qui te suit. Les morts marchent, et la lune saigne. Deviens plus fort avant de me demander pourquoi."
+      },
+      "giver": "seer",
+      "minLevel": 2,
+      "objective": {
+        "kind": "level",
+        "level": 3
+      },
+      "reward": {
+        "exp": 100,
+        "gold": 40,
+        "rarity": "set"
+      },
+      "next": "act1_teeth_and_nets",
+      "outro": {
+        "en": "Better. Your heart no longer beats like prey. Almost.",
+        "fr": "Mieux. Ton cœur ne bat plus comme celui d'une proie. Presque."
+      }
+    },
+    {
+      "id": "act1_teeth_and_nets",
+      "type": "story",
+      "title": {
+        "en": "Teeth and Nets",
+        "fr": "Des dents et des filets"
+      },
+      "text": {
+        "en": "Orcs tore my nets to shreds. Bring me five of their teeth. I carve them into hooks. Poetic, no?",
+        "fr": "Les orcs ont mis mes filets en lambeaux. Rapporte-moi cinq de leurs dents. J'en taille des hameçons. Poétique, non ?"
+      },
+      "giver": "fisher",
+      "minLevel": 3,
+      "objective": {
+        "kind": "collect",
+        "itemId": "orc_teeth",
+        "count": 5
+      },
+      "reward": {
+        "exp": 150,
+        "gold": 60,
+        "itemId": "fishing_rod"
+      },
+      "next": "act1_proving_grounds",
+      "outro": {
+        "en": "Fine teeth. Take my old rod. The lake is quiet. Mostly.",
+        "fr": "De belles dents. Prends ma vieille canne. Le lac est calme. En général."
+      }
+    },
+    {
+      "id": "act1_proving_grounds",
+      "type": "story",
+      "title": {
+        "en": "Proving Grounds",
+        "fr": "L'Épreuve des terres"
+      },
+      "text": {
+        "en": "The easy hunts made you soft. Go where the beasts bite back. Win five hunts on Normal, and come back with all your fingers.",
+        "fr": "Les chasses faciles t'ont ramolli. Va là où les bêtes rendent les coups. Gagne cinq chasses en Normal, et reviens avec tous tes doigts."
+      },
+      "giver": "huntress",
+      "minLevel": 4,
+      "objective": {
+        "kind": "hunt",
+        "difficulty": "normal",
+        "count": 5
+      },
+      "reward": {
+        "exp": 220,
+        "gold": 90,
+        "shards": 5
+      },
+      "next": "act1_the_unknown",
+      "outro": {
+        "en": "All ten fingers. I'm almost impressed. Almost.",
+        "fr": "Les dix doigts. Je suis presque impressionnée. Presque."
+      }
+    },
+    {
+      "id": "act1_the_unknown",
+      "type": "story",
+      "title": {
+        "en": "What You Carry",
+        "fr": "Ce que tu portes"
+      },
+      "text": {
+        "en": "You keep picking up things you don't understand. Bring one to the light and identify it. Some things are better known than feared.",
+        "fr": "Tu ramasses des choses que tu ne comprends pas. Mets-en une à la lumière et identifie-la. Certaines choses valent mieux connues que redoutées."
+      },
+      "giver": "smith",
+      "minLevel": 5,
+      "objective": {
+        "kind": "identify",
+        "count": 1
+      },
+      "reward": {
+        "exp": 300,
+        "gold": 120,
+        "shards": 10,
+        "rarity": "rare"
+      },
+      "next": "act1_into_the_depths",
+      "outro": {
+        "en": "See? Not cursed. This time. Keep this one too, I made it for someone who never came back.",
+        "fr": "Tu vois ? Pas maudit. Cette fois. Garde aussi celui-ci, je l'avais fait pour quelqu'un qui n'est jamais revenu."
+      }
+    },
+    {
+      "id": "act1_into_the_depths",
+      "type": "story",
+      "title": {
+        "en": "Into the Depths",
+        "fr": "Dans les Profondeurs"
+      },
+      "text": {
+        "en": "The answer is below. It always is. Go down into the Depths, reach the third floor, and listen to what the walls say.",
+        "fr": "La réponse est en bas. Elle l'est toujours. Descends dans les Profondeurs, atteins le troisième étage, et écoute ce que disent les murs."
+      },
+      "giver": "seer",
+      "minLevel": 6,
+      "objective": {
+        "kind": "floor",
+        "floor": 3
+      },
+      "reward": {
+        "exp": 400,
+        "gold": 180,
+        "shards": 10
+      },
+      "next": "act1_goblin_king",
+      "outro": {
+        "en": "They spoke of a crown. Two crowns, in fact. One of them is very small and very angry.",
+        "fr": "Ils parlaient d'une couronne. De deux couronnes, en fait. L'une d'elles est toute petite et très en colère."
+      }
+    },
+    {
+      "id": "act1_goblin_king",
+      "type": "story",
+      "title": {
+        "en": "A Crown for a Goblin",
+        "fr": "Une couronne pour un gobelin"
+      },
+      "text": {
+        "en": "A goblin wearing a crown. That's how bad things have become. He sends his brood after our supplies. End his reign.",
+        "fr": "Un gobelin qui porte une couronne. Voilà où on en est. Il envoie sa marmaille piller nos réserves. Mets fin à son règne."
+      },
+      "giver": "warden",
+      "minLevel": 7,
+      "objective": {
+        "kind": "boss",
+        "bossId": "goblin_king"
+      },
+      "reward": {
+        "exp": 550,
+        "gold": 260,
+        "shards": 15,
+        "rarity": "rare"
+      },
+      "next": "act1_moonstone",
+      "outro": {
+        "en": "Long live nobody. He swore, before he died, that his king was not the only one. That the other one sleeps.",
+        "fr": "Vive personne. Il a juré, avant de mourir, qu'il n'était pas le seul roi. Que l'autre dort."
+      }
+    },
+    {
+      "id": "act1_moonstone",
+      "type": "story",
+      "title": {
+        "en": "Blood of the Moon",
+        "fr": "Le Sang de la Lune"
+      },
+      "text": {
+        "en": "When the moon bleeds, its blood falls and hardens. Moonstone. Bring me three pieces. I need to see what it saw.",
+        "fr": "Quand la lune saigne, son sang tombe et durcit. La pierre de lune. Rapporte-m'en trois éclats. Je dois voir ce qu'elle a vu."
+      },
+      "giver": "seer",
+      "minLevel": 8,
+      "objective": {
+        "kind": "collect",
+        "itemId": "moonstone",
+        "count": 3
+      },
+      "reward": {
+        "exp": 700,
+        "gold": 350,
+        "shards": 20
+      },
+      "next": "act1_the_ninth_floor",
+      "outro": {
+        "en": "I saw a throne beneath the ninth floor. And on it, something hollow, dreaming us.",
+        "fr": "J'ai vu un trône sous le neuvième étage. Et dessus, une chose creuse, qui nous rêve."
+      }
+    },
+    {
+      "id": "act1_the_ninth_floor",
+      "type": "story",
+      "title": {
+        "en": "The Ninth Floor",
+        "fr": "Le Neuvième Étage"
+      },
+      "text": {
+        "en": "A king sleeps beneath the ninth floor, and his sleep is what is wrong with the world. Go down. Don't wake anything you can't kill.",
+        "fr": "Un roi dort sous le neuvième étage, et son sommeil est ce qui ne va pas dans le monde. Descends. Ne réveille rien que tu ne puisses tuer."
+      },
+      "giver": "seer",
+      "minLevel": 9,
+      "objective": {
+        "kind": "floor",
+        "floor": 9
+      },
+      "reward": {
+        "exp": 950,
+        "gold": 500,
+        "shards": 25
+      },
+      "next": "act1_the_hollow_king",
+      "outro": {
+        "en": "You heard him breathe, didn't you? Then he heard you too.",
+        "fr": "Tu l'as entendu respirer, n'est-ce pas ? Alors il t'a entendu aussi."
+      }
+    },
+    {
+      "id": "act1_the_hollow_king",
+      "type": "story",
+      "title": {
+        "en": "The Hollow King",
+        "fr": "Le Roi Creux"
+      },
+      "text": {
+        "en": "He is waking. The Hollow King. Every dead thing up here is a dream he's having. End the dream. With steel.",
+        "fr": "Il s'éveille. Le Roi Creux. Chaque mort qui marche ici est un rêve qu'il fait. Mets fin au rêve. Avec de l'acier."
+      },
+      "giver": "seer",
+      "minLevel": 10,
+      "objective": {
+        "kind": "boss",
+        "bossId": "hollow_king"
+      },
+      "reward": {
+        "exp": 1500,
+        "gold": 800,
+        "shards": 50,
+        "rarity": "legendary"
+      },
+      "outro": {
+        "en": "The dead lie still. The moon still bleeds. Whatever wounded it was never beneath us. It is above. Rest, while you can.",
+        "fr": "Les morts se sont tus. La lune saigne encore. Ce qui l'a blessée n'a jamais été sous nos pieds. C'est au-dessus. Repose-toi, tant que tu peux."
+      }
+    },
+    {
+      "id": "board_orc_cull",
+      "type": "board",
+      "title": {
+        "en": "Orc Cull",
+        "fr": "Battue aux orcs"
+      },
+      "text": {
+        "en": "The orcs are breeding faster than we can bury them. Thin the herd: eight of them.",
+        "fr": "Les orcs se reproduisent plus vite qu'on ne les enterre. Éclaircis le troupeau : huit d'entre eux."
+      },
+      "giver": "huntress",
+      "minLevel": 1,
+      "objective": {
+        "kind": "kill",
+        "target": "orc",
+        "count": 8
+      },
+      "reward": {
+        "exp": 10,
+        "gold": 8,
+        "shards": 0
+      }
+    },
+    {
+      "id": "board_goblin_ears",
+      "type": "board",
+      "title": {
+        "en": "Proof of Work",
+        "fr": "Preuve à l'appui"
+      },
+      "text": {
+        "en": "The camp pays for goblin ears. Don't ask what I do with them. Five will do.",
+        "fr": "Le camp paie les oreilles de gobelin. Ne demande pas ce que j'en fais. Cinq suffiront."
+      },
+      "giver": "merchant",
+      "minLevel": 1,
+      "objective": {
+        "kind": "collect",
+        "itemId": "goblin_ear",
+        "count": 5
+      },
+      "reward": {
+        "exp": 8,
+        "gold": 10,
+        "shards": 0
+      }
+    },
+    {
+      "id": "board_fresh_catch",
+      "type": "board",
+      "title": {
+        "en": "Fresh Catch",
+        "fr": "Pêche du jour"
+      },
+      "text": {
+        "en": "The camp is hungry and I'm old. Catch me four fish. Anything with fins counts.",
+        "fr": "Le camp a faim et je suis vieux. Pêche-moi quatre poissons. Tout ce qui a des nageoires compte."
+      },
+      "giver": "fisher",
+      "minLevel": 2,
+      "objective": {
+        "kind": "fish",
+        "count": 4
+      },
+      "reward": {
+        "exp": 8,
+        "gold": 6,
+        "shards": 0
+      }
+    },
+    {
+      "id": "board_bone_dust",
+      "type": "board",
+      "title": {
+        "en": "Bone Flux",
+        "fr": "Fondant d'os"
+      },
+      "text": {
+        "en": "Bone dust makes a fine flux for the forge. Skeletons are full of it. Bring me four pouches.",
+        "fr": "La poussière d'os fait un excellent fondant. Les squelettes en sont pleins. Rapporte-m'en quatre sachets."
+      },
+      "giver": "smith",
+      "minLevel": 3,
+      "objective": {
+        "kind": "collect",
+        "itemId": "bone_dust",
+        "count": 4
+      },
+      "reward": {
+        "exp": 12,
+        "gold": 10,
+        "shards": 1
+      }
+    },
+    {
+      "id": "board_rattling_bones",
+      "type": "board",
+      "title": {
+        "en": "Rattling Bones",
+        "fr": "Os qui claquent"
+      },
+      "text": {
+        "en": "Skeletons walk the old road again. Put ten of them back to sleep.",
+        "fr": "Les squelettes arpentent de nouveau la vieille route. Rendors-en dix."
+      },
+      "giver": "warden",
+      "minLevel": 3,
+      "objective": {
+        "kind": "kill",
+        "target": "skeleton",
+        "count": 10
+      },
+      "reward": {
+        "exp": 12,
+        "gold": 8,
+        "shards": 1
+      }
+    },
+    {
+      "id": "board_web_clearing",
+      "type": "board",
+      "title": {
+        "en": "Web Clearing",
+        "fr": "Débroussaillage de toiles"
+      },
+      "text": {
+        "en": "Spiders nest in my storehouse. Eight of them. I counted the eyes and divided.",
+        "fr": "Des araignées nichent dans ma réserve. Huit. J'ai compté les yeux et divisé."
+      },
+      "giver": "merchant",
+      "minLevel": 4,
+      "objective": {
+        "kind": "kill",
+        "target": "spider",
+        "count": 8
+      },
+      "reward": {
+        "exp": 14,
+        "gold": 10,
+        "shards": 1
+      }
+    },
+    {
+      "id": "board_hard_hunts",
+      "type": "board",
+      "title": {
+        "en": "Teeth and Claws",
+        "fr": "Crocs et griffes"
+      },
+      "text": {
+        "en": "Three hunts on Hard. If you come back, I'll pay. If you don't, I'll keep your boots.",
+        "fr": "Trois chasses en Difficile. Si tu reviens, je paie. Sinon, je garde tes bottes."
+      },
+      "giver": "huntress",
+      "minLevel": 6,
+      "objective": {
+        "kind": "hunt",
+        "difficulty": "hard",
+        "count": 3
+      },
+      "reward": {
+        "exp": 16,
+        "gold": 12,
+        "shards": 1
+      }
+    },
+    {
+      "id": "board_demon_horns",
+      "type": "board",
+      "title": {
+        "en": "Horn Smelting",
+        "fr": "Cornes en fusion"
+      },
+      "text": {
+        "en": "Demon horn melts hotter than coal. Three horns, and I'll forge you something that bites.",
+        "fr": "La corne de démon brûle plus fort que le charbon. Trois cornes, et je te forge quelque chose qui mord."
+      },
+      "giver": "smith",
+      "minLevel": 6,
+      "objective": {
+        "kind": "collect",
+        "itemId": "demon_horn",
+        "count": 3
+      },
+      "reward": {
+        "exp": 15,
+        "gold": 12,
+        "shards": 2
+      }
+    },
+    {
+      "id": "board_demon_purge",
+      "type": "board",
+      "title": {
+        "en": "Brimstone Purge",
+        "fr": "Purge de soufre"
+      },
+      "text": {
+        "en": "Demons smell the bleeding moon like sharks smell blood. Send eight of them home.",
+        "fr": "Les démons sentent la lune qui saigne comme les requins le sang. Renvoie-en huit chez eux."
+      },
+      "giver": "seer",
+      "minLevel": 7,
+      "objective": {
+        "kind": "kill",
+        "target": "demon",
+        "count": 8
+      },
+      "reward": {
+        "exp": 16,
+        "gold": 12,
+        "shards": 1
+      }
+    },
+    {
+      "id": "board_fifth_floor",
+      "type": "board",
+      "title": {
+        "en": "Deeper Still",
+        "fr": "Plus bas encore"
+      },
+      "text": {
+        "en": "The fifth floor hums. Go and tell me what tune it plays.",
+        "fr": "Le cinquième étage bourdonne. Va me dire quel air il joue."
+      },
+      "giver": "seer",
+      "minLevel": 7,
+      "objective": {
+        "kind": "floor",
+        "floor": 5
+      },
+      "reward": {
+        "exp": 18,
+        "gold": 10,
+        "shards": 2
+      }
+    },
+    {
+      "id": "board_wraith_hunt",
+      "type": "board",
+      "title": {
+        "en": "Cold Visitors",
+        "fr": "Visiteurs glacés"
+      },
+      "text": {
+        "en": "Wraiths came through the camp last night. The fire went blue. Six of them, gone, please.",
+        "fr": "Des spectres ont traversé le camp cette nuit. Le feu est devenu bleu. Six d'entre eux, disparus, s'il te plaît."
+      },
+      "giver": "warden",
+      "minLevel": 9,
+      "objective": {
+        "kind": "kill",
+        "target": "wraith",
+        "count": 6
+      },
+      "reward": {
+        "exp": 18,
+        "gold": 14,
+        "shards": 2
+      }
+    },
+    {
+      "id": "board_troll_bridge",
+      "type": "board",
+      "title": {
+        "en": "Toll Collectors",
+        "fr": "Les Péagers"
+      },
+      "text": {
+        "en": "Trolls have taken the bridge and now charge a toll. In limbs. Five trolls, and the road is ours again.",
+        "fr": "Des trolls ont pris le pont et réclament un péage. En membres. Cinq trolls, et la route est à nous."
+      },
+      "giver": "merchant",
+      "minLevel": 12,
+      "objective": {
+        "kind": "kill",
+        "target": "troll",
+        "count": 5
+      },
+      "reward": {
+        "exp": 20,
+        "gold": 15,
+        "shards": 2
+      }
+    },
+    {
+      "id": "daily_bloodletting",
+      "type": "daily",
+      "title": {
+        "en": "Bloodletting",
+        "fr": "Saignée"
+      },
+      "text": {
+        "en": "Kill five things. Any five. The world won't miss them.",
+        "fr": "Tue cinq créatures. N'importe lesquelles. Le monde ne les regrettera pas."
+      },
+      "giver": "huntress",
+      "minLevel": 1,
+      "objective": {
+        "kind": "kill",
+        "count": 5
+      },
+      "reward": {
+        "exp": 4,
+        "gold": 3,
+        "shards": 1
+      }
+    },
+    {
+      "id": "daily_goblin_trouble",
+      "type": "daily",
+      "title": {
+        "en": "Goblin Trouble",
+        "fr": "Souci de gobelins"
+      },
+      "text": {
+        "en": "Three goblins stole the soup pot. Again.",
+        "fr": "Trois gobelins ont volé la marmite. Encore."
+      },
+      "giver": "warden",
+      "minLevel": 1,
+      "objective": {
+        "kind": "kill",
+        "target": "goblin",
+        "count": 3
+      },
+      "reward": {
+        "exp": 5,
+        "gold": 3,
+        "shards": 1
+      }
+    },
+    {
+      "id": "daily_easy_rounds",
+      "type": "daily",
+      "title": {
+        "en": "Morning Rounds",
+        "fr": "Ronde du matin"
+      },
+      "text": {
+        "en": "Win three easy hunts. Stretch your legs before the world tries to break them.",
+        "fr": "Gagne trois chasses faciles. Dégourdis-toi les jambes avant que le monde essaie de les briser."
+      },
+      "giver": "huntress",
+      "minLevel": 1,
+      "objective": {
+        "kind": "hunt",
+        "difficulty": "easy",
+        "count": 3
+      },
+      "reward": {
+        "exp": 4,
+        "gold": 3,
+        "shards": 1
+      }
+    },
+    {
+      "id": "daily_orc_dentistry",
+      "type": "daily",
+      "title": {
+        "en": "Orc Dentistry",
+        "fr": "Dentiste pour orcs"
+      },
+      "text": {
+        "en": "Two orc teeth. My hooks keep breaking. The orcs' teeth, not so much.",
+        "fr": "Deux dents d'orc. Mes hameçons cassent sans cesse. Les dents d'orc, beaucoup moins."
+      },
+      "giver": "fisher",
+      "minLevel": 1,
+      "objective": {
+        "kind": "collect",
+        "itemId": "orc_teeth",
+        "count": 2
+      },
+      "reward": {
+        "exp": 5,
+        "gold": 4,
+        "shards": 1
+      }
+    },
+    {
+      "id": "daily_supper",
+      "type": "daily",
+      "title": {
+        "en": "Supper",
+        "fr": "Le Souper"
+      },
+      "text": {
+        "en": "Two fish for supper. If they have too many eyes, throw them back.",
+        "fr": "Deux poissons pour le souper. S'ils ont trop d'yeux, rejette-les."
+      },
+      "giver": "fisher",
+      "minLevel": 2,
+      "objective": {
+        "kind": "fish",
+        "count": 2
+      },
+      "reward": {
+        "exp": 4,
+        "gold": 4,
+        "shards": 2
+      }
+    },
+    {
+      "id": "daily_curious_mind",
+      "type": "daily",
+      "title": {
+        "en": "Curious Mind",
+        "fr": "Esprit curieux"
+      },
+      "text": {
+        "en": "Identify one item. Knowing what you carry is half of staying alive.",
+        "fr": "Identifie un objet. Savoir ce que tu portes, c'est la moitié de la survie."
+      },
+      "giver": "smith",
+      "minLevel": 2,
+      "objective": {
+        "kind": "identify",
+        "count": 1
+      },
+      "reward": {
+        "exp": 5,
+        "gold": 3,
+        "shards": 2
+      }
+    },
+    {
+      "id": "daily_normal_patrol",
+      "type": "daily",
+      "title": {
+        "en": "Patrol",
+        "fr": "Patrouille"
+      },
+      "text": {
+        "en": "Three hunts on Normal. Keep the perimeter honest.",
+        "fr": "Trois chasses en Normal. Que le périmètre reste tranquille."
+      },
+      "giver": "warden",
+      "minLevel": 3,
+      "objective": {
+        "kind": "hunt",
+        "difficulty": "normal",
+        "count": 3
+      },
+      "reward": {
+        "exp": 7,
+        "gold": 5,
+        "shards": 2
+      }
+    },
+    {
+      "id": "daily_wolf_pack",
+      "type": "daily",
+      "title": {
+        "en": "Wolf Pack",
+        "fr": "La Meute"
+      },
+      "text": {
+        "en": "Three wolves howled all night. Make them stop.",
+        "fr": "Trois loups ont hurlé toute la nuit. Fais-les taire."
+      },
+      "giver": "huntress",
+      "minLevel": 5,
+      "objective": {
+        "kind": "kill",
+        "target": "wolf",
+        "count": 3
+      },
+      "reward": {
+        "exp": 8,
+        "gold": 6,
+        "shards": 3
+      }
+    }
+  ]
+}

@@ -1,0 +1,560 @@
+[
+  {
+    "id": "first_blood",
+    "name": {
+      "en": "First Blood",
+      "fr": "Premier sang"
+    },
+    "text": {
+      "en": "Kill 10 enemies.",
+      "fr": "Tue 10 ennemis."
+    },
+    "icon": "GiBloodySword",
+    "counter": "kills",
+    "gte": 10,
+    "reward": {
+      "gold": 20,
+      "shards": 0
+    }
+  },
+  {
+    "id": "butcher",
+    "name": {
+      "en": "Butcher",
+      "fr": "Boucher"
+    },
+    "text": {
+      "en": "Kill 100 enemies.",
+      "fr": "Tue 100 ennemis."
+    },
+    "icon": "GiMeatCleaver",
+    "counter": "kills",
+    "gte": 100,
+    "reward": {
+      "gold": 100,
+      "shards": 5
+    }
+  },
+  {
+    "id": "one_thousand_graves",
+    "name": {
+      "en": "A Thousand Graves",
+      "fr": "Mille tombes"
+    },
+    "text": {
+      "en": "Kill 1,000 enemies.",
+      "fr": "Tue 1 000 ennemis."
+    },
+    "icon": "GiGraveyard",
+    "counter": "kills",
+    "gte": 1000,
+    "reward": {
+      "gold": 500,
+      "shards": 30
+    }
+  },
+  {
+    "id": "champion_hunter",
+    "name": {
+      "en": "Champion Hunter",
+      "fr": "Chasseur de champions"
+    },
+    "text": {
+      "en": "Kill 10 elite enemies.",
+      "fr": "Tue 10 ennemis d'élite."
+    },
+    "icon": "GiCrossedSwords",
+    "counter": "elitesKilled",
+    "gte": 10,
+    "reward": {
+      "gold": 150,
+      "shards": 10
+    }
+  },
+  {
+    "id": "kingslayer",
+    "name": {
+      "en": "Kingslayer",
+      "fr": "Régicide"
+    },
+    "text": {
+      "en": "Defeat a boss.",
+      "fr": "Vaincs un boss."
+    },
+    "icon": "GiCrownedSkull",
+    "counter": "bossesKilled",
+    "gte": 1,
+    "reward": {
+      "gold": 100,
+      "shards": 5
+    }
+  },
+  {
+    "id": "dragonslayer",
+    "name": {
+      "en": "Dragonslayer?",
+      "fr": "Tueur de dragons ?"
+    },
+    "text": {
+      "en": "Defeat 10 bosses. Some of them were even dragons.",
+      "fr": "Vaincs 10 boss. Certains étaient même des dragons."
+    },
+    "icon": "GiDragonHead",
+    "counter": "bossesKilled",
+    "gte": 10,
+    "reward": {
+      "gold": 400,
+      "shards": 30
+    }
+  },
+  {
+    "id": "golden_hits",
+    "name": {
+      "en": "Where It Hurts",
+      "fr": "Là où ça fait mal"
+    },
+    "text": {
+      "en": "Land 100 critical hits.",
+      "fr": "Porte 100 coups critiques."
+    },
+    "icon": "GiSwordWound",
+    "counter": "crits",
+    "gte": 100,
+    "reward": {
+      "gold": 100,
+      "shards": 5
+    }
+  },
+  {
+    "id": "tourist_in_hell",
+    "name": {
+      "en": "Tourist in Hell",
+      "fr": "Touriste en Enfer"
+    },
+    "text": {
+      "en": "Win a hunt on Hell difficulty.",
+      "fr": "Gagne une chasse en Enfer."
+    },
+    "icon": "GiDevilMask",
+    "counter": "hellWins",
+    "gte": 1,
+    "reward": {
+      "gold": 150,
+      "shards": 10
+    }
+  },
+  {
+    "id": "hell_resident",
+    "name": {
+      "en": "Permanent Resident",
+      "fr": "Résident permanent"
+    },
+    "text": {
+      "en": "Win 25 hunts on Hell difficulty.",
+      "fr": "Gagne 25 chasses en Enfer."
+    },
+    "icon": "GiFireZone",
+    "counter": "hellWins",
+    "gte": 25,
+    "reward": {
+      "gold": 500,
+      "shards": 50
+    }
+  },
+  {
+    "id": "by_a_thread",
+    "name": {
+      "en": "By a Thread",
+      "fr": "Sur le fil"
+    },
+    "text": {
+      "en": "Win a fight with 5% health or less.",
+      "fr": "Gagne un combat avec 5 % de PV ou moins."
+    },
+    "icon": "GiHeartMinus",
+    "counter": "closeCalls",
+    "gte": 1,
+    "reward": {
+      "gold": 50,
+      "shards": 5
+    }
+  },
+  {
+    "id": "orange_glow",
+    "name": {
+      "en": "Orange Glow",
+      "fr": "Lueur orangée"
+    },
+    "text": {
+      "en": "Find a legendary item.",
+      "fr": "Trouve un objet légendaire."
+    },
+    "icon": "GiShiningSword",
+    "counter": "legendariesFound",
+    "gte": 1,
+    "reward": {
+      "gold": 100,
+      "shards": 10
+    }
+  },
+  {
+    "id": "living_legend",
+    "name": {
+      "en": "Living Legend",
+      "fr": "Légende vivante"
+    },
+    "text": {
+      "en": "Find 10 legendary items.",
+      "fr": "Trouve 10 objets légendaires."
+    },
+    "icon": "GiLaurelsTrophy",
+    "counter": "legendariesFound",
+    "gte": 10,
+    "reward": {
+      "gold": 500,
+      "shards": 40
+    }
+  },
+  {
+    "id": "dressed_for_it",
+    "name": {
+      "en": "Dressed for the Occasion",
+      "fr": "Tenue de circonstance"
+    },
+    "text": {
+      "en": "Find 4 set pieces.",
+      "fr": "Trouve 4 pièces d'ensemble."
+    },
+    "icon": "GiChestArmor",
+    "counter": "setPiecesFound",
+    "gte": 4,
+    "reward": {
+      "gold": 200,
+      "shards": 20
+    }
+  },
+  {
+    "id": "appraiser",
+    "name": {
+      "en": "Appraiser",
+      "fr": "Expert en curiosités"
+    },
+    "text": {
+      "en": "Identify 50 items.",
+      "fr": "Identifie 50 objets."
+    },
+    "icon": "GiCrystalBall",
+    "counter": "itemsIdentified",
+    "gte": 50,
+    "reward": {
+      "gold": 150,
+      "shards": 10
+    }
+  },
+  {
+    "id": "scrap_heap",
+    "name": {
+      "en": "Nothing Is Wasted",
+      "fr": "Rien ne se perd"
+    },
+    "text": {
+      "en": "Salvage 50 items.",
+      "fr": "Recycle 50 objets."
+    },
+    "icon": "GiAnvilImpact",
+    "counter": "itemsSalvaged",
+    "gte": 50,
+    "reward": {
+      "gold": 100,
+      "shards": 20
+    }
+  },
+  {
+    "id": "tinkerer",
+    "name": {
+      "en": "Hammer Time",
+      "fr": "Coups de marteau"
+    },
+    "text": {
+      "en": "Upgrade items 10 times.",
+      "fr": "Améliore des objets 10 fois."
+    },
+    "icon": "GiSwordSmithing",
+    "counter": "upgradesDone",
+    "gte": 10,
+    "reward": {
+      "gold": 100,
+      "shards": 15
+    }
+  },
+  {
+    "id": "patient_one",
+    "name": {
+      "en": "The Patient One",
+      "fr": "Le Patient"
+    },
+    "text": {
+      "en": "Catch 10 fish.",
+      "fr": "Pêche 10 poissons."
+    },
+    "icon": "GiFishingPole",
+    "counter": "fishCaught",
+    "gte": 10,
+    "reward": {
+      "gold": 50,
+      "shards": 5
+    }
+  },
+  {
+    "id": "old_man_and_the_lake",
+    "name": {
+      "en": "The Old Man and the Lake",
+      "fr": "Le Vieil Homme et le lac"
+    },
+    "text": {
+      "en": "Catch 100 fish.",
+      "fr": "Pêche 100 poissons."
+    },
+    "icon": "GiFishingNet",
+    "counter": "fishCaught",
+    "gte": 100,
+    "reward": {
+      "gold": 300,
+      "shards": 25
+    }
+  },
+  {
+    "id": "going_down",
+    "name": {
+      "en": "Going Down",
+      "fr": "Ça descend"
+    },
+    "text": {
+      "en": "Reach floor 5 of the Depths.",
+      "fr": "Atteins le 5e étage des Profondeurs."
+    },
+    "icon": "GiStairs",
+    "counter": "deepestFloor",
+    "gte": 5,
+    "reward": {
+      "gold": 75,
+      "shards": 5
+    }
+  },
+  {
+    "id": "deep_dweller",
+    "name": {
+      "en": "Deep Dweller",
+      "fr": "Habitant des abysses"
+    },
+    "text": {
+      "en": "Reach floor 10 of the Depths.",
+      "fr": "Atteins le 10e étage des Profondeurs."
+    },
+    "icon": "GiDungeonGate",
+    "counter": "deepestFloor",
+    "gte": 10,
+    "reward": {
+      "gold": 200,
+      "shards": 15
+    }
+  },
+  {
+    "id": "abyss_gazes_back",
+    "name": {
+      "en": "The Abyss Gazes Back",
+      "fr": "L'abîme te regarde"
+    },
+    "text": {
+      "en": "Reach floor 20 of the Depths.",
+      "fr": "Atteins le 20e étage des Profondeurs."
+    },
+    "icon": "GiSunkenEye",
+    "counter": "deepestFloor",
+    "gte": 20,
+    "reward": {
+      "gold": 500,
+      "shards": 40
+    }
+  },
+  {
+    "id": "errand_runner",
+    "name": {
+      "en": "Errand Runner",
+      "fr": "Homme à tout faire"
+    },
+    "text": {
+      "en": "Complete 25 quests.",
+      "fr": "Accomplis 25 quêtes."
+    },
+    "icon": "GiScrollUnfurled",
+    "counter": "questsCompleted",
+    "gte": 25,
+    "reward": {
+      "gold": 200,
+      "shards": 15
+    }
+  },
+  {
+    "id": "dreamless",
+    "name": {
+      "en": "Dreamless",
+      "fr": "Sans rêves"
+    },
+    "text": {
+      "en": "Complete Act I. The Hollow King sleeps no more.",
+      "fr": "Termine l'Acte I. Le Roi Creux ne dort plus."
+    },
+    "icon": "GiCrown",
+    "counter": "storyChapter",
+    "gte": 10,
+    "reward": {
+      "gold": 500,
+      "shards": 50
+    }
+  },
+  {
+    "id": "daily_grind",
+    "name": {
+      "en": "Daily Grind",
+      "fr": "Train-train"
+    },
+    "text": {
+      "en": "Complete 7 daily challenges.",
+      "fr": "Relève 7 défis quotidiens."
+    },
+    "icon": "GiHourglass",
+    "counter": "dailyChallenges",
+    "gte": 7,
+    "reward": {
+      "gold": 150,
+      "shards": 15
+    }
+  },
+  {
+    "id": "dragons_hoard",
+    "name": {
+      "en": "A Modest Hoard",
+      "fr": "Un modeste magot"
+    },
+    "text": {
+      "en": "Earn 10,000 gold.",
+      "fr": "Gagne 10 000 pièces d'or."
+    },
+    "icon": "GiCoinsPile",
+    "counter": "goldEarned",
+    "gte": 10000,
+    "reward": {
+      "gold": 0,
+      "shards": 25
+    }
+  },
+  {
+    "id": "potion_addict",
+    "name": {
+      "en": "Just One More",
+      "fr": "Juste une dernière"
+    },
+    "text": {
+      "en": "Drink 50 potions.",
+      "fr": "Bois 50 potions."
+    },
+    "icon": "GiHealthPotion",
+    "counter": "potionsUsed",
+    "gte": 50,
+    "reward": {
+      "gold": 100,
+      "shards": 5
+    }
+  },
+  {
+    "id": "survivor",
+    "name": {
+      "en": "Survivor",
+      "fr": "Survivant"
+    },
+    "text": {
+      "en": "Reach level 5.",
+      "fr": "Atteins le niveau 5."
+    },
+    "icon": "GiCampfire",
+    "counter": "level",
+    "gte": 5,
+    "reward": {
+      "gold": 50,
+      "shards": 0
+    }
+  },
+  {
+    "id": "veteran",
+    "name": {
+      "en": "Veteran",
+      "fr": "Vétéran"
+    },
+    "text": {
+      "en": "Reach level 10.",
+      "fr": "Atteins le niveau 10."
+    },
+    "icon": "GiRibbonMedal",
+    "counter": "level",
+    "gte": 10,
+    "reward": {
+      "gold": 150,
+      "shards": 10
+    }
+  },
+  {
+    "id": "legend_of_the_camp",
+    "name": {
+      "en": "Legend of the Camp",
+      "fr": "Légende du camp"
+    },
+    "text": {
+      "en": "Reach level 20.",
+      "fr": "Atteins le niveau 20."
+    },
+    "icon": "GiStarMedal",
+    "counter": "level",
+    "gte": 20,
+    "reward": {
+      "gold": 400,
+      "shards": 30
+    }
+  },
+  {
+    "id": "beyond_the_limit",
+    "name": {
+      "en": "Beyond the Limit",
+      "fr": "Au-delà des limites"
+    },
+    "text": {
+      "en": "Reach paragon 10.",
+      "fr": "Atteins le parangon 10."
+    },
+    "icon": "GiStarSwirl",
+    "counter": "paragon",
+    "gte": 10,
+    "reward": {
+      "gold": 300,
+      "shards": 40
+    }
+  },
+  {
+    "id": "keeper_of_the_flame",
+    "name": {
+      "en": "Keeper of the Flame",
+      "fr": "Gardien de la flamme"
+    },
+    "text": {
+      "en": "Rest at the campfire 7 days in a row.",
+      "fr": "Repose-toi au feu de camp 7 jours de suite."
+    },
+    "icon": "GiFireplace",
+    "counter": "restStreak",
+    "gte": 7,
+    "reward": {
+      "gold": 100,
+      "shards": 20
+    }
+  }
+]

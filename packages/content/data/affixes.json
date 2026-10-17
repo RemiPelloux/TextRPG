@@ -1,0 +1,1003 @@
+[
+  {
+    "id": "mighty",
+    "type": "prefix",
+    "name": {
+      "en": "Mighty",
+      "fr": "puissant",
+      "frF": "puissante"
+    },
+    "stat": "strength",
+    "slots": ["weapon", "gloves", "ring", "amulet"],
+    "weight": 10,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [1, 2]
+      },
+      {
+        "minIlvl": 5,
+        "range": [3, 5]
+      },
+      {
+        "minIlvl": 10,
+        "range": [5, 7]
+      },
+      {
+        "minIlvl": 15,
+        "range": [6, 10]
+      },
+      {
+        "minIlvl": 20,
+        "range": [8, 12]
+      }
+    ]
+  },
+  {
+    "id": "brutal",
+    "type": "prefix",
+    "name": {
+      "en": "Brutal",
+      "fr": "brutal",
+      "frF": "brutale"
+    },
+    "stat": "strength",
+    "slots": ["weapon", "armor", "helm"],
+    "weight": 8,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [1, 2]
+      },
+      {
+        "minIlvl": 5,
+        "range": [3, 5]
+      },
+      {
+        "minIlvl": 10,
+        "range": [5, 7]
+      },
+      {
+        "minIlvl": 15,
+        "range": [6, 10]
+      },
+      {
+        "minIlvl": 20,
+        "range": [8, 12]
+      }
+    ]
+  },
+  {
+    "id": "sturdy",
+    "type": "prefix",
+    "name": {
+      "en": "Sturdy",
+      "fr": "robuste",
+      "frF": "robuste"
+    },
+    "stat": "defense",
+    "slots": ["armor", "helm", "boots", "gloves"],
+    "weight": 12,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [1, 2]
+      },
+      {
+        "minIlvl": 5,
+        "range": [3, 5]
+      },
+      {
+        "minIlvl": 10,
+        "range": [5, 7]
+      },
+      {
+        "minIlvl": 15,
+        "range": [6, 10]
+      },
+      {
+        "minIlvl": 20,
+        "range": [8, 12]
+      }
+    ]
+  },
+  {
+    "id": "swift",
+    "type": "prefix",
+    "name": {
+      "en": "Swift",
+      "fr": "leste",
+      "frF": "leste"
+    },
+    "stat": "speed",
+    "slots": ["boots", "gloves", "ring", "weapon"],
+    "weight": 9,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [1, 1]
+      },
+      {
+        "minIlvl": 5,
+        "range": [2, 2]
+      },
+      {
+        "minIlvl": 10,
+        "range": [3, 4]
+      },
+      {
+        "minIlvl": 15,
+        "range": [3, 5]
+      },
+      {
+        "minIlvl": 20,
+        "range": [4, 6]
+      }
+    ]
+  },
+  {
+    "id": "lucky",
+    "type": "prefix",
+    "name": {
+      "en": "Lucky",
+      "fr": "chanceux",
+      "frF": "chanceuse"
+    },
+    "stat": "luck",
+    "slots": ["ring", "amulet", "helm", "gloves"],
+    "weight": 8,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [1, 2]
+      },
+      {
+        "minIlvl": 5,
+        "range": [2, 4]
+      },
+      {
+        "minIlvl": 10,
+        "range": [4, 6]
+      },
+      {
+        "minIlvl": 15,
+        "range": [5, 7]
+      },
+      {
+        "minIlvl": 20,
+        "range": [6, 9]
+      }
+    ]
+  },
+  {
+    "id": "hale",
+    "type": "prefix",
+    "name": {
+      "en": "Hale",
+      "fr": "vigoureux",
+      "frF": "vigoureuse"
+    },
+    "stat": "maxHealth",
+    "slots": ["armor", "helm", "boots", "amulet", "ring"],
+    "weight": 12,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [5, 10]
+      },
+      {
+        "minIlvl": 5,
+        "range": [14, 23]
+      },
+      {
+        "minIlvl": 10,
+        "range": [23, 35]
+      },
+      {
+        "minIlvl": 15,
+        "range": [31, 48]
+      },
+      {
+        "minIlvl": 20,
+        "range": [40, 60]
+      }
+    ]
+  },
+  {
+    "id": "cruel",
+    "type": "prefix",
+    "name": {
+      "en": "Cruel",
+      "fr": "cruel",
+      "frF": "cruelle"
+    },
+    "stat": "damagePct",
+    "slots": ["weapon", "amulet"],
+    "weight": 10,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [3, 5]
+      },
+      {
+        "minIlvl": 5,
+        "range": [7, 10]
+      },
+      {
+        "minIlvl": 10,
+        "range": [11, 15]
+      },
+      {
+        "minIlvl": 15,
+        "range": [14, 20]
+      },
+      {
+        "minIlvl": 20,
+        "range": [18, 25]
+      }
+    ]
+  },
+  {
+    "id": "keen",
+    "type": "prefix",
+    "name": {
+      "en": "Keen",
+      "fr": "acéré",
+      "frF": "acérée"
+    },
+    "stat": "critChance",
+    "slots": ["weapon", "gloves", "ring", "helm"],
+    "weight": 8,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [1, 2]
+      },
+      {
+        "minIlvl": 5,
+        "range": [2, 4]
+      },
+      {
+        "minIlvl": 10,
+        "range": [4, 5]
+      },
+      {
+        "minIlvl": 15,
+        "range": [5, 7]
+      },
+      {
+        "minIlvl": 20,
+        "range": [6, 8]
+      }
+    ]
+  },
+  {
+    "id": "savage",
+    "type": "prefix",
+    "name": {
+      "en": "Savage",
+      "fr": "sauvage",
+      "frF": "sauvage"
+    },
+    "stat": "critDamage",
+    "slots": ["weapon", "amulet"],
+    "weight": 7,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [5, 8]
+      },
+      {
+        "minIlvl": 5,
+        "range": [11, 16]
+      },
+      {
+        "minIlvl": 10,
+        "range": [18, 24]
+      },
+      {
+        "minIlvl": 15,
+        "range": [24, 32]
+      },
+      {
+        "minIlvl": 20,
+        "range": [30, 40]
+      }
+    ]
+  },
+  {
+    "id": "thirsting",
+    "type": "prefix",
+    "name": {
+      "en": "Thirsting",
+      "fr": "assoiffé",
+      "frF": "assoiffée"
+    },
+    "stat": "lifeSteal",
+    "slots": ["weapon", "ring"],
+    "weight": 5,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [1, 2]
+      },
+      {
+        "minIlvl": 5,
+        "range": [2, 3]
+      },
+      {
+        "minIlvl": 10,
+        "range": [3, 5]
+      },
+      {
+        "minIlvl": 15,
+        "range": [4, 6]
+      },
+      {
+        "minIlvl": 20,
+        "range": [5, 7]
+      }
+    ]
+  },
+  {
+    "id": "thorned",
+    "type": "prefix",
+    "name": {
+      "en": "Thorned",
+      "fr": "épineux",
+      "frF": "épineuse"
+    },
+    "stat": "thorns",
+    "slots": ["armor", "helm", "gloves"],
+    "weight": 8,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [2, 4]
+      },
+      {
+        "minIlvl": 5,
+        "range": [5, 8]
+      },
+      {
+        "minIlvl": 10,
+        "range": [7, 11]
+      },
+      {
+        "minIlvl": 15,
+        "range": [10, 15]
+      },
+      {
+        "minIlvl": 20,
+        "range": [12, 18]
+      }
+    ]
+  },
+  {
+    "id": "gilded",
+    "type": "prefix",
+    "name": {
+      "en": "Gilded",
+      "fr": "doré",
+      "frF": "dorée"
+    },
+    "stat": "goldFind",
+    "slots": ["ring", "amulet", "gloves", "helm"],
+    "weight": 9,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [5, 10]
+      },
+      {
+        "minIlvl": 5,
+        "range": [14, 23]
+      },
+      {
+        "minIlvl": 10,
+        "range": [23, 35]
+      },
+      {
+        "minIlvl": 15,
+        "range": [31, 48]
+      },
+      {
+        "minIlvl": 20,
+        "range": [40, 60]
+      }
+    ]
+  },
+  {
+    "id": "elusive",
+    "type": "prefix",
+    "name": {
+      "en": "Elusive",
+      "fr": "insaisissable",
+      "frF": "insaisissable"
+    },
+    "stat": "dodge",
+    "slots": ["boots", "armor", "gloves"],
+    "weight": 7,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [1, 2]
+      },
+      {
+        "minIlvl": 5,
+        "range": [2, 3]
+      },
+      {
+        "minIlvl": 10,
+        "range": [3, 5]
+      },
+      {
+        "minIlvl": 15,
+        "range": [4, 6]
+      },
+      {
+        "minIlvl": 20,
+        "range": [5, 7]
+      }
+    ]
+  },
+  {
+    "id": "runed",
+    "type": "prefix",
+    "name": {
+      "en": "Runed",
+      "fr": "runique",
+      "frF": "runique"
+    },
+    "stat": "magicFind",
+    "slots": ["amulet", "ring", "helm"],
+    "weight": 6,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [3, 6]
+      },
+      {
+        "minIlvl": 5,
+        "range": [9, 13]
+      },
+      {
+        "minIlvl": 10,
+        "range": [14, 21]
+      },
+      {
+        "minIlvl": 15,
+        "range": [20, 28]
+      },
+      {
+        "minIlvl": 20,
+        "range": [25, 35]
+      }
+    ]
+  },
+  {
+    "id": "learned",
+    "type": "prefix",
+    "name": {
+      "en": "Learned",
+      "fr": "savant",
+      "frF": "savante"
+    },
+    "stat": "expBonus",
+    "slots": ["amulet", "helm", "ring"],
+    "weight": 6,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [2, 4]
+      },
+      {
+        "minIlvl": 5,
+        "range": [5, 7]
+      },
+      {
+        "minIlvl": 10,
+        "range": [7, 10]
+      },
+      {
+        "minIlvl": 15,
+        "range": [10, 13]
+      },
+      {
+        "minIlvl": 20,
+        "range": [12, 16]
+      }
+    ]
+  },
+  {
+    "id": "of_the_bull",
+    "type": "suffix",
+    "name": {
+      "en": "of the Bull",
+      "fr": "du Taureau"
+    },
+    "stat": "strength",
+    "slots": ["gloves", "ring", "amulet", "weapon"],
+    "weight": 10,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [1, 2]
+      },
+      {
+        "minIlvl": 5,
+        "range": [3, 5]
+      },
+      {
+        "minIlvl": 10,
+        "range": [5, 7]
+      },
+      {
+        "minIlvl": 15,
+        "range": [6, 10]
+      },
+      {
+        "minIlvl": 20,
+        "range": [8, 12]
+      }
+    ]
+  },
+  {
+    "id": "of_the_tortoise",
+    "type": "suffix",
+    "name": {
+      "en": "of the Tortoise",
+      "fr": "de la Tortue"
+    },
+    "stat": "defense",
+    "slots": ["armor", "helm", "boots", "ring"],
+    "weight": 12,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [1, 2]
+      },
+      {
+        "minIlvl": 5,
+        "range": [3, 5]
+      },
+      {
+        "minIlvl": 10,
+        "range": [5, 7]
+      },
+      {
+        "minIlvl": 15,
+        "range": [6, 10]
+      },
+      {
+        "minIlvl": 20,
+        "range": [8, 12]
+      }
+    ]
+  },
+  {
+    "id": "of_the_bear",
+    "type": "suffix",
+    "name": {
+      "en": "of the Bear",
+      "fr": "de l'Ours"
+    },
+    "stat": "maxHealth",
+    "slots": ["armor", "helm", "boots", "gloves", "amulet"],
+    "weight": 12,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [5, 10]
+      },
+      {
+        "minIlvl": 5,
+        "range": [14, 23]
+      },
+      {
+        "minIlvl": 10,
+        "range": [23, 35]
+      },
+      {
+        "minIlvl": 15,
+        "range": [31, 48]
+      },
+      {
+        "minIlvl": 20,
+        "range": [40, 60]
+      }
+    ]
+  },
+  {
+    "id": "of_the_fox",
+    "type": "suffix",
+    "name": {
+      "en": "of the Fox",
+      "fr": "du Renard"
+    },
+    "stat": "speed",
+    "slots": ["boots", "gloves", "ring", "weapon"],
+    "weight": 9,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [1, 1]
+      },
+      {
+        "minIlvl": 5,
+        "range": [2, 2]
+      },
+      {
+        "minIlvl": 10,
+        "range": [3, 4]
+      },
+      {
+        "minIlvl": 15,
+        "range": [3, 5]
+      },
+      {
+        "minIlvl": 20,
+        "range": [4, 6]
+      }
+    ]
+  },
+  {
+    "id": "of_the_cat",
+    "type": "suffix",
+    "name": {
+      "en": "of the Black Cat",
+      "fr": "du Chat noir"
+    },
+    "stat": "luck",
+    "slots": ["ring", "amulet", "boots", "helm"],
+    "weight": 8,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [1, 2]
+      },
+      {
+        "minIlvl": 5,
+        "range": [2, 4]
+      },
+      {
+        "minIlvl": 10,
+        "range": [4, 6]
+      },
+      {
+        "minIlvl": 15,
+        "range": [5, 7]
+      },
+      {
+        "minIlvl": 20,
+        "range": [6, 9]
+      }
+    ]
+  },
+  {
+    "id": "of_the_hawk",
+    "type": "suffix",
+    "name": {
+      "en": "of the Hawk",
+      "fr": "du Faucon"
+    },
+    "stat": "critChance",
+    "slots": ["weapon", "gloves", "helm", "ring"],
+    "weight": 8,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [1, 2]
+      },
+      {
+        "minIlvl": 5,
+        "range": [2, 4]
+      },
+      {
+        "minIlvl": 10,
+        "range": [4, 5]
+      },
+      {
+        "minIlvl": 15,
+        "range": [5, 7]
+      },
+      {
+        "minIlvl": 20,
+        "range": [6, 8]
+      }
+    ]
+  },
+  {
+    "id": "of_the_wolf",
+    "type": "suffix",
+    "name": {
+      "en": "of the Wolf",
+      "fr": "du Loup"
+    },
+    "stat": "critDamage",
+    "slots": ["weapon", "gloves"],
+    "weight": 7,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [5, 8]
+      },
+      {
+        "minIlvl": 5,
+        "range": [11, 16]
+      },
+      {
+        "minIlvl": 10,
+        "range": [18, 24]
+      },
+      {
+        "minIlvl": 15,
+        "range": [24, 32]
+      },
+      {
+        "minIlvl": 20,
+        "range": [30, 40]
+      }
+    ]
+  },
+  {
+    "id": "of_slaughter",
+    "type": "suffix",
+    "name": {
+      "en": "of Slaughter",
+      "fr": "du Carnage"
+    },
+    "stat": "damagePct",
+    "slots": ["weapon", "gloves"],
+    "weight": 9,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [3, 5]
+      },
+      {
+        "minIlvl": 5,
+        "range": [7, 10]
+      },
+      {
+        "minIlvl": 10,
+        "range": [11, 15]
+      },
+      {
+        "minIlvl": 15,
+        "range": [14, 20]
+      },
+      {
+        "minIlvl": 20,
+        "range": [18, 25]
+      }
+    ]
+  },
+  {
+    "id": "of_the_leech",
+    "type": "suffix",
+    "name": {
+      "en": "of the Leech",
+      "fr": "de la Sangsue"
+    },
+    "stat": "lifeSteal",
+    "slots": ["weapon", "amulet"],
+    "weight": 5,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [1, 2]
+      },
+      {
+        "minIlvl": 5,
+        "range": [2, 3]
+      },
+      {
+        "minIlvl": 10,
+        "range": [3, 5]
+      },
+      {
+        "minIlvl": 15,
+        "range": [4, 6]
+      },
+      {
+        "minIlvl": 20,
+        "range": [5, 7]
+      }
+    ]
+  },
+  {
+    "id": "of_shadows",
+    "type": "suffix",
+    "name": {
+      "en": "of Shadows",
+      "fr": "des Ombres"
+    },
+    "stat": "dodge",
+    "slots": ["boots", "armor", "gloves", "helm"],
+    "weight": 7,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [1, 2]
+      },
+      {
+        "minIlvl": 5,
+        "range": [2, 3]
+      },
+      {
+        "minIlvl": 10,
+        "range": [3, 5]
+      },
+      {
+        "minIlvl": 15,
+        "range": [4, 6]
+      },
+      {
+        "minIlvl": 20,
+        "range": [5, 7]
+      }
+    ]
+  },
+  {
+    "id": "of_brambles",
+    "type": "suffix",
+    "name": {
+      "en": "of Brambles",
+      "fr": "des Ronces"
+    },
+    "stat": "thorns",
+    "slots": ["armor", "boots", "helm"],
+    "weight": 8,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [2, 4]
+      },
+      {
+        "minIlvl": 5,
+        "range": [5, 8]
+      },
+      {
+        "minIlvl": 10,
+        "range": [7, 11]
+      },
+      {
+        "minIlvl": 15,
+        "range": [10, 15]
+      },
+      {
+        "minIlvl": 20,
+        "range": [12, 18]
+      }
+    ]
+  },
+  {
+    "id": "of_the_magpie",
+    "type": "suffix",
+    "name": {
+      "en": "of the Magpie",
+      "fr": "de la Pie"
+    },
+    "stat": "goldFind",
+    "slots": ["ring", "amulet", "boots", "gloves"],
+    "weight": 9,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [5, 10]
+      },
+      {
+        "minIlvl": 5,
+        "range": [14, 23]
+      },
+      {
+        "minIlvl": 10,
+        "range": [23, 35]
+      },
+      {
+        "minIlvl": 15,
+        "range": [31, 48]
+      },
+      {
+        "minIlvl": 20,
+        "range": [40, 60]
+      }
+    ]
+  },
+  {
+    "id": "of_the_crow",
+    "type": "suffix",
+    "name": {
+      "en": "of the Crow",
+      "fr": "du Corbeau"
+    },
+    "stat": "magicFind",
+    "slots": ["helm", "amulet", "ring", "gloves"],
+    "weight": 6,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [3, 6]
+      },
+      {
+        "minIlvl": 5,
+        "range": [9, 13]
+      },
+      {
+        "minIlvl": 10,
+        "range": [14, 21]
+      },
+      {
+        "minIlvl": 15,
+        "range": [20, 28]
+      },
+      {
+        "minIlvl": 20,
+        "range": [25, 35]
+      }
+    ]
+  },
+  {
+    "id": "of_the_owl",
+    "type": "suffix",
+    "name": {
+      "en": "of the Owl",
+      "fr": "de la Chouette"
+    },
+    "stat": "expBonus",
+    "slots": ["helm", "amulet", "armor"],
+    "weight": 6,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [2, 4]
+      },
+      {
+        "minIlvl": 5,
+        "range": [5, 7]
+      },
+      {
+        "minIlvl": 10,
+        "range": [7, 10]
+      },
+      {
+        "minIlvl": 15,
+        "range": [10, 13]
+      },
+      {
+        "minIlvl": 20,
+        "range": [12, 16]
+      }
+    ]
+  },
+  {
+    "id": "of_the_stars",
+    "type": "suffix",
+    "name": {
+      "en": "of the Stars",
+      "fr": "des Étoiles"
+    },
+    "stat": "maxEnergy",
+    "slots": ["amulet", "ring"],
+    "weight": 4,
+    "tiers": [
+      {
+        "minIlvl": 1,
+        "range": [1, 1]
+      },
+      {
+        "minIlvl": 5,
+        "range": [2, 2]
+      },
+      {
+        "minIlvl": 10,
+        "range": [2, 3]
+      },
+      {
+        "minIlvl": 15,
+        "range": [3, 4]
+      }
+    ]
+  }
+]

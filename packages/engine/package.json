@@ -1,0 +1,23 @@
+{
+  "name": "@textrpg/engine",
+  "version": "1.2.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./sim": "./src/sim.ts",
+    "./enemies": "./src/enemies.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@textrpg/content": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "vitest": "^5.0.5",
+    "fast-check": "^4.10.2"
+  }
+}
