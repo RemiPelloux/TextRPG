@@ -1,23 +1,24 @@
-# Python
+node_modules/
+.next/
+out/
+dist/
+coverage/
+*.tsbuildinfo
+.env
+.env.local
+.turbo/
+playwright-report/
+test-results/
+.pgdata/
+
+# Python legacy
 __pycache__/
 *.py[cod]
 *.egg-info/
-build/
-dist/
-.venv/
-venv/
-
-# Tooling
 .pytest_cache/
 .ruff_cache/
-.mypy_cache/
-.coverage
-htmlcov/
+.venv/
+saves/
 
-# IDEs
 .idea/
 .vscode/
-
-# Local game saves
-saves/
-*.sav.json

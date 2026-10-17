@@ -1,0 +1,228 @@
+[
+  {
+    "id": "grey_perch",
+    "name": {
+      "en": "Grey Perch",
+      "fr": "Perche grise"
+    },
+    "icon": "GiTropicalFish",
+    "rarity": "common",
+    "weight": 10,
+    "temper": "calm",
+    "rounds": 1,
+    "price": 3,
+    "healPct": 0.1,
+    "lore": {
+      "en": "Grey, small, edible. The most honest thing in the lake.",
+      "fr": "Grise, petite, comestible. La chose la plus honnête du lac."
+    }
+  },
+  {
+    "id": "mud_carp",
+    "name": {
+      "en": "Mud Carp",
+      "fr": "Carpe de vase"
+    },
+    "icon": "GiFlatfish",
+    "rarity": "common",
+    "weight": 10,
+    "temper": "calm",
+    "rounds": 1,
+    "price": 4,
+    "healPct": 0.12,
+    "lore": {
+      "en": "Tastes of mud. Lives in mud. Has opinions about mud.",
+      "fr": "A le goût de la vase. Vit dans la vase. A des opinions sur la vase."
+    }
+  },
+  {
+    "id": "bog_eel",
+    "name": {
+      "en": "Bog Eel",
+      "fr": "Anguille des tourbières"
+    },
+    "icon": "GiEel",
+    "rarity": "common",
+    "weight": 9,
+    "temper": "wild",
+    "rounds": 1,
+    "price": 5,
+    "healPct": 0.1,
+    "lore": {
+      "en": "It thrashes like it has somewhere to be.",
+      "fr": "Elle se débat comme si elle avait un rendez-vous."
+    }
+  },
+  {
+    "id": "ditch_crab",
+    "name": {
+      "en": "Ditch Crab",
+      "fr": "Crabe de fossé"
+    },
+    "icon": "GiCrab",
+    "rarity": "common",
+    "weight": 8,
+    "temper": "sly",
+    "rounds": 1,
+    "price": 4,
+    "healPct": 0.08,
+    "lore": {
+      "en": "Walks sideways, thinks sideways.",
+      "fr": "Marche de travers, pense de travers."
+    }
+  },
+  {
+    "id": "waterlogged_boot",
+    "name": {
+      "en": "Waterlogged Boot",
+      "fr": "Botte détrempée"
+    },
+    "icon": "GiLeatherBoot",
+    "rarity": "common",
+    "weight": 6,
+    "temper": "calm",
+    "rounds": 1,
+    "price": 3,
+    "healPct": 0,
+    "lore": {
+      "en": "Not a fish. You caught it anyway. The foot is gone, at least.",
+      "fr": "Pas un poisson. Tu l'as attrapée quand même. Le pied n'y est plus, au moins."
+    }
+  },
+  {
+    "id": "pale_pike",
+    "name": {
+      "en": "Pale Pike",
+      "fr": "Brochet pâle"
+    },
+    "icon": "GiFishbone",
+    "rarity": "magic",
+    "weight": 5,
+    "temper": "wild",
+    "rounds": 2,
+    "price": 20,
+    "healPct": 0.2,
+    "lore": {
+      "en": "It lives so deep it forgot what color was.",
+      "fr": "Il vit si profond qu'il a oublié ce qu'était la couleur."
+    }
+  },
+  {
+    "id": "lanternfish",
+    "name": {
+      "en": "Lanternfish",
+      "fr": "Poisson-lanterne"
+    },
+    "icon": "GiAnglerFish",
+    "rarity": "magic",
+    "weight": 4,
+    "temper": "sly",
+    "rounds": 2,
+    "price": 30,
+    "healPct": 0.15,
+    "lore": {
+      "en": "Its little light lures the curious. You are curious.",
+      "fr": "Sa petite lumière attire les curieux. Tu es curieux."
+    }
+  },
+  {
+    "id": "mire_jelly",
+    "name": {
+      "en": "Mire Jelly",
+      "fr": "Méduse des marais"
+    },
+    "icon": "GiJellyfish",
+    "rarity": "magic",
+    "weight": 4,
+    "temper": "calm",
+    "rounds": 2,
+    "price": 25,
+    "healPct": 0,
+    "lore": {
+      "en": "Do not eat. Do not touch. You already touched it.",
+      "fr": "Ne pas manger. Ne pas toucher. Tu l'as déjà touchée."
+    }
+  },
+  {
+    "id": "ghostfin",
+    "name": {
+      "en": "Ghostfin",
+      "fr": "Nageoire-Spectre"
+    },
+    "icon": "GiFishCorpse",
+    "rarity": "rare",
+    "weight": 2,
+    "temper": "sly",
+    "rounds": 3,
+    "price": 90,
+    "healPct": 0.3,
+    "lore": {
+      "en": "Already dead when you caught it. It didn't seem to mind.",
+      "fr": "Déjà mort quand tu l'as pêché. Ça n'a pas eu l'air de le déranger."
+    }
+  },
+  {
+    "id": "spined_wardfish",
+    "name": {
+      "en": "Spined Wardfish",
+      "fr": "Poisson-hérisson des Gardes"
+    },
+    "icon": "GiPorcupinefish",
+    "rarity": "rare",
+    "weight": 2,
+    "temper": "wild",
+    "rounds": 3,
+    "price": 120,
+    "healPct": 0.25,
+    "lore": {
+      "en": "Puffs up when threatened. You threaten it.",
+      "fr": "Il gonfle quand on le menace. Tu le menaces."
+    }
+  },
+  {
+    "id": "frostjaw",
+    "name": {
+      "en": "Frostjaw, the Winter Pike",
+      "fr": "Gueule-de-Givre, brochet d'hiver"
+    },
+    "icon": "GiFishMonster",
+    "rarity": "legendary",
+    "weight": 0.3,
+    "months": [
+      12,
+      1,
+      2
+    ],
+    "temper": "wild",
+    "rounds": 4,
+    "price": 350,
+    "healPct": 0.4,
+    "lore": {
+      "en": "Bites only under ice. The old fishers say it ate a village once. The village was small.",
+      "fr": "Ne mord que sous la glace. Les vieux pêcheurs disent qu'il a mangé un village. Un petit village."
+    }
+  },
+  {
+    "id": "moonswallow",
+    "name": {
+      "en": "Moonswallow",
+      "fr": "Avale-Lune"
+    },
+    "icon": "GiSeaSerpent",
+    "rarity": "legendary",
+    "weight": 0.3,
+    "months": [
+      6,
+      7,
+      8
+    ],
+    "temper": "sly",
+    "rounds": 4,
+    "price": 400,
+    "healPct": 0.4,
+    "lore": {
+      "en": "On summer nights it rises to drink the moon's reflection. Lately, it drinks red.",
+      "fr": "Les nuits d'été, il remonte boire le reflet de la lune. Ces temps-ci, il boit du rouge."
+    }
+  }
+]

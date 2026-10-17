@@ -1,0 +1,47 @@
+[
+  {
+    "id": "forge",
+    "name": { "en": "Forge", "fr": "Forge" },
+    "text": { "en": "Raises the maximum upgrade level of your items.", "fr": "Augmente le niveau d'amélioration maximum de tes objets." },
+    "icon": "GiAnvil",
+    "levels": [
+      { "gold": 0, "shards": 0, "value": 3 },
+      { "gold": 400, "shards": 20, "value": 6 },
+      { "gold": 1500, "shards": 80, "value": 10 }
+    ]
+  },
+  {
+    "id": "satchel",
+    "name": { "en": "Satchel Maker", "fr": "Maroquinier" },
+    "text": { "en": "More room in your bag.", "fr": "Plus de place dans ton sac." },
+    "icon": "GiShoulderBag",
+    "levels": [
+      { "gold": 0, "shards": 0, "value": 24 },
+      { "gold": 250, "shards": 0, "value": 30 },
+      { "gold": 900, "shards": 30, "value": 36 },
+      { "gold": 2500, "shards": 90, "value": 44 }
+    ]
+  },
+  {
+    "id": "market",
+    "name": { "en": "Market Stall", "fr": "Échoppe" },
+    "text": { "en": "More wares each day, and better odds of rare ones.", "fr": "Plus de marchandises chaque jour, et plus de chances d'en voir de rares." },
+    "icon": "GiShoppingBag",
+    "levels": [
+      { "gold": 0, "shards": 0, "value": 6 },
+      { "gold": 350, "shards": 10, "value": 8 },
+      { "gold": 1200, "shards": 50, "value": 10 }
+    ]
+  },
+  {
+    "id": "alchemist",
+    "name": { "en": "Alchemist", "fr": "Alchimiste" },
+    "text": { "en": "Brews potions and elixirs from fish and shards.", "fr": "Prépare potions et élixirs à partir de poissons et d'éclats." },
+    "icon": "GiBubblingFlask",
+    "levels": [
+      { "gold": 0, "shards": 0, "value": 0 },
+      { "gold": 300, "shards": 15, "value": 1 },
+      { "gold": 1000, "shards": 60, "value": 2 }
+    ]
+  }
+]

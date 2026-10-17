@@ -1,0 +1,513 @@
+{
+  "kinds": [
+    {
+      "id": "goblin",
+      "name": {
+        "en": "Goblin",
+        "fr": "Gobelin"
+      },
+      "icon": "GiGoblinHead",
+      "weight": 3,
+      "minLevel": 1,
+      "mods": {
+        "hp": 0.8,
+        "atk": 0.9,
+        "def": 0.8,
+        "spd": 1.3
+      },
+      "lore": {
+        "en": "Small, fast, and endlessly greedy.",
+        "fr": "Petit, rapide, et d'une avidité sans fin."
+      }
+    },
+    {
+      "id": "orc",
+      "name": {
+        "en": "Orc",
+        "fr": "Orc"
+      },
+      "icon": "GiOrcHead",
+      "weight": 3,
+      "minLevel": 1,
+      "mods": {
+        "hp": 1.1,
+        "atk": 1.1,
+        "def": 1,
+        "spd": 0.9
+      },
+      "lore": {
+        "en": "They hunt in packs and keep the teeth of the fallen.",
+        "fr": "Ils chassent en meute et gardent les dents des vaincus."
+      }
+    },
+    {
+      "id": "skeleton",
+      "name": {
+        "en": "Skeleton",
+        "fr": "Squelette"
+      },
+      "icon": "GiSkeleton",
+      "weight": 2,
+      "minLevel": 1,
+      "mods": {
+        "hp": 0.9,
+        "atk": 1,
+        "def": 1.4,
+        "spd": 0.9
+      },
+      "lore": {
+        "en": "Old bones that forgot how to rest.",
+        "fr": "De vieux os qui ont oublié comment reposer."
+      }
+    },
+    {
+      "id": "zombie",
+      "name": {
+        "en": "Zombie",
+        "fr": "Zombie"
+      },
+      "icon": "GiShamblingZombie",
+      "weight": 2,
+      "minLevel": 2,
+      "mods": {
+        "hp": 1.4,
+        "atk": 0.9,
+        "def": 0.8,
+        "spd": 0.6
+      },
+      "onHit": {
+        "status": "poison",
+        "chance": 0.2,
+        "turns": 3
+      },
+      "lore": {
+        "en": "Slow, rotten, and unwilling to stay down.",
+        "fr": "Lent, pourri, et refusant de rester à terre."
+      }
+    },
+    {
+      "id": "wolf",
+      "name": {
+        "en": "Dire Wolf",
+        "fr": "Loup sinistre"
+      },
+      "icon": "GiDirewolf",
+      "weight": 2,
+      "minLevel": 3,
+      "mods": {
+        "hp": 0.9,
+        "atk": 1.1,
+        "def": 0.8,
+        "spd": 1.4
+      },
+      "onHit": {
+        "status": "bleed",
+        "chance": 0.25,
+        "turns": 2
+      },
+      "lore": {
+        "en": "Its howl is the last thing many travellers hear.",
+        "fr": "Son hurlement est la dernière chose qu'entendent bien des voyageurs."
+      }
+    },
+    {
+      "id": "spider",
+      "name": {
+        "en": "Cave Spider",
+        "fr": "Araignée des cavernes"
+      },
+      "icon": "GiSpiderAlt",
+      "weight": 2,
+      "minLevel": 4,
+      "mods": {
+        "hp": 0.85,
+        "atk": 1,
+        "def": 0.9,
+        "spd": 1.25
+      },
+      "onHit": {
+        "status": "poison",
+        "chance": 0.35,
+        "turns": 3
+      },
+      "lore": {
+        "en": "The webs in the depths are older than the city above.",
+        "fr": "Les toiles des profondeurs sont plus vieilles que la ville au-dessus."
+      }
+    },
+    {
+      "id": "demon",
+      "name": {
+        "en": "Demon",
+        "fr": "Démon"
+      },
+      "icon": "GiDaemonSkull",
+      "weight": 1,
+      "minLevel": 5,
+      "mods": {
+        "hp": 1.1,
+        "atk": 1.35,
+        "def": 1,
+        "spd": 1.05
+      },
+      "onHit": {
+        "status": "burn",
+        "chance": 0.25,
+        "turns": 2
+      },
+      "lore": {
+        "en": "Something on the other side is pushing them through.",
+        "fr": "Quelque chose, de l'autre côté, les pousse à travers."
+      }
+    },
+    {
+      "id": "wraith",
+      "name": {
+        "en": "Wraith",
+        "fr": "Spectre"
+      },
+      "icon": "GiGhost",
+      "weight": 1,
+      "minLevel": 7,
+      "mods": {
+        "hp": 0.9,
+        "atk": 1.2,
+        "def": 0.7,
+        "spd": 1.3
+      },
+      "onHit": {
+        "status": "chill",
+        "chance": 0.3,
+        "turns": 2
+      },
+      "lore": {
+        "en": "A cold breath, a whisper, then nothing.",
+        "fr": "Un souffle froid, un murmure, puis plus rien."
+      }
+    },
+    {
+      "id": "troll",
+      "name": {
+        "en": "Troll",
+        "fr": "Troll"
+      },
+      "icon": "GiTroll",
+      "weight": 1,
+      "minLevel": 9,
+      "mods": {
+        "hp": 1.7,
+        "atk": 1.25,
+        "def": 1.1,
+        "spd": 0.7
+      },
+      "lore": {
+        "en": "Cut it, burn it, and it still gets up.",
+        "fr": "Tranche-le, brûle-le : il se relève quand même."
+      }
+    },
+    {
+      "id": "dragon",
+      "name": {
+        "en": "Dragon",
+        "fr": "Dragon"
+      },
+      "icon": "GiSpikedDragonHead",
+      "weight": 0.6,
+      "minLevel": 8,
+      "mods": {
+        "hp": 1.6,
+        "atk": 1.4,
+        "def": 1.3,
+        "spd": 1
+      },
+      "onHit": {
+        "status": "burn",
+        "chance": 0.3,
+        "turns": 3
+      },
+      "lore": {
+        "en": "Young ones still burn hotter than any forge.",
+        "fr": "Même les jeunes brûlent plus fort que n'importe quelle forge."
+      }
+    }
+  ],
+  "bosses": [
+    {
+      "id": "goblin_king",
+      "name": {
+        "en": "Grizzlegut",
+        "fr": "Grizzlegut"
+      },
+      "title": {
+        "en": "King of the Goblins",
+        "fr": "Roi des gobelins"
+      },
+      "icon": "GiGoblinCamp",
+      "kind": "goblin",
+      "mods": {
+        "hp": 3.2,
+        "atk": 1.2,
+        "def": 1.1,
+        "spd": 1.1
+      },
+      "telegraphEvery": 4,
+      "lore": {
+        "en": "He wears a crown of stolen spoons and fears nothing.",
+        "fr": "Il porte une couronne de cuillères volées et ne craint rien."
+      }
+    },
+    {
+      "id": "hollow_king",
+      "name": {
+        "en": "The Hollow King",
+        "fr": "Le Roi Creux"
+      },
+      "title": {
+        "en": "Who Sleeps Beneath",
+        "fr": "Celui qui dort en dessous"
+      },
+      "icon": "GiCrownedSkull",
+      "kind": "skeleton",
+      "mods": {
+        "hp": 4,
+        "atk": 1.35,
+        "def": 1.3,
+        "spd": 1
+      },
+      "telegraphEvery": 3,
+      "onHit": {
+        "status": "chill",
+        "chance": 0.3,
+        "turns": 2
+      },
+      "lore": {
+        "en": "The world is mysterious. The world is dangerous. Because of him.",
+        "fr": "Le monde est mystérieux. Le monde est dangereux. À cause de lui."
+      }
+    },
+    {
+      "id": "bone_colossus",
+      "name": {
+        "en": "Ossuary",
+        "fr": "Ossuaire"
+      },
+      "title": {
+        "en": "The Bone Colossus",
+        "fr": "Le Colosse d'os"
+      },
+      "icon": "GiSkullCrossedBones",
+      "kind": "skeleton",
+      "mods": {
+        "hp": 4.4,
+        "atk": 1.3,
+        "def": 1.6,
+        "spd": 0.8
+      },
+      "telegraphEvery": 4,
+      "lore": {
+        "en": "Ten thousand dead, stitched into one hunger.",
+        "fr": "Dix mille morts, cousus en une seule faim."
+      }
+    },
+    {
+      "id": "ancient_dragon",
+      "name": {
+        "en": "Vharzul",
+        "fr": "Vharzul"
+      },
+      "title": {
+        "en": "The Ancient Flame",
+        "fr": "La Flamme ancienne"
+      },
+      "icon": "GiDragonHead",
+      "kind": "dragon",
+      "mods": {
+        "hp": 4.6,
+        "atk": 1.55,
+        "def": 1.4,
+        "spd": 1.1
+      },
+      "telegraphEvery": 3,
+      "onHit": {
+        "status": "burn",
+        "chance": 0.4,
+        "turns": 3
+      },
+      "lore": {
+        "en": "It inhales. The cave goes silent. Brace yourself.",
+        "fr": "Il inspire. La caverne se tait. Prépare-toi."
+      }
+    },
+    {
+      "id": "blood_moon_wyrm",
+      "name": {
+        "en": "Sanguine",
+        "fr": "Sanguine"
+      },
+      "title": {
+        "en": "Wyrm of the Blood Moon",
+        "fr": "Wyrm de la lune de sang"
+      },
+      "icon": "GiEvilMoon",
+      "kind": "dragon",
+      "mods": {
+        "hp": 4.2,
+        "atk": 1.45,
+        "def": 1.2,
+        "spd": 1.2
+      },
+      "telegraphEvery": 4,
+      "onHit": {
+        "status": "bleed",
+        "chance": 0.35,
+        "turns": 3
+      },
+      "lore": {
+        "en": "It only rises once a week, and it is always hungry.",
+        "fr": "Il ne se lève qu'une fois par semaine, et il a toujours faim."
+      }
+    }
+  ],
+  "elites": [
+    {
+      "id": "swift",
+      "name": {
+        "en": "Swift",
+        "fr": "Véloce"
+      }
+    },
+    {
+      "id": "vampiric",
+      "name": {
+        "en": "Vampiric",
+        "fr": "Vampirique"
+      }
+    },
+    {
+      "id": "enraged",
+      "name": {
+        "en": "Enraged",
+        "fr": "Enragé"
+      }
+    },
+    {
+      "id": "armored",
+      "name": {
+        "en": "Armored",
+        "fr": "Cuirassé"
+      }
+    },
+    {
+      "id": "venomous",
+      "name": {
+        "en": "Venomous",
+        "fr": "Venimeux"
+      }
+    },
+    {
+      "id": "burning",
+      "name": {
+        "en": "Burning",
+        "fr": "Ardent"
+      }
+    }
+  ],
+  "difficulties": [
+    {
+      "id": "easy",
+      "name": {
+        "en": "Easy",
+        "fr": "Facile"
+      },
+      "energy": 2,
+      "levelOffset": -1,
+      "mods": {
+        "hp": 0.8,
+        "atk": 0.75,
+        "def": 0.8,
+        "spd": 0.9
+      },
+      "dropChance": 0.35,
+      "rarity": {
+        "magic": 0.2,
+        "rare": 0.03,
+        "legendary": 0.002
+      },
+      "goldMult": 0.8,
+      "expMult": 0.8,
+      "eliteChance": 0.02
+    },
+    {
+      "id": "normal",
+      "name": {
+        "en": "Normal",
+        "fr": "Normal"
+      },
+      "energy": 3,
+      "levelOffset": 0,
+      "mods": {
+        "hp": 1.05,
+        "atk": 1.2,
+        "def": 1,
+        "spd": 1
+      },
+      "dropChance": 0.5,
+      "rarity": {
+        "magic": 0.25,
+        "rare": 0.06,
+        "legendary": 0.005
+      },
+      "goldMult": 1,
+      "expMult": 1,
+      "eliteChance": 0.05
+    },
+    {
+      "id": "hard",
+      "name": {
+        "en": "Hard",
+        "fr": "Difficile"
+      },
+      "energy": 5,
+      "levelOffset": 1,
+      "mods": {
+        "hp": 1.45,
+        "atk": 1.45,
+        "def": 1.15,
+        "spd": 1.05
+      },
+      "dropChance": 0.7,
+      "rarity": {
+        "magic": 0.3,
+        "rare": 0.1,
+        "legendary": 0.012
+      },
+      "goldMult": 1.5,
+      "expMult": 1.6,
+      "eliteChance": 0.08
+    },
+    {
+      "id": "hell",
+      "name": {
+        "en": "Hell",
+        "fr": "Enfer"
+      },
+      "energy": 8,
+      "levelOffset": 1,
+      "mods": {
+        "hp": 2.1,
+        "atk": 1.8,
+        "def": 1.3,
+        "spd": 1.15
+      },
+      "dropChance": 1,
+      "rarity": {
+        "magic": 0.35,
+        "rare": 0.18,
+        "legendary": 0.03
+      },
+      "goldMult": 2.4,
+      "expMult": 2.6,
+      "eliteChance": 0.12
+    }
+  ]
+}
