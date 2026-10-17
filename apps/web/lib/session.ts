@@ -1,7 +1,13 @@
 import "server-only";
 
 import { getDb } from "@textrpg/db";
-import { resolveSession, SESSION_COOKIE, SESSION_DAYS, type Session, startGuestSession } from "@textrpg/server";
+import {
+  resolveSession,
+  SESSION_COOKIE,
+  SESSION_DAYS,
+  type Session,
+  startGuestSession,
+} from "@textrpg/server";
 import { cookies, headers } from "next/headers";
 
 import { LOCALE_COOKIE, type Locale, pickLocale } from "./i18n";

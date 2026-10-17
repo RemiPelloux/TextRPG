@@ -79,13 +79,24 @@ async function load(db: Db, userId: string, heroId: string) {
 }
 
 /** The hero as of now (energy regenerated, new day applied), without writing anything. */
-export async function getView(db: Db, userId: string, heroId: string, now = Date.now()): Promise<ClientView> {
+export async function getView(
+  db: Db,
+  userId: string,
+  heroId: string,
+  now = Date.now(),
+): Promise<ClientView> {
   const { state } = await load(db, userId, heroId);
   const synced = apply(state, { type: "sync" }, { now, content }).state;
   return toClientView(synced, content, now);
 }
 
-export async function act(db: Db, userId: string, heroId: string, input: unknown, now = Date.now()): Promise<ActResult> {
+export async function act(
+  db: Db,
+  userId: string,
+  heroId: string,
+  input: unknown,
+  now = Date.now(),
+): Promise<ActResult> {
   const action = parseAction(input);
   if (!action) return { ok: false, error: "invalidAction" };
   if (!limiter.take(userId)) return { ok: false, error: "tooFast" };
@@ -97,18 +108,40 @@ export async function act(db: Db, userId: string, heroId: string, input: unknown
       result = apply(state, action, { now, content });
     } catch (error) {
       if (error instanceof GameError) {
-        return { ok: false, error: error.code, params: error.params, view: toClientView(state, content, now) };
+        return {
+          ok: false,
+          error: error.code,
+          params: error.params,
+          view: toClientView(state, content, now),
+        };
       }
       throw error;
     }
-    const saved = await saveHero(db, heroId, row.version, columnsOf(result.state), result.state, action);
+    const saved = await saveHero(
+      db,
+      heroId,
+      row.version,
+      columnsOf(result.state),
+      result.state,
+      action,
+    );
     if (!saved) continue; // Someone else wrote first (another tab): reload and replay once.
 
     const finished = result.events.find((e) => e.type === "challengeScore" && e.finished);
     if (finished?.type === "challengeScore" && result.state.challenge) {
-      await recordDailyRun(db, result.state.challenge.day, heroId, result.state.hero.name, finished.score);
+      await recordDailyRun(
+        db,
+        result.state.challenge.day,
+        heroId,
+        result.state.hero.name,
+        finished.score,
+      );
     }
-    return { ok: true, view: toClientView(result.state, content, now), events: redactEvents(result.events) };
+    return {
+      ok: true,
+      view: toClientView(result.state, content, now),
+      events: redactEvents(result.events),
+    };
   }
   return { ok: false, error: "conflict" };
 }

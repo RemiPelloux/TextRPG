@@ -15,13 +15,19 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches
       .keys()
-      .then((keys) => Promise.all(keys.filter((key) => key !== VERSION).map((key) => caches.delete(key))))
+      .then((keys) =>
+        Promise.all(keys.filter((key) => key !== VERSION).map((key) => caches.delete(key))),
+      )
       .then(() => self.clients.claim()),
   );
 });
 
 function isStatic(url) {
-  return url.pathname.startsWith("/_next/static/") || url.pathname.startsWith("/icons/") || /\.(woff2?|png|svg|css|js)$/.test(url.pathname);
+  return (
+    url.pathname.startsWith("/_next/static/") ||
+    url.pathname.startsWith("/icons/") ||
+    /\.(woff2?|png|svg|css|js)$/.test(url.pathname)
+  );
 }
 
 self.addEventListener("fetch", (event) => {
@@ -36,7 +42,8 @@ self.addEventListener("fetch", (event) => {
         (cached) =>
           cached ||
           fetch(request).then((response) => {
-            if (response.ok) caches.open(VERSION).then((cache) => cache.put(request, response.clone()));
+            if (response.ok)
+              caches.open(VERSION).then((cache) => cache.put(request, response.clone()));
             return response;
           }),
       ),

@@ -8,14 +8,8 @@
     },
     "minIlvl": 7,
     "fixed": {
-      "strength": [
-        4,
-        6
-      ],
-      "critChance": [
-        3,
-        5
-      ]
+      "strength": [4, 6],
+      "critChance": [3, 5]
     },
     "power": "moonblade",
     "powerText": {
@@ -36,14 +30,8 @@
     },
     "minIlvl": 1,
     "fixed": {
-      "luck": [
-        3,
-        5
-      ],
-      "magicFind": [
-        10,
-        15
-      ]
+      "luck": [3, 5],
+      "magicFind": [10, 15]
     },
     "power": "mystery_ring",
     "powerText": {
@@ -64,14 +52,8 @@
     },
     "minIlvl": 2,
     "fixed": {
-      "strength": [
-        3,
-        5
-      ],
-      "maxHealth": [
-        15,
-        25
-      ]
+      "strength": [3, 5],
+      "maxHealth": [15, 25]
     },
     "power": "orc_trophy",
     "powerText": {
@@ -92,14 +74,8 @@
     },
     "minIlvl": 4,
     "fixed": {
-      "defense": [
-        5,
-        7
-      ],
-      "maxHealth": [
-        20,
-        30
-      ]
+      "defense": [5, 7],
+      "maxHealth": [20, 30]
     },
     "power": "last_bastion",
     "powerText": {
@@ -120,14 +96,8 @@
     },
     "minIlvl": 6,
     "fixed": {
-      "lifeSteal": [
-        2,
-        4
-      ],
-      "critChance": [
-        3,
-        4
-      ]
+      "lifeSteal": [2, 4],
+      "critChance": [3, 4]
     },
     "power": "vampire_fang",
     "powerText": {
@@ -148,14 +118,8 @@
     },
     "minIlvl": 8,
     "fixed": {
-      "speed": [
-        3,
-        4
-      ],
-      "defense": [
-        4,
-        6
-      ]
+      "speed": [3, 4],
+      "defense": [4, 6]
     },
     "power": "thunderstep",
     "powerText": {
@@ -176,14 +140,8 @@
     },
     "minIlvl": 4,
     "fixed": {
-      "luck": [
-        4,
-        6
-      ],
-      "goldFind": [
-        20,
-        30
-      ]
+      "luck": [4, 6],
+      "goldFind": [20, 30]
     },
     "power": "gambler",
     "powerText": {
@@ -204,14 +162,8 @@
     },
     "minIlvl": 9,
     "fixed": {
-      "damagePct": [
-        8,
-        12
-      ],
-      "maxHealth": [
-        15,
-        25
-      ]
+      "damagePct": [8, 12],
+      "maxHealth": [15, 25]
     },
     "power": "ember_heart",
     "powerText": {
@@ -232,14 +184,8 @@
     },
     "minIlvl": 6,
     "fixed": {
-      "critChance": [
-        3,
-        5
-      ],
-      "speed": [
-        2,
-        3
-      ]
+      "critChance": [3, 5],
+      "speed": [2, 3]
     },
     "power": "shadow_first",
     "powerText": {
@@ -260,14 +206,8 @@
     },
     "minIlvl": 12,
     "fixed": {
-      "defense": [
-        5,
-        7
-      ],
-      "maxHealth": [
-        20,
-        30
-      ]
+      "defense": [5, 7],
+      "maxHealth": [20, 30]
     },
     "power": "dragonbane",
     "powerText": {
@@ -288,14 +228,8 @@
     },
     "minIlvl": 10,
     "fixed": {
-      "damagePct": [
-        10,
-        14
-      ],
-      "critChance": [
-        3,
-        4
-      ]
+      "damagePct": [10, 14],
+      "critChance": [3, 4]
     },
     "power": "frost_core",
     "powerText": {
@@ -316,18 +250,9 @@
     },
     "minIlvl": 14,
     "fixed": {
-      "strength": [
-        5,
-        7
-      ],
-      "damagePct": [
-        10,
-        14
-      ],
-      "critDamage": [
-        12,
-        18
-      ]
+      "strength": [5, 7],
+      "damagePct": [10, 14],
+      "critDamage": [12, 18]
     },
     "power": "blood_frenzy",
     "powerText": {
@@ -348,14 +273,8 @@
     },
     "minIlvl": 13,
     "fixed": {
-      "damagePct": [
-        10,
-        14
-      ],
-      "maxHealth": [
-        15,
-        25
-      ]
+      "damagePct": [10, 14],
+      "maxHealth": [15, 25]
     },
     "power": "soul_harvest",
     "powerText": {

@@ -38,7 +38,15 @@ export default function Market() {
                   item={o.item}
                   equipped={base.slot ? view.hero.equipment[base.slot] : undefined}
                   onSelect={() => !o.sold && setSelected(o.uid)}
-                  extra={o.sold ? <span className="label">{t("market.sold")}</span> : <span className={gold >= o.price ? "r-text r-rare num" : "delta-down num"}>{o.price} ◉</span>}
+                  extra={
+                    o.sold ? (
+                      <span className="label">{t("market.sold")}</span>
+                    ) : (
+                      <span className={gold >= o.price ? "r-text r-rare num" : "delta-down num"}>
+                        {o.price} ◉
+                      </span>
+                    )
+                  }
                 />
               </div>
             );
@@ -52,7 +60,8 @@ export default function Market() {
           {STOCK.filter((s) => s.minLevel <= view.hero.level).map((entry) => {
             const item = content.items.get(entry.itemId)!;
             const owned = view.hero.bag.find((i) => i.baseId === entry.itemId)?.quantity ?? 0;
-            const rodOwned = entry.itemId === "fishing_rod" && (owned > 0 || view.hero.equipment.tool);
+            const rodOwned =
+              entry.itemId === "fishing_rod" && (owned > 0 || view.hero.equipment.tool);
             return (
               <div key={entry.itemId} className="panel flat stack">
                 <div className="row" style={{ flexWrap: "nowrap" }}>
@@ -66,9 +75,18 @@ export default function Market() {
                     </span>
                   </div>
                 </div>
-                {item.flavor && <p className="dim" style={{ fontSize: "0.85rem" }}>{tx(item.flavor, locale)}</p>}
-                <button className="btn small" disabled={busy || blocked || gold < item.price || Boolean(rodOwned)} onClick={() => void dispatch({ type: "market.buyStock", itemId: entry.itemId })}>
-                  {rodOwned ? t("market.ownedRod") : t("market.buy")} <span className="cost">{item.price} ◉</span>
+                {item.flavor && (
+                  <p className="dim" style={{ fontSize: "0.85rem" }}>
+                    {tx(item.flavor, locale)}
+                  </p>
+                )}
+                <button
+                  className="btn small"
+                  disabled={busy || blocked || gold < item.price || Boolean(rodOwned)}
+                  onClick={() => void dispatch({ type: "market.buyStock", itemId: entry.itemId })}
+                >
+                  {rodOwned ? t("market.ownedRod") : t("market.buy")}{" "}
+                  <span className="cost">{item.price} ◉</span>
                 </button>
               </div>
             );
@@ -76,10 +94,20 @@ export default function Market() {
         </div>
       </section>
 
-      <Sheet open={Boolean(offer)} onClose={() => setSelected(null)} label={offer ? itemName(offer.item, locale, t) : ""}>
+      <Sheet
+        open={Boolean(offer)}
+        onClose={() => setSelected(null)}
+        label={offer ? itemName(offer.item, locale, t) : ""}
+      >
         {offer && (
           <div className="stack" style={{ gap: 16 }}>
-            <ItemTooltip item={offer.item} equipped={baseOf(offer.item).slot ? view.hero.equipment[baseOf(offer.item).slot!] : undefined} setCounts={view.setCounts} />
+            <ItemTooltip
+              item={offer.item}
+              equipped={
+                baseOf(offer.item).slot ? view.hero.equipment[baseOf(offer.item).slot!] : undefined
+              }
+              setCounts={view.setCounts}
+            />
             <button
               className="btn primary"
               disabled={busy || blocked || gold < offer.price}

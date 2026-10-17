@@ -22,7 +22,11 @@ export interface NewGameOptions {
 }
 
 export function sanitizeName(name: string): string {
-  return name.replace(/[^\p{L}\p{N} '\-]/gu, "").replace(/\s+/g, " ").trim().slice(0, MAX_NAME_LENGTH);
+  return name
+    .replace(/[^\p{L}\p{N} '-]/gu, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, MAX_NAME_LENGTH);
 }
 
 export function createGame(opts: NewGameOptions): GameState {
@@ -87,7 +91,11 @@ export function createGame(opts: NewGameOptions): GameState {
 
   const ctx = new Ctx(state, opts.content, rng, opts.now);
   // The sword of the original game, plus a little help.
-  state.hero.equipment.weapon = generateEquipment(ctx, { ilvl: 1, rarity: "common", slot: "weapon" });
+  state.hero.equipment.weapon = generateEquipment(ctx, {
+    ilvl: 1,
+    rarity: "common",
+    slot: "weapon",
+  });
   state.hero.equipment.weapon.baseId = "sword";
   state.hero.equipment.weapon.implicit = { strength: 3 };
   addToBag(ctx, simpleItem(ctx, "potion", 3));

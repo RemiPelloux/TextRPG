@@ -36,8 +36,17 @@ export function chooseClass(ctx: Ctx, classId: ClassId): void {
   if (!ctx.content.classes.has(classId)) ctx.fail("unknownClass");
   ctx.hero.classId = classId;
   // A gift to start the new path: a magic weapon of the class.
-  const weapon = generateEquipment(ctx, { ilvl: ctx.hero.level, rarity: "magic", slot: "weapon", classId });
-  ctx.emit(addToBag(ctx, weapon) ? { type: "loot", item: weapon } : { type: "loot", item: weapon, lost: true });
+  const weapon = generateEquipment(ctx, {
+    ilvl: ctx.hero.level,
+    rarity: "magic",
+    slot: "weapon",
+    classId,
+  });
+  ctx.emit(
+    addToBag(ctx, weapon)
+      ? { type: "loot", item: weapon }
+      : { type: "loot", item: weapon, lost: true },
+  );
 }
 
 export function learnTalent(ctx: Ctx, talentId: string): void {

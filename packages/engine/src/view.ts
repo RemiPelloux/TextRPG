@@ -39,7 +39,10 @@ export interface ClientView {
   codex: GameState["codex"];
   achievements: string[];
   pity: number;
-  time: Pick<GameState["time"], "day" | "tzOffset" | "lastRestDay" | "dungeonCheckpoint" | "orcsToday">;
+  time: Pick<
+    GameState["time"],
+    "day" | "tzOffset" | "lastRestDay" | "dungeonCheckpoint" | "orcsToday"
+  >;
   derived: {
     expToNext: number;
     talentPoints: number;
@@ -67,7 +70,9 @@ export function redactItem(item: Item): ClientItem {
 
 /** Events carry items too (loot): hide what is not identified yet. */
 export function redactEvents(events: GameEvent[]): GameEvent[] {
-  return events.map((event) => (event.type === "loot" ? { ...event, item: redactItem(event.item) } : event));
+  return events.map((event) =>
+    event.type === "loot" ? { ...event, item: redactItem(event.item) } : event,
+  );
 }
 
 export function toClientView(state: GameState, content: Content, now: number): ClientView {
@@ -89,7 +94,9 @@ export function toClientView(state: GameState, content: Content, now: number): C
     setCounts: Object.fromEntries(equippedSetCounts(state, content)),
     power: powerScore(stats),
     combat: state.combat,
-    dungeon: state.dungeon ? { ...state.dungeon, stash: state.dungeon.stash.map(redactItem) } : null,
+    dungeon: state.dungeon
+      ? { ...state.dungeon, stash: state.dungeon.stash.map(redactItem) }
+      : null,
     fishing,
     challenge: state.challenge,
     quests: state.quests,
@@ -122,7 +129,9 @@ export function toClientView(state: GameState, content: Content, now: number): C
       weeklyAvailable: weeklyAvailable(ctxLike),
       challengeAvailable: challengeAvailable(ctxLike),
       canFish: canFish(ctxLike),
-      skills: availableSkills({ content, hero: state.hero } as never, state.hero.level).map((s) => s.id),
+      skills: availableSkills({ content, hero: state.hero } as never, state.hero.level).map(
+        (s) => s.id,
+      ),
     },
   };
 }

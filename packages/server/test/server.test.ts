@@ -1,4 +1,13 @@
-import { createDb, dailyLeaderboard, getHero, listHeroes, saveHero, schema, sql, topHeroes } from "@textrpg/db";
+import {
+  createDb,
+  dailyLeaderboard,
+  getHero,
+  listHeroes,
+  saveHero,
+  schema,
+  sql,
+  topHeroes,
+} from "@textrpg/db";
 import { runMigrations } from "@textrpg/db/migrate";
 import type { GameState } from "@textrpg/engine";
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
@@ -19,7 +28,8 @@ import {
   startGuestSession,
 } from "../src";
 
-const URL = process.env.TEST_DATABASE_URL ?? "postgres://textrpg:textrpg@localhost:5432/textrpg_test";
+const URL =
+  process.env.TEST_DATABASE_URL ?? "postgres://textrpg:textrpg@localhost:5432/textrpg_test";
 const { db, close } = createDb(URL);
 const NOW = Date.UTC(2026, 9, 16, 12);
 
@@ -27,7 +37,9 @@ beforeAll(async () => {
   await runMigrations(URL);
 });
 beforeEach(async () => {
-  await db.execute(sql`truncate ${schema.users}, ${schema.heroes}, ${schema.sessions}, ${schema.dailyRuns}, ${schema.actionLog}, ${schema.pushSubscriptions} cascade`);
+  await db.execute(
+    sql`truncate ${schema.users}, ${schema.heroes}, ${schema.sessions}, ${schema.dailyRuns}, ${schema.actionLog}, ${schema.pushSubscriptions} cascade`,
+  );
 });
 afterAll(async () => {
   await close();
@@ -36,7 +48,10 @@ afterAll(async () => {
 describe("auth", () => {
   it("creates guest sessions that resolve, and logs out", async () => {
     const session = await startGuestSession(db);
-    expect(await resolveSession(db, session.token)).toMatchObject({ userId: session.userId, guest: true });
+    expect(await resolveSession(db, session.token)).toMatchObject({
+      userId: session.userId,
+      guest: true,
+    });
     expect(await resolveSession(db, "forged")).toBeUndefined();
     await logout(db, session.token);
     expect(await resolveSession(db, session.token)).toBeUndefined();
@@ -50,19 +65,33 @@ describe("auth", () => {
 
     const second = await startGuestSession(db);
     await createHero(db, second.userId, { name: "Bram", tzOffset: 0 }, NOW);
-    const session = await login(db, second.userId, { email: "hero@example.com", password: "moonstone!" });
+    const session = await login(db, second.userId, {
+      email: "hero@example.com",
+      password: "moonstone!",
+    });
     expect(session.userId).toBe(first.userId);
-    expect((await listHeroes(db, first.userId)).map((h) => h.name).sort()).toEqual(["Aria", "Bram"]);
+    expect((await listHeroes(db, first.userId)).map((h) => h.name).sort()).toEqual([
+      "Aria",
+      "Bram",
+    ]);
   });
 
   it("rejects bad credentials, weak passwords and duplicate emails", async () => {
     const a = await startGuestSession(db);
-    await expect(claimAccount(db, a.userId, { email: "nope", password: "longenough" })).rejects.toThrow("invalidEmail");
-    await expect(claimAccount(db, a.userId, { email: "a@b.co", password: "short" })).rejects.toThrow("weakPassword");
+    await expect(
+      claimAccount(db, a.userId, { email: "nope", password: "longenough" }),
+    ).rejects.toThrow("invalidEmail");
+    await expect(
+      claimAccount(db, a.userId, { email: "a@b.co", password: "short" }),
+    ).rejects.toThrow("weakPassword");
     await claimAccount(db, a.userId, { email: "a@b.co", password: "longenough" });
     const b = await startGuestSession(db);
-    await expect(claimAccount(db, b.userId, { email: "A@B.co", password: "longenough" })).rejects.toThrow("emailTaken");
-    await expect(login(db, b.userId, { email: "a@b.co", password: "wrongpassword" })).rejects.toBeInstanceOf(AuthError);
+    await expect(
+      claimAccount(db, b.userId, { email: "A@B.co", password: "longenough" }),
+    ).rejects.toThrow("emailTaken");
+    await expect(
+      login(db, b.userId, { email: "a@b.co", password: "wrongpassword" }),
+    ).rejects.toBeInstanceOf(AuthError);
   });
 });
 
@@ -75,9 +104,13 @@ describe("game service", () => {
 
   it("limits heroes per account and validates names", async () => {
     const { userId } = await startGuestSession(db);
-    await expect(createHero(db, userId, { name: "<>", tzOffset: 0 })).rejects.toBeInstanceOf(ServiceError);
+    await expect(createHero(db, userId, { name: "<>", tzOffset: 0 })).rejects.toBeInstanceOf(
+      ServiceError,
+    );
     for (const name of ["One", "Two", "Three"]) await createHero(db, userId, { name, tzOffset: 0 });
-    await expect(createHero(db, userId, { name: "Four", tzOffset: 0 })).rejects.toThrow("tooManyHeroes");
+    await expect(createHero(db, userId, { name: "Four", tzOffset: 0 })).rejects.toThrow(
+      "tooManyHeroes",
+    );
   });
 
   it("runs actions authoritatively and persists them", async () => {
@@ -101,10 +134,14 @@ describe("game service", () => {
 
   it("rejects malformed and foreign actions", async () => {
     const { userId, heroId } = await hero();
-    expect(await act(db, userId, heroId, { type: "item.sell", uid: { $gt: "" } }, NOW)).toMatchObject({ error: "invalidAction" });
+    expect(
+      await act(db, userId, heroId, { type: "item.sell", uid: { $gt: "" } }, NOW),
+    ).toMatchObject({ error: "invalidAction" });
     expect(parseAction({ type: "hunt.start", difficulty: "nightmare" })).toBeUndefined();
     const stranger = await startGuestSession(db);
-    await expect(act(db, stranger.userId, heroId, { type: "rest" }, NOW)).rejects.toThrow("notFound");
+    await expect(act(db, stranger.userId, heroId, { type: "rest" }, NOW)).rejects.toThrow(
+      "notFound",
+    );
   });
 
   it("uses an optimistic lock: a stale version never overwrites", async () => {

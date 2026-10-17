@@ -30,7 +30,10 @@ export const ActionSchema = z.discriminatedUnion("type", [
   z.object({ type: z.literal("forge.salvage"), uid: id }),
   z.object({ type: z.literal("forge.reroll"), uid: id, affixIndex: index }),
   z.object({ type: z.literal("alchemy.brew"), recipeId: id }),
-  z.object({ type: z.literal("building.upgrade"), buildingId: z.enum(["forge", "satchel", "market", "alchemist"]) }),
+  z.object({
+    type: z.literal("building.upgrade"),
+    buildingId: z.enum(["forge", "satchel", "market", "alchemist"]),
+  }),
   z.object({ type: z.literal("market.buy"), offerUid: id }),
   z.object({ type: z.literal("market.buyStock"), itemId: id }),
   z.object({ type: z.literal("quest.accept"), uid: id }),
@@ -53,7 +56,10 @@ export const ActionSchema = z.discriminatedUnion("type", [
 
 // Compile-time check: the schema and the engine's Action type describe the same thing.
 type Parsed = z.infer<typeof ActionSchema>;
-const _sameShape: [Parsed extends Action ? true : false, Action extends Parsed ? true : false] = [true, true];
+const _sameShape: [Parsed extends Action ? true : false, Action extends Parsed ? true : false] = [
+  true,
+  true,
+];
 void _sameShape;
 
 export function parseAction(input: unknown): Action | undefined {

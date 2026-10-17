@@ -29,7 +29,9 @@ export function isPercent(stat: StatKey): boolean {
 }
 
 export function formatNumber(value: number, locale: Locale): string {
-  return new Intl.NumberFormat(locale === "fr" ? "fr-FR" : "en-US", { maximumFractionDigits: 1 }).format(value);
+  return new Intl.NumberFormat(locale === "fr" ? "fr-FR" : "en-US", {
+    maximumFractionDigits: 1,
+  }).format(value);
 }
 
 /** "+12 Strength" / "+5% Critical chance" (French puts a thin space before %). */
@@ -58,13 +60,16 @@ export function itemName(item: ClientItem, locale: Locale, t: T): string {
     const name = tx(content.legendaries.get(item.legendaryId)?.name, locale) || baseName;
     return item.rarity === "ancestral" ? t("items.ancestral", { name }) : name;
   }
-  if (item.setPieceId) return tx(content.setPieces.get(item.setPieceId)?.piece.name, locale) || baseName;
+  if (item.setPieceId)
+    return tx(content.setPieces.get(item.setPieceId)?.piece.name, locale) || baseName;
   if (item.rareName) {
     const names = content.rareNames[locale];
     return `${names.first[item.rareName[0]] ?? ""} ${names.second[item.rareName[1]] ?? ""}`.trim();
   }
   if (item.rarity === "magic") {
-    const affixes = item.affixes.map((a) => content.affixes.find((x) => x.id === a.id)).filter(Boolean);
+    const affixes = item.affixes
+      .map((a) => content.affixes.find((x) => x.id === a.id))
+      .filter(Boolean);
     const prefix = affixes.find((a) => a!.type === "prefix");
     const suffix = affixes.find((a) => a!.type === "suffix");
     const p = prefix ? tx(prefix.name, locale, feminine) : "";
@@ -79,12 +84,18 @@ export function rarityClass(rarity: Rarity): string {
 }
 
 /** "Grakthor the Orc" / "Grakthor l'Orc", "Vessa la Araignée Venimeuse". */
-export function enemyName(info: { proper: string; kindId: string; bossId?: string; elite?: string }, locale: Locale, t: T): string {
+export function enemyName(
+  info: { proper: string; kindId: string; bossId?: string; elite?: string },
+  locale: Locale,
+  t: T,
+): string {
   if (info.bossId) return tx(content.bosses.get(info.bossId)?.name, locale);
   const def = content.enemyKinds.find((k) => k.id === info.kindId);
   const feminine = def?.gender === "f";
   const kind = tx(def?.name, locale);
-  const elite = info.elite ? tx(content.elites.find((e) => e.id === info.elite)?.name, locale, feminine) : "";
+  const elite = info.elite
+    ? tx(content.elites.find((e) => e.id === info.elite)?.name, locale, feminine)
+    : "";
   const article = /^[aeiouyàâéèêîôûh]/i.test(kind) ? "l'" : feminine ? "la " : "le ";
   return t(elite ? "enemy.nameElite" : "enemy.name", { proper: info.proper, kind, elite, article });
 }
@@ -94,5 +105,7 @@ export function duration(ms: number, locale: Locale): string {
   const h = Math.floor(minutes / 60);
   const m = minutes % 60;
   if (h === 0) return locale === "fr" ? `${m} min` : `${m}m`;
-  return locale === "fr" ? `${h} h ${String(m).padStart(2, "0")}` : `${h}h ${String(m).padStart(2, "0")}m`;
+  return locale === "fr"
+    ? `${h} h ${String(m).padStart(2, "0")}`
+    : `${h}h ${String(m).padStart(2, "0")}m`;
 }

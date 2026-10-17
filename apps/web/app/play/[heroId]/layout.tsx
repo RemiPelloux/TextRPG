@@ -9,7 +9,13 @@ import { currentSession } from "@/lib/session";
 
 export const dynamic = "force-dynamic";
 
-export default async function PlayLayout({ children, params }: { children: ReactNode; params: Promise<{ heroId: string }> }) {
+export default async function PlayLayout({
+  children,
+  params,
+}: {
+  children: ReactNode;
+  params: Promise<{ heroId: string }>;
+}) {
   const { heroId } = await params;
   const session = await currentSession();
   if (!session) redirect("/");

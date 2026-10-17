@@ -33,7 +33,10 @@ export function startHunt(ctx: Ctx, difficultyId: DifficultyId): void {
   spendEnergy(ctx, difficulty.energy);
   const level = Math.max(1, ctx.hero.level + difficulty.levelOffset);
   const bloodMoon = isBloodMoon(ctx.state.time.day);
-  const enemy = spawnEnemy(ctx, level, difficulty, { elite: ctx.rng.chance(difficulty.eliteChance), bloodMoon });
+  const enemy = spawnEnemy(ctx, level, difficulty, {
+    elite: ctx.rng.chance(difficulty.eliteChance),
+    bloodMoon,
+  });
   startCombat(ctx, enemy, { type: "hunt", difficulty: difficultyId, bloodMoon });
 }
 
@@ -48,11 +51,20 @@ export function startWeekly(ctx: Ctx): void {
   spendEnergy(ctx, WEEKLY_ENERGY);
   ctx.state.time.weeklyBossWeek = weekIndex(ctx.state.time.day);
   const boss = ctx.content.bosses.get(WEEKLY_BOSS)!;
-  startCombat(ctx, spawnBoss(ctx, boss, ctx.hero.level + 1, ctx.content.difficulties.get("normal")!), { type: "weekly" });
+  startCombat(
+    ctx,
+    spawnBoss(ctx, boss, ctx.hero.level + 1, ctx.content.difficulties.get("normal")!),
+    { type: "weekly" },
+  );
 }
 
 /** Experience and gold for a kill, before bonuses. */
-export function killRewards(level: number, expMult: number, goldMult: number, tier: "normal" | "elite" | "boss") {
+export function killRewards(
+  level: number,
+  expMult: number,
+  goldMult: number,
+  tier: "normal" | "elite" | "boss",
+) {
   const tierExp = tier === "boss" ? 6 : tier === "elite" ? 2.5 : 1;
   const tierGold = tier === "boss" ? 5 : tier === "elite" ? 2 : 1;
   return {
@@ -73,13 +85,12 @@ function rewardKill(ctx: Ctx, combat: Combat): void {
   const context = combat.context;
   const stats = computeStats(ctx.state, ctx.content);
 
-  let expMult = 1;
-  let goldMult = 1;
   let table = ctx.content.difficulties.get("normal")!;
   if (context.type === "hunt") table = ctx.content.difficulties.get(context.difficulty)!;
-  if (context.type === "dungeon" || context.type === "weekly") table = ctx.content.difficulties.get("hard")!;
-  expMult = table.expMult;
-  goldMult = table.goldMult;
+  if (context.type === "dungeon" || context.type === "weekly")
+    table = ctx.content.difficulties.get("hard")!;
+  const expMult = table.expMult;
+  let goldMult = table.goldMult;
   const bloodMoon = context.type === "hunt" && context.bloodMoon;
   if (bloodMoon) goldMult *= 2;
 
@@ -104,7 +115,10 @@ function rewardKill(ctx: Ctx, combat: Combat): void {
     counters.goldEarned += gold;
   }
   if (combat.hero.powers.includes("soul_harvest")) {
-    const healed = Math.min(combat.hero.maxHp - combat.hero.hp, Math.round(combat.hero.maxHp * 0.15));
+    const healed = Math.min(
+      combat.hero.maxHp - combat.hero.hp,
+      Math.round(combat.hero.maxHp * 0.15),
+    );
     if (healed > 0) {
       combat.hero.hp += healed;
       ctx.emit({ type: "heal", target: "hero", amount: healed, source: "soulHarvest" });
@@ -128,7 +142,9 @@ function rewardKill(ctx: Ctx, combat: Combat): void {
     bloodMoon,
     into: context.type === "dungeon" ? "stash" : "bag",
     ...(context.type === "dungeon" ? { dungeonFloor: context.floor } : {}),
-    ...(context.type === "weekly" ? { guaranteedRarity: ctx.rng.chance(0.5) ? "legendary" : "rare" } : {}),
+    ...(context.type === "weekly"
+      ? { guaranteedRarity: ctx.rng.chance(0.5) ? "legendary" : "rare" }
+      : {}),
   });
 }
 

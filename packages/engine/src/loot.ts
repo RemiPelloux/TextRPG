@@ -46,13 +46,21 @@ function rollRange([low, high]: [number, number], ctx: Ctx, max: boolean): numbe
 function rollImplicit(ctx: Ctx, base: ItemBase, ilvl: number, max: boolean): StatBag {
   const growth = 1 + IMPLICIT_GROWTH * Math.max(0, ilvl - base.level);
   const out: StatBag = {};
-  for (const [stat, range] of Object.entries(base.implicit) as [keyof StatBag, [number, number]][]) {
+  for (const [stat, range] of Object.entries(base.implicit) as [
+    keyof StatBag,
+    [number, number],
+  ][]) {
     out[stat] = Math.round(rollRange(range, ctx, max) * growth);
   }
   return out;
 }
 
-function rollFixed(ctx: Ctx, fixed: Partial<Record<string, [number, number]>>, ilvl: number, max: boolean): StatBag {
+function rollFixed(
+  ctx: Ctx,
+  fixed: Partial<Record<string, [number, number]>>,
+  ilvl: number,
+  max: boolean,
+): StatBag {
   const growth = 1 + 0.04 * Math.max(0, ilvl - 1);
   const out: StatBag = {};
   for (const [stat, range] of Object.entries(fixed) as [keyof StatBag, [number, number]][]) {
@@ -168,7 +176,8 @@ export function generateEquipment(ctx: Ctx, spec: ItemSpec): Item {
   let affixes: Affix[];
   if (rarity === "magic") {
     // Magic items read "Prefix Base Suffix": at most one of each.
-    const types: Affix["type"][] = count === 2 ? ["prefix", "suffix"] : [ctx.rng.pick(["prefix", "suffix"] as const)];
+    const types: Affix["type"][] =
+      count === 2 ? ["prefix", "suffix"] : [ctx.rng.pick(["prefix", "suffix"] as const)];
     affixes = types.flatMap((type) => {
       const [affix] = pickAffixes(ctx, slot, 1, exclude, type);
       if (affix) exclude.add(affix.stat);
@@ -250,7 +259,11 @@ export function rollLoot(ctx: Ctx, source: LootSource): void {
     let rarity = forced ?? rollRarity(ctx, source.table, magicFind, source.ilvl);
     if (source.boss && i === 0 && !RARE_PLUS.includes(rarity)) rarity = "rare";
     if (rarity === "legendary" || rarity === "set" || rarity === "ancestral") gotLegendary = true;
-    stow(ctx, source, generateEquipment(ctx, { ilvl: source.ilvl, rarity, classId: ctx.hero.classId }));
+    stow(
+      ctx,
+      source,
+      generateEquipment(ctx, { ilvl: source.ilvl, rarity, classId: ctx.hero.classId }),
+    );
   }
   ctx.state.pity = gotLegendary ? 0 : ctx.state.pity + 1;
 
@@ -275,4 +288,3 @@ export function rollLoot(ctx: Ctx, source: LootSource): void {
     }
   }
 }
-

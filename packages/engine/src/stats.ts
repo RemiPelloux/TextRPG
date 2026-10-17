@@ -1,7 +1,14 @@
 /** Derived statistics: base attributes + gear + sets + class + talents + paragon + buffs. */
 import { type Content, type PowerId, STAT_KEYS, type StatKey } from "@textrpg/content";
 
-import { PARAGON_STATS, type GameState, type Item, type ParagonStat, type StatBag, type Stats } from "./types";
+import {
+  PARAGON_STATS,
+  type GameState,
+  type Item,
+  type ParagonStat,
+  type StatBag,
+  type Stats,
+} from "./types";
 
 export const PARAGON_PER_POINT: Record<ParagonStat, number> = {
   maxHealth: 6,
@@ -120,9 +127,12 @@ export function computeStats(state: GameState, content: Content): Stats {
 
 /** One number to compare heroes and items: a rough "damage x survivability" score. */
 export function powerScore(stats: Stats): number {
-  const offense = (6 + stats.strength * 1.6) * (1 + stats.damagePct / 100) *
+  const offense =
+    (6 + stats.strength * 1.6) *
+    (1 + stats.damagePct / 100) *
     (1 + (Math.min(60, critChanceOf(stats)) / 100) * (0.5 + stats.critDamage / 100));
-  const defense = stats.maxHealth * (1 + stats.defense / 40) * (1 + Math.min(40, stats.dodge) / 100);
+  const defense =
+    stats.maxHealth * (1 + stats.defense / 40) * (1 + Math.min(40, stats.dodge) / 100);
   return Math.round(Math.sqrt(offense * defense) * 10);
 }
 

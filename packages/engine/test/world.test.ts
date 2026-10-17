@@ -2,7 +2,17 @@ import { describe, expect, it } from "vitest";
 
 import { type Action, CHALLENGE_FIGHTS, type GameState, STEPS_PER_FLOOR } from "../src";
 import { simpleItem } from "../src/items";
-import { act, content, ctxFor, fightOut, godMode, newGame, NOON, ofType, weakling } from "./helpers";
+import {
+  act,
+  content,
+  ctxFor,
+  fightOut,
+  godMode,
+  newGame,
+  NOON,
+  ofType,
+  weakling,
+} from "./helpers";
 
 const story = () => [...content.quests.values()].filter((q) => q.type === "story");
 
@@ -13,7 +23,11 @@ describe("story", () => {
     expect(first.templateId).toBe(story()[0]!.id);
     state.hero.energy = 1000;
     state.hero.base.maxEnergy = 1000;
-    for (let i = 0; i < 40 && state.quests.find((q) => q.uid === first.uid)!.progress < first.goal; i++) {
+    for (
+      let i = 0;
+      i < 40 && state.quests.find((q) => q.uid === first.uid)!.progress < first.goal;
+      i++
+    ) {
       state = fightOut(act(state, { type: "hunt.start", difficulty: "easy" }).state).state;
     }
     const { state: after, events } = act(state, { type: "quest.turnIn", uid: first.uid });
@@ -26,7 +40,9 @@ describe("story", () => {
     const state = newGame();
     const quest = state.quests.find((q) => q.type === "story")!;
     expect(() => act(state, { type: "quest.turnIn", uid: quest.uid })).toThrow("questNotDone");
-    expect(() => act(state, { type: "quest.abandon", uid: quest.uid })).toThrow("cannotAbandonStory");
+    expect(() => act(state, { type: "quest.abandon", uid: quest.uid })).toThrow(
+      "cannotAbandonStory",
+    );
   });
 
   it("waits for the hero to reach the next chapter's level", () => {
@@ -34,9 +50,13 @@ describe("story", () => {
     const locked = story().find((q) => q.minLevel > 1)!;
     state.quests = state.quests.filter((q) => q.type !== "story");
     state.story.nextId = locked.id;
-    expect(act(state, { type: "sync" }).state.quests.some((q) => q.templateId === locked.id)).toBe(false);
+    expect(act(state, { type: "sync" }).state.quests.some((q) => q.templateId === locked.id)).toBe(
+      false,
+    );
     state.hero.level = locked.minLevel;
-    expect(act(state, { type: "sync" }).state.quests.some((q) => q.templateId === locked.id)).toBe(true);
+    expect(act(state, { type: "sync" }).state.quests.some((q) => q.templateId === locked.id)).toBe(
+      true,
+    );
   });
 });
 
@@ -45,17 +65,27 @@ describe("board and dailies", () => {
     let state = newGame();
     state.hero.level = 15;
     state = act(state, { type: "sync" }, NOON + 86_400_000).state;
-    for (const offer of [...state.board.offers]) state = act(state, { type: "quest.accept", uid: offer.uid }, NOON + 86_400_000).state;
+    for (const offer of [...state.board.offers])
+      state = act(state, { type: "quest.accept", uid: offer.uid }, NOON + 86_400_000).state;
     expect(state.quests.filter((q) => q.type === "board").length).toBeLessThanOrEqual(3);
   });
 
   it("collect quests consume their items when turned in", () => {
     const state = newGame();
-    const template = [...content.quests.values()].find((q) => q.type === "board" && q.objective.kind === "collect")!;
+    const template = [...content.quests.values()].find(
+      (q) => q.type === "board" && q.objective.kind === "collect",
+    )!;
     const objective = template.objective;
     if (objective.kind !== "collect") throw new Error("not a collect quest");
     const ctx = ctxFor(state, "collect");
-    state.quests.push({ uid: "qc", templateId: template.id, type: "board", progress: 0, goal: objective.count, reward: { exp: 10, gold: 7, shards: 1 } });
+    state.quests.push({
+      uid: "qc",
+      templateId: template.id,
+      type: "board",
+      progress: 0,
+      goal: objective.count,
+      reward: { exp: 10, gold: 7, shards: 1 },
+    });
     state.hero.bag.push(simpleItem(ctx, objective.itemId, objective.count + 1));
     const after = act(state, { type: "quest.turnIn", uid: "qc" }).state;
     expect(after.hero.bag.find((i) => i.baseId === objective.itemId)?.quantity).toBe(1);
@@ -88,7 +118,8 @@ describe("dungeon", () => {
     state = deeper(state, 40);
     expect(state.counters.deepestFloor).toBeGreaterThan(1);
     // Walk to the next stairs and leave.
-    for (let i = 0; i < 40 && state.dungeon && !state.dungeon.atStairs; i++) state = deeper(state, 1);
+    for (let i = 0; i < 40 && state.dungeon && !state.dungeon.atStairs; i++)
+      state = deeper(state, 1);
     const stash = state.dungeon!.stash.length;
     const gold = state.hero.gold + state.dungeon!.stashGold;
     const { state: out, events } = act(state, { type: "dungeon.leave" });
@@ -101,7 +132,8 @@ describe("dungeon", () => {
     let state = godMode(newGame("boss-floor"));
     state.time.dungeonCheckpoint = 5;
     state = act(state, { type: "dungeon.enter" }).state;
-    for (let i = 0; i < 60 && state.dungeon && state.dungeon.doors[0] !== "boss"; i++) state = deeper(state, 1);
+    for (let i = 0; i < 60 && state.dungeon && state.dungeon.doors[0] !== "boss"; i++)
+      state = deeper(state, 1);
     expect(state.dungeon!.step).toBe(STEPS_PER_FLOOR - 1);
     state = act(state, { type: "dungeon.door", index: 0 }).state;
     expect(state.combat?.enemy.info.bossId).toBe("goblin_king");
@@ -138,7 +170,8 @@ describe("fishing", () => {
   it("lands a fish when every move is right (the server knows the answer)", () => {
     let state = act(angler(), { type: "fish.cast" }).state;
     expect(state.fishing).not.toBeNull();
-    for (let i = 0; i < 10 && state.fishing; i++) state = act(state, { type: "fish.reel", move: state.fishing.answer }).state;
+    for (let i = 0; i < 10 && state.fishing; i++)
+      state = act(state, { type: "fish.reel", move: state.fishing.answer }).state;
     expect(state.counters.fishCaught).toBe(1);
     expect(state.codex.fish).toHaveLength(1);
   });
@@ -159,8 +192,10 @@ describe("daily challenge", () => {
     let state = a;
     for (let fight = 0; fight < CHALLENGE_FIGHTS && !state.challenge!.finished; fight++) {
       if (!state.combat) state = act(state, { type: "challenge.next" }).state;
-      for (let i = 0; i < 100 && state.combat; i++) state = act(state, { type: "combat.auto" }).state;
-      for (let i = 0; i < 100 && state.combat; i++) state = act(state, { type: "combat.attack" }).state;
+      for (let i = 0; i < 100 && state.combat; i++)
+        state = act(state, { type: "combat.auto" }).state;
+      for (let i = 0; i < 100 && state.combat; i++)
+        state = act(state, { type: "combat.attack" }).state;
     }
     expect(state.challenge!.finished).toBe(true);
     expect(state.challenge!.score).toBeGreaterThanOrEqual(0);

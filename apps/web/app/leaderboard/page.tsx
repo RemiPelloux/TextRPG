@@ -10,7 +10,11 @@ import { content, tx } from "@/lib/text";
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Leaderboard" };
 
-export default async function Leaderboard({ searchParams }: { searchParams: Promise<{ board?: string }> }) {
+export default async function Leaderboard({
+  searchParams,
+}: {
+  searchParams: Promise<{ board?: string }>;
+}) {
   const { board = "power" } = await searchParams;
   const locale = await currentLocale();
   const t = translator(locale);
@@ -18,7 +22,8 @@ export default async function Leaderboard({ searchParams }: { searchParams: Prom
   const session = await currentSession();
   const mine = new Set(session ? (await listHeroes(db, session.userId)).map((h) => h.id) : []);
   const today = dayIndex(Date.now(), 0);
-  const className = (id: string | null) => (id ? tx(content.classes.get(id as never)?.name, locale) : "—");
+  const className = (id: string | null) =>
+    id ? tx(content.classes.get(id as never)?.name, locale) : "—";
 
   const tabs = [
     { id: "power", label: t("leaderboard.power") },
@@ -107,7 +112,10 @@ export default async function Leaderboard({ searchParams }: { searchParams: Prom
   }
 
   return (
-    <div className="main" style={{ gridTemplateColumns: "minmax(0, 1fr)", maxWidth: 860, paddingBottom: 40 }}>
+    <div
+      className="main"
+      style={{ gridTemplateColumns: "minmax(0, 1fr)", maxWidth: 860, paddingBottom: 40 }}
+    >
       <div className="page">
         <Link href="/">← TextRPG</Link>
         <div className="page-head">
@@ -116,7 +124,13 @@ export default async function Leaderboard({ searchParams }: { searchParams: Prom
         </div>
         <nav className="tabs">
           {tabs.map((tab) => (
-            <Link key={tab.id} href={`/leaderboard?board=${tab.id}`} className="tab" aria-selected={board === tab.id} style={{ textDecoration: "none" }}>
+            <Link
+              key={tab.id}
+              href={`/leaderboard?board=${tab.id}`}
+              className="tab"
+              aria-selected={board === tab.id}
+              style={{ textDecoration: "none" }}
+            >
               {tab.label}
             </Link>
           ))}

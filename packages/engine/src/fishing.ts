@@ -38,8 +38,16 @@ export function cast(ctx: Ctx): void {
   const month = localMonth(ctx.now, ctx.state.time.tzOffset);
   const luck = computeStats(ctx.state, ctx.content).luck;
   const pool = ctx.content.fish.filter((f) => f.months.length === 0 || f.months.includes(month));
-  const fish = ctx.rng.weighted(pool, (f) => (f.rarity === "common" ? f.weight : f.weight * (1 + luck / 50)));
-  ctx.state.fishing = { fishId: fish.id, round: 0, rounds: fish.rounds, slips: 0, ...nextHint(ctx, fish) };
+  const fish = ctx.rng.weighted(pool, (f) =>
+    f.rarity === "common" ? f.weight : f.weight * (1 + luck / 50),
+  );
+  ctx.state.fishing = {
+    fishId: fish.id,
+    round: 0,
+    rounds: fish.rounds,
+    slips: 0,
+    ...nextHint(ctx, fish),
+  };
   ctx.emit({ type: "fishBite", hint: ctx.state.fishing.hint });
 }
 

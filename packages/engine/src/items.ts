@@ -39,7 +39,13 @@ export function sellValue(item: Item, content: Content): number {
   if (base.kind !== "equipment") return Math.max(1, Math.round(base.price * 0.4));
   return Math.max(
     1,
-    Math.round(base.price * VALUE_MULT[item.rarity] * (1 + item.ilvl * 0.15) * (1 + 0.1 * item.upgrade) * 0.4),
+    Math.round(
+      base.price *
+        VALUE_MULT[item.rarity] *
+        (1 + item.ilvl * 0.15) *
+        (1 + 0.1 * item.upgrade) *
+        0.4,
+    ),
   );
 }
 

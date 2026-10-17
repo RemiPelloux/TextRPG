@@ -5,7 +5,11 @@ import { simpleItem } from "../src/items";
 import { generateEquipment } from "../src/loot";
 import { act, content, ctxFor, newGame, ofType } from "./helpers";
 
-function withItem(rarity: "common" | "magic" | "rare" | "legendary" = "magic", slot: "weapon" | "armor" = "armor", seed = "eco") {
+function withItem(
+  rarity: "common" | "magic" | "rare" | "legendary" = "magic",
+  slot: "weapon" | "armor" = "armor",
+  seed = "eco",
+) {
   const state = newGame();
   const ctx = ctxFor(state, seed);
   const item = generateEquipment(ctx, { ilvl: 1, rarity, slot });
@@ -46,7 +50,9 @@ describe("consumables", () => {
     const elixir = simpleItem(ctx, "elixir_vigor");
     healed.hero.bag.push(elixir);
     const buffed = act(healed, { type: "item.use", uid: elixir.uid }).state;
-    expect(computeStats(buffed, content).maxHealth).toBe(computeStats(healed, content).maxHealth + 25);
+    expect(computeStats(buffed, content).maxHealth).toBe(
+      computeStats(healed, content).maxHealth + 25,
+    );
     expect(buffed.hero.buffs[0]!.fights).toBe(3);
   });
 
@@ -69,7 +75,10 @@ describe("selling", () => {
   it("sells junk in one go but keeps rares", () => {
     const { state } = withItem("magic");
     const ctx = ctxFor(state, "junk");
-    state.hero.bag.push(generateEquipment(ctx, { ilvl: 3, rarity: "common" }), generateEquipment(ctx, { ilvl: 3, rarity: "rare" }));
+    state.hero.bag.push(
+      generateEquipment(ctx, { ilvl: 3, rarity: "common" }),
+      generateEquipment(ctx, { ilvl: 3, rarity: "rare" }),
+    );
     const { state: after, events } = act(state, { type: "item.sellJunk" });
     expect(ofType(events, "sold")[0]!.count).toBe(2);
     expect(after.hero.bag.some((i) => i.rarity === "rare")).toBe(true);
@@ -108,7 +117,8 @@ describe("forge", () => {
     state.hero.gold = 100_000;
     state.hero.shards = 1000;
     let current = state;
-    for (let i = 0; i < 3; i++) current = act(current, { type: "forge.upgrade", uid: item.uid }).state;
+    for (let i = 0; i < 3; i++)
+      current = act(current, { type: "forge.upgrade", uid: item.uid }).state;
     expect(current.hero.bag.find((i) => i.uid === item.uid)!.upgrade).toBe(3);
     expect(() => act(current, { type: "forge.upgrade", uid: item.uid })).toThrow("forgeLimit");
   });
@@ -171,7 +181,10 @@ describe("market", () => {
     const bought = act(state, { type: "market.buy", offerUid: offer.uid }).state;
     expect(bought.hero.gold).toBe(100_000 - offer.price);
     expect(() => act(bought, { type: "market.buy", offerUid: offer.uid })).toThrow("unknownOffer");
-    const potions = act(act(bought, { type: "market.buyStock", itemId: "potion" }).state, { type: "market.buyStock", itemId: "potion" }).state;
+    const potions = act(act(bought, { type: "market.buyStock", itemId: "potion" }).state, {
+      type: "market.buyStock",
+      itemId: "potion",
+    }).state;
     expect(potions.hero.bag.find((i) => i.baseId === "potion")!.quantity).toBe(5);
   });
 
@@ -179,8 +192,11 @@ describe("market", () => {
     const state = newGame();
     state.hero.gold = 100_000;
     const ctx = ctxFor(state, "full");
-    while (state.hero.bag.length < 24) state.hero.bag.push(generateEquipment(ctx, { ilvl: 1, rarity: "common" }));
-    expect(() => act(state, { type: "market.buy", offerUid: state.market.offers[0]!.uid })).toThrow("bagFull");
+    while (state.hero.bag.length < 24)
+      state.hero.bag.push(generateEquipment(ctx, { ilvl: 1, rarity: "common" }));
+    expect(() => act(state, { type: "market.buy", offerUid: state.market.offers[0]!.uid })).toThrow(
+      "bagFull",
+    );
   });
 });
 
@@ -195,8 +211,12 @@ describe("classes and talents", () => {
     let current = ranger.state;
     current = act(current, { type: "talent.learn", talentId: "r_precision" }).state;
     current = act(current, { type: "talent.learn", talentId: "r_precision" }).state;
-    expect(() => act(current, { type: "talent.learn", talentId: "r_precision" })).toThrow("noTalentPoints");
-    expect(() => act(current, { type: "talent.learn", talentId: "w_toughness" })).toThrow("unknownTalent");
+    expect(() => act(current, { type: "talent.learn", talentId: "r_precision" })).toThrow(
+      "noTalentPoints",
+    );
+    expect(() => act(current, { type: "talent.learn", talentId: "w_toughness" })).toThrow(
+      "unknownTalent",
+    );
   });
 
   it("spends paragon points", () => {
@@ -204,6 +224,8 @@ describe("classes and talents", () => {
     state.hero.paragon = 1;
     const after = act(state, { type: "paragon.spend", stat: "maxHealth" }).state;
     expect(computeStats(after, content).maxHealth).toBe(computeStats(state, content).maxHealth + 6);
-    expect(() => act(after, { type: "paragon.spend", stat: "maxHealth" })).toThrow("noParagonPoints");
+    expect(() => act(after, { type: "paragon.spend", stat: "maxHealth" })).toThrow(
+      "noParagonPoints",
+    );
   });
 });

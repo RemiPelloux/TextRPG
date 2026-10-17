@@ -58,7 +58,14 @@ export function startCombat(
       windup: false,
       enraged: false,
     },
-    hero: { stats, hp: hero.hp, maxHp: stats.maxHealth, statuses: [], powers: hero.powers, level: hero.level },
+    hero: {
+      stats,
+      hp: hero.hp,
+      maxHp: stats.maxHealth,
+      statuses: [],
+      powers: hero.powers,
+      level: hero.level,
+    },
     turn: 0,
     cooldowns: {},
     guarding: false,
@@ -99,7 +106,14 @@ function speedOf(side: Side): number {
   return side.stats.speed * (has(side, "chill") ? 0.7 : 1);
 }
 
-function applyStatus(ctx: Ctx, combat: Combat, target: Who, id: StatusId, turns: number, value = 0): void {
+function applyStatus(
+  ctx: Ctx,
+  combat: Combat,
+  target: Who,
+  id: StatusId,
+  turns: number,
+  value = 0,
+): void {
   const side = sideOf(combat, target);
   const existing = side.statuses.find((s) => s.id === id);
   if (existing) {
@@ -120,14 +134,22 @@ function heal(ctx: Ctx, combat: Combat, who: Who, amount: number, source: string
 }
 
 function isDragonbaneTarget(combat: Combat): boolean {
-  return combat.hero.powers.includes("dragonbane") && ["dragon", "demon"].includes(combat.enemy.info.kindId);
+  return (
+    combat.hero.powers.includes("dragonbane") &&
+    ["dragon", "demon"].includes(combat.enemy.info.kindId)
+  );
 }
 
 /** Damage to a side, with Last Bastion. Returns true if the side died. */
 function hurt(ctx: Ctx, combat: Combat, who: Who, damage: number): boolean {
   const side = sideOf(combat, who);
   side.hp -= damage;
-  if (side.hp <= 0 && who === "hero" && combat.hero.powers.includes("last_bastion") && !combat.bastionUsed) {
+  if (
+    side.hp <= 0 &&
+    who === "hero" &&
+    combat.hero.powers.includes("last_bastion") &&
+    !combat.bastionUsed
+  ) {
     side.hp = 1;
     combat.bastionUsed = true;
     ctx.emit({ type: "bastion" });
@@ -156,7 +178,10 @@ function strike(ctx: Ctx, combat: Combat, by: Who, opts: StrikeOptions): boolean
 
   // Dodge
   const evasive = has(defender, "evasive") ? 40 : 0;
-  const dodgeChance = Math.min(evasive ? 75 : 35, Math.max(0, (speedOf(defender) - speedOf(attacker)) * 1.5) + d.dodge + evasive);
+  const dodgeChance = Math.min(
+    evasive ? 75 : 35,
+    Math.max(0, (speedOf(defender) - speedOf(attacker)) * 1.5) + d.dodge + evasive,
+  );
   if (!opts.heavy && rng.chance(dodgeChance / 100)) {
     ctx.emit({ type: "dodge", by: target });
     if (target === "hero" && combat.hero.powers.includes("counter_dodge") && !opts.counter) {
@@ -184,10 +209,14 @@ function strike(ctx: Ctx, combat: Combat, by: Who, opts: StrikeOptions): boolean
   if (has(attacker, "weaken")) raw *= 0.7;
   if (has(attacker, "chill")) raw *= 0.9;
   if (heroAttacking) {
-    if (combat.hero.powers.includes("blood_frenzy") && attacker.hp < attacker.maxHp * 0.5) raw *= 1.4;
+    if (combat.hero.powers.includes("blood_frenzy") && attacker.hp < attacker.maxHp * 0.5)
+      raw *= 1.4;
     if (isDragonbaneTarget(combat)) raw *= 1.3;
     const skill = opts.skill;
-    if (skill?.effect.executeBelow !== undefined && defender.hp < defender.maxHp * skill.effect.executeBelow) {
+    if (
+      skill?.effect.executeBelow !== undefined &&
+      defender.hp < defender.maxHp * skill.effect.executeBelow
+    ) {
       raw *= (skill.effect.executeMult ?? 1) / skill.effect.mult;
     }
   } else {
@@ -201,7 +230,8 @@ function strike(ctx: Ctx, combat: Combat, by: Who, opts: StrikeOptions): boolean
   const attackerLevel = heroAttacking ? combat.hero.level : combat.enemy.info.level;
   const mitigation = d.defense / (d.defense + 20 + 5 * attackerLevel);
   let damage = raw * (1 - mitigation);
-  if (target === "hero" && combat.guarding) damage *= opts.heavy ? GUARD_HEAVY_FACTOR : GUARD_FACTOR;
+  if (target === "hero" && combat.guarding)
+    damage *= opts.heavy ? GUARD_HEAVY_FACTOR : GUARD_FACTOR;
   damage = Math.max(1, Math.round(damage));
 
   const died = hurt(ctx, combat, target, damage);
@@ -217,7 +247,8 @@ function strike(ctx: Ctx, combat: Combat, by: Who, opts: StrikeOptions): boolean
 
   // Life steal and drain
   const steal = a.lifeSteal / 100 + (opts.skill?.effect.drain ?? 0);
-  if (steal > 0) heal(ctx, combat, by, damage * steal, opts.skill?.effect.drain ? "drain" : "lifeSteal");
+  if (steal > 0)
+    heal(ctx, combat, by, damage * steal, opts.skill?.effect.drain ? "drain" : "lifeSteal");
 
   // Thorns
   if (d.thorns > 0 && !died) {
@@ -231,14 +262,23 @@ function strike(ctx: Ctx, combat: Combat, by: Who, opts: StrikeOptions): boolean
   if (heroAttacking) {
     const status = opts.skill?.effect.status;
     if (status && rng.chance(status.chance)) {
-      applyStatus(ctx, combat, "enemy", status.id, status.turns, Math.max(1, Math.round(damage * status.power)));
+      applyStatus(
+        ctx,
+        combat,
+        "enemy",
+        status.id,
+        status.turns,
+        Math.max(1, Math.round(damage * status.power)),
+      );
     }
     const powers = combat.hero.powers;
-    if (powers.includes("thunderstep") && rng.chance(0.2)) applyStatus(ctx, combat, "enemy", "stun", 1);
+    if (powers.includes("thunderstep") && rng.chance(0.2))
+      applyStatus(ctx, combat, "enemy", "stun", 1);
     if (powers.includes("ember_heart") && rng.chance(0.3)) {
       applyStatus(ctx, combat, "enemy", "burn", 3, Math.max(1, Math.round(damage * 0.3)));
     }
-    if (powers.includes("frost_core") && rng.chance(0.3)) applyStatus(ctx, combat, "enemy", "chill", 2);
+    if (powers.includes("frost_core") && rng.chance(0.3))
+      applyStatus(ctx, combat, "enemy", "chill", 2);
   } else {
     const onHit = combat.enemy.info.onHit;
     if (onHit && rng.chance(onHit.chance)) {
@@ -317,7 +357,9 @@ export function outcomeOf(combat: Combat): CombatOutcome {
 /** Skills usable in a fight. The daily challenge hero has no class: classless skills only. */
 export function availableSkills(ctx: Ctx, level: number, challenge = false): Skill[] {
   return [...ctx.content.skills.values()].filter(
-    (s) => s.unlockLevel <= level && (s.classId === null || (!challenge && s.classId === ctx.hero.classId)),
+    (s) =>
+      s.unlockLevel <= level &&
+      (s.classId === null || (!challenge && s.classId === ctx.hero.classId)),
   );
 }
 
@@ -344,7 +386,11 @@ function bestPotion(ctx: Ctx): string | undefined {
       const base = baseOf(ctx.content, i.baseId);
       return base.kind === "potion" && base.effect?.healPct;
     })
-    .sort((x, y) => (baseOf(ctx.content, x.baseId).effect!.healPct! - baseOf(ctx.content, y.baseId).effect!.healPct!));
+    .sort(
+      (x, y) =>
+        baseOf(ctx.content, x.baseId).effect!.healPct! -
+        baseOf(ctx.content, y.baseId).effect!.healPct!,
+    );
   return potions[0]?.uid;
 }
 
@@ -383,7 +429,8 @@ export function combatMove(ctx: Ctx, move: CombatMove): CombatOutcome {
         if ((combat.cooldowns[skill.id] ?? 0) > 0) ctx.fail("skillCooldown");
         combat.cooldowns[skill.id] = skill.cooldown + 1;
         heroAct = () => {
-          if (skill.effect.self) applyStatus(ctx, combat, "hero", skill.effect.self.id, skill.effect.self.turns);
+          if (skill.effect.self)
+            applyStatus(ctx, combat, "hero", skill.effect.self.id, skill.effect.self.turns);
           for (let i = 0; i < skill.effect.hits; i++) {
             if (strike(ctx, combat, "hero", { mult: skill.effect.mult, skill })) break;
           }
@@ -410,7 +457,10 @@ export function combatMove(ctx: Ctx, move: CombatMove): CombatOutcome {
       break;
     case "flee": {
       if (!canFlee(combat)) ctx.fail("cannotFlee");
-      const chance = Math.min(0.9, Math.max(0.1, 0.5 + (speedOf(combat.hero) - speedOf(combat.enemy)) * 0.05));
+      const chance = Math.min(
+        0.9,
+        Math.max(0.1, 0.5 + (speedOf(combat.hero) - speedOf(combat.enemy)) * 0.05),
+      );
       const success = ctx.rng.chance(chance);
       ctx.emit({ type: "flee", success });
       if (success) return "fled";

@@ -32,10 +32,20 @@ export function AccountForms({ guest }: { guest: boolean }) {
   return (
     <section className="panel stack">
       <div className="tabs" role="tablist">
-        <button role="tab" className="tab" aria-selected={mode === "claim"} onClick={() => setMode("claim")}>
+        <button
+          role="tab"
+          className="tab"
+          aria-selected={mode === "claim"}
+          onClick={() => setMode("claim")}
+        >
           {t("account.claim")}
         </button>
-        <button role="tab" className="tab" aria-selected={mode === "login"} onClick={() => setMode("login")}>
+        <button
+          role="tab"
+          className="tab"
+          aria-selected={mode === "login"}
+          onClick={() => setMode("login")}
+        >
           {t("account.login")}
         </button>
       </div>
@@ -45,13 +55,30 @@ export function AccountForms({ guest }: { guest: boolean }) {
           <label className="label" htmlFor="email">
             {t("account.email")}
           </label>
-          <input id="email" className="input" type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input
+            id="email"
+            className="input"
+            type="email"
+            autoComplete="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
         <div className="field">
           <label className="label" htmlFor="password">
             {t("account.password")}
           </label>
-          <input id="password" className="input" type="password" autoComplete={mode === "claim" ? "new-password" : "current-password"} minLength={8} required value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input
+            id="password"
+            className="input"
+            type="password"
+            autoComplete={mode === "claim" ? "new-password" : "current-password"}
+            minLength={8}
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
         {error && (
           <p className="delta-down ui" role="alert">

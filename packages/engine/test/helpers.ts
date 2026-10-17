@@ -13,7 +13,11 @@ export function newGame(seed = "test-seed", now = NOON): GameState {
   return createGame({ name: "Aria", seed, now, tzOffset: 0, content });
 }
 
-export function act(state: GameState, action: Action, now = NOON): { state: GameState; events: GameEvent[] } {
+export function act(
+  state: GameState,
+  action: Action,
+  now = NOON,
+): { state: GameState; events: GameEvent[] } {
   return apply(state, action, { now, content });
 }
 
@@ -35,7 +39,13 @@ export function ctxFor(state: GameState, seed = "ctx", now = NOON): Ctx {
 
 /** Make the hero absurdly strong, for tests that need a guaranteed win. */
 export function godMode(state: GameState): GameState {
-  Object.assign(state.hero.base, { maxHealth: 5000, strength: 400, defense: 300, speed: 200, luck: 0 });
+  Object.assign(state.hero.base, {
+    maxHealth: 5000,
+    strength: 400,
+    defense: 300,
+    speed: 200,
+    luck: 0,
+  });
   state.hero.health = 5000;
   return state;
 }

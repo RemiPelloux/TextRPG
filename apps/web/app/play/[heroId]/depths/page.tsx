@@ -59,7 +59,11 @@ export default function Depths() {
             </div>
           </dl>
           <p className="dim">{t("dungeon.rules")}</p>
-          <button className="btn primary" disabled={busy || view.hero.energy < DUNGEON_ENERGY || Boolean(view.fishing)} onClick={() => go({ type: "dungeon.enter" })}>
+          <button
+            className="btn primary"
+            disabled={busy || view.hero.energy < DUNGEON_ENERGY || Boolean(view.fishing)}
+            onClick={() => go({ type: "dungeon.enter" })}
+          >
             {t("dungeon.enter")} <span className="cost">⚡{DUNGEON_ENERGY}</span>
           </button>
         </section>
@@ -67,7 +71,9 @@ export default function Depths() {
     );
   }
 
-  const event = run.pendingEvent ? content.events.find((e) => e.id === run.pendingEvent) : undefined;
+  const event = run.pendingEvent
+    ? content.events.find((e) => e.id === run.pendingEvent)
+    : undefined;
   const bossFloor = run.floor % BOSS_EVERY === 0;
 
   return (
@@ -78,9 +84,15 @@ export default function Depths() {
         {bossFloor && <span className="chip blood">{t("dungeon.bossFloor")}</span>}
       </div>
 
-      <div className="depths" aria-label={t("dungeon.progress", { step: run.step + 1, steps: STEPS_PER_FLOOR })}>
+      <div
+        className="depths"
+        aria-label={t("dungeon.progress", { step: run.step + 1, steps: STEPS_PER_FLOOR })}
+      >
         {Array.from({ length: STEPS_PER_FLOOR }, (_, i) => (
-          <div key={i} className={`step ${i < run.step || run.atStairs ? "done" : ""} ${i === run.step && !run.atStairs ? "here" : ""}`} />
+          <div
+            key={i}
+            className={`step ${i < run.step || run.atStairs ? "done" : ""} ${i === run.step && !run.atStairs ? "here" : ""}`}
+          />
         ))}
       </div>
 
@@ -90,7 +102,12 @@ export default function Depths() {
           <p className="quote">{tx(event.text, locale)}</p>
           <div className="stack">
             {event.choices.map((choice, index) => (
-              <button key={index} className="btn block" disabled={busy} onClick={() => go({ type: "dungeon.choice", index })}>
+              <button
+                key={index}
+                className="btn block"
+                disabled={busy}
+                onClick={() => go({ type: "dungeon.choice", index })}
+              >
                 {tx(choice.label, locale)}
               </button>
             ))}
@@ -104,20 +121,35 @@ export default function Depths() {
           </div>
           <p className="dim">{t("dungeon.stairsText")}</p>
           <div className="row">
-            <button className="btn danger" disabled={busy} onClick={() => go({ type: "dungeon.descend" })}>
+            <button
+              className="btn danger"
+              disabled={busy}
+              onClick={() => go({ type: "dungeon.descend" })}
+            >
               {t("dungeon.descend", { floor: run.floor + 1 })}
             </button>
-            <button className="btn primary" disabled={busy} onClick={() => go({ type: "dungeon.leave" })}>
+            <button
+              className="btn primary"
+              disabled={busy}
+              onClick={() => go({ type: "dungeon.leave" })}
+            >
               {t("dungeon.leave")}
             </button>
           </div>
         </section>
       ) : (
         <section className="stack">
-          <p className="dim">{t(run.doors.length === 1 ? "dungeon.oneDoor" : "dungeon.twoDoors")}</p>
+          <p className="dim">
+            {t(run.doors.length === 1 ? "dungeon.oneDoor" : "dungeon.twoDoors")}
+          </p>
           <div className="doors">
             {run.doors.map((room, index) => (
-              <button key={index} className="door" disabled={busy || Boolean(view.combat)} onClick={() => go({ type: "dungeon.door", index })}>
+              <button
+                key={index}
+                className="door"
+                disabled={busy || Boolean(view.combat)}
+                onClick={() => go({ type: "dungeon.door", index })}
+              >
                 <Icon name={ROOM_ICON[room]} />
                 <span className="label">{t(`dungeon.room.${room}`)}</span>
                 <span className="faint ui" style={{ fontSize: "0.72rem" }}>

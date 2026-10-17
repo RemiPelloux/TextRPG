@@ -58,14 +58,25 @@ export function FishingOverlay() {
               <span className="ripple" />
               <span className="ripple" />
             </div>
-            <p className="display" style={{ fontSize: "1rem", textAlign: "center" }} aria-live="polite">
+            <p
+              className="display"
+              style={{ fontSize: "1rem", textAlign: "center" }}
+              aria-live="polite"
+            >
               {t(`fishing.hint.${fishing.hint}`)}
             </p>
             <div className="spread label">
-              <span>{t("fishing.round", { round: fishing.round + 1, rounds: fishing.rounds })}</span>
-              {fishing.slips > 0 && <span className="delta-down">{t("fishing.slips", { slips: fishing.slips })}</span>}
+              <span>
+                {t("fishing.round", { round: fishing.round + 1, rounds: fishing.rounds })}
+              </span>
+              {fishing.slips > 0 && (
+                <span className="delta-down">{t("fishing.slips", { slips: fishing.slips })}</span>
+              )}
             </div>
-            <div className="grid-cards" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+            <div
+              className="grid-cards"
+              style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
+            >
               {(["pull", "steady", "slack"] as Reel[]).map((move) => (
                 <button key={move} className="btn" disabled={busy} onClick={() => reel(move)}>
                   {t(`fishing.move.${move}`)}
@@ -78,8 +89,14 @@ export function FishingOverlay() {
           </>
         )}
         {!fishing && caught && (
-          <div className={`stack ${rarityClass(caught.rarity)}`} style={{ alignItems: "center", textAlign: "center" }}>
-            <span className={`medallion ${rarityClass(caught.rarity)}`} style={{ "--size": "80px" } as React.CSSProperties}>
+          <div
+            className={`stack ${rarityClass(caught.rarity)}`}
+            style={{ alignItems: "center", textAlign: "center" }}
+          >
+            <span
+              className={`medallion ${rarityClass(caught.rarity)}`}
+              style={{ "--size": "80px" } as React.CSSProperties}
+            >
               <Icon name={caught.icon} />
             </span>
             <h3 className="r-text">{tx(caught.name, locale)}</h3>
@@ -97,7 +114,8 @@ export function FishingOverlay() {
                 void dispatch({ type: "fish.cast" });
               }}
             >
-              {t("fishing.again")} <span className="cost">⚡1 · {t("fishing.bait", { count: bait })}</span>
+              {t("fishing.again")}{" "}
+              <span className="cost">⚡1 · {t("fishing.bait", { count: bait })}</span>
             </button>
             <button className="btn ghost" onClick={close}>
               {t("common.close")}

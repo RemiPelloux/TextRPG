@@ -12,7 +12,13 @@ export interface Prefs {
   speed: 1 | 2;
 }
 
-const DEFAULTS: Prefs = { sound: true, motion: "full", text: "normal", contrast: "normal", speed: 1 };
+const DEFAULTS: Prefs = {
+  sound: true,
+  motion: "full",
+  text: "normal",
+  contrast: "normal",
+  speed: 1,
+};
 const KEY = "textrpg.prefs";
 
 const PrefsContext = createContext<{ prefs: Prefs; update: (patch: Partial<Prefs>) => void }>({
@@ -31,7 +37,7 @@ export function PrefsProvider({ children }: { children: ReactNode }) {
   const [prefs, setPrefs] = useState<Prefs>(DEFAULTS);
 
   useEffect(() => {
-    let stored: Partial<Prefs> = {};
+    let stored: Partial<Prefs>;
     try {
       stored = JSON.parse(localStorage.getItem(KEY) ?? "{}") as Partial<Prefs>;
     } catch {
@@ -65,5 +71,7 @@ export function usePrefs() {
 
 export function reducedMotion(prefs: Prefs): boolean {
   if (prefs.motion === "reduced") return true;
-  return typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+  return (
+    typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
+  );
 }

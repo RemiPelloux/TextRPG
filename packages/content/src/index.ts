@@ -61,23 +61,35 @@ function validate(c: Content): void {
   const need = (cond: boolean, msg: string) => {
     if (!cond) throw new ContentError(msg);
   };
-  const kindIds = new Set([...c.enemyKinds.map((k) => k.id), ...[...c.bosses.values()].map((b) => b.kind)]);
+  const kindIds = new Set([
+    ...c.enemyKinds.map((k) => k.id),
+    ...[...c.bosses.values()].map((b) => b.kind),
+  ]);
   for (const item of c.items.values()) {
-    need(item.kind !== "equipment" || item.slot !== undefined, `item ${item.id}: equipment needs a slot`);
+    need(
+      item.kind !== "equipment" || item.slot !== undefined,
+      `item ${item.id}: equipment needs a slot`,
+    );
   }
   for (const l of c.legendaries.values()) {
     need(c.items.get(l.baseId)?.kind === "equipment", `legendary ${l.id}: bad base ${l.baseId}`);
   }
   for (const { piece } of c.setPieces.values()) {
-    need(c.items.get(piece.baseId)?.kind === "equipment", `set piece ${piece.id}: bad base ${piece.baseId}`);
+    need(
+      c.items.get(piece.baseId)?.kind === "equipment",
+      `set piece ${piece.id}: bad base ${piece.baseId}`,
+    );
   }
   for (const q of c.quests.values()) {
     need(c.npcs.has(q.giver), `quest ${q.id}: unknown giver ${q.giver}`);
     if (q.next) need(c.quests.has(q.next), `quest ${q.id}: unknown next ${q.next}`);
-    if (q.reward.itemId) need(c.items.has(q.reward.itemId), `quest ${q.id}: unknown item ${q.reward.itemId}`);
+    if (q.reward.itemId)
+      need(c.items.has(q.reward.itemId), `quest ${q.id}: unknown item ${q.reward.itemId}`);
     const o = q.objective;
-    if (o.kind === "kill" && o.target) need(kindIds.has(o.target), `quest ${q.id}: unknown target ${o.target}`);
-    if (o.kind === "collect") need(c.items.has(o.itemId), `quest ${q.id}: unknown item ${o.itemId}`);
+    if (o.kind === "kill" && o.target)
+      need(kindIds.has(o.target), `quest ${q.id}: unknown target ${o.target}`);
+    if (o.kind === "collect")
+      need(c.items.has(o.itemId), `quest ${q.id}: unknown item ${o.itemId}`);
     if (o.kind === "boss") need(c.bosses.has(o.bossId), `quest ${q.id}: unknown boss ${o.bossId}`);
   }
   need(c.difficulties.size === S.DIFFICULTY_IDS.length, "missing difficulty tiers");
@@ -138,7 +150,10 @@ export function buildContent(): Content {
   const content: Content = {
     items: byId(items, "item"),
     affixes: [...byId(parse(z.array(S.Affix), affixesJson, "affixes.json"), "affix").values()],
-    legendaries: byId(parse(z.array(S.Legendary), legendariesJson, "legendaries.json"), "legendary"),
+    legendaries: byId(
+      parse(z.array(S.Legendary), legendariesJson, "legendaries.json"),
+      "legendary",
+    ),
     sets: byId(sets, "set"),
     setPieces,
     rareNames: parse(S.RareNames, rareNamesJson, "rare-names.json"),
@@ -154,7 +169,10 @@ export function buildContent(): Content {
     events: [...byId(parse(z.array(S.DungeonEvent), eventsJson, "events.json"), "event").values()],
     buildings: byId(parse(z.array(S.Building), buildingsJson, "buildings.json"), "building"),
     achievements: [
-      ...byId(parse(z.array(S.Achievement), achievementsJson, "achievements.json"), "achievement").values(),
+      ...byId(
+        parse(z.array(S.Achievement), achievementsJson, "achievements.json"),
+        "achievement",
+      ).values(),
     ],
   };
   validate(content);

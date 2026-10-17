@@ -12,12 +12,26 @@ import { type Prefs, usePrefs } from "@/lib/prefs";
 
 type InstallPrompt = Event & { prompt: () => Promise<void> };
 
-function Choice<K extends keyof Prefs>({ name, value, options }: { name: K; value: Prefs[K]; options: { value: Prefs[K]; label: string }[] }) {
+function Choice<K extends keyof Prefs>({
+  name,
+  value,
+  options,
+}: {
+  name: K;
+  value: Prefs[K];
+  options: { value: Prefs[K]; label: string }[];
+}) {
   const { update } = usePrefs();
   return (
     <div className="row" role="radiogroup">
       {options.map((o) => (
-        <button key={String(o.value)} role="radio" aria-checked={value === o.value} className={`btn small ${value === o.value ? "primary" : "ghost"}`} onClick={() => update({ [name]: o.value } as Partial<Prefs>)}>
+        <button
+          key={String(o.value)}
+          role="radio"
+          aria-checked={value === o.value}
+          className={`btn small ${value === o.value ? "primary" : "ghost"}`}
+          onClick={() => update({ [name]: o.value } as Partial<Prefs>)}
+        >
           {o.label}
         </button>
       ))}
@@ -50,7 +64,10 @@ export default function Settings() {
       setInstall(e as InstallPrompt);
     };
     window.addEventListener("beforeinstallprompt", onPrompt);
-    navigator.serviceWorker?.ready.then((reg) => reg.pushManager.getSubscription()).then((sub) => setPushOn(Boolean(sub))).catch(() => {});
+    navigator.serviceWorker?.ready
+      .then((reg) => reg.pushManager.getSubscription())
+      .then((sub) => setPushOn(Boolean(sub)))
+      .catch(() => {});
     return () => window.removeEventListener("beforeinstallprompt", onPrompt);
   }, []);
 
@@ -68,7 +85,10 @@ export default function Settings() {
         toast(t("settings.pushDenied"), "error");
         return;
       }
-      const sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: urlBase64ToUint8Array(vapid!) });
+      const sub = await reg.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(vapid!),
+      });
       const json = sub.toJSON() as { endpoint: string; keys: { p256dh: string; auth: string } };
       await savePushAction({ endpoint: json.endpoint, keys: json.keys, heroId });
       setPushOn(true);
@@ -103,19 +123,55 @@ export default function Settings() {
         </div>
 
         <h2 className="label">{t("settings.sound")}</h2>
-        <Choice name="sound" value={prefs.sound} options={[{ value: true, label: t("settings.on") }, { value: false, label: t("settings.off") }]} />
+        <Choice
+          name="sound"
+          value={prefs.sound}
+          options={[
+            { value: true, label: t("settings.on") },
+            { value: false, label: t("settings.off") },
+          ]}
+        />
 
         <h2 className="label">{t("settings.combatSpeed")}</h2>
-        <Choice name="speed" value={prefs.speed} options={[{ value: 1, label: "×1" }, { value: 2, label: "×2" }]} />
+        <Choice
+          name="speed"
+          value={prefs.speed}
+          options={[
+            { value: 1, label: "×1" },
+            { value: 2, label: "×2" },
+          ]}
+        />
 
         <h2 className="label">{t("settings.motion")}</h2>
-        <Choice name="motion" value={prefs.motion} options={[{ value: "full", label: t("settings.motionFull") }, { value: "reduced", label: t("settings.motionReduced") }]} />
+        <Choice
+          name="motion"
+          value={prefs.motion}
+          options={[
+            { value: "full", label: t("settings.motionFull") },
+            { value: "reduced", label: t("settings.motionReduced") },
+          ]}
+        />
 
         <h2 className="label">{t("settings.text")}</h2>
-        <Choice name="text" value={prefs.text} options={[{ value: "normal", label: "100 %" }, { value: "large", label: "115 %" }, { value: "xl", label: "130 %" }]} />
+        <Choice
+          name="text"
+          value={prefs.text}
+          options={[
+            { value: "normal", label: "100 %" },
+            { value: "large", label: "115 %" },
+            { value: "xl", label: "130 %" },
+          ]}
+        />
 
         <h2 className="label">{t("settings.contrast")}</h2>
-        <Choice name="contrast" value={prefs.contrast} options={[{ value: "normal", label: t("settings.contrastNormal") }, { value: "high", label: t("settings.contrastHigh") }]} />
+        <Choice
+          name="contrast"
+          value={prefs.contrast}
+          options={[
+            { value: "normal", label: t("settings.contrastNormal") },
+            { value: "high", label: t("settings.contrastHigh") },
+          ]}
+        />
       </section>
 
       <section className="panel stack">

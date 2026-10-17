@@ -21,10 +21,16 @@ import { currentSession, ensureSession, sessionToken, writeSessionCookie } from 
 export type FormResult = { ok: true } | { ok: false; error: string };
 
 /** First visit or new hero: no sign-up wall, a guest account is created on the fly. */
-export async function createHeroAction(input: { name: string; tzOffset: number }): Promise<FormResult & { heroId?: string }> {
+export async function createHeroAction(input: {
+  name: string;
+  tzOffset: number;
+}): Promise<FormResult & { heroId?: string }> {
   const session = await ensureSession();
   try {
-    const heroId = await createHero(getDb(), session.userId, { name: input.name, tzOffset: Number(input.tzOffset) });
+    const heroId = await createHero(getDb(), session.userId, {
+      name: input.name,
+      tzOffset: Number(input.tzOffset),
+    });
     return { ok: true, heroId };
   } catch (error) {
     if (error instanceof ServiceError) return { ok: false, error: error.code };
@@ -85,10 +91,18 @@ export async function logoutAction(): Promise<void> {
 
 export async function setLocaleAction(locale: string): Promise<void> {
   if (!isLocale(locale)) return;
-  (await cookies()).set(LOCALE_COOKIE, locale, { path: "/", maxAge: 365 * 86_400, sameSite: "lax" });
+  (await cookies()).set(LOCALE_COOKIE, locale, {
+    path: "/",
+    maxAge: 365 * 86_400,
+    sameSite: "lax",
+  });
 }
 
-export async function savePushAction(input: { endpoint: string; keys: { p256dh: string; auth: string }; heroId: string | null }): Promise<FormResult> {
+export async function savePushAction(input: {
+  endpoint: string;
+  keys: { p256dh: string; auth: string };
+  heroId: string | null;
+}): Promise<FormResult> {
   const session = await currentSession();
   if (!session) return { ok: false, error: "noSession" };
   if (!/^https:\/\//.test(input.endpoint)) return { ok: false, error: "invalid" };

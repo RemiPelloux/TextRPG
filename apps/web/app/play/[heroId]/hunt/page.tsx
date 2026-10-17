@@ -10,7 +10,12 @@ import { sfx } from "@/lib/sfx";
 import { content, tx } from "@/lib/text";
 
 const THREAT: Record<string, number> = { easy: 1, normal: 2, hard: 3, hell: 4 };
-const LOOT_TONE: Record<string, string> = { easy: "r-common", normal: "r-magic", hard: "r-rare", hell: "r-legendary" };
+const LOOT_TONE: Record<string, string> = {
+  easy: "r-common",
+  normal: "r-magic",
+  hard: "r-rare",
+  hell: "r-legendary",
+};
 
 export default function Hunt() {
   const { t, locale } = useI18n();
@@ -27,6 +32,21 @@ export default function Hunt() {
         <p className="dim">{t("hunt.intro")}</p>
       </div>
       {view.dungeon && <p className="chip blood">{t("errors.inDungeon")}</p>}
+      {hero.health < view.stats.maxHealth * 0.3 && (
+        <div
+          className="panel flat row"
+          style={{ borderColor: "var(--blood)", flexWrap: "nowrap" }}
+          role="alert"
+        >
+          <Icon
+            name="GiHearts"
+            width={26}
+            height={26}
+            style={{ color: "var(--blood-text)", flex: "none" }}
+          />
+          <span>{t("hunt.lowHealth")}</span>
+        </div>
+      )}
 
       <div className="grid-cards">
         {DIFFICULTY_IDS.map((id) => {
@@ -36,7 +56,9 @@ export default function Hunt() {
           return (
             <article key={id} className={`panel stack ${id === "hell" ? "ornate" : ""}`}>
               <div className="spread">
-                <h2 className={id === "hell" ? "r-text r-ancestral" : ""}>{tx(difficulty.name, locale)}</h2>
+                <h2 className={id === "hell" ? "r-text r-ancestral" : ""}>
+                  {tx(difficulty.name, locale)}
+                </h2>
                 <span className="chip blood" aria-label={t("hunt.threat", { level: THREAT[id]! })}>
                   {"☠".repeat(THREAT[id]!)}
                 </span>
@@ -85,7 +107,12 @@ export default function Hunt() {
 
       <section className="panel ornate stack">
         <div className="row" style={{ flexWrap: "nowrap" }}>
-          <Icon name={weekly.icon} width={44} height={44} style={{ color: "var(--r-legendary)", flex: "none" }} />
+          <Icon
+            name={weekly.icon}
+            width={44}
+            height={44}
+            style={{ color: "var(--r-legendary)", flex: "none" }}
+          />
           <div className="stack" style={{ gap: 2 }}>
             <span className="label">{t("hunt.weekly")}</span>
             <h2 className="r-text r-legendary">
@@ -95,8 +122,22 @@ export default function Hunt() {
         </div>
         <p className="flavor">« {tx(weekly.lore, locale)} »</p>
         <p className="dim">{t("hunt.weeklyText")}</p>
-        <button className="btn ember" disabled={busy || blocked || !derived.weeklyAvailable || hero.level < 5 || hero.energy < WEEKLY_ENERGY} onClick={() => void dispatch({ type: "weekly.start" })}>
-          {derived.weeklyAvailable ? (hero.level < 5 ? t("hunt.weeklyLocked") : t("hunt.weeklyGo")) : t("hunt.weeklyDone")}
+        <button
+          className="btn ember"
+          disabled={
+            busy ||
+            blocked ||
+            !derived.weeklyAvailable ||
+            hero.level < 5 ||
+            hero.energy < WEEKLY_ENERGY
+          }
+          onClick={() => void dispatch({ type: "weekly.start" })}
+        >
+          {derived.weeklyAvailable
+            ? hero.level < 5
+              ? t("hunt.weeklyLocked")
+              : t("hunt.weeklyGo")
+            : t("hunt.weeklyDone")}
           <span className="cost">⚡{WEEKLY_ENERGY}</span>
         </button>
       </section>
@@ -112,16 +153,26 @@ export default function Hunt() {
         <p className="dim">{t("challenge.text", { fights: CHALLENGE_FIGHTS })}</p>
         {view.challenge && view.challenge.day === view.time.day ? (
           <div className="row">
-            <span className="chip gold">{t("challenge.score", { score: view.challenge.score })}</span>
+            <span className="chip gold">
+              {t("challenge.score", { score: view.challenge.score })}
+            </span>
             {!view.challenge.finished && !view.combat && (
-              <button className="btn primary" disabled={busy} onClick={() => void dispatch({ type: "challenge.next" })}>
+              <button
+                className="btn primary"
+                disabled={busy}
+                onClick={() => void dispatch({ type: "challenge.next" })}
+              >
                 {t("challenge.next")}
               </button>
             )}
             {view.challenge.finished && <span className="dim">{t("challenge.comeBack")}</span>}
           </div>
         ) : (
-          <button className="btn primary" disabled={busy || Boolean(view.combat)} onClick={() => void dispatch({ type: "challenge.start" })}>
+          <button
+            className="btn primary"
+            disabled={busy || Boolean(view.combat)}
+            onClick={() => void dispatch({ type: "challenge.start" })}
+          >
             {t("challenge.start")}
           </button>
         )}

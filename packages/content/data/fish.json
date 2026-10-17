@@ -188,11 +188,7 @@
     "icon": "GiFishMonster",
     "rarity": "legendary",
     "weight": 0.3,
-    "months": [
-      12,
-      1,
-      2
-    ],
+    "months": [12, 1, 2],
     "temper": "wild",
     "rounds": 4,
     "price": 350,
@@ -211,11 +207,7 @@
     "icon": "GiSeaSerpent",
     "rarity": "legendary",
     "weight": 0.3,
-    "months": [
-      6,
-      7,
-      8
-    ],
+    "months": [6, 7, 8],
     "temper": "sly",
     "rounds": 4,
     "price": 400,

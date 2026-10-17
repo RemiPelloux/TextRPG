@@ -39,7 +39,9 @@ describe("hunting", () => {
   it("sends a defeated hero back with 10% health and 10% less gold, never dead", () => {
     const state = weakling(newGame());
     state.hero.gold = 100;
-    const { state: after, events } = fightOut(act(state, { type: "hunt.start", difficulty: "hell" }).state);
+    const { state: after, events } = fightOut(
+      act(state, { type: "hunt.start", difficulty: "hell" }).state,
+    );
     expect(ofType(events, "defeat")[0]!.goldLost).toBe(10);
     expect(after.hero.gold).toBe(90);
     expect(after.hero.health).toBeGreaterThanOrEqual(1);
@@ -78,7 +80,9 @@ describe("bosses", () => {
     current.combat!.enemy.hp = current.combat!.enemy.maxHp = 1e9;
     let sawWindup = false;
     for (let i = 0; i < 10 && current.combat; i++) {
-      const action: Action = current.combat.enemy.windup ? { type: "combat.guard" } : { type: "combat.attack" };
+      const action: Action = current.combat.enemy.windup
+        ? { type: "combat.guard" }
+        : { type: "combat.attack" };
       const result = act(current, action);
       if (ofType(result.events, "windup").length) sawWindup = true;
       const heavy = ofType(result.events, "heavyBlow")[0];
@@ -109,12 +113,16 @@ describe("skills", () => {
     const fight = act(newGame(), { type: "hunt.start", difficulty: "hard" }).state;
     fight.combat!.enemy.hp = fight.combat!.enemy.maxHp = 1e6;
     const after = act(fight, { type: "combat.skill", skillId: "heavy_strike" }).state;
-    expect(() => act(after, { type: "combat.skill", skillId: "heavy_strike" })).toThrow("skillCooldown");
+    expect(() => act(after, { type: "combat.skill", skillId: "heavy_strike" })).toThrow(
+      "skillCooldown",
+    );
   });
 
   it("class skills need the class", () => {
     const fight = act(newGame(), { type: "hunt.start", difficulty: "easy" }).state;
-    expect(() => act(fight, { type: "combat.skill", skillId: "shield_bash" })).toThrow("unknownSkill");
+    expect(() => act(fight, { type: "combat.skill", skillId: "shield_bash" })).toThrow(
+      "unknownSkill",
+    );
   });
 });
 
@@ -123,21 +131,29 @@ describe("combat invariants (property-based)", () => {
 
   it("auto-combat always ends, and health never exceeds its maximum", () => {
     fc.assert(
-      fc.property(fc.string({ minLength: 1, maxLength: 12 }), fc.constantFrom(...difficulties), fc.integer({ min: 1, max: 20 }), (seed, difficulty, level) => {
-        const state = newGame(seed);
-        state.hero.level = level;
-        let current = act(state, { type: "hunt.start", difficulty }).state;
-        for (let i = 0; i < 100 && current.combat; i++) {
-          const action: Action = current.combat.hero.hp < current.combat.hero.maxHp * 0.3 ? { type: "combat.attack" } : { type: "combat.auto" };
-          current = act(current, action).state;
-          if (current.combat) {
-            expect(current.combat.hero.hp).toBeLessThanOrEqual(current.combat.hero.maxHp);
-            expect(current.combat.enemy.hp).toBeLessThanOrEqual(current.combat.enemy.maxHp);
+      fc.property(
+        fc.string({ minLength: 1, maxLength: 12 }),
+        fc.constantFrom(...difficulties),
+        fc.integer({ min: 1, max: 20 }),
+        (seed, difficulty, level) => {
+          const state = newGame(seed);
+          state.hero.level = level;
+          let current = act(state, { type: "hunt.start", difficulty }).state;
+          for (let i = 0; i < 100 && current.combat; i++) {
+            const action: Action =
+              current.combat.hero.hp < current.combat.hero.maxHp * 0.3
+                ? { type: "combat.attack" }
+                : { type: "combat.auto" };
+            current = act(current, action).state;
+            if (current.combat) {
+              expect(current.combat.hero.hp).toBeLessThanOrEqual(current.combat.hero.maxHp);
+              expect(current.combat.enemy.hp).toBeLessThanOrEqual(current.combat.enemy.maxHp);
+            }
           }
-        }
-        expect(current.combat).toBeNull();
-        expect(current.hero.health).toBeGreaterThanOrEqual(1);
-      }),
+          expect(current.combat).toBeNull();
+          expect(current.hero.health).toBeGreaterThanOrEqual(1);
+        },
+      ),
       { numRuns: 60 },
     );
   });
@@ -148,8 +164,11 @@ describe("combat invariants (property-based)", () => {
         let state = godMode(newGame(seed));
         state.hero.energy = 1000;
         state.hero.base.maxEnergy = 1000;
-        for (let i = 0; i < 15; i++) state = fightOut(act(state, { type: "hunt.start", difficulty: "hell" }).state).state;
-        const uids = [...state.hero.bag, ...Object.values(state.hero.equipment)].map((item) => item!.uid);
+        for (let i = 0; i < 15; i++)
+          state = fightOut(act(state, { type: "hunt.start", difficulty: "hell" }).state).state;
+        const uids = [...state.hero.bag, ...Object.values(state.hero.equipment)].map(
+          (item) => item!.uid,
+        );
         expect(new Set(uids).size).toBe(uids.length);
       }),
       { numRuns: 10 },
@@ -157,7 +176,11 @@ describe("combat invariants (property-based)", () => {
   });
 
   it("same seed and same choices give the same fight", () => {
-    const run = () => play(newGame("same"), [{ type: "hunt.start", difficulty: "normal" }, { type: "combat.auto" }]);
+    const run = () =>
+      play(newGame("same"), [
+        { type: "hunt.start", difficulty: "normal" },
+        { type: "combat.auto" },
+      ]);
     expect(run()).toEqual(run());
   });
 });

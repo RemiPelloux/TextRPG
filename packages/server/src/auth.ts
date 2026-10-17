@@ -19,13 +19,20 @@ import {
 } from "@textrpg/db";
 import { z } from "zod";
 
-const scrypt = promisify(scryptCb) as (password: string, salt: Buffer, keylen: number) => Promise<Buffer>;
+const scrypt = promisify(scryptCb) as (
+  password: string,
+  salt: Buffer,
+  keylen: number,
+) => Promise<Buffer>;
 
 export const SESSION_DAYS = 180;
 export const SESSION_COOKIE = "textrpg_session";
 
 export class AuthError extends Error {
-  constructor(readonly code: "invalidEmail" | "weakPassword" | "emailTaken" | "badCredentials" | "alreadyClaimed") {
+  constructor(
+    readonly code:
+      "invalidEmail" | "weakPassword" | "emailTaken" | "badCredentials" | "alreadyClaimed",
+  ) {
     super(code);
   }
 }
@@ -100,7 +107,11 @@ export async function claimAccount(db: Db, userId: string, input: unknown): Prom
 }
 
 /** Log into an existing account. Heroes made as a guest on this device come along. */
-export async function login(db: Db, currentUserId: string | undefined, input: unknown): Promise<Session> {
+export async function login(
+  db: Db,
+  currentUserId: string | undefined,
+  input: unknown,
+): Promise<Session> {
   const { email, password } = parseCredentials(input);
   const user = await findUserByEmail(db, email);
   if (!user?.passwordHash || !(await verifyPassword(password, user.passwordHash))) {

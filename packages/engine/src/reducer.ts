@@ -6,13 +6,29 @@ import type { Content } from "@textrpg/content";
 
 import { nextChallengeFight, onChallengeEnd, startChallenge } from "./challenge";
 import { Ctx, GameError } from "./ctx";
-import { chooseEvent, descend, enterDungeon, leaveDungeon, onDungeonDefeat, onDungeonVictory, openDoor } from "./dungeon";
+import {
+  chooseEvent,
+  descend,
+  enterDungeon,
+  leaveDungeon,
+  onDungeonDefeat,
+  onDungeonVictory,
+  openDoor,
+} from "./dungeon";
 import * as economy from "./economy";
 import { type CombatHooks, playCombat, startHunt, startWeekly } from "./encounters";
 import { cast, reel } from "./fishing";
 import { migrate } from "./migrations";
 import * as progression from "./progression";
-import { abandonQuest, acceptQuest, ensureStory, refreshBoard, refreshDaily, refreshDynamicProgress, turnIn } from "./quests";
+import {
+  abandonQuest,
+  acceptQuest,
+  ensureStory,
+  refreshBoard,
+  refreshDaily,
+  refreshDynamicProgress,
+  turnIn,
+} from "./quests";
 import { Rng } from "./rng";
 import { syncTime } from "./time";
 import type { Action, GameEvent, GameState } from "./types";
@@ -80,7 +96,11 @@ function dispatch(ctx: Ctx, action: Action): void {
     case "combat.skill":
       return playCombat(ctx, { kind: "skill", skillId: action.skillId }, hooks);
     case "combat.potion":
-      return playCombat(ctx, action.uid ? { kind: "potion", uid: action.uid } : { kind: "potion" }, hooks);
+      return playCombat(
+        ctx,
+        action.uid ? { kind: "potion", uid: action.uid } : { kind: "potion" },
+        hooks,
+      );
     case "combat.guard":
       return playCombat(ctx, { kind: "guard" }, hooks);
     case "combat.flee":

@@ -101,14 +101,23 @@ describe("rarity rolls", () => {
     const state = newGame();
     state.pity = Math.ceil(1 / PITY_STEP);
     const ctx = ctxFor(state, "pity");
-    expect(["legendary", "set", "ancestral"]).toContain(rollRarity(ctx, { magic: 0, rare: 0, legendary: 0 }, 0, 10));
+    expect(["legendary", "set", "ancestral"]).toContain(
+      rollRarity(ctx, { magic: 0, rare: 0, legendary: 0 }, 0, 10),
+    );
   });
 
   it("pity resets when a legendary drops", () => {
     const state = newGame();
     state.pity = 5000;
     const ctx = ctxFor(state, "reset");
-    rollLoot(ctx, { ilvl: 10, table: { magic: 0, rare: 0, legendary: 0, dropChance: 1 }, kindId: "orc", elite: false, boss: false, into: "bag" });
+    rollLoot(ctx, {
+      ilvl: 10,
+      table: { magic: 0, rare: 0, legendary: 0, dropChance: 1 },
+      kindId: "orc",
+      elite: false,
+      boss: false,
+      into: "bag",
+    });
     expect(state.pity).toBe(0);
   });
 });
@@ -117,11 +126,27 @@ describe("quest items", () => {
   it("drop only while a quest needs them", () => {
     const state = newGame();
     const ctx = ctxFor(state, "teeth");
-    const source = { ilvl: 3, table: { magic: 0, rare: 0, legendary: 0, dropChance: 0 }, kindId: "orc", elite: false, boss: false, into: "bag" as const };
+    const source = {
+      ilvl: 3,
+      table: { magic: 0, rare: 0, legendary: 0, dropChance: 0 },
+      kindId: "orc",
+      elite: false,
+      boss: false,
+      into: "bag" as const,
+    };
     for (let i = 0; i < 30; i++) rollLoot(ctx, source);
     expect(state.hero.bag.some((i) => i.baseId === "orc_teeth")).toBe(false);
-    const template = [...content.quests.values()].find((q) => q.objective.kind === "collect" && q.objective.itemId === "orc_teeth")!;
-    state.quests.push({ uid: "q", templateId: template.id, type: template.type, progress: 0, goal: 5, reward: { exp: 0, gold: 0, shards: 0 } });
+    const template = [...content.quests.values()].find(
+      (q) => q.objective.kind === "collect" && q.objective.itemId === "orc_teeth",
+    )!;
+    state.quests.push({
+      uid: "q",
+      templateId: template.id,
+      type: template.type,
+      progress: 0,
+      goal: 5,
+      reward: { exp: 0, gold: 0, shards: 0 },
+    });
     for (let i = 0; i < 30; i++) rollLoot(ctx, source);
     expect(state.hero.bag.some((i) => i.baseId === "orc_teeth")).toBe(true);
   });
@@ -148,7 +173,16 @@ describe("derived stats", () => {
     const before = computeStats(state, content).maxHealth;
     for (const piece of set.pieces.slice(0, 2)) {
       const base = content.items.get(piece.baseId)!;
-      state.hero.equipment[base.slot!] = { ...generateEquipment(ctx, { ilvl: 12, rarity: "common", slot: base.slot! }), baseId: base.id, setPieceId: piece.id, rarity: "set", implicit: {}, fixed: {}, affixes: [], identified: true };
+      state.hero.equipment[base.slot!] = {
+        ...generateEquipment(ctx, { ilvl: 12, rarity: "common", slot: base.slot! }),
+        baseId: base.id,
+        setPieceId: piece.id,
+        rarity: "set",
+        implicit: {},
+        fixed: {},
+        affixes: [],
+        identified: true,
+      };
     }
     expect(computeStats(state, content).maxHealth).toBe(before + 40);
   });

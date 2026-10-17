@@ -10,7 +10,7 @@
     "dev": "pnpm --filter @textrpg/web dev",
     "build": "pnpm --filter @textrpg/web build",
     "start": "pnpm --filter @textrpg/web start",
-    "test": "pnpm -r --if-present test",
+    "test": "pnpm --filter @textrpg/content --filter @textrpg/engine --filter @textrpg/web test",
     "typecheck": "pnpm -r --if-present typecheck",
     "lint": "eslint .",
     "format": "prettier --write .",
@@ -18,7 +18,9 @@
     "simulate": "pnpm --filter @textrpg/simulate start",
     "db:generate": "pnpm --filter @textrpg/db generate",
     "db:migrate": "pnpm --filter @textrpg/db migrate",
-    "e2e": "pnpm --filter @textrpg/web e2e"
+    "e2e": "pnpm --filter @textrpg/web e2e",
+    "db:up": "docker compose up -d postgres",
+    "test:server": "pnpm --filter @textrpg/server test"
   },
   "devDependencies": {
     "eslint": "^10.13.0",
@@ -26,6 +28,8 @@
     "prettier": "^3.9.10",
     "typescript": "5.9.3",
     "@eslint/js": "^10.0.0",
-    "globals": "^17.13.0"
-  }
+    "globals": "^17.13.0",
+    "eslint-plugin-react-hooks": "^7.1.1"
+  },
+  "type": "module"
 }

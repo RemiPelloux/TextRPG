@@ -40,40 +40,76 @@ function ForgeInner() {
             return (
               <div className="stack">
                 <h3>{t("forge.upgrade", { level: item.upgrade + 1 })}</h3>
-                <p className="dim">{maxed ? t("forge.limit") : cost.failChance > 0 ? t("forge.risk", { pct: Math.round(cost.failChance * 100) }) : t("forge.safe")}</p>
+                <p className="dim">
+                  {maxed
+                    ? t("forge.limit")
+                    : cost.failChance > 0
+                      ? t("forge.risk", { pct: Math.round(cost.failChance * 100) })
+                      : t("forge.safe")}
+                </p>
                 <button
                   className="btn primary"
-                  disabled={busy || blocked || maxed || view.hero.gold < cost.gold || view.hero.shards < cost.shards}
+                  disabled={
+                    busy ||
+                    blocked ||
+                    maxed ||
+                    view.hero.gold < cost.gold ||
+                    view.hero.shards < cost.shards
+                  }
                   onClick={() => {
                     sfx.hit();
                     void dispatch({ type: "forge.upgrade", uid: item.uid });
                   }}
                 >
-                  {t("forge.strike")} <span className="cost">{cost.gold} ◉ · {cost.shards} ◆</span>
+                  {t("forge.strike")}{" "}
+                  <span className="cost">
+                    {cost.gold} ◉ · {cost.shards} ◆
+                  </span>
                 </button>
               </div>
             );
           })()}
-          {item.identified && ["rare", "legendary", "set", "ancestral"].includes(item.rarity) && item.affixes.length > 0 && (
-            <div className="stack">
-              <h3>{t("forge.reroll")}</h3>
-              <p className="dim">{t("forge.rerollText")}</p>
-              {item.affixes.map((affix, index) => {
-                const def = content.affixes.find((a) => a.id === affix.id)!;
-                const cost = rerollCost(item);
-                return (
-                  <div key={`${affix.id}-${index}`} className="spread panel flat" style={{ padding: 10 }}>
-                    <span className="ui">
-                      {formatStat(def.stat, affix.value, t, locale)} <span className="faint">({t("forge.tier", { tier: affix.tier + 1 })})</span>
-                    </span>
-                    <button className="btn small" disabled={busy || blocked || view.hero.gold < cost.gold || view.hero.shards < cost.shards} onClick={() => void dispatch({ type: "forge.reroll", uid: item.uid, affixIndex: index })}>
-                      {t("forge.rerollOne")} <span className="cost">{cost.gold} ◉ · {cost.shards} ◆</span>
-                    </button>
-                  </div>
-                );
-              })}
-            </div>
-          )}
+          {item.identified &&
+            ["rare", "legendary", "set", "ancestral"].includes(item.rarity) &&
+            item.affixes.length > 0 && (
+              <div className="stack">
+                <h3>{t("forge.reroll")}</h3>
+                <p className="dim">{t("forge.rerollText")}</p>
+                {item.affixes.map((affix, index) => {
+                  const def = content.affixes.find((a) => a.id === affix.id)!;
+                  const cost = rerollCost(item);
+                  return (
+                    <div
+                      key={`${affix.id}-${index}`}
+                      className="spread panel flat"
+                      style={{ padding: 10 }}
+                    >
+                      <span className="ui">
+                        {formatStat(def.stat, affix.value, t, locale)}{" "}
+                        <span className="faint">({t("forge.tier", { tier: affix.tier + 1 })})</span>
+                      </span>
+                      <button
+                        className="btn small"
+                        disabled={
+                          busy ||
+                          blocked ||
+                          view.hero.gold < cost.gold ||
+                          view.hero.shards < cost.shards
+                        }
+                        onClick={() =>
+                          void dispatch({ type: "forge.reroll", uid: item.uid, affixIndex: index })
+                        }
+                      >
+                        {t("forge.rerollOne")}{" "}
+                        <span className="cost">
+                          {cost.gold} ◉ · {cost.shards} ◆
+                        </span>
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           <button className="btn ghost small" onClick={() => setSelectedUid(null)}>
             {t("forge.choose")}
           </button>
@@ -83,7 +119,12 @@ function ForgeInner() {
           <h2 className="label">{t("forge.pick")}</h2>
           <div className="stack" style={{ gap: 8 }}>
             {gear.map((g) => (
-              <ItemRow key={g.uid} item={g} onSelect={() => setSelectedUid(g.uid)} extra={g.upgrade ? <span className="r-text r-rare num">+{g.upgrade}</span> : null} />
+              <ItemRow
+                key={g.uid}
+                item={g}
+                onSelect={() => setSelectedUid(g.uid)}
+                extra={g.upgrade ? <span className="r-text r-rare num">+{g.upgrade}</span> : null}
+              />
             ))}
           </div>
           <p className="faint ui" style={{ fontSize: "0.75rem" }}>

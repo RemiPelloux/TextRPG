@@ -14,7 +14,8 @@ export class SaveVersionError extends Error {}
 export function migrate(state: GameState): GameState {
   let version = state.schemaVersion;
   if (typeof version !== "number") throw new SaveVersionError("missing schemaVersion");
-  if (version > SCHEMA_VERSION) throw new SaveVersionError(`save v${version} is newer than engine v${SCHEMA_VERSION}`);
+  if (version > SCHEMA_VERSION)
+    throw new SaveVersionError(`save v${version} is newer than engine v${SCHEMA_VERSION}`);
   let data = state as unknown as Record<string, unknown>;
   while (version < SCHEMA_VERSION) {
     const step = MIGRATIONS[version];

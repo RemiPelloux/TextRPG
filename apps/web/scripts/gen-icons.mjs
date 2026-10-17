@@ -24,7 +24,8 @@ for (const dir of ["components", "app", "lib"]) {
       const full = join(path, entry.name);
       if (entry.isDirectory()) walk(full);
       else if (/\.tsx?$/.test(entry.name) && !entry.name.includes("generated")) {
-        for (const match of readFileSync(full, "utf8").matchAll(/["'](Gi[A-Z]\w+)["']/g)) names.add(match[1]);
+        for (const match of readFileSync(full, "utf8").matchAll(/["'](Gi[A-Z]\w+)["']/g))
+          names.add(match[1]);
       }
     }
   };

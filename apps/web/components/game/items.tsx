@@ -14,7 +14,10 @@ export function baseOf(item: ClientItem) {
 export function ItemMedallion({ item, size }: { item: ClientItem; size?: number }) {
   const base = baseOf(item);
   return (
-    <span className={`medallion ${rarityClass(item.rarity)}`} style={size ? ({ "--size": `${size}px` } as React.CSSProperties) : undefined}>
+    <span
+      className={`medallion ${rarityClass(item.rarity)}`}
+      style={size ? ({ "--size": `${size}px` } as React.CSSProperties) : undefined}
+    >
       <Icon name={base.icon} />
       {item.upgrade > 0 && <span className="up">+{item.upgrade}</span>}
       {item.quantity > 1 && <span className="qty">{item.quantity}</span>}
@@ -23,7 +26,10 @@ export function ItemMedallion({ item, size }: { item: ClientItem; size?: number 
 }
 
 /** Stat differences if this item replaced what is worn in its slot. */
-export function compareTo(item: ClientItem, equipped: ClientItem | undefined): Partial<Record<StatKey, number>> {
+export function compareTo(
+  item: ClientItem,
+  equipped: ClientItem | undefined,
+): Partial<Record<StatKey, number>> {
   const mine = itemStats(item, content);
   const theirs = equipped ? itemStats(equipped, content) : {};
   const keys = new Set([...Object.keys(mine), ...Object.keys(theirs)] as StatKey[]);
@@ -37,8 +43,20 @@ export function compareTo(item: ClientItem, equipped: ClientItem | undefined): P
 
 /** Positive when the item looks like an upgrade (weighted sum of differences). */
 export function upgradeScore(diff: Partial<Record<StatKey, number>>): number {
-  const weights: Partial<Record<StatKey, number>> = { strength: 1.6, defense: 1, speed: 0.8, luck: 0.6, maxHealth: 0.15, damagePct: 0.9, critChance: 1.2, critDamage: 0.4 };
-  return Object.entries(diff).reduce((sum, [k, v]) => sum + (weights[k as StatKey] ?? 0.3) * (v ?? 0), 0);
+  const weights: Partial<Record<StatKey, number>> = {
+    strength: 1.6,
+    defense: 1,
+    speed: 0.8,
+    luck: 0.6,
+    maxHealth: 0.15,
+    damagePct: 0.9,
+    critChance: 1.2,
+    critDamage: 0.4,
+  };
+  return Object.entries(diff).reduce(
+    (sum, [k, v]) => sum + (weights[k as StatKey] ?? 0.3) * (v ?? 0),
+    0,
+  );
 }
 
 export function ItemRow({
@@ -60,16 +78,23 @@ export function ItemRow({
     <button type="button" className={`item-row ${rarityClass(item.rarity)}`} onClick={onSelect}>
       <ItemMedallion item={item} />
       <span className="stack" style={{ gap: 2, minWidth: 0 }}>
-        <span className={`title ${item.identified ? "" : "unknown-name"}`}>{itemName(item, locale, t)}</span>
+        <span className={`title ${item.identified ? "" : "unknown-name"}`}>
+          {itemName(item, locale, t)}
+        </span>
         <span className="sub">
-          {isGear ? `${t(`slots.${base.slot}`)} · ${t(`rarity.${item.rarity}`)} · ilvl ${item.ilvl}` : t(`kinds.${base.kind}`)}
+          {isGear
+            ? `${t(`slots.${base.slot}`)} · ${t(`rarity.${item.rarity}`)} · ilvl ${item.ilvl}`
+            : t(`kinds.${base.kind}`)}
           {item.locked ? " · 🔒" : ""}
         </span>
       </span>
       <span className="ui" style={{ fontSize: "0.8rem", textAlign: "right" }}>
         {extra ??
           (isGear && score !== 0 ? (
-            <span className={score > 0 ? "delta-up" : "delta-down"} aria-label={t(score > 0 ? "items.better" : "items.worse")}>
+            <span
+              className={score > 0 ? "delta-up" : "delta-down"}
+              aria-label={t(score > 0 ? "items.better" : "items.worse")}
+            >
               {score > 0 ? "▲" : "▼"}
             </span>
           ) : null)}
@@ -78,7 +103,15 @@ export function ItemRow({
   );
 }
 
-export function ItemTooltip({ item, equipped, setCounts }: { item: ClientItem; equipped?: ClientItem | undefined; setCounts?: Record<string, number> }) {
+export function ItemTooltip({
+  item,
+  equipped,
+  setCounts,
+}: {
+  item: ClientItem;
+  equipped?: ClientItem | undefined;
+  setCounts?: Record<string, number>;
+}) {
   const { t, locale } = useI18n();
   const base = baseOf(item);
   const stats = itemStats(item, content);
@@ -96,7 +129,9 @@ export function ItemTooltip({ item, equipped, setCounts }: { item: ClientItem; e
             {item.upgrade > 0 ? ` +${item.upgrade}` : ""}
           </span>
           <span className="label">
-            {base.kind === "equipment" ? `${t(`slots.${base.slot}`)} · ${t(`rarity.${item.rarity}`)} · ilvl ${item.ilvl}` : t(`kinds.${base.kind}`)}
+            {base.kind === "equipment"
+              ? `${t(`slots.${base.slot}`)} · ${t(`rarity.${item.rarity}`)} · ilvl ${item.ilvl}`
+              : t(`kinds.${base.kind}`)}
           </span>
         </div>
       </div>
@@ -129,18 +164,37 @@ export function ItemTooltip({ item, equipped, setCounts }: { item: ClientItem; e
             : null}
         </div>
       )}
-      {base.effect?.healPct ? <div className="ui">{t("items.heals", { pct: Math.round(base.effect.healPct * 100) })}</div> : null}
-      {base.effect?.energy ? <div className="ui">{t("items.energy", { amount: base.effect.energy })}</div> : null}
-      {base.buff ? <div className="ui">{t("items.buff", { stat: formatStat(base.buff.stat, base.buff.value, t, locale), fights: base.buff.fights })}</div> : null}
-      {legendary && item.identified && <div className="power">✦ {tx(legendary.powerText, locale)}</div>}
-      {!item.identified && ["legendary", "ancestral", "set"].includes(item.rarity) && <div className="power faint">✦ ???</div>}
+      {base.effect?.healPct ? (
+        <div className="ui">{t("items.heals", { pct: Math.round(base.effect.healPct * 100) })}</div>
+      ) : null}
+      {base.effect?.energy ? (
+        <div className="ui">{t("items.energy", { amount: base.effect.energy })}</div>
+      ) : null}
+      {base.buff ? (
+        <div className="ui">
+          {t("items.buff", {
+            stat: formatStat(base.buff.stat, base.buff.value, t, locale),
+            fights: base.buff.fights,
+          })}
+        </div>
+      ) : null}
+      {legendary && item.identified && (
+        <div className="power">✦ {tx(legendary.powerText, locale)}</div>
+      )}
+      {!item.identified && ["legendary", "ancestral", "set"].includes(item.rarity) && (
+        <div className="power faint">✦ ???</div>
+      )}
       {setEntry && item.identified && (
         <div className="stack" style={{ gap: 2 }}>
           <span className="ui r-text r-set" style={{ fontWeight: 600 }}>
-            {tx(setEntry.set.name, locale)} ({setCounts?.[setEntry.set.id] ?? 0}/{setEntry.set.pieces.length})
+            {tx(setEntry.set.name, locale)} ({setCounts?.[setEntry.set.id] ?? 0}/
+            {setEntry.set.pieces.length})
           </span>
           {setEntry.set.bonuses.map((bonus) => (
-            <span key={bonus.pieces} className={`setline ${(setCounts?.[setEntry.set.id] ?? 0) >= bonus.pieces ? "on" : ""}`}>
+            <span
+              key={bonus.pieces}
+              className={`setline ${(setCounts?.[setEntry.set.id] ?? 0) >= bonus.pieces ? "on" : ""}`}
+            >
               ({bonus.pieces}) {tx(bonus.text, locale)}
             </span>
           ))}
@@ -148,7 +202,11 @@ export function ItemTooltip({ item, equipped, setCounts }: { item: ClientItem; e
       )}
       {flavor && <p className="flavor">« {tx(flavor, locale)} »</p>}
       <div className="spread label">
-        {base.kind === "equipment" ? <span>{t("items.requires", { level: requiredLevel(item, { content }) })}</span> : <span />}
+        {base.kind === "equipment" ? (
+          <span>{t("items.requires", { level: requiredLevel(item, { content }) })}</span>
+        ) : (
+          <span />
+        )}
         {base.sellable && <span>{t("items.sellsFor", { gold: sellValue(item, content) })}</span>}
       </div>
     </div>

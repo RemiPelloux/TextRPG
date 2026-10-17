@@ -31,7 +31,12 @@ export function challengeHeroStats() {
 
 function spawnFor(ctx: Ctx, day: number, index: number) {
   // Enemies come from the day's seed, not the player's: everyone faces the same lineup.
-  const lineup = new Ctx(ctx.state, ctx.content, Rng.fromSeed(`challenge:${day}:${index}`), ctx.now);
+  const lineup = new Ctx(
+    ctx.state,
+    ctx.content,
+    Rng.fromSeed(`challenge:${day}:${index}`),
+    ctx.now,
+  );
   const level = CHALLENGE_LEVEL - 1 + index;
   const normal = ctx.content.difficulties.get("normal")!;
   if (index === CHALLENGE_FIGHTS - 1) {
@@ -43,12 +48,17 @@ function spawnFor(ctx: Ctx, day: number, index: number) {
 function fight(ctx: Ctx): void {
   const challenge = ctx.state.challenge!;
   const stats = challengeHeroStats();
-  startCombat(ctx, spawnFor(ctx, challenge.day, challenge.index), { type: "challenge", index: challenge.index }, {
-    stats,
-    hp: challenge.hp,
-    powers: [],
-    level: CHALLENGE_LEVEL,
-  });
+  startCombat(
+    ctx,
+    spawnFor(ctx, challenge.day, challenge.index),
+    { type: "challenge", index: challenge.index },
+    {
+      stats,
+      hp: challenge.hp,
+      powers: [],
+      level: CHALLENGE_LEVEL,
+    },
+  );
 }
 
 export function challengeAvailable(ctx: { state: Ctx["state"] }): boolean {
@@ -71,7 +81,8 @@ export function startChallenge(ctx: Ctx): void {
 
 export function nextChallengeFight(ctx: Ctx): void {
   const challenge = ctx.state.challenge;
-  if (!challenge || challenge.finished || challenge.day !== ctx.state.time.day) ctx.fail("noChallenge");
+  if (!challenge || challenge.finished || challenge.day !== ctx.state.time.day)
+    ctx.fail("noChallenge");
   if (ctx.state.combat) ctx.fail("inCombat");
   fight(ctx);
 }

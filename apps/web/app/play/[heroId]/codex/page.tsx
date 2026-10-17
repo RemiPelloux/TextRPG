@@ -27,7 +27,13 @@ export default function Codex() {
       </div>
       <div className="tabs" role="tablist">
         {tabs.map((id) => (
-          <button key={id} role="tab" className="tab" aria-selected={tab === id} onClick={() => setTab(id)}>
+          <button
+            key={id}
+            role="tab"
+            className="tab"
+            aria-selected={tab === id}
+            onClick={() => setTab(id)}
+          >
             {t(`codex.tab.${id}`)}
           </button>
         ))}
@@ -40,7 +46,12 @@ export default function Codex() {
             return (
               <article key={kind.id} className="panel stack" style={{ opacity: kills ? 1 : 0.6 }}>
                 <div className="row">
-                  <Icon name={kind.icon} width={34} height={34} style={{ color: kills ? "var(--parchment)" : "var(--ink-500)" }} />
+                  <Icon
+                    name={kind.icon}
+                    width={34}
+                    height={34}
+                    style={{ color: kills ? "var(--parchment)" : "var(--ink-500)" }}
+                  />
                   <div className="stack" style={{ gap: 0 }}>
                     <h3>{kills ? tx(kind.name, locale) : "???"}</h3>
                     <span className="label">{t("codex.kills", { count: kills })}</span>
@@ -53,7 +64,12 @@ export default function Codex() {
           {bosses.map((boss) => (
             <article key={boss.id} className="panel ornate stack">
               <div className="row">
-                <Icon name={boss.icon} width={34} height={34} style={{ color: "var(--r-legendary)" }} />
+                <Icon
+                  name={boss.icon}
+                  width={34}
+                  height={34}
+                  style={{ color: "var(--r-legendary)" }}
+                />
                 <div className="stack" style={{ gap: 0 }}>
                   <h3 className="r-text r-legendary">{tx(boss.name, locale)}</h3>
                   <span className="label">{tx(boss.title, locale)}</span>
@@ -67,18 +83,29 @@ export default function Codex() {
 
       {tab === "legendaries" && (
         <>
-          <p className="dim">{t("codex.found", { found: view.codex.legendaries.length, total: content.legendaries.size })}</p>
+          <p className="dim">
+            {t("codex.found", {
+              found: view.codex.legendaries.length,
+              total: content.legendaries.size,
+            })}
+          </p>
           <div className="grid-cards">
             {[...content.legendaries.values()].map((l) => {
               const found = view.codex.legendaries.includes(l.id);
               const base = content.items.get(l.baseId)!;
               return (
-                <article key={l.id} className="panel stack r-legendary" style={{ opacity: found ? 1 : 0.55 }}>
+                <article
+                  key={l.id}
+                  className="panel stack r-legendary"
+                  style={{ opacity: found ? 1 : 0.55 }}
+                >
                   <div className="row" style={{ flexWrap: "nowrap" }}>
                     <span className={`medallion ${found ? "r-legendary" : ""}`}>
                       <Icon name={base.icon} />
                     </span>
-                    <h3 className={found ? "r-text" : "faint"}>{found ? tx(l.name, locale) : "???"}</h3>
+                    <h3 className={found ? "r-text" : "faint"}>
+                      {found ? tx(l.name, locale) : "???"}
+                    </h3>
                   </div>
                   <p className={found ? "r-text" : "faint"} style={{ fontSize: "0.88rem" }}>
                     ✦ {found ? tx(l.powerText, locale) : t("codex.unknownPower")}
@@ -121,13 +148,19 @@ export default function Codex() {
           {content.fish.map((fish) => {
             const caught = view.codex.fish.includes(fish.id);
             return (
-              <article key={fish.id} className={`panel stack r-${fish.rarity}`} style={{ opacity: caught ? 1 : 0.55 }}>
+              <article
+                key={fish.id}
+                className={`panel stack r-${fish.rarity}`}
+                style={{ opacity: caught ? 1 : 0.55 }}
+              >
                 <div className="row">
                   <span className={`medallion ${caught ? `r-${fish.rarity}` : ""}`}>
                     <Icon name={fish.icon} />
                   </span>
                   <div className="stack" style={{ gap: 0 }}>
-                    <h3 className={caught ? "r-text" : "faint"}>{caught ? tx(fish.name, locale) : "???"}</h3>
+                    <h3 className={caught ? "r-text" : "faint"}>
+                      {caught ? tx(fish.name, locale) : "???"}
+                    </h3>
                     <span className="label">
                       {t(`rarity.${fish.rarity}`)}
                       {fish.months.length ? ` · ${t("codex.seasonal")}` : ""}
@@ -143,13 +176,27 @@ export default function Codex() {
 
       {tab === "achievements" && (
         <div className="stack" style={{ gap: 8 }}>
-          <p className="dim">{t("codex.achieved", { done: view.achievements.length, total: content.achievements.length })}</p>
+          <p className="dim">
+            {t("codex.achieved", {
+              done: view.achievements.length,
+              total: content.achievements.length,
+            })}
+          </p>
           {content.achievements.map((a) => {
             const done = view.achievements.includes(a.id);
             const value = Math.min(a.gte, view.counters[a.counter] ?? 0);
             return (
-              <div key={a.id} className="panel flat row" style={{ flexWrap: "nowrap", opacity: done ? 1 : 0.75 }}>
-                <Icon name={a.icon} width={30} height={30} style={{ color: done ? "var(--gold-bright)" : "var(--ink-500)", flex: "none" }} />
+              <div
+                key={a.id}
+                className="panel flat row"
+                style={{ flexWrap: "nowrap", opacity: done ? 1 : 0.75 }}
+              >
+                <Icon
+                  name={a.icon}
+                  width={30}
+                  height={30}
+                  style={{ color: done ? "var(--gold-bright)" : "var(--ink-500)", flex: "none" }}
+                />
                 <div className="stack" style={{ gap: 4, flex: 1, minWidth: 0 }}>
                   <div className="spread">
                     <strong className={done ? "r-text r-rare" : ""}>{tx(a.name, locale)}</strong>
@@ -200,7 +247,7 @@ export default function Codex() {
             </table>
           </div>
           <p className="ui" style={{ fontSize: "0.82rem" }}>
-            {t("codex.pity", { pity: view.pity, bonus: ((view.pity * PITY_STEP) * 100).toFixed(1) })}
+            {t("codex.pity", { pity: view.pity, bonus: (view.pity * PITY_STEP * 100).toFixed(1) })}
           </p>
         </section>
       )}

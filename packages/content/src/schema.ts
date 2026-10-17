@@ -5,10 +5,23 @@
 import { z } from "zod";
 
 /** Bilingual text. `frF` is the feminine French form, used by affixes when the base noun is feminine. */
-export const Text = z.object({ en: z.string().min(1), fr: z.string().min(1), frF: z.string().optional() });
+export const Text = z.object({
+  en: z.string().min(1),
+  fr: z.string().min(1),
+  frF: z.string().optional(),
+});
 export type Text = z.infer<typeof Text>;
 
-export const SLOTS = ["weapon", "armor", "helm", "gloves", "boots", "amulet", "ring", "tool"] as const;
+export const SLOTS = [
+  "weapon",
+  "armor",
+  "helm",
+  "gloves",
+  "boots",
+  "amulet",
+  "ring",
+  "tool",
+] as const;
 export const Slot = z.enum(SLOTS);
 export type Slot = z.infer<typeof Slot>;
 
@@ -66,7 +79,16 @@ export const POWER_IDS = [
 export const PowerId = z.enum(POWER_IDS);
 export type PowerId = z.infer<typeof PowerId>;
 
-export const STATUS_IDS = ["poison", "burn", "bleed", "stun", "weaken", "empower", "evasive", "chill"] as const;
+export const STATUS_IDS = [
+  "poison",
+  "burn",
+  "bleed",
+  "stun",
+  "weaken",
+  "empower",
+  "evasive",
+  "chill",
+] as const;
 export const StatusId = z.enum(STATUS_IDS);
 export type StatusId = z.infer<typeof StatusId>;
 
@@ -99,9 +121,7 @@ export const ItemBase = z.object({
   /** Stats every copy has, scaled by item level. */
   implicit: StatRanges.default({}),
   weaponClass: ClassId.optional(),
-  effect: z
-    .object({ healPct: z.number().optional(), energy: z.number().optional() })
-    .optional(),
+  effect: z.object({ healPct: z.number().optional(), energy: z.number().optional() }).optional(),
   buff: z.object({ stat: StatKey, value: z.number(), fights: z.number().int() }).optional(),
   flavor: Text.optional(),
   sellable: z.boolean().default(true),
@@ -146,9 +166,7 @@ export const ItemSet = z.object({
   id: z.string(),
   name: Text,
   minIlvl: z.number().int().default(1),
-  pieces: z.array(
-    z.object({ id: z.string(), baseId: z.string(), name: Text, fixed: StatRanges }),
-  ),
+  pieces: z.array(z.object({ id: z.string(), baseId: z.string(), name: Text, fixed: StatRanges })),
   bonuses: z.array(SetBonus),
 });
 export type ItemSet = z.infer<typeof ItemSet>;
@@ -234,7 +252,12 @@ export const SkillEffect = z.object({
   drain: z.number().optional(),
   /** Status on the target. `power` is the per-turn damage as a fraction of the hit (DoTs). */
   status: z
-    .object({ id: StatusId, turns: z.number().int(), chance: z.number().default(1), power: z.number().default(0) })
+    .object({
+      id: StatusId,
+      turns: z.number().int(),
+      chance: z.number().default(1),
+      power: z.number().default(0),
+    })
     .optional(),
   /** Status on the user (buffs). */
   self: z.object({ id: StatusId, turns: z.number().int() }).optional(),
@@ -353,7 +376,9 @@ export const Building = z.object({
   name: Text,
   text: Text,
   icon: z.string(),
-  levels: z.array(z.object({ gold: z.number().int(), shards: z.number().int(), value: z.number() })),
+  levels: z.array(
+    z.object({ gold: z.number().int(), shards: z.number().int(), value: z.number() }),
+  ),
 });
 export type Building = z.infer<typeof Building>;
 

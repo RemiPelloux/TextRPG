@@ -1,5 +1,7 @@
 {
-  "meta": { "description": "Un RPG sombre et textuel, au choix. Chasse, butin, donjons. Le monde est mystérieux. Le monde est dangereux." },
+  "meta": {
+    "description": "Un RPG sombre et textuel, au choix. Chasse, butin, donjons. Le monde est mystérieux. Le monde est dangereux."
+  },
   "common": {
     "level": "Niv. {level}",
     "health": "Santé",
@@ -37,12 +39,23 @@
     "leaderboard": "Classement",
     "settings": "Réglages"
   },
-  "chronicle": { "title": "Chronique", "empty": "Rien n'est encore écrit. Va donc chasser." },
+  "chronicle": {
+    "title": "Chronique",
+    "empty": "Rien n'est encore écrit. Va donc chasser."
+  },
   "camp": {
     "eyebrow": "Le bord du monde",
     "title": "Le Camp",
-    "day": ["Le jour est gris, comme toujours.", "Un vent froid descend des collines.", "Les corbeaux tournent au-dessus du camp."],
-    "night": ["La nuit est tombée. Les lames lunaires chantent.", "Il fait nuit. Quelque chose rôde à la lisière.", "Les étoiles sont rares, ce soir."],
+    "day": [
+      "Le jour est gris, comme toujours.",
+      "Un vent froid descend des collines.",
+      "Les corbeaux tournent au-dessus du camp."
+    ],
+    "night": [
+      "La nuit est tombée. Les lames lunaires chantent.",
+      "Il fait nuit. Quelque chose rôde à la lisière.",
+      "Les étoiles sont rares, ce soir."
+    ],
     "bloodMoon": "Lune de sang",
     "bloodMoonText": "Ce soir, les ennemis sont plus forts. L'or et la découverte magique sont doublés.",
     "fire": "Le feu de camp",
@@ -97,7 +110,8 @@
     "weeklyText": "Une fois par semaine. Butin rare garanti, une chance sur deux de légendaire, et 25 éclats.",
     "weeklyGo": "Affronter",
     "weeklyDone": "Déjà vaincu cette semaine",
-    "weeklyLocked": "Niveau 5 requis"
+    "weeklyLocked": "Niveau 5 requis",
+    "lowHealth": "Ta santé est basse. Bois une potion ou repose-toi au camp avant de chasser."
   },
   "challenge": {
     "eyebrow": "Classement du jour",
@@ -196,7 +210,13 @@
     "identifyAll": "Tout identifier",
     "sellJunk": "Vendre le commun",
     "empty": "Rien ici.",
-    "filter": { "all": "Tout", "gear": "Équipement", "consumables": "Consommables", "quest": "Quête", "unknown": "Inconnus" }
+    "filter": {
+      "all": "Tout",
+      "gear": "Équipement",
+      "consumables": "Consommables",
+      "quest": "Quête",
+      "unknown": "Inconnus"
+    }
   },
   "items": {
     "unknown": "{base} inconnu",
@@ -243,7 +263,11 @@
     "lockedLevel": "Disponible au niveau {level}.",
     "actDone": "L'Acte I est terminé. Le reste de l'histoire est encore enfoui.",
     "rewardRarity": "+ un objet {rarity}",
-    "type": { "story": "Histoire", "board": "Annonce", "daily": "Du jour" }
+    "type": {
+      "story": "Histoire",
+      "board": "Annonce",
+      "daily": "Du jour"
+    }
   },
   "market": {
     "eyebrow": "L'échoppe",
@@ -290,12 +314,23 @@
       "steady": "Il tourne lentement, il attend…",
       "slack": "La ligne se débat violemment !"
     },
-    "move": { "pull": "Tirer", "steady": "Tenir", "slack": "Donner du mou" }
+    "move": {
+      "pull": "Tirer",
+      "steady": "Tenir",
+      "slack": "Donner du mou"
+    }
   },
   "codex": {
     "eyebrow": "Le grimoire",
     "title": "Codex",
-    "tab": { "bestiary": "Bestiaire", "legendaries": "Légendaires", "sets": "Sets", "fish": "Poissons", "achievements": "Succès", "odds": "Probabilités" },
+    "tab": {
+      "bestiary": "Bestiaire",
+      "legendaries": "Légendaires",
+      "sets": "Sets",
+      "fish": "Poissons",
+      "achievements": "Succès",
+      "odds": "Probabilités"
+    },
     "kills": "{count} vaincu(s)",
     "unknownLore": "Tu n'en as encore jamais vaincu.",
     "found": "{found} sur {total} découverts.",
@@ -380,11 +415,41 @@
     "class": "Une voie s'ouvre",
     "classHint": "Tu peux choisir ta classe dans l'écran Héros."
   },
-  "toast": { "achievement": "Succès débloqué : {name}" },
-  "enemy": { "name": "{proper} {article}{kind}", "nameElite": "{proper} {article}{kind} {elite}" },
-  "rarity": { "common": "Commun", "magic": "Magique", "rare": "Rare", "legendary": "Légendaire", "set": "Set", "ancestral": "Ancestral" },
-  "slots": { "weapon": "Arme", "armor": "Armure", "helm": "Tête", "gloves": "Mains", "boots": "Pieds", "amulet": "Cou", "ring": "Anneau", "tool": "Outil" },
-  "kinds": { "equipment": "Équipement", "potion": "Potion", "elixir": "Élixir", "scroll": "Parchemin", "bait": "Appât", "fish": "Poisson", "quest": "Objet de quête", "material": "Matériau" },
+  "toast": {
+    "achievement": "Succès débloqué : {name}"
+  },
+  "enemy": {
+    "name": "{proper} {article}{kind}",
+    "nameElite": "{proper} {article}{kind} {elite}"
+  },
+  "rarity": {
+    "common": "Commun",
+    "magic": "Magique",
+    "rare": "Rare",
+    "legendary": "Légendaire",
+    "set": "Set",
+    "ancestral": "Ancestral"
+  },
+  "slots": {
+    "weapon": "Arme",
+    "armor": "Armure",
+    "helm": "Tête",
+    "gloves": "Mains",
+    "boots": "Pieds",
+    "amulet": "Cou",
+    "ring": "Anneau",
+    "tool": "Outil"
+  },
+  "kinds": {
+    "equipment": "Équipement",
+    "potion": "Potion",
+    "elixir": "Élixir",
+    "scroll": "Parchemin",
+    "bait": "Appât",
+    "fish": "Poisson",
+    "quest": "Objet de quête",
+    "material": "Matériau"
+  },
   "stats": {
     "strength": "Force",
     "defense": "Défense",
@@ -402,17 +467,59 @@
     "magicFind": "Découverte magique",
     "expBonus": "Expérience"
   },
-  "status": { "poison": "Poison", "burn": "Brûlure", "bleed": "Saignement", "stun": "Étourdi", "weaken": "Affaibli", "empower": "Galvanisé", "evasive": "Insaisissable", "chill": "Glacé" },
+  "status": {
+    "poison": "Poison",
+    "burn": "Brûlure",
+    "bleed": "Saignement",
+    "stun": "Étourdi",
+    "weaken": "Affaibli",
+    "empower": "Galvanisé",
+    "evasive": "Insaisissable",
+    "chill": "Glacé"
+  },
   "log": {
-    "combatStart": ["{enemy} surgit de l'ombre.", "{enemy} te barre la route.", "Un bruit. Puis {enemy}.", "{enemy} t'a vu avant que tu ne le voies."],
-    "heroHit": ["{hero} frappe : {damage} dégâts.", "Ta lame mord. {damage} dégâts.", "Un coup net. {damage} dégâts.", "{hero} touche {enemy} : {damage}."],
-    "heroExtra": ["Plus rapide que lui, {hero} frappe encore : {damage}.", "Un second coup, avant qu'il ne réagisse : {damage}."],
-    "heroCrit": ["CRITIQUE ! {damage} dégâts.", "Le coup parfait. CRITIQUE : {damage} !", "Tu trouves la faille. {damage} dégâts !"],
+    "combatStart": [
+      "{enemy} surgit de l'ombre.",
+      "{enemy} te barre la route.",
+      "Un bruit. Puis {enemy}.",
+      "{enemy} t'a vu avant que tu ne le voies."
+    ],
+    "heroHit": [
+      "{hero} frappe : {damage} dégâts.",
+      "Ta lame mord. {damage} dégâts.",
+      "Un coup net. {damage} dégâts.",
+      "{hero} touche {enemy} : {damage}."
+    ],
+    "heroExtra": [
+      "Plus rapide que lui, {hero} frappe encore : {damage}.",
+      "Un second coup, avant qu'il ne réagisse : {damage}."
+    ],
+    "heroCrit": [
+      "CRITIQUE ! {damage} dégâts.",
+      "Le coup parfait. CRITIQUE : {damage} !",
+      "Tu trouves la faille. {damage} dégâts !"
+    ],
     "heroSkill": ["{skill} ! {damage} dégâts.", "{hero} déchaîne {skill} : {damage}."],
-    "enemyHit": ["{enemy} te frappe : {damage} dégâts.", "Ça fait mal. {damage} dégâts.", "{enemy} trouve une ouverture : {damage}.", "Un coup sourd. {damage} dégâts."],
-    "enemyCrit": ["{enemy} t'assène un coup terrible : {damage} !", "Le monde vacille. {damage} dégâts."],
-    "heroDodge": ["Tu esquives.", "Tu te dérobes au dernier moment.", "Le coup fend l'air, là où tu étais."],
-    "enemyDodge": ["{enemy} esquive.", "Ta lame ne rencontre que le vide.", "Raté. {enemy} est trop vif."],
+    "enemyHit": [
+      "{enemy} te frappe : {damage} dégâts.",
+      "Ça fait mal. {damage} dégâts.",
+      "{enemy} trouve une ouverture : {damage}.",
+      "Un coup sourd. {damage} dégâts."
+    ],
+    "enemyCrit": [
+      "{enemy} t'assène un coup terrible : {damage} !",
+      "Le monde vacille. {damage} dégâts."
+    ],
+    "heroDodge": [
+      "Tu esquives.",
+      "Tu te dérobes au dernier moment.",
+      "Le coup fend l'air, là où tu étais."
+    ],
+    "enemyDodge": [
+      "{enemy} esquive.",
+      "Ta lame ne rencontre que le vide.",
+      "Raté. {enemy} est trop vif."
+    ],
     "statusOnEnemy": "{enemy} subit : {status} ({turns} tours).",
     "statusOnHero": "Tu subis : {status} ({turns} tours).",
     "dot": "{status} : {who} perd {damage}.",
@@ -425,7 +532,11 @@
     },
     "enemyHeal": "{enemy} se nourrit de ta douleur : +{amount}.",
     "thorns": "Les épines renvoient {damage} dégâts.",
-    "windup": ["{enemy} inspire profondément… Mets-toi en garde !", "{enemy} prend son élan. Le prochain coup sera terrible.", "Le silence. {enemy} se prépare. Garde-toi !"],
+    "windup": [
+      "{enemy} inspire profondément… Mets-toi en garde !",
+      "{enemy} prend son élan. Le prochain coup sera terrible.",
+      "Le silence. {enemy} se prépare. Garde-toi !"
+    ],
     "heavy": "Le coup s'abat : {damage} dégâts !",
     "heavyGuarded": "Ta garde tient. Seulement {damage} dégâts.",
     "enrage": "{enemy} entre dans une rage folle !",
@@ -435,7 +546,11 @@
     "mystery": "L'anneau mystérieux s'éveille : ta {stat} est doublée.",
     "fled": "Tu prends la fuite.",
     "fleeFailed": "Tu essaies de fuir… il te rattrape.",
-    "victory": ["{enemy} s'effondre. +{exp} exp, +{gold} or.", "C'est fini. +{exp} exp, +{gold} or.", "Le silence revient. +{exp} exp, +{gold} or."],
+    "victory": [
+      "{enemy} s'effondre. +{exp} exp, +{gold} or.",
+      "C'est fini. +{exp} exp, +{gold} or.",
+      "Le silence revient. +{exp} exp, +{gold} or."
+    ],
     "defeat": "Tout devient noir. Tu perds {gold} or.",
     "defeatDungeon": "Les profondeurs t'ont eu. Ta besace est perdue, et {gold} or avec.",
     "loot": "Butin : {item}.",

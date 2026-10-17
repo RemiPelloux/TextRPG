@@ -96,7 +96,10 @@ export const dailyRuns = pgTable(
     score: integer().notNull(),
     createdAt: timestamp({ withTimezone: true }).notNull().defaultNow(),
   },
-  (t) => [primaryKey({ columns: [t.day, t.heroId] }), index("daily_runs_score_idx").on(t.day, t.score)],
+  (t) => [
+    primaryKey({ columns: [t.day, t.heroId] }),
+    index("daily_runs_score_idx").on(t.day, t.score),
+  ],
 );
 
 /** Web Push subscriptions (opt-in). */

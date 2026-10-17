@@ -7,9 +7,15 @@ export type Db = PostgresJsDatabase<typeof schema>;
 
 export const DEFAULT_DATABASE_URL = "postgres://textrpg:textrpg@localhost:5432/textrpg";
 
-export function createDb(url = process.env.DATABASE_URL ?? DEFAULT_DATABASE_URL): { db: Db; close: () => Promise<void> } {
+export function createDb(url = process.env.DATABASE_URL ?? DEFAULT_DATABASE_URL): {
+  db: Db;
+  close: () => Promise<void>;
+} {
   // `prepare: false` keeps us compatible with transaction poolers (Neon, Supabase, PgBouncer).
-  const client = postgres(url, { max: Number(process.env.DATABASE_POOL_SIZE ?? 5), prepare: false });
+  const client = postgres(url, {
+    max: Number(process.env.DATABASE_POOL_SIZE ?? 5),
+    prepare: false,
+  });
   return { db: drizzle(client, { schema }), close: () => client.end() };
 }
 

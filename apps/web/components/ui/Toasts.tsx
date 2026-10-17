@@ -17,7 +17,10 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   const push = useCallback((text: string, kind: ToastKind = "info") => {
     const id = nextId++;
     setToasts((list) => [...list.slice(-3), { id, text, kind }]);
-    setTimeout(() => setToasts((list) => list.filter((t) => t.id !== id)), kind === "error" ? 4200 : 3200);
+    setTimeout(
+      () => setToasts((list) => list.filter((t) => t.id !== id)),
+      kind === "error" ? 4200 : 3200,
+    );
   }, []);
   return (
     <ToastContext.Provider value={push}>

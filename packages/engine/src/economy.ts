@@ -43,7 +43,8 @@ export function equip(ctx: Ctx, uid: string): void {
   const item = bagItem(ctx, uid);
   const base = baseOf(ctx.content, item.baseId);
   if (base.kind !== "equipment" || !base.slot) ctx.fail("notEquipable");
-  if (requiredLevel(item, ctx) > ctx.hero.level) ctx.fail("levelTooLow", { level: requiredLevel(item, ctx) });
+  if (requiredLevel(item, ctx) > ctx.hero.level)
+    ctx.fail("levelTooLow", { level: requiredLevel(item, ctx) });
   const slot = base.slot;
   removeFromBag(ctx.state, uid, 1);
   const previous = ctx.hero.equipment[slot];
@@ -62,7 +63,8 @@ export function unequip(ctx: Ctx, slot: Slot): void {
 }
 
 export function toggleLock(ctx: Ctx, uid: string): void {
-  const item = findInBag(ctx.state, uid) ?? Object.values(ctx.hero.equipment).find((i) => i?.uid === uid);
+  const item =
+    findInBag(ctx.state, uid) ?? Object.values(ctx.hero.equipment).find((i) => i?.uid === uid);
   if (!item) ctx.fail("unknownItem");
   item.locked = !item.locked;
 }
@@ -91,7 +93,12 @@ export function useItem(ctx: Ctx, uid: string): void {
   ctx.hero.energy += Math.max(0, gained);
   removeFromBag(ctx.state, uid, 1);
   if (base.kind === "potion") ctx.state.counters.potionsUsed += 1;
-  ctx.emit({ type: "itemUsed", baseId: base.id, heal: Math.max(0, heal), energy: Math.max(0, gained) });
+  ctx.emit({
+    type: "itemUsed",
+    baseId: base.id,
+    heal: Math.max(0, heal),
+    energy: Math.max(0, gained),
+  });
 }
 
 // --- Selling -----------------------------------------------------------------
@@ -113,7 +120,10 @@ export function sell(ctx: Ctx, uid: string): void {
 /** Sell every unlocked common and magic piece of equipment. */
 export function sellJunk(ctx: Ctx): void {
   const junk = ctx.hero.bag.filter(
-    (i) => (i.rarity === "common" || i.rarity === "magic") && baseOf(ctx.content, i.baseId).kind === "equipment" && canSell(ctx, i),
+    (i) =>
+      (i.rarity === "common" || i.rarity === "magic") &&
+      baseOf(ctx.content, i.baseId).kind === "equipment" &&
+      canSell(ctx, i),
   );
   if (junk.length === 0) ctx.fail("nothingToSell");
   const gold = junk.reduce((sum, i) => sum + sellValue(i, ctx.content), 0);
@@ -138,7 +148,8 @@ function revealItem(ctx: Ctx, item: Item): void {
   if (item.legendaryId) ctx.state.counters.legendariesFound += 1;
   if (item.setPieceId) {
     ctx.state.counters.setPiecesFound += 1;
-    if (!ctx.state.codex.setPieces.includes(item.setPieceId)) ctx.state.codex.setPieces.push(item.setPieceId);
+    if (!ctx.state.codex.setPieces.includes(item.setPieceId))
+      ctx.state.codex.setPieces.push(item.setPieceId);
   }
   ctx.emit({ type: "identified", uid: item.uid, rarity: item.rarity });
 }
@@ -164,7 +175,9 @@ export function identify(ctx: Ctx, uid: string): void {
 }
 
 export function identifyAll(ctx: Ctx): void {
-  const unknown = [...ctx.hero.bag, ...Object.values(ctx.hero.equipment)].filter((i): i is Item => !!i && !i.identified);
+  const unknown = [...ctx.hero.bag, ...Object.values(ctx.hero.equipment)].filter(
+    (i): i is Item => !!i && !i.identified,
+  );
   if (unknown.length === 0) ctx.fail("nothingToIdentify");
   let done = 0;
   for (const item of unknown) {
@@ -184,7 +197,10 @@ export function identifyAll(ctx: Ctx): void {
 
 // --- Forge -------------------------------------------------------------------
 
-export function buildingValue(ctx: { state: Ctx["state"]; content: Ctx["content"] }, id: BuildingId): number {
+export function buildingValue(
+  ctx: { state: Ctx["state"]; content: Ctx["content"] },
+  id: BuildingId,
+): number {
   return ctx.content.buildings.get(id)!.levels[ctx.state.hero.buildings[id]]!.value;
 }
 
@@ -278,7 +294,8 @@ function fishRarity(ctx: Ctx, baseId: string): Rarity | undefined {
 export function brew(ctx: Ctx, recipeId: string): void {
   const recipe = RECIPES.find((r) => r.id === recipeId);
   if (!recipe) ctx.fail("unknownRecipe");
-  if (buildingValue(ctx, "alchemist") < recipe.level) ctx.fail("alchemistLevel", { level: recipe.level });
+  if (buildingValue(ctx, "alchemist") < recipe.level)
+    ctx.fail("alchemistLevel", { level: recipe.level });
   const eligible = ctx.hero.bag
     .filter((i) => {
       const rarity = fishRarity(ctx, i.baseId);
@@ -336,8 +353,18 @@ export function refreshMarket(ctx: Ctx): void {
   for (let i = 0; i < count; i++) {
     const roll = ctx.rng.next();
     const rarity: Rarity =
-      roll < 0.01 * marketLevel ? "legendary" : roll < 0.12 + 0.06 * marketLevel ? "rare" : roll < 0.75 ? "magic" : "common";
-    const item = generateEquipment(ctx, { ilvl: ctx.hero.level, rarity, classId: ctx.hero.classId });
+      roll < 0.01 * marketLevel
+        ? "legendary"
+        : roll < 0.12 + 0.06 * marketLevel
+          ? "rare"
+          : roll < 0.75
+            ? "magic"
+            : "common";
+    const item = generateEquipment(ctx, {
+      ilvl: ctx.hero.level,
+      rarity,
+      classId: ctx.hero.classId,
+    });
     item.identified = true;
     offers.push({ uid: ctx.uid("m"), item, price: buyValue(item, ctx.content), sold: false });
   }
@@ -358,14 +385,17 @@ export function buyStock(ctx: Ctx, itemId: string): void {
   const entry = STOCK.find((s) => s.itemId === itemId);
   if (!entry || entry.minLevel > ctx.hero.level) ctx.fail("unknownOffer");
   const base = baseOf(ctx.content, itemId);
-  if (itemId === "fishing_rod" && (countInBag(ctx.state, itemId) > 0 || ctx.hero.equipment.tool)) ctx.fail("alreadyOwned");
+  if (itemId === "fishing_rod" && (countInBag(ctx.state, itemId) > 0 || ctx.hero.equipment.tool))
+    ctx.fail("alreadyOwned");
   if (ctx.hero.gold < base.price) ctx.fail("notEnoughGold", { cost: base.price });
   const item =
     base.kind === "equipment"
-      ? { ...simpleItem(ctx, itemId), implicit: Object.fromEntries(Object.entries(base.implicit).map(([k, r]) => [k, r[1]])) }
+      ? {
+          ...simpleItem(ctx, itemId),
+          implicit: Object.fromEntries(Object.entries(base.implicit).map(([k, r]) => [k, r[1]])),
+        }
       : simpleItem(ctx, itemId);
   if (!addToBag(ctx, item)) ctx.fail("bagFull");
   ctx.hero.gold -= base.price;
   ctx.emit({ type: "bought", uid: item.uid, price: base.price });
 }
-

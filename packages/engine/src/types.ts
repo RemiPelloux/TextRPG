@@ -46,7 +46,14 @@ export interface Item {
 
 // --- Hero --------------------------------------------------------------------
 
-export const PARAGON_STATS = ["maxHealth", "damagePct", "critChance", "defense", "magicFind", "goldFind"] as const;
+export const PARAGON_STATS = [
+  "maxHealth",
+  "damagePct",
+  "critChance",
+  "defense",
+  "magicFind",
+  "goldFind",
+] as const;
 export type ParagonStat = (typeof PARAGON_STATS)[number];
 
 export interface Buff {
@@ -65,7 +72,14 @@ export interface Hero {
   talents: Record<string, number>;
   paragonPoints: Partial<Record<ParagonStat, number>>;
   /** Base attributes: rolled at creation, raised by level-ups. */
-  base: { maxHealth: number; maxEnergy: number; strength: number; defense: number; speed: number; luck: number };
+  base: {
+    maxHealth: number;
+    maxEnergy: number;
+    strength: number;
+    defense: number;
+    speed: number;
+    luck: number;
+  };
   health: number;
   energy: number;
   gold: number;
@@ -136,7 +150,8 @@ export interface Combat {
 
 // --- Activities --------------------------------------------------------------
 
-export type RoomType = "fight" | "elite" | "treasure" | "trap" | "event" | "campfire" | "boss" | "stairs";
+export type RoomType =
+  "fight" | "elite" | "treasure" | "trap" | "event" | "campfire" | "boss" | "stairs";
 
 export interface DungeonRun {
   floor: number;
@@ -197,7 +212,12 @@ export interface GameState {
   story: { nextId: string | null; chapter: number };
   market: { day: number; offers: MarketOffer[] };
   counters: Record<Counter, number>;
-  codex: { kills: Record<string, number>; legendaries: string[]; setPieces: string[]; fish: string[] };
+  codex: {
+    kills: Record<string, number>;
+    legendaries: string[];
+    setPieces: string[];
+    fish: string[];
+  };
   achievements: string[];
   pity: number;
   time: {

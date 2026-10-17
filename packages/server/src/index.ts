@@ -13,6 +13,14 @@ export {
   startGuestSession,
   verifyPassword,
 } from "./auth";
-export { act, type ActResult, columnsOf, createHero, getView, MAX_HEROES, ServiceError } from "./game";
+export {
+  act,
+  type ActResult,
+  columnsOf,
+  createHero,
+  getView,
+  MAX_HEROES,
+  ServiceError,
+} from "./game";
 export { energyFullTargets } from "./push";
 export { RateLimiter } from "./rateLimit";

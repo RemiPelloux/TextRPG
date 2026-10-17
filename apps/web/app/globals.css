@@ -77,8 +77,7 @@ body {
   color: var(--parchment);
   background:
     radial-gradient(120% 80% at 50% -10%, #1a1d2b 0%, transparent 60%),
-    radial-gradient(140% 120% at 50% 120%, #000 0%, transparent 55%),
-    var(--ink-950);
+    radial-gradient(140% 120% at 50% 120%, #000 0%, transparent 55%), var(--ink-950);
   font-family: var(--font-body);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
@@ -233,7 +232,11 @@ p {
   --btn-edge: var(--ink-500);
   appearance: none;
   border: 1px solid var(--btn-edge);
-  background: linear-gradient(180deg, color-mix(in oklab, var(--btn-bg) 85%, white 6%), var(--btn-bg));
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--btn-bg) 85%, white 6%),
+    var(--btn-bg)
+  );
   color: var(--btn-fg);
   font-family: var(--font-display);
   font-weight: 600;
@@ -247,7 +250,16 @@ p {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  clip-path: polygon(6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px), 0 6px);
+  clip-path: polygon(
+    6px 0,
+    calc(100% - 6px) 0,
+    100% 6px,
+    100% calc(100% - 6px),
+    calc(100% - 6px) 100%,
+    6px 100%,
+    0 calc(100% - 6px),
+    0 6px
+  );
   transition:
     transform 80ms ease,
     filter 120ms ease;
@@ -308,7 +320,7 @@ p {
 /* ------------------------------------------------------------ Bars */
 .bar {
   position: relative;
-  height: 12px;
+  height: 15px;
   background: #07080b;
   border: 1px solid var(--ink-600);
   overflow: hidden;
@@ -344,8 +356,9 @@ p {
   inset: 0;
   display: grid;
   place-items: center;
+  line-height: 1;
   font-family: var(--font-ui);
-  font-size: 0.66rem;
+  font-size: 0.62rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   text-shadow: 0 1px 2px #000;
@@ -387,7 +400,16 @@ p {
     inset 0 0 12px color-mix(in oklab, var(--r, transparent) 25%, transparent),
     0 0 0 1px #000;
   color: var(--r, var(--parchment));
-  clip-path: polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px);
+  clip-path: polygon(
+    8px 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    8px 100%,
+    0 calc(100% - 8px),
+    0 8px
+  );
   position: relative;
 }
 .medallion svg {
@@ -485,30 +507,53 @@ p {
 }
 .topbar-inner {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 12px;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 14px;
   align-items: center;
   max-width: 1400px;
   margin: 0 auto;
 }
+.topbar .who {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+  max-width: 34vw;
+}
+.topbar .who .display {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .topbar .vitals {
   display: grid;
-  gap: 4px;
+  gap: 3px;
   min-width: 0;
+  width: 100%;
+  max-width: 460px;
 }
 .topbar .vital {
   display: grid;
-  grid-template-columns: 18px minmax(0, 1fr);
+  grid-template-columns: 16px minmax(0, 1fr);
   gap: 6px;
   align-items: center;
 }
 .topbar .purse {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
   font-family: var(--font-ui);
   font-size: 0.78rem;
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
-  color: var(--parchment-dim);
+  white-space: nowrap;
+}
+.bar.slim {
+  height: 5px;
+  border-color: transparent;
+  margin-left: 22px;
 }
 body::before {
   content: "";
@@ -523,7 +568,8 @@ body::before {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 16px var(--gutter-r) calc(var(--nav-h) + 28px + env(safe-area-inset-bottom, 0px)) var(--gutter);
+  padding: 16px var(--gutter-r) calc(var(--nav-h) + 28px + env(safe-area-inset-bottom, 0px))
+    var(--gutter);
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 20px;
@@ -552,7 +598,11 @@ body::before {
   z-index: 40;
   height: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px));
   padding: 0 var(--gutter-r) env(safe-area-inset-bottom, 0px) var(--gutter);
-  background: linear-gradient(180deg, color-mix(in oklab, var(--ink-900) 92%, transparent), var(--ink-950));
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--ink-900) 92%, transparent),
+    var(--ink-950)
+  );
   border-top: 1px solid var(--ink-600);
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -710,11 +760,11 @@ body::before {
   z-index: 60;
   background:
     radial-gradient(90% 60% at 50% 30%, #241513 0%, transparent 70%),
-    radial-gradient(120% 80% at 50% 120%, #000 0%, transparent 60%),
-    var(--ink-950);
+    radial-gradient(120% 80% at 50% 120%, #000 0%, transparent 60%), var(--ink-950);
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
-  padding: calc(env(safe-area-inset-top, 0px) + 12px) var(--gutter-r) calc(env(safe-area-inset-bottom, 0px) + 12px) var(--gutter);
+  padding: calc(env(safe-area-inset-top, 0px) + 12px) var(--gutter-r)
+    calc(env(safe-area-inset-bottom, 0px) + 12px) var(--gutter);
   gap: 10px;
 }
 .combat.shake {
@@ -878,7 +928,16 @@ body::before {
   .sheet {
     border-bottom: 1px solid var(--ink-600);
     padding: 22px;
-    clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px);
+    clip-path: polygon(
+      10px 0,
+      calc(100% - 10px) 0,
+      100% 10px,
+      100% calc(100% - 10px),
+      calc(100% - 10px) 100%,
+      10px 100%,
+      0 calc(100% - 10px),
+      0 10px
+    );
   }
 }
 
@@ -955,7 +1014,11 @@ body::before {
   bottom: 40px;
   width: 26px;
   height: 120px;
-  background: linear-gradient(0deg, color-mix(in oklab, var(--r, transparent) 55%, transparent), transparent);
+  background: linear-gradient(
+    0deg,
+    color-mix(in oklab, var(--r, transparent) 55%, transparent),
+    transparent
+  );
   filter: blur(6px);
   opacity: 0;
   pointer-events: none;
@@ -1096,6 +1159,7 @@ body::before {
 }
 .statgrid .stat .v {
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
   color: var(--parchment);
 }
 
@@ -1541,4 +1605,15 @@ table.board tr.me td {
   animation-duration: 1ms !important;
   animation-iteration-count: 1 !important;
   transition-duration: 1ms !important;
+}
+
+.tile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+.tile svg {
+  flex: none;
 }

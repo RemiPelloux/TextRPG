@@ -8,48 +8,28 @@
       "frF": "puissante"
     },
     "stat": "strength",
-    "slots": [
-      "weapon",
-      "gloves",
-      "ring",
-      "amulet"
-    ],
+    "slots": ["weapon", "gloves", "ring", "amulet"],
     "weight": 10,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          1,
-          2
-        ]
+        "range": [1, 2]
       },
       {
         "minIlvl": 5,
-        "range": [
-          3,
-          5
-        ]
+        "range": [3, 5]
       },
       {
         "minIlvl": 10,
-        "range": [
-          5,
-          7
-        ]
+        "range": [5, 7]
       },
       {
         "minIlvl": 15,
-        "range": [
-          6,
-          10
-        ]
+        "range": [6, 10]
       },
       {
         "minIlvl": 20,
-        "range": [
-          8,
-          12
-        ]
+        "range": [8, 12]
       }
     ]
   },
@@ -62,47 +42,28 @@
       "frF": "brutale"
     },
     "stat": "strength",
-    "slots": [
-      "weapon",
-      "armor",
-      "helm"
-    ],
+    "slots": ["weapon", "armor", "helm"],
     "weight": 8,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          1,
-          2
-        ]
+        "range": [1, 2]
       },
       {
         "minIlvl": 5,
-        "range": [
-          3,
-          5
-        ]
+        "range": [3, 5]
       },
       {
         "minIlvl": 10,
-        "range": [
-          5,
-          7
-        ]
+        "range": [5, 7]
       },
       {
         "minIlvl": 15,
-        "range": [
-          6,
-          10
-        ]
+        "range": [6, 10]
       },
       {
         "minIlvl": 20,
-        "range": [
-          8,
-          12
-        ]
+        "range": [8, 12]
       }
     ]
   },
@@ -115,48 +76,28 @@
       "frF": "robuste"
     },
     "stat": "defense",
-    "slots": [
-      "armor",
-      "helm",
-      "boots",
-      "gloves"
-    ],
+    "slots": ["armor", "helm", "boots", "gloves"],
     "weight": 12,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          1,
-          2
-        ]
+        "range": [1, 2]
       },
       {
         "minIlvl": 5,
-        "range": [
-          3,
-          5
-        ]
+        "range": [3, 5]
       },
       {
         "minIlvl": 10,
-        "range": [
-          5,
-          7
-        ]
+        "range": [5, 7]
       },
       {
         "minIlvl": 15,
-        "range": [
-          6,
-          10
-        ]
+        "range": [6, 10]
       },
       {
         "minIlvl": 20,
-        "range": [
-          8,
-          12
-        ]
+        "range": [8, 12]
       }
     ]
   },
@@ -169,48 +110,28 @@
       "frF": "leste"
     },
     "stat": "speed",
-    "slots": [
-      "boots",
-      "gloves",
-      "ring",
-      "weapon"
-    ],
+    "slots": ["boots", "gloves", "ring", "weapon"],
     "weight": 9,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          1,
-          1
-        ]
+        "range": [1, 1]
       },
       {
         "minIlvl": 5,
-        "range": [
-          2,
-          2
-        ]
+        "range": [2, 2]
       },
       {
         "minIlvl": 10,
-        "range": [
-          3,
-          4
-        ]
+        "range": [3, 4]
       },
       {
         "minIlvl": 15,
-        "range": [
-          3,
-          5
-        ]
+        "range": [3, 5]
       },
       {
         "minIlvl": 20,
-        "range": [
-          4,
-          6
-        ]
+        "range": [4, 6]
       }
     ]
   },
@@ -223,48 +144,28 @@
       "frF": "chanceuse"
     },
     "stat": "luck",
-    "slots": [
-      "ring",
-      "amulet",
-      "helm",
-      "gloves"
-    ],
+    "slots": ["ring", "amulet", "helm", "gloves"],
     "weight": 8,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          1,
-          2
-        ]
+        "range": [1, 2]
       },
       {
         "minIlvl": 5,
-        "range": [
-          2,
-          4
-        ]
+        "range": [2, 4]
       },
       {
         "minIlvl": 10,
-        "range": [
-          4,
-          6
-        ]
+        "range": [4, 6]
       },
       {
         "minIlvl": 15,
-        "range": [
-          5,
-          7
-        ]
+        "range": [5, 7]
       },
       {
         "minIlvl": 20,
-        "range": [
-          6,
-          9
-        ]
+        "range": [6, 9]
       }
     ]
   },
@@ -277,49 +178,28 @@
       "frF": "vigoureuse"
     },
     "stat": "maxHealth",
-    "slots": [
-      "armor",
-      "helm",
-      "boots",
-      "amulet",
-      "ring"
-    ],
+    "slots": ["armor", "helm", "boots", "amulet", "ring"],
     "weight": 12,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          5,
-          10
-        ]
+        "range": [5, 10]
       },
       {
         "minIlvl": 5,
-        "range": [
-          14,
-          23
-        ]
+        "range": [14, 23]
       },
       {
         "minIlvl": 10,
-        "range": [
-          23,
-          35
-        ]
+        "range": [23, 35]
       },
       {
         "minIlvl": 15,
-        "range": [
-          31,
-          48
-        ]
+        "range": [31, 48]
       },
       {
         "minIlvl": 20,
-        "range": [
-          40,
-          60
-        ]
+        "range": [40, 60]
       }
     ]
   },
@@ -332,46 +212,28 @@
       "frF": "cruelle"
     },
     "stat": "damagePct",
-    "slots": [
-      "weapon",
-      "amulet"
-    ],
+    "slots": ["weapon", "amulet"],
     "weight": 10,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          3,
-          5
-        ]
+        "range": [3, 5]
       },
       {
         "minIlvl": 5,
-        "range": [
-          7,
-          10
-        ]
+        "range": [7, 10]
       },
       {
         "minIlvl": 10,
-        "range": [
-          11,
-          15
-        ]
+        "range": [11, 15]
       },
       {
         "minIlvl": 15,
-        "range": [
-          14,
-          20
-        ]
+        "range": [14, 20]
       },
       {
         "minIlvl": 20,
-        "range": [
-          18,
-          25
-        ]
+        "range": [18, 25]
       }
     ]
   },
@@ -384,48 +246,28 @@
       "frF": "acérée"
     },
     "stat": "critChance",
-    "slots": [
-      "weapon",
-      "gloves",
-      "ring",
-      "helm"
-    ],
+    "slots": ["weapon", "gloves", "ring", "helm"],
     "weight": 8,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          1,
-          2
-        ]
+        "range": [1, 2]
       },
       {
         "minIlvl": 5,
-        "range": [
-          2,
-          4
-        ]
+        "range": [2, 4]
       },
       {
         "minIlvl": 10,
-        "range": [
-          4,
-          5
-        ]
+        "range": [4, 5]
       },
       {
         "minIlvl": 15,
-        "range": [
-          5,
-          7
-        ]
+        "range": [5, 7]
       },
       {
         "minIlvl": 20,
-        "range": [
-          6,
-          8
-        ]
+        "range": [6, 8]
       }
     ]
   },
@@ -438,46 +280,28 @@
       "frF": "sauvage"
     },
     "stat": "critDamage",
-    "slots": [
-      "weapon",
-      "amulet"
-    ],
+    "slots": ["weapon", "amulet"],
     "weight": 7,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          5,
-          8
-        ]
+        "range": [5, 8]
       },
       {
         "minIlvl": 5,
-        "range": [
-          11,
-          16
-        ]
+        "range": [11, 16]
       },
       {
         "minIlvl": 10,
-        "range": [
-          18,
-          24
-        ]
+        "range": [18, 24]
       },
       {
         "minIlvl": 15,
-        "range": [
-          24,
-          32
-        ]
+        "range": [24, 32]
       },
       {
         "minIlvl": 20,
-        "range": [
-          30,
-          40
-        ]
+        "range": [30, 40]
       }
     ]
   },
@@ -490,46 +314,28 @@
       "frF": "assoiffée"
     },
     "stat": "lifeSteal",
-    "slots": [
-      "weapon",
-      "ring"
-    ],
+    "slots": ["weapon", "ring"],
     "weight": 5,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          1,
-          2
-        ]
+        "range": [1, 2]
       },
       {
         "minIlvl": 5,
-        "range": [
-          2,
-          3
-        ]
+        "range": [2, 3]
       },
       {
         "minIlvl": 10,
-        "range": [
-          3,
-          5
-        ]
+        "range": [3, 5]
       },
       {
         "minIlvl": 15,
-        "range": [
-          4,
-          6
-        ]
+        "range": [4, 6]
       },
       {
         "minIlvl": 20,
-        "range": [
-          5,
-          7
-        ]
+        "range": [5, 7]
       }
     ]
   },
@@ -542,47 +348,28 @@
       "frF": "épineuse"
     },
     "stat": "thorns",
-    "slots": [
-      "armor",
-      "helm",
-      "gloves"
-    ],
+    "slots": ["armor", "helm", "gloves"],
     "weight": 8,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          2,
-          4
-        ]
+        "range": [2, 4]
       },
       {
         "minIlvl": 5,
-        "range": [
-          5,
-          8
-        ]
+        "range": [5, 8]
       },
       {
         "minIlvl": 10,
-        "range": [
-          7,
-          11
-        ]
+        "range": [7, 11]
       },
       {
         "minIlvl": 15,
-        "range": [
-          10,
-          15
-        ]
+        "range": [10, 15]
       },
       {
         "minIlvl": 20,
-        "range": [
-          12,
-          18
-        ]
+        "range": [12, 18]
       }
     ]
   },
@@ -595,48 +382,28 @@
       "frF": "dorée"
     },
     "stat": "goldFind",
-    "slots": [
-      "ring",
-      "amulet",
-      "gloves",
-      "helm"
-    ],
+    "slots": ["ring", "amulet", "gloves", "helm"],
     "weight": 9,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          5,
-          10
-        ]
+        "range": [5, 10]
       },
       {
         "minIlvl": 5,
-        "range": [
-          14,
-          23
-        ]
+        "range": [14, 23]
       },
       {
         "minIlvl": 10,
-        "range": [
-          23,
-          35
-        ]
+        "range": [23, 35]
       },
       {
         "minIlvl": 15,
-        "range": [
-          31,
-          48
-        ]
+        "range": [31, 48]
       },
       {
         "minIlvl": 20,
-        "range": [
-          40,
-          60
-        ]
+        "range": [40, 60]
       }
     ]
   },
@@ -649,47 +416,28 @@
       "frF": "insaisissable"
     },
     "stat": "dodge",
-    "slots": [
-      "boots",
-      "armor",
-      "gloves"
-    ],
+    "slots": ["boots", "armor", "gloves"],
     "weight": 7,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          1,
-          2
-        ]
+        "range": [1, 2]
       },
       {
         "minIlvl": 5,
-        "range": [
-          2,
-          3
-        ]
+        "range": [2, 3]
       },
       {
         "minIlvl": 10,
-        "range": [
-          3,
-          5
-        ]
+        "range": [3, 5]
       },
       {
         "minIlvl": 15,
-        "range": [
-          4,
-          6
-        ]
+        "range": [4, 6]
       },
       {
         "minIlvl": 20,
-        "range": [
-          5,
-          7
-        ]
+        "range": [5, 7]
       }
     ]
   },
@@ -702,47 +450,28 @@
       "frF": "runique"
     },
     "stat": "magicFind",
-    "slots": [
-      "amulet",
-      "ring",
-      "helm"
-    ],
+    "slots": ["amulet", "ring", "helm"],
     "weight": 6,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          3,
-          6
-        ]
+        "range": [3, 6]
       },
       {
         "minIlvl": 5,
-        "range": [
-          9,
-          13
-        ]
+        "range": [9, 13]
       },
       {
         "minIlvl": 10,
-        "range": [
-          14,
-          21
-        ]
+        "range": [14, 21]
       },
       {
         "minIlvl": 15,
-        "range": [
-          20,
-          28
-        ]
+        "range": [20, 28]
       },
       {
         "minIlvl": 20,
-        "range": [
-          25,
-          35
-        ]
+        "range": [25, 35]
       }
     ]
   },
@@ -755,47 +484,28 @@
       "frF": "savante"
     },
     "stat": "expBonus",
-    "slots": [
-      "amulet",
-      "helm",
-      "ring"
-    ],
+    "slots": ["amulet", "helm", "ring"],
     "weight": 6,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          2,
-          4
-        ]
+        "range": [2, 4]
       },
       {
         "minIlvl": 5,
-        "range": [
-          5,
-          7
-        ]
+        "range": [5, 7]
       },
       {
         "minIlvl": 10,
-        "range": [
-          7,
-          10
-        ]
+        "range": [7, 10]
       },
       {
         "minIlvl": 15,
-        "range": [
-          10,
-          13
-        ]
+        "range": [10, 13]
       },
       {
         "minIlvl": 20,
-        "range": [
-          12,
-          16
-        ]
+        "range": [12, 16]
       }
     ]
   },
@@ -807,48 +517,28 @@
       "fr": "du Taureau"
     },
     "stat": "strength",
-    "slots": [
-      "gloves",
-      "ring",
-      "amulet",
-      "weapon"
-    ],
+    "slots": ["gloves", "ring", "amulet", "weapon"],
     "weight": 10,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          1,
-          2
-        ]
+        "range": [1, 2]
       },
       {
         "minIlvl": 5,
-        "range": [
-          3,
-          5
-        ]
+        "range": [3, 5]
       },
       {
         "minIlvl": 10,
-        "range": [
-          5,
-          7
-        ]
+        "range": [5, 7]
       },
       {
         "minIlvl": 15,
-        "range": [
-          6,
-          10
-        ]
+        "range": [6, 10]
       },
       {
         "minIlvl": 20,
-        "range": [
-          8,
-          12
-        ]
+        "range": [8, 12]
       }
     ]
   },
@@ -860,48 +550,28 @@
       "fr": "de la Tortue"
     },
     "stat": "defense",
-    "slots": [
-      "armor",
-      "helm",
-      "boots",
-      "ring"
-    ],
+    "slots": ["armor", "helm", "boots", "ring"],
     "weight": 12,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          1,
-          2
-        ]
+        "range": [1, 2]
       },
       {
         "minIlvl": 5,
-        "range": [
-          3,
-          5
-        ]
+        "range": [3, 5]
       },
       {
         "minIlvl": 10,
-        "range": [
-          5,
-          7
-        ]
+        "range": [5, 7]
       },
       {
         "minIlvl": 15,
-        "range": [
-          6,
-          10
-        ]
+        "range": [6, 10]
       },
       {
         "minIlvl": 20,
-        "range": [
-          8,
-          12
-        ]
+        "range": [8, 12]
       }
     ]
   },
@@ -913,49 +583,28 @@
       "fr": "de l'Ours"
     },
     "stat": "maxHealth",
-    "slots": [
-      "armor",
-      "helm",
-      "boots",
-      "gloves",
-      "amulet"
-    ],
+    "slots": ["armor", "helm", "boots", "gloves", "amulet"],
     "weight": 12,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          5,
-          10
-        ]
+        "range": [5, 10]
       },
       {
         "minIlvl": 5,
-        "range": [
-          14,
-          23
-        ]
+        "range": [14, 23]
       },
       {
         "minIlvl": 10,
-        "range": [
-          23,
-          35
-        ]
+        "range": [23, 35]
       },
       {
         "minIlvl": 15,
-        "range": [
-          31,
-          48
-        ]
+        "range": [31, 48]
       },
       {
         "minIlvl": 20,
-        "range": [
-          40,
-          60
-        ]
+        "range": [40, 60]
       }
     ]
   },
@@ -967,48 +616,28 @@
       "fr": "du Renard"
     },
     "stat": "speed",
-    "slots": [
-      "boots",
-      "gloves",
-      "ring",
-      "weapon"
-    ],
+    "slots": ["boots", "gloves", "ring", "weapon"],
     "weight": 9,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          1,
-          1
-        ]
+        "range": [1, 1]
       },
       {
         "minIlvl": 5,
-        "range": [
-          2,
-          2
-        ]
+        "range": [2, 2]
       },
       {
         "minIlvl": 10,
-        "range": [
-          3,
-          4
-        ]
+        "range": [3, 4]
       },
       {
         "minIlvl": 15,
-        "range": [
-          3,
-          5
-        ]
+        "range": [3, 5]
       },
       {
         "minIlvl": 20,
-        "range": [
-          4,
-          6
-        ]
+        "range": [4, 6]
       }
     ]
   },
@@ -1020,48 +649,28 @@
       "fr": "du Chat noir"
     },
     "stat": "luck",
-    "slots": [
-      "ring",
-      "amulet",
-      "boots",
-      "helm"
-    ],
+    "slots": ["ring", "amulet", "boots", "helm"],
     "weight": 8,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          1,
-          2
-        ]
+        "range": [1, 2]
       },
       {
         "minIlvl": 5,
-        "range": [
-          2,
-          4
-        ]
+        "range": [2, 4]
       },
       {
         "minIlvl": 10,
-        "range": [
-          4,
-          6
-        ]
+        "range": [4, 6]
       },
       {
         "minIlvl": 15,
-        "range": [
-          5,
-          7
-        ]
+        "range": [5, 7]
       },
       {
         "minIlvl": 20,
-        "range": [
-          6,
-          9
-        ]
+        "range": [6, 9]
       }
     ]
   },
@@ -1073,48 +682,28 @@
       "fr": "du Faucon"
     },
     "stat": "critChance",
-    "slots": [
-      "weapon",
-      "gloves",
-      "helm",
-      "ring"
-    ],
+    "slots": ["weapon", "gloves", "helm", "ring"],
     "weight": 8,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          1,
-          2
-        ]
+        "range": [1, 2]
       },
       {
         "minIlvl": 5,
-        "range": [
-          2,
-          4
-        ]
+        "range": [2, 4]
       },
       {
         "minIlvl": 10,
-        "range": [
-          4,
-          5
-        ]
+        "range": [4, 5]
       },
       {
         "minIlvl": 15,
-        "range": [
-          5,
-          7
-        ]
+        "range": [5, 7]
       },
       {
         "minIlvl": 20,
-        "range": [
-          6,
-          8
-        ]
+        "range": [6, 8]
       }
     ]
   },
@@ -1126,46 +715,28 @@
       "fr": "du Loup"
     },
     "stat": "critDamage",
-    "slots": [
-      "weapon",
-      "gloves"
-    ],
+    "slots": ["weapon", "gloves"],
     "weight": 7,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          5,
-          8
-        ]
+        "range": [5, 8]
       },
       {
         "minIlvl": 5,
-        "range": [
-          11,
-          16
-        ]
+        "range": [11, 16]
       },
       {
         "minIlvl": 10,
-        "range": [
-          18,
-          24
-        ]
+        "range": [18, 24]
       },
       {
         "minIlvl": 15,
-        "range": [
-          24,
-          32
-        ]
+        "range": [24, 32]
       },
       {
         "minIlvl": 20,
-        "range": [
-          30,
-          40
-        ]
+        "range": [30, 40]
       }
     ]
   },
@@ -1177,46 +748,28 @@
       "fr": "du Carnage"
     },
     "stat": "damagePct",
-    "slots": [
-      "weapon",
-      "gloves"
-    ],
+    "slots": ["weapon", "gloves"],
     "weight": 9,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          3,
-          5
-        ]
+        "range": [3, 5]
       },
       {
         "minIlvl": 5,
-        "range": [
-          7,
-          10
-        ]
+        "range": [7, 10]
       },
       {
         "minIlvl": 10,
-        "range": [
-          11,
-          15
-        ]
+        "range": [11, 15]
       },
       {
         "minIlvl": 15,
-        "range": [
-          14,
-          20
-        ]
+        "range": [14, 20]
       },
       {
         "minIlvl": 20,
-        "range": [
-          18,
-          25
-        ]
+        "range": [18, 25]
       }
     ]
   },
@@ -1228,46 +781,28 @@
       "fr": "de la Sangsue"
     },
     "stat": "lifeSteal",
-    "slots": [
-      "weapon",
-      "amulet"
-    ],
+    "slots": ["weapon", "amulet"],
     "weight": 5,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          1,
-          2
-        ]
+        "range": [1, 2]
       },
       {
         "minIlvl": 5,
-        "range": [
-          2,
-          3
-        ]
+        "range": [2, 3]
       },
       {
         "minIlvl": 10,
-        "range": [
-          3,
-          5
-        ]
+        "range": [3, 5]
       },
       {
         "minIlvl": 15,
-        "range": [
-          4,
-          6
-        ]
+        "range": [4, 6]
       },
       {
         "minIlvl": 20,
-        "range": [
-          5,
-          7
-        ]
+        "range": [5, 7]
       }
     ]
   },
@@ -1279,48 +814,28 @@
       "fr": "des Ombres"
     },
     "stat": "dodge",
-    "slots": [
-      "boots",
-      "armor",
-      "gloves",
-      "helm"
-    ],
+    "slots": ["boots", "armor", "gloves", "helm"],
     "weight": 7,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          1,
-          2
-        ]
+        "range": [1, 2]
       },
       {
         "minIlvl": 5,
-        "range": [
-          2,
-          3
-        ]
+        "range": [2, 3]
       },
       {
         "minIlvl": 10,
-        "range": [
-          3,
-          5
-        ]
+        "range": [3, 5]
       },
       {
         "minIlvl": 15,
-        "range": [
-          4,
-          6
-        ]
+        "range": [4, 6]
       },
       {
         "minIlvl": 20,
-        "range": [
-          5,
-          7
-        ]
+        "range": [5, 7]
       }
     ]
   },
@@ -1332,47 +847,28 @@
       "fr": "des Ronces"
     },
     "stat": "thorns",
-    "slots": [
-      "armor",
-      "boots",
-      "helm"
-    ],
+    "slots": ["armor", "boots", "helm"],
     "weight": 8,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          2,
-          4
-        ]
+        "range": [2, 4]
       },
       {
         "minIlvl": 5,
-        "range": [
-          5,
-          8
-        ]
+        "range": [5, 8]
       },
       {
         "minIlvl": 10,
-        "range": [
-          7,
-          11
-        ]
+        "range": [7, 11]
       },
       {
         "minIlvl": 15,
-        "range": [
-          10,
-          15
-        ]
+        "range": [10, 15]
       },
       {
         "minIlvl": 20,
-        "range": [
-          12,
-          18
-        ]
+        "range": [12, 18]
       }
     ]
   },
@@ -1384,48 +880,28 @@
       "fr": "de la Pie"
     },
     "stat": "goldFind",
-    "slots": [
-      "ring",
-      "amulet",
-      "boots",
-      "gloves"
-    ],
+    "slots": ["ring", "amulet", "boots", "gloves"],
     "weight": 9,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          5,
-          10
-        ]
+        "range": [5, 10]
       },
       {
         "minIlvl": 5,
-        "range": [
-          14,
-          23
-        ]
+        "range": [14, 23]
       },
       {
         "minIlvl": 10,
-        "range": [
-          23,
-          35
-        ]
+        "range": [23, 35]
       },
       {
         "minIlvl": 15,
-        "range": [
-          31,
-          48
-        ]
+        "range": [31, 48]
       },
       {
         "minIlvl": 20,
-        "range": [
-          40,
-          60
-        ]
+        "range": [40, 60]
       }
     ]
   },
@@ -1437,48 +913,28 @@
       "fr": "du Corbeau"
     },
     "stat": "magicFind",
-    "slots": [
-      "helm",
-      "amulet",
-      "ring",
-      "gloves"
-    ],
+    "slots": ["helm", "amulet", "ring", "gloves"],
     "weight": 6,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          3,
-          6
-        ]
+        "range": [3, 6]
       },
       {
         "minIlvl": 5,
-        "range": [
-          9,
-          13
-        ]
+        "range": [9, 13]
       },
       {
         "minIlvl": 10,
-        "range": [
-          14,
-          21
-        ]
+        "range": [14, 21]
       },
       {
         "minIlvl": 15,
-        "range": [
-          20,
-          28
-        ]
+        "range": [20, 28]
       },
       {
         "minIlvl": 20,
-        "range": [
-          25,
-          35
-        ]
+        "range": [25, 35]
       }
     ]
   },
@@ -1490,47 +946,28 @@
       "fr": "de la Chouette"
     },
     "stat": "expBonus",
-    "slots": [
-      "helm",
-      "amulet",
-      "armor"
-    ],
+    "slots": ["helm", "amulet", "armor"],
     "weight": 6,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          2,
-          4
-        ]
+        "range": [2, 4]
       },
       {
         "minIlvl": 5,
-        "range": [
-          5,
-          7
-        ]
+        "range": [5, 7]
       },
       {
         "minIlvl": 10,
-        "range": [
-          7,
-          10
-        ]
+        "range": [7, 10]
       },
       {
         "minIlvl": 15,
-        "range": [
-          10,
-          13
-        ]
+        "range": [10, 13]
       },
       {
         "minIlvl": 20,
-        "range": [
-          12,
-          16
-        ]
+        "range": [12, 16]
       }
     ]
   },
@@ -1542,39 +979,24 @@
       "fr": "des Étoiles"
     },
     "stat": "maxEnergy",
-    "slots": [
-      "amulet",
-      "ring"
-    ],
+    "slots": ["amulet", "ring"],
     "weight": 4,
     "tiers": [
       {
         "minIlvl": 1,
-        "range": [
-          1,
-          1
-        ]
+        "range": [1, 1]
       },
       {
         "minIlvl": 5,
-        "range": [
-          2,
-          2
-        ]
+        "range": [2, 2]
       },
       {
         "minIlvl": 10,
-        "range": [
-          2,
-          3
-        ]
+        "range": [2, 3]
       },
       {
         "minIlvl": 15,
-        "range": [
-          3,
-          4
-        ]
+        "range": [3, 4]
       }
     ]
   }

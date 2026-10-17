@@ -105,17 +105,29 @@ export function openDoor(ctx: Ctx, index: number): void {
   switch (room) {
     case "fight":
     case "elite": {
-      const enemy = spawnEnemy(ctx, level, dungeonDifficulty(ctx, dungeon.floor), { elite: room === "elite" });
+      const enemy = spawnEnemy(ctx, level, dungeonDifficulty(ctx, dungeon.floor), {
+        elite: room === "elite",
+      });
       startCombat(ctx, enemy, { type: "dungeon", floor: dungeon.floor, boss: false });
       return;
     }
     case "boss": {
-      const boss = spawnBoss(ctx, bossForFloor(ctx, dungeon.floor), level + 1, dungeonDifficulty(ctx, dungeon.floor));
+      const boss = spawnBoss(
+        ctx,
+        bossForFloor(ctx, dungeon.floor),
+        level + 1,
+        dungeonDifficulty(ctx, dungeon.floor),
+      );
       startCombat(ctx, boss, { type: "dungeon", floor: dungeon.floor, boss: true });
       return;
     }
     case "treasure": {
-      const rarity = rollRarity(ctx, { magic: 0.55, rare: 0.22, legendary: 0.025 }, stats.magicFind, level);
+      const rarity = rollRarity(
+        ctx,
+        { magic: 0.55, rare: 0.22, legendary: 0.025 },
+        stats.magicFind,
+        level,
+      );
       const item = generateEquipment(ctx, { ilvl: level, rarity, classId: ctx.hero.classId });
       dungeon.stash.push(item);
       dungeon.stashGold += Math.round((10 + 6 * dungeon.floor) * ctx.rng.float(0.8, 1.4));
@@ -158,13 +170,26 @@ export function chooseEvent(ctx: Ctx, choiceIndex: number): void {
   const outcome = choice.outcomes[outcomeIndex]!;
   const stats = computeStats(ctx.state, ctx.content);
   const scale = 1 + dungeon.floor * 0.2;
-  if (outcome.healPct) ctx.hero.health = Math.min(stats.maxHealth, ctx.hero.health + Math.round(stats.maxHealth * outcome.healPct));
-  if (outcome.damagePct) ctx.hero.health = Math.max(1, ctx.hero.health - Math.round(stats.maxHealth * outcome.damagePct));
+  if (outcome.healPct)
+    ctx.hero.health = Math.min(
+      stats.maxHealth,
+      ctx.hero.health + Math.round(stats.maxHealth * outcome.healPct),
+    );
+  if (outcome.damagePct)
+    ctx.hero.health = Math.max(
+      1,
+      ctx.hero.health - Math.round(stats.maxHealth * outcome.damagePct),
+    );
   if (outcome.gold) dungeon.stashGold += Math.round(outcome.gold * scale);
   if (outcome.shards) dungeon.stashShards += outcome.shards;
   if (outcome.energy) ctx.hero.energy = Math.min(stats.maxEnergy, ctx.hero.energy + outcome.energy);
   if (outcome.buff) ctx.hero.buffs.push({ sourceId: `event:${event.id}`, ...outcome.buff });
-  ctx.emit({ type: "dungeonOutcome", eventId: event.id, choice: choiceIndex, outcome: outcomeIndex });
+  ctx.emit({
+    type: "dungeonOutcome",
+    eventId: event.id,
+    choice: choiceIndex,
+    outcome: outcomeIndex,
+  });
   if (outcome.rarity) {
     const item = generateEquipment(ctx, {
       ilvl: enemyLevelForFloor(ctx.hero.level, dungeon.floor),
@@ -182,7 +207,10 @@ export function onDungeonVictory(ctx: Ctx, combat: Combat): void {
   if (!dungeon || combat.context.type !== "dungeon") return;
   if (combat.context.boss) {
     // A slain guardian opens a shortcut: next runs start below it.
-    ctx.state.time.dungeonCheckpoint = Math.max(ctx.state.time.dungeonCheckpoint, dungeon.floor + 1);
+    ctx.state.time.dungeonCheckpoint = Math.max(
+      ctx.state.time.dungeonCheckpoint,
+      dungeon.floor + 1,
+    );
     dungeon.atStairs = true;
     dungeon.doors = [];
     ctx.emit({ type: "stairs", floor: dungeon.floor });

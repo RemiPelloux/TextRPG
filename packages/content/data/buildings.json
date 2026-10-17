@@ -2,7 +2,10 @@
   {
     "id": "forge",
     "name": { "en": "Forge", "fr": "Forge" },
-    "text": { "en": "Raises the maximum upgrade level of your items.", "fr": "Augmente le niveau d'amélioration maximum de tes objets." },
+    "text": {
+      "en": "Raises the maximum upgrade level of your items.",
+      "fr": "Augmente le niveau d'amélioration maximum de tes objets."
+    },
     "icon": "GiAnvil",
     "levels": [
       { "gold": 0, "shards": 0, "value": 3 },
@@ -25,7 +28,10 @@
   {
     "id": "market",
     "name": { "en": "Market Stall", "fr": "Échoppe" },
-    "text": { "en": "More wares each day, and better odds of rare ones.", "fr": "Plus de marchandises chaque jour, et plus de chances d'en voir de rares." },
+    "text": {
+      "en": "More wares each day, and better odds of rare ones.",
+      "fr": "Plus de marchandises chaque jour, et plus de chances d'en voir de rares."
+    },
     "icon": "GiShoppingBag",
     "levels": [
       { "gold": 0, "shards": 0, "value": 6 },
@@ -36,7 +42,10 @@
   {
     "id": "alchemist",
     "name": { "en": "Alchemist", "fr": "Alchimiste" },
-    "text": { "en": "Brews potions and elixirs from fish and shards.", "fr": "Prépare potions et élixirs à partir de poissons et d'éclats." },
+    "text": {
+      "en": "Brews potions and elixirs from fish and shards.",
+      "fr": "Prépare potions et élixirs à partir de poissons et d'éclats."
+    },
     "icon": "GiBubblingFlask",
     "levels": [
       { "gold": 0, "shards": 0, "value": 0 },

@@ -15,7 +15,9 @@ export function generateName(ctx: Ctx, syllables: [number, number] = [2, 3]): st
   const parts: string[] = [];
   const count = ctx.rng.int(...syllables);
   for (let i = 0; i < count; i++) {
-    parts.push(ctx.rng.pick(SYLLABLES.onset) + ctx.rng.pick(SYLLABLES.vowel) + ctx.rng.pick(SYLLABLES.coda));
+    parts.push(
+      ctx.rng.pick(SYLLABLES.onset) + ctx.rng.pick(SYLLABLES.vowel) + ctx.rng.pick(SYLLABLES.coda),
+    );
   }
   const name = parts.join("");
   return name.charAt(0).toUpperCase() + name.slice(1);
@@ -26,7 +28,12 @@ type Mods = { hp: number; atk: number; def: number; spd: number };
 /** Base enemy curve. Tuned with tools/simulate against an average-geared hero of the same level. */
 export function enemyStats(level: number, ...mods: Mods[]): Stats {
   const m = mods.reduce(
-    (acc, mod) => ({ hp: acc.hp * mod.hp, atk: acc.atk * mod.atk, def: acc.def * mod.def, spd: acc.spd * mod.spd }),
+    (acc, mod) => ({
+      hp: acc.hp * mod.hp,
+      atk: acc.atk * mod.atk,
+      def: acc.def * mod.def,
+      spd: acc.spd * mod.spd,
+    }),
     { hp: 1, atk: 1, def: 1, spd: 1 },
   );
   // Heroes grow faster than linearly (gear tiers, talents): so do enemies.
@@ -84,7 +91,12 @@ export function spawnEnemy(
   return { info, stats };
 }
 
-export function spawnBoss(ctx: Ctx, boss: Boss, level: number, difficulty: Difficulty): SpawnedEnemy {
+export function spawnBoss(
+  ctx: Ctx,
+  boss: Boss,
+  level: number,
+  difficulty: Difficulty,
+): SpawnedEnemy {
   const stats = enemyStats(level, boss.mods, difficulty.mods);
   stats.luck += 5;
   const info: EnemyInfo = {

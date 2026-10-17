@@ -13,11 +13,21 @@ function Reward({ quest }: { quest: QuestInstance }) {
   const r = quest.reward;
   return (
     <div className="row ui num" style={{ gap: 10, fontSize: "0.78rem" }}>
-      {r.exp > 0 && <span>+{r.exp} {t("common.exp")}</span>}
+      {r.exp > 0 && (
+        <span>
+          +{r.exp} {t("common.exp")}
+        </span>
+      )}
       {r.gold > 0 && <span className="r-text r-rare">+{r.gold} ◉</span>}
       {r.shards > 0 && <span className="r-text r-magic">+{r.shards} ◆</span>}
-      {r.itemId && <span className="chip gold">{tx(content.items.get(r.itemId)?.name, locale)}</span>}
-      {r.rarity && <span className={`chip r-text r-${r.rarity}`}>{t("quests.rewardRarity", { rarity: t(`rarity.${r.rarity}`) })}</span>}
+      {r.itemId && (
+        <span className="chip gold">{tx(content.items.get(r.itemId)?.name, locale)}</span>
+      )}
+      {r.rarity && (
+        <span className={`chip r-text r-${r.rarity}`}>
+          {t("quests.rewardRarity", { rarity: t(`rarity.${r.rarity}`) })}
+        </span>
+      )}
     </div>
   );
 }
@@ -33,7 +43,14 @@ function QuestCard({ quest, offer }: { quest: QuestInstance; offer?: boolean }) 
     <article className={`panel quest ${template.type === "story" ? "ornate" : ""}`}>
       <div className="spread">
         <span className="giver">
-          {giver && <Icon name={giver.icon} width={14} height={14} style={{ verticalAlign: "-2px", marginRight: 6 }} />}
+          {giver && (
+            <Icon
+              name={giver.icon}
+              width={14}
+              height={14}
+              style={{ verticalAlign: "-2px", marginRight: 6 }}
+            />
+          )}
           {tx(giver?.name, locale)} · {t(`quests.type.${template.type}`)}
         </span>
         {done && !offer && <span className="chip venom">{t("quests.ready")}</span>}
@@ -42,23 +59,42 @@ function QuestCard({ quest, offer }: { quest: QuestInstance; offer?: boolean }) 
       <p className="quote">{tx(template.text, locale)}</p>
       {!offer && (
         <div className="stack" style={{ gap: 4 }}>
-          <Bar value={quest.progress} max={quest.goal} kind="exp" label={t("quests.progressLabel")} />
-          <span className="label">{t("quests.progress", { progress: quest.progress, goal: quest.goal })}</span>
+          <Bar
+            value={quest.progress}
+            max={quest.goal}
+            kind="exp"
+            label={t("quests.progressLabel")}
+          />
+          <span className="label">
+            {t("quests.progress", { progress: quest.progress, goal: quest.goal })}
+          </span>
         </div>
       )}
       <Reward quest={quest} />
       <div className="row">
         {offer ? (
-          <button className="btn primary small" disabled={busy || boardCount >= MAX_BOARD_QUESTS} onClick={() => void dispatch({ type: "quest.accept", uid: quest.uid })}>
+          <button
+            className="btn primary small"
+            disabled={busy || boardCount >= MAX_BOARD_QUESTS}
+            onClick={() => void dispatch({ type: "quest.accept", uid: quest.uid })}
+          >
             {t("quests.accept")}
           </button>
         ) : (
           <>
-            <button className="btn primary small" disabled={busy || !done} onClick={() => void dispatch({ type: "quest.turnIn", uid: quest.uid })}>
+            <button
+              className="btn primary small"
+              disabled={busy || !done}
+              onClick={() => void dispatch({ type: "quest.turnIn", uid: quest.uid })}
+            >
               {t("quests.turnIn")}
             </button>
             {template.type !== "story" && (
-              <button className="btn ghost small" disabled={busy} onClick={() => void dispatch({ type: "quest.abandon", uid: quest.uid })}>
+              <button
+                className="btn ghost small"
+                disabled={busy}
+                onClick={() => void dispatch({ type: "quest.abandon", uid: quest.uid })}
+              >
                 {t("quests.abandon")}
               </button>
             )}
@@ -82,7 +118,12 @@ export default function Quests() {
       <div className="page-head">
         <span className="label">{t("quests.eyebrow")}</span>
         <h1>{t("quests.title")}</h1>
-        <p className="dim">{t("quests.chapter", { chapter: view.story.chapter, total: [...content.quests.values()].filter((q) => q.type === "story").length })}</p>
+        <p className="dim">
+          {t("quests.chapter", {
+            chapter: view.story.chapter,
+            total: [...content.quests.values()].filter((q) => q.type === "story").length,
+          })}
+        </p>
       </div>
 
       <section className="stack">

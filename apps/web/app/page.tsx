@@ -34,11 +34,18 @@ export default async function Title() {
               {t("title.continue")}
             </h2>
             {heroes.map((hero) => (
-              <Link key={hero.id} href={`/play/${hero.id}`} className="btn block" style={{ justifyContent: "space-between" }}>
+              <Link
+                key={hero.id}
+                href={`/play/${hero.id}`}
+                className="btn block"
+                style={{ justifyContent: "space-between" }}
+              >
                 <span>{hero.name}</span>
                 <span className="cost">
                   {t("common.level", { level: hero.level })}
-                  {hero.classId ? ` · ${tx(content.classes.get(hero.classId as never)?.name, locale)}` : ""}
+                  {hero.classId
+                    ? ` · ${tx(content.classes.get(hero.classId as never)?.name, locale)}`
+                    : ""}
                 </span>
               </Link>
             ))}
@@ -56,7 +63,9 @@ export default async function Title() {
 
         <nav className="row" style={{ justifyContent: "center", gap: 18 }} aria-label="Menu">
           <Link href="/leaderboard">{t("nav.leaderboard")}</Link>
-          <Link href="/account">{session && !session.guest ? t("account.mine") : t("account.signIn")}</Link>
+          <Link href="/account">
+            {session && !session.guest ? t("account.mine") : t("account.signIn")}
+          </Link>
           <LanguageSwitch />
         </nav>
         <p className="faint ui" style={{ fontSize: "0.7rem" }}>

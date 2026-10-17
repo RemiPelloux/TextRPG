@@ -10,7 +10,11 @@ export async function GET(request: Request) {
   if (!secret || request.headers.get("authorization") !== `Bearer ${secret}`) {
     return new Response("Unauthorized", { status: 401 });
   }
-  const { NEXT_PUBLIC_VAPID_PUBLIC_KEY: publicKey, VAPID_PRIVATE_KEY: privateKey, VAPID_SUBJECT: subject } = process.env;
+  const {
+    NEXT_PUBLIC_VAPID_PUBLIC_KEY: publicKey,
+    VAPID_PRIVATE_KEY: privateKey,
+    VAPID_SUBJECT: subject,
+  } = process.env;
   if (!publicKey || !privateKey) return Response.json({ sent: 0, reason: "push not configured" });
   webpush.setVapidDetails(subject ?? "mailto:admin@example.com", publicKey, privateKey);
 
@@ -20,7 +24,11 @@ export async function GET(request: Request) {
     try {
       await webpush.sendNotification(
         { endpoint: target.endpoint, keys: target.keys },
-        JSON.stringify({ title: "TextRPG", body: "⚡ Ton énergie est pleine. Le monde t'attend.", url: target.heroId ? `/play/${target.heroId}` : "/" }),
+        JSON.stringify({
+          title: "TextRPG",
+          body: "⚡ Ton énergie est pleine. Le monde t'attend.",
+          url: target.heroId ? `/play/${target.heroId}` : "/",
+        }),
       );
       await markNotified(db, target.endpoint);
       sent += 1;

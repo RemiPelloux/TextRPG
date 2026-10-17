@@ -13,12 +13,20 @@ export type Params = Record<string, string | number>;
 export type T = (key: string, params?: Params) => string;
 
 function lookup(messages: unknown, key: string): unknown {
-  return key.split(".").reduce<unknown>((node, part) => (node && typeof node === "object" ? (node as Record<string, unknown>)[part] : undefined), messages);
+  return key
+    .split(".")
+    .reduce<unknown>(
+      (node, part) =>
+        node && typeof node === "object" ? (node as Record<string, unknown>)[part] : undefined,
+      messages,
+    );
 }
 
 function format(template: string, params?: Params): string {
   if (!params) return template;
-  return template.replace(/\{(\w+)\}/g, (_, name: string) => (name in params ? String(params[name]) : `{${name}}`));
+  return template.replace(/\{(\w+)\}/g, (_, name: string) =>
+    name in params ? String(params[name]) : `{${name}}`,
+  );
 }
 
 /** Translate `key`. Arrays of variants pick one with `params.v` (a stable number). */

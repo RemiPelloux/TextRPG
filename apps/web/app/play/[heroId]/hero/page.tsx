@@ -1,7 +1,14 @@
 "use client";
 
 import { CLASS_IDS, type Slot, type StatKey } from "@textrpg/content";
-import { CLASS_LEVEL, type ClientItem, critChanceOf, PARAGON_PER_POINT, PARAGON_STATS, talentResetCost } from "@textrpg/engine";
+import {
+  CLASS_LEVEL,
+  type ClientItem,
+  critChanceOf,
+  PARAGON_PER_POINT,
+  PARAGON_STATS,
+  talentResetCost,
+} from "@textrpg/engine";
 import { useState } from "react";
 
 import { ItemMedallion, slotOrder } from "@/components/game/items";
@@ -11,7 +18,22 @@ import { useGame } from "@/lib/game";
 import { useI18n } from "@/lib/i18n-client";
 import { content, statValue, tx } from "@/lib/text";
 
-const SHOWN: StatKey[] = ["maxHealth", "strength", "defense", "speed", "luck", "damagePct", "critDamage", "dodge", "lifeSteal", "thorns", "goldFind", "magicFind", "expBonus", "maxEnergy"];
+const SHOWN: StatKey[] = [
+  "maxHealth",
+  "strength",
+  "defense",
+  "speed",
+  "luck",
+  "damagePct",
+  "critDamage",
+  "dodge",
+  "lifeSteal",
+  "thorns",
+  "goldFind",
+  "magicFind",
+  "expBonus",
+  "maxEnergy",
+];
 const SLOT_ICON: Record<Slot, string> = {
   weapon: "GiBroadsword",
   armor: "GiLeatherArmor",
@@ -47,7 +69,13 @@ export default function Hero() {
           {slotOrder().map((slot) => {
             const item = hero.equipment[slot];
             return (
-              <button key={slot} className="slot" onClick={() => item && setSelected({ item, slot })} disabled={!item} aria-label={t(`slots.${slot}`)}>
+              <button
+                key={slot}
+                className="slot"
+                onClick={() => item && setSelected({ item, slot })}
+                disabled={!item}
+                aria-label={t(`slots.${slot}`)}
+              >
                 {item ? (
                   <ItemMedallion item={item} />
                 ) : (
@@ -67,7 +95,9 @@ export default function Hero() {
         <div className="statgrid">
           <div className="stat">
             <span className="dim">{t("stats.critChance")}</span>
-            <span className="v">{statValue("critChance", Math.round(critChanceOf(stats) * 10) / 10, locale)}</span>
+            <span className="v">
+              {statValue("critChance", Math.round(critChanceOf(stats) * 10) / 10, locale)}
+            </span>
           </div>
           {SHOWN.map((stat) => (
             <div className="stat" key={stat}>
@@ -86,7 +116,9 @@ export default function Hero() {
           <h2 className="label">{t("hero.powers")}</h2>
           {view.powers.map((power) => {
             const legendary = [...content.legendaries.values()].find((l) => l.power === power);
-            const setBonus = [...content.sets.values()].flatMap((s) => s.bonuses).find((b) => b.power === power);
+            const setBonus = [...content.sets.values()]
+              .flatMap((s) => s.bonuses)
+              .find((b) => b.power === power);
             return (
               <p key={power} className="r-text r-legendary">
                 ✦ {tx(legendary?.powerText ?? setBonus?.text, locale)}
@@ -101,7 +133,11 @@ export default function Hero() {
                   {tx(set.name, locale)} ({count}/{set.pieces.length})
                 </strong>
                 {set.bonuses.map((bonus) => (
-                  <span key={bonus.pieces} className={count >= bonus.pieces ? "r-text r-set ui" : "faint ui"} style={{ fontSize: "0.8rem" }}>
+                  <span
+                    key={bonus.pieces}
+                    className={count >= bonus.pieces ? "r-text r-set ui" : "faint ui"}
+                    style={{ fontSize: "0.8rem" }}
+                  >
                     ({bonus.pieces}) {tx(bonus.text, locale)}
                   </span>
                 ))}
@@ -114,7 +150,11 @@ export default function Hero() {
       {!hero.classId && (
         <section className="panel ornate stack">
           <h2>{t("hero.chooseClass")}</h2>
-          <p className="dim">{hero.level >= CLASS_LEVEL ? t("hero.chooseClassText") : t("hero.classLocked", { level: CLASS_LEVEL })}</p>
+          <p className="dim">
+            {hero.level >= CLASS_LEVEL
+              ? t("hero.chooseClassText")
+              : t("hero.classLocked", { level: CLASS_LEVEL })}
+          </p>
           <div className="grid-cards">
             {CLASS_IDS.map((id) => {
               const c = content.classes.get(id)!;
@@ -126,14 +166,21 @@ export default function Hero() {
                     <h3>{tx(c.name, locale)}</h3>
                   </div>
                   <p className="dim">{tx(c.description, locale)}</p>
-                  <ul className="ui faint" style={{ fontSize: "0.76rem", margin: 0, paddingLeft: 18 }}>
+                  <ul
+                    className="ui faint"
+                    style={{ fontSize: "0.76rem", margin: 0, paddingLeft: 18 }}
+                  >
                     {skills.map((s) => (
                       <li key={s.id}>
                         {tx(s.name, locale)} ({t("common.level", { level: s.unlockLevel })})
                       </li>
                     ))}
                   </ul>
-                  <button className="btn primary" disabled={busy || hero.level < CLASS_LEVEL} onClick={() => void dispatch({ type: "class.choose", classId: id })}>
+                  <button
+                    className="btn primary"
+                    disabled={busy || hero.level < CLASS_LEVEL}
+                    onClick={() => void dispatch({ type: "class.choose", classId: id })}
+                  >
                     {t("hero.become", { name: tx(c.name, locale) })}
                   </button>
                 </article>
@@ -164,7 +211,12 @@ export default function Hero() {
                     <span className="num">
                       {rank}/{talent.maxRank}
                     </span>
-                    <button className="btn small" disabled={busy || derived.talentPoints <= 0 || rank >= talent.maxRank} onClick={() => void dispatch({ type: "talent.learn", talentId: talent.id })} aria-label={t("hero.learn", { name: tx(talent.name, locale) })}>
+                    <button
+                      className="btn small"
+                      disabled={busy || derived.talentPoints <= 0 || rank >= talent.maxRank}
+                      onClick={() => void dispatch({ type: "talent.learn", talentId: talent.id })}
+                      aria-label={t("hero.learn", { name: tx(talent.name, locale) })}
+                    >
                       +
                     </button>
                   </div>
@@ -172,7 +224,15 @@ export default function Hero() {
               );
             })}
           </div>
-          <button className="btn ghost small" disabled={busy || Object.keys(hero.talents).length === 0 || hero.gold < talentResetCost(hero.level)} onClick={() => void dispatch({ type: "talent.reset" })}>
+          <button
+            className="btn ghost small"
+            disabled={
+              busy ||
+              Object.keys(hero.talents).length === 0 ||
+              hero.gold < talentResetCost(hero.level)
+            }
+            onClick={() => void dispatch({ type: "talent.reset" })}
+          >
             {t("hero.resetTalents")} <span className="cost">{talentResetCost(hero.level)} ◉</span>
           </button>
         </section>
@@ -187,10 +247,16 @@ export default function Hero() {
           <p className="dim">{t("hero.paragonText")}</p>
           <div className="grid-cards">
             {PARAGON_STATS.map((stat) => (
-              <button key={stat} className="btn" disabled={busy || derived.paragonPoints <= 0} onClick={() => void dispatch({ type: "paragon.spend", stat })}>
+              <button
+                key={stat}
+                className="btn"
+                disabled={busy || derived.paragonPoints <= 0}
+                onClick={() => void dispatch({ type: "paragon.spend", stat })}
+              >
                 {t(`stats.${stat}`)}
                 <span className="cost">
-                  +{statValue(stat, PARAGON_PER_POINT[stat], locale)} · {hero.paragonPoints[stat] ?? 0}
+                  +{statValue(stat, PARAGON_PER_POINT[stat], locale)} ·{" "}
+                  {hero.paragonPoints[stat] ?? 0}
                 </span>
               </button>
             ))}
@@ -198,7 +264,11 @@ export default function Hero() {
         </section>
       )}
 
-      <ItemSheet item={selected?.item ?? null} equippedSlot={selected?.slot} onClose={() => setSelected(null)} />
+      <ItemSheet
+        item={selected?.item ?? null}
+        equippedSlot={selected?.slot}
+        onClose={() => setSelected(null)}
+      />
     </>
   );
 }

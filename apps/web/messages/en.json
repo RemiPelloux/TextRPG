@@ -1,5 +1,7 @@
 {
-  "meta": { "description": "A dark, text-based, choice-driven RPG. Hunt, loot, delve. The world is mysterious. The world is dangerous." },
+  "meta": {
+    "description": "A dark, text-based, choice-driven RPG. Hunt, loot, delve. The world is mysterious. The world is dangerous."
+  },
   "common": {
     "level": "Lvl {level}",
     "health": "Health",
@@ -37,12 +39,23 @@
     "leaderboard": "Leaderboard",
     "settings": "Settings"
   },
-  "chronicle": { "title": "Chronicle", "empty": "Nothing has been written yet. Go hunt something." },
+  "chronicle": {
+    "title": "Chronicle",
+    "empty": "Nothing has been written yet. Go hunt something."
+  },
   "camp": {
     "eyebrow": "The edge of the world",
     "title": "The Camp",
-    "day": ["The day is grey, as always.", "A cold wind comes down from the hills.", "Crows circle above the camp."],
-    "night": ["Night has fallen. The moonblades are singing.", "It is dark. Something prowls at the treeline.", "Few stars tonight."],
+    "day": [
+      "The day is grey, as always.",
+      "A cold wind comes down from the hills.",
+      "Crows circle above the camp."
+    ],
+    "night": [
+      "Night has fallen. The moonblades are singing.",
+      "It is dark. Something prowls at the treeline.",
+      "Few stars tonight."
+    ],
     "bloodMoon": "Blood Moon",
     "bloodMoonText": "Tonight, enemies are stronger. Gold and magic find are doubled.",
     "fire": "The campfire",
@@ -97,7 +110,8 @@
     "weeklyText": "Once a week. Guaranteed rare loot, a one-in-two chance of legendary, and 25 shards.",
     "weeklyGo": "Face it",
     "weeklyDone": "Already slain this week",
-    "weeklyLocked": "Level 5 required"
+    "weeklyLocked": "Level 5 required",
+    "lowHealth": "Your health is low. Drink a potion or rest at camp before you hunt."
   },
   "challenge": {
     "eyebrow": "Today's ranking",
@@ -196,7 +210,13 @@
     "identifyAll": "Identify all",
     "sellJunk": "Sell commons",
     "empty": "Nothing here.",
-    "filter": { "all": "All", "gear": "Gear", "consumables": "Consumables", "quest": "Quest", "unknown": "Unknown" }
+    "filter": {
+      "all": "All",
+      "gear": "Gear",
+      "consumables": "Consumables",
+      "quest": "Quest",
+      "unknown": "Unknown"
+    }
   },
   "items": {
     "unknown": "Unknown {base}",
@@ -243,7 +263,11 @@
     "lockedLevel": "Available at level {level}.",
     "actDone": "Act I is over. The rest of the story is still buried.",
     "rewardRarity": "+ a {rarity} item",
-    "type": { "story": "Story", "board": "Notice", "daily": "Daily" }
+    "type": {
+      "story": "Story",
+      "board": "Notice",
+      "daily": "Daily"
+    }
   },
   "market": {
     "eyebrow": "The stall",
@@ -290,12 +314,23 @@
       "steady": "It circles slowly, waiting…",
       "slack": "The line is thrashing wildly!"
     },
-    "move": { "pull": "Pull", "steady": "Hold", "slack": "Give slack" }
+    "move": {
+      "pull": "Pull",
+      "steady": "Hold",
+      "slack": "Give slack"
+    }
   },
   "codex": {
     "eyebrow": "The grimoire",
     "title": "Codex",
-    "tab": { "bestiary": "Bestiary", "legendaries": "Legendaries", "sets": "Sets", "fish": "Fish", "achievements": "Achievements", "odds": "Odds" },
+    "tab": {
+      "bestiary": "Bestiary",
+      "legendaries": "Legendaries",
+      "sets": "Sets",
+      "fish": "Fish",
+      "achievements": "Achievements",
+      "odds": "Odds"
+    },
     "kills": "{count} slain",
     "unknownLore": "You have never slain one. Yet.",
     "found": "{found} of {total} discovered.",
@@ -380,11 +415,41 @@
     "class": "A path opens",
     "classHint": "You can choose your class on the Hero screen."
   },
-  "toast": { "achievement": "Achievement unlocked: {name}" },
-  "enemy": { "name": "{proper} the {kind}", "nameElite": "{proper} the {elite} {kind}" },
-  "rarity": { "common": "Common", "magic": "Magic", "rare": "Rare", "legendary": "Legendary", "set": "Set", "ancestral": "Ancestral" },
-  "slots": { "weapon": "Weapon", "armor": "Armor", "helm": "Head", "gloves": "Hands", "boots": "Feet", "amulet": "Neck", "ring": "Ring", "tool": "Tool" },
-  "kinds": { "equipment": "Equipment", "potion": "Potion", "elixir": "Elixir", "scroll": "Scroll", "bait": "Bait", "fish": "Fish", "quest": "Quest item", "material": "Material" },
+  "toast": {
+    "achievement": "Achievement unlocked: {name}"
+  },
+  "enemy": {
+    "name": "{proper} the {kind}",
+    "nameElite": "{proper} the {elite} {kind}"
+  },
+  "rarity": {
+    "common": "Common",
+    "magic": "Magic",
+    "rare": "Rare",
+    "legendary": "Legendary",
+    "set": "Set",
+    "ancestral": "Ancestral"
+  },
+  "slots": {
+    "weapon": "Weapon",
+    "armor": "Armor",
+    "helm": "Head",
+    "gloves": "Hands",
+    "boots": "Feet",
+    "amulet": "Neck",
+    "ring": "Ring",
+    "tool": "Tool"
+  },
+  "kinds": {
+    "equipment": "Equipment",
+    "potion": "Potion",
+    "elixir": "Elixir",
+    "scroll": "Scroll",
+    "bait": "Bait",
+    "fish": "Fish",
+    "quest": "Quest item",
+    "material": "Material"
+  },
   "stats": {
     "strength": "Strength",
     "defense": "Defense",
@@ -402,17 +467,56 @@
     "magicFind": "Magic find",
     "expBonus": "Experience"
   },
-  "status": { "poison": "Poison", "burn": "Burn", "bleed": "Bleed", "stun": "Stunned", "weaken": "Weakened", "empower": "Empowered", "evasive": "Evasive", "chill": "Chilled" },
+  "status": {
+    "poison": "Poison",
+    "burn": "Burn",
+    "bleed": "Bleed",
+    "stun": "Stunned",
+    "weaken": "Weakened",
+    "empower": "Empowered",
+    "evasive": "Evasive",
+    "chill": "Chilled"
+  },
   "log": {
-    "combatStart": ["{enemy} emerges from the shadows.", "{enemy} blocks your path.", "A noise. Then {enemy}.", "{enemy} saw you before you saw it."],
-    "heroHit": ["{hero} strikes: {damage} damage.", "Your blade bites. {damage} damage.", "A clean hit. {damage} damage.", "{hero} hits {enemy}: {damage}."],
-    "heroExtra": ["Faster than its foe, {hero} strikes again: {damage}.", "A second blow, before it can react: {damage}."],
-    "heroCrit": ["CRITICAL! {damage} damage.", "The perfect strike. CRITICAL: {damage}!", "You find the gap. {damage} damage!"],
+    "combatStart": [
+      "{enemy} emerges from the shadows.",
+      "{enemy} blocks your path.",
+      "A noise. Then {enemy}.",
+      "{enemy} saw you before you saw it."
+    ],
+    "heroHit": [
+      "{hero} strikes: {damage} damage.",
+      "Your blade bites. {damage} damage.",
+      "A clean hit. {damage} damage.",
+      "{hero} hits {enemy}: {damage}."
+    ],
+    "heroExtra": [
+      "Faster than its foe, {hero} strikes again: {damage}.",
+      "A second blow, before it can react: {damage}."
+    ],
+    "heroCrit": [
+      "CRITICAL! {damage} damage.",
+      "The perfect strike. CRITICAL: {damage}!",
+      "You find the gap. {damage} damage!"
+    ],
     "heroSkill": ["{skill}! {damage} damage.", "{hero} unleashes {skill}: {damage}."],
-    "enemyHit": ["{enemy} hits you: {damage} damage.", "That hurt. {damage} damage.", "{enemy} finds an opening: {damage}.", "A dull thud. {damage} damage."],
+    "enemyHit": [
+      "{enemy} hits you: {damage} damage.",
+      "That hurt. {damage} damage.",
+      "{enemy} finds an opening: {damage}.",
+      "A dull thud. {damage} damage."
+    ],
     "enemyCrit": ["{enemy} lands a terrible blow: {damage}!", "The world reels. {damage} damage."],
-    "heroDodge": ["You dodge.", "You slip away at the last moment.", "The blow cleaves the air where you stood."],
-    "enemyDodge": ["{enemy} dodges.", "Your blade meets only empty air.", "Missed. {enemy} is too quick."],
+    "heroDodge": [
+      "You dodge.",
+      "You slip away at the last moment.",
+      "The blow cleaves the air where you stood."
+    ],
+    "enemyDodge": [
+      "{enemy} dodges.",
+      "Your blade meets only empty air.",
+      "Missed. {enemy} is too quick."
+    ],
     "statusOnEnemy": "{enemy} suffers: {status} ({turns} turns).",
     "statusOnHero": "You suffer: {status} ({turns} turns).",
     "dot": "{status}: {who} loses {damage}.",
@@ -425,7 +529,11 @@
     },
     "enemyHeal": "{enemy} feeds on your pain: +{amount}.",
     "thorns": "Thorns reflect {damage} damage.",
-    "windup": ["{enemy} draws a deep breath… Raise your guard!", "{enemy} winds up. The next blow will be terrible.", "Silence. {enemy} is getting ready. Guard yourself!"],
+    "windup": [
+      "{enemy} draws a deep breath… Raise your guard!",
+      "{enemy} winds up. The next blow will be terrible.",
+      "Silence. {enemy} is getting ready. Guard yourself!"
+    ],
     "heavy": "The blow comes down: {damage} damage!",
     "heavyGuarded": "Your guard holds. Only {damage} damage.",
     "enrage": "{enemy} flies into a mad rage!",
@@ -435,7 +543,11 @@
     "mystery": "The mysterious ring awakens: your {stat} is doubled.",
     "fled": "You flee.",
     "fleeFailed": "You try to flee… it catches you.",
-    "victory": ["{enemy} collapses. +{exp} exp, +{gold} gold.", "It's over. +{exp} exp, +{gold} gold.", "Silence returns. +{exp} exp, +{gold} gold."],
+    "victory": [
+      "{enemy} collapses. +{exp} exp, +{gold} gold.",
+      "It's over. +{exp} exp, +{gold} gold.",
+      "Silence returns. +{exp} exp, +{gold} gold."
+    ],
     "defeat": "Everything goes black. You lose {gold} gold.",
     "defeatDungeon": "The depths got you. Your satchel is lost, and {gold} gold with it.",
     "loot": "Loot: {item}.",

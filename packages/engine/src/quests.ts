@@ -71,13 +71,18 @@ export function refreshBoard(ctx: Ctx): void {
   );
   ctx.state.board = {
     day: ctx.state.time.day,
-    offers: ctx.rng.shuffle(pool).slice(0, BOARD_OFFERS).map((t) => instantiate(ctx, t)),
+    offers: ctx.rng
+      .shuffle(pool)
+      .slice(0, BOARD_OFFERS)
+      .map((t) => instantiate(ctx, t)),
   };
 }
 
 export function refreshDaily(ctx: Ctx): void {
   ctx.state.quests = ctx.state.quests.filter((q) => q.type !== "daily");
-  const pool = [...ctx.content.quests.values()].filter((q) => q.type === "daily" && q.minLevel <= ctx.hero.level);
+  const pool = [...ctx.content.quests.values()].filter(
+    (q) => q.type === "daily" && q.minLevel <= ctx.hero.level,
+  );
   for (const template of ctx.rng.shuffle(pool).slice(0, DAILY_QUESTS)) {
     ctx.state.quests.push(instantiate(ctx, template));
   }
@@ -90,14 +95,24 @@ function bump(ctx: Ctx, match: (t: QuestTemplate) => boolean, amount = 1): void 
     if (quest.progress >= quest.goal || !match(template)) continue;
     quest.progress = Math.min(quest.goal, quest.progress + amount);
     ctx.emit({ type: "questProgress", uid: quest.uid, progress: quest.progress, goal: quest.goal });
-    if (quest.progress >= quest.goal) ctx.emit({ type: "questReady", uid: quest.uid, templateId: template.id });
+    if (quest.progress >= quest.goal)
+      ctx.emit({ type: "questReady", uid: quest.uid, templateId: template.id });
   }
 }
 
-export function onKill(ctx: Ctx, kindId: string, opts: { bossId?: string; hunt?: DifficultyId }): void {
-  bump(ctx, (t) => t.objective.kind === "kill" && (!t.objective.target || t.objective.target === kindId));
-  if (opts.bossId) bump(ctx, (t) => t.objective.kind === "boss" && t.objective.bossId === opts.bossId);
-  if (opts.hunt) bump(ctx, (t) => t.objective.kind === "hunt" && t.objective.difficulty === opts.hunt);
+export function onKill(
+  ctx: Ctx,
+  kindId: string,
+  opts: { bossId?: string; hunt?: DifficultyId },
+): void {
+  bump(
+    ctx,
+    (t) => t.objective.kind === "kill" && (!t.objective.target || t.objective.target === kindId),
+  );
+  if (opts.bossId)
+    bump(ctx, (t) => t.objective.kind === "boss" && t.objective.bossId === opts.bossId);
+  if (opts.hunt)
+    bump(ctx, (t) => t.objective.kind === "hunt" && t.objective.difficulty === opts.hunt);
 }
 
 export function onFish(ctx: Ctx): void {
@@ -122,7 +137,8 @@ export function refreshDynamicProgress(ctx: Ctx): void {
       const wasReady = quest.progress >= quest.goal;
       quest.progress = progress;
       ctx.emit({ type: "questProgress", uid: quest.uid, progress, goal: quest.goal });
-      if (!wasReady && progress >= quest.goal) ctx.emit({ type: "questReady", uid: quest.uid, templateId: quest.templateId });
+      if (!wasReady && progress >= quest.goal)
+        ctx.emit({ type: "questReady", uid: quest.uid, templateId: quest.templateId });
     }
   }
 }
@@ -130,7 +146,8 @@ export function refreshDynamicProgress(ctx: Ctx): void {
 export function acceptQuest(ctx: Ctx, uid: string): void {
   const offer = ctx.state.board.offers.find((q) => q.uid === uid);
   if (!offer) ctx.fail("unknownQuest");
-  if (ctx.state.quests.filter((q) => q.type === "board").length >= MAX_BOARD_QUESTS) ctx.fail("questLogFull");
+  if (ctx.state.quests.filter((q) => q.type === "board").length >= MAX_BOARD_QUESTS)
+    ctx.fail("questLogFull");
   ctx.state.board.offers = ctx.state.board.offers.filter((q) => q !== offer);
   ctx.state.quests.push(offer);
 }
@@ -148,7 +165,8 @@ export function turnIn(ctx: Ctx, uid: string): void {
   refreshDynamicProgress(ctx);
   if (quest.progress < quest.goal) ctx.fail("questNotDone");
   const template = ctx.content.quests.get(quest.templateId)!;
-  if (template.objective.kind === "collect") removeByBase(ctx.state, template.objective.itemId, template.objective.count);
+  if (template.objective.kind === "collect")
+    removeByBase(ctx.state, template.objective.itemId, template.objective.count);
 
   ctx.state.quests = ctx.state.quests.filter((q) => q !== quest);
   const { reward } = quest;
@@ -160,7 +178,11 @@ export function turnIn(ctx: Ctx, uid: string): void {
     ctx.emit(addToBag(ctx, item) ? { type: "loot", item } : { type: "loot", item, lost: true });
   }
   if (reward.rarity) {
-    const item = generateEquipment(ctx, { ilvl: ctx.hero.level + 1, rarity: reward.rarity, classId: ctx.hero.classId });
+    const item = generateEquipment(ctx, {
+      ilvl: ctx.hero.level + 1,
+      rarity: reward.rarity,
+      classId: ctx.hero.classId,
+    });
     ctx.emit(addToBag(ctx, item) ? { type: "loot", item } : { type: "loot", item, lost: true });
   }
   ctx.state.counters.questsCompleted += 1;
